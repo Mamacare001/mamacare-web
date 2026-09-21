@@ -97,7 +97,7 @@ export async function acceptConsent(_prev: ActionState, fd: FormData): Promise<A
   // TODO: create the account via the API, then sign in properly.
   // Demo: sign in through the credentials provider using the one-time onboarding token.
   const email = `${(ob.phone ?? "user").replace(/\D/g, "")}@onboarding.mamacare.rw`;
-  await signIn("credentials", { email, password: `onboarding:${token}`, redirectTo: "/dashboard?welcome=1" });
+  await signIn("credentials", { email, password: `onboarding:${token}`, redirectTo: ob.role === "mother" ? "/app?welcome=1" : "/dashboard?welcome=1" });
   return null;
 }
 
