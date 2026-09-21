@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/Button";
 const field =
   "w-full rounded-md border border-emerald/15 bg-white px-4 py-3 text-[15px] text-ink placeholder:text-muted/70 transition-[border-color,box-shadow] focus:border-green focus:shadow-[0_0_0_4px_rgb(46_139_112/0.15)] focus:outline-none";
 
-export function ContactForm() {
+export function ContactForm({ defaultTopic }: { defaultTopic?: string }) {
   const [state, action, pending] = useActionState<ContactState, FormData>(sendContact, null);
 
   if (state?.ok) {
@@ -39,7 +39,7 @@ export function ContactForm() {
       </label>
       <label className="grid gap-1.5">
         <span className="text-sm font-semibold text-emerald">Topic</span>
-        <select name="topic" className={field} defaultValue="partnership">
+        <select name="topic" className={field} defaultValue={defaultTopic && ["partnership","research","pilot","press","other"].includes(defaultTopic) ? defaultTopic : "partnership"}>
           <option value="partnership">Partnership</option>
           <option value="research">Research collaboration</option>
           <option value="pilot">Join the pilot</option>

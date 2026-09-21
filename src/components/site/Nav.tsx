@@ -43,6 +43,7 @@ export function Nav() {
     { href: "/", label: t.nav.home },
     { href: "/about", label: t.nav.about },
     { href: "/how-it-works", label: t.nav.how },
+    { href: "/partners", label: t.nav.partners },
     { href: "/contact", label: t.nav.contact },
   ];
 

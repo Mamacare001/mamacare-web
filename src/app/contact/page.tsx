@@ -9,7 +9,10 @@ export const metadata: Metadata = {
   description: "Partner with MamaCare, join the pilot, or collaborate on research.",
 };
 
-export default function ContactPage() {
+type Search = Promise<{ topic?: string }>;
+
+export default async function ContactPage({ searchParams }: { searchParams: Search }) {
+  const { topic } = await searchParams;
   return (
     <>
       <PageHero
@@ -25,7 +28,7 @@ export default function ContactPage() {
         <div className="container-x grid gap-12 lg:grid-cols-12">
           <Reveal className="lg:col-span-7">
             <div className="rounded-xl bg-white p-6 shadow-soft ring-1 ring-emerald/5 md:p-10">
-              <ContactForm />
+              <ContactForm defaultTopic={topic} />
             </div>
           </Reveal>
           <Reveal delay={0.1} className="lg:col-span-5">

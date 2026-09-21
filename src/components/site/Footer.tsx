@@ -11,13 +11,15 @@ const columns = [
       { label: "For mothers", href: "/how-it-works#mothers" },
       { label: "For families", href: "/how-it-works#families" },
       { label: "For health workers", href: "/how-it-works#health-workers" },
+      { label: "FAQ", href: "/faq" },
     ],
   },
   {
     title: "Company",
     links: [
       { label: "About", href: "/about" },
-      { label: "Research", href: "/about#research" },
+      { label: "Partners", href: "/partners" },
+      { label: "Research", href: "/research" },
       { label: "Team", href: "/about#team" },
       { label: "Contact", href: "/contact" },
     ],
@@ -26,8 +28,10 @@ const columns = [
     title: "Trust",
     links: [
       { label: "Safety & ethics", href: "/how-it-works#safety" },
-      { label: "Privacy", href: "/contact" },
-      { label: "Terms", href: "/contact" },
+      { label: "Consent", href: "/consent" },
+      { label: "Privacy", href: "/privacy" },
+      { label: "Terms", href: "/terms" },
+      { label: "Emergency", href: "/emergency" },
     ],
   },
 ];
@@ -81,7 +85,7 @@ export function Footer() {
             </div>
             <p className="max-w-md text-xs leading-relaxed text-ivory/45">
               MamaCare is a decision-support tool. It does not diagnose and does not replace doctors, midwives or Community
-              Health Workers. In an emergency, call <span className="text-gold">912</span>.
+              Health Workers. In an emergency, <Link href="/emergency" className="text-gold underline underline-offset-2">call 912</Link>.
             </p>
             <p className="text-xs text-ivory/45">© {new Date().getFullYear()} MamaCare · Kigali, Rwanda</p>
           </div>

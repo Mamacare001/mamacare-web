@@ -24,7 +24,7 @@ export function StickyCta() {
     return () => window.removeEventListener("scroll", onScroll);
   }, [pathname]);
 
-  if (pathname.startsWith("/login") || pathname.startsWith("/dashboard")) return null;
+  if (["/login", "/dashboard", "/emergency"].some((r) => pathname.startsWith(r))) return null;
 
   return (
     <AnimatePresence>
