@@ -25,6 +25,7 @@ export default async function LoginPage({ searchParams }: { searchParams: Search
           alt=""
           fill
           priority
+          quality={90}
           sizes="50vw"
           className="object-cover opacity-80"
         />

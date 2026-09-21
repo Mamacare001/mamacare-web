@@ -81,6 +81,7 @@ export function Hero() {
                 src="/images/mother-home-phone.jpg"
                 alt="A pregnant woman at home checking in on her phone"
                 fill
+                quality={90}
                 priority
                 sizes="(min-width: 768px) 45vw, 92vw"
                 className="object-cover"

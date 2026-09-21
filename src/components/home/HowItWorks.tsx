@@ -136,7 +136,7 @@ export function HowItWorks() {
                   transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
                   className="absolute inset-0"
                 >
-                  <Image src={current.image} alt="" fill sizes="(min-width: 1024px) 45vw, 92vw" className="object-cover object-[50%_25%]" />
+                  <Image src={current.image} alt="" fill quality={90} sizes="(min-width: 1024px) 45vw, 92vw" className="object-cover object-[50%_25%]" />
                 </motion.div>
               </AnimatePresence>
               <div className="absolute inset-0 bg-gradient-to-t from-midnight/70 via-midnight/10 to-transparent" />

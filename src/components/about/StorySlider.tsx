@@ -78,7 +78,7 @@ export function StorySlider() {
                 transition={{ duration: 0.7, ease }}
                 className="absolute inset-0"
               >
-                <Image src={s.image} alt={s.title} fill sizes="(min-width: 1024px) 60vw, 92vw" className="object-cover object-[50%_25%]" />
+                <Image src={s.image} alt={s.title} fill quality={90} sizes="(min-width: 1024px) 60vw, 92vw" className="object-cover object-[50%_25%]" />
               </motion.div>
             </AnimatePresence>
             <div className="absolute bottom-4 left-4 flex gap-1.5" aria-hidden>
