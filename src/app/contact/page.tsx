@@ -51,7 +51,7 @@ export default async function ContactPage({ searchParams }: { searchParams: Sear
                 <span className="grid size-11 shrink-0 place-items-center rounded-full bg-green-100 text-green"><MapPin className="size-5" /></span>
                 <div>
                   <p className="text-eyebrow text-muted">Where</p>
-                  <p className="mt-1 font-semibold text-emerald">AIMS Rwanda · Kigali</p>
+                  <p className="mt-1 font-semibold text-emerald">Kigali, Rwanda</p>
                 </div>
               </div>
               <div className="rounded-lg border-l-4 border-coral bg-coral-100/60 p-5 text-sm leading-relaxed text-ink/80">
