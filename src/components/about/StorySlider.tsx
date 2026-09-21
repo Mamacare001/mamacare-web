@@ -1,9 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import { useCallback, useEffect, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { AnimatePresence, motion, useInView, useReducedMotion } from "framer-motion";
+import { ArrowLeft, ArrowRight, Pause, Play } from "lucide-react";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Reveal } from "@/components/ui/Reveal";
 
@@ -34,19 +34,35 @@ const slides = [
   },
 ];
 
+const AUTOPLAY_MS = 6000;
 const ease = [0.65, 0, 0.35, 1] as const;
 
 export function StorySlider() {
   const [index, setIndex] = useState(0);
   const [dir, setDir] = useState(1);
-  const go = useCallback(
-    (d: number) => {
-      setDir(d);
-      setIndex((i) => (i + d + slides.length) % slides.length);
-    },
-    [],
-  );
+  const [paused, setPaused] = useState(false); // user-toggled
+  const [hovering, setHovering] = useState(false);
+  const [cycle, setCycle] = useState(0); // bumps to restart the progress bar
+  const ref = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, { amount: 0.4 });
+  const reduce = useReducedMotion();
 
+  const go = useCallback((d: number) => {
+    setDir(d);
+    setIndex((i) => (i + d + slides.length) % slides.length);
+    setCycle((c) => c + 1);
+  }, []);
+
+  const playing = !paused && !hovering && inView && !reduce;
+
+  // Autoplay
+  useEffect(() => {
+    if (!playing) return;
+    const id = setTimeout(() => go(1), AUTOPLAY_MS);
+    return () => clearTimeout(id);
+  }, [playing, index, cycle, go]);
+
+  // Keyboard
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "ArrowRight") go(1);
@@ -66,7 +82,16 @@ export function StorySlider() {
           <h2 className="text-h1 mt-5 max-w-3xl text-emerald">Built from the ground up, with the people it serves.</h2>
         </Reveal>
 
-        <div className="mt-12 grid gap-8 lg:grid-cols-12 lg:gap-12">
+        <div
+          ref={ref}
+          className="mt-12 grid gap-8 lg:grid-cols-12 lg:gap-12"
+          onMouseEnter={() => setHovering(true)}
+          onMouseLeave={() => setHovering(false)}
+          onFocusCapture={() => setHovering(true)}
+          onBlurCapture={() => setHovering(false)}
+          aria-roledescription="carousel"
+          aria-live={playing ? "off" : "polite"}
+        >
           <div className="relative aspect-[16/10] overflow-hidden rounded-xl shadow-float lg:col-span-8 lg:aspect-[16/9]">
             <AnimatePresence initial={false} custom={dir} mode="popLayout">
               <motion.div
@@ -81,12 +106,31 @@ export function StorySlider() {
                 <Image src={s.image} alt={s.title} fill quality={90} sizes="(min-width: 1024px) 60vw, 92vw" className="object-cover object-[50%_25%]" />
               </motion.div>
             </AnimatePresence>
+
+            {/* progress dots: active one fills over AUTOPLAY_MS */}
             <div className="absolute bottom-4 left-4 flex gap-1.5" aria-hidden>
               {slides.map((_, i) => (
-                <span
+                <button
                   key={i}
-                  className={`h-1 rounded-full transition-all duration-500 ${i === index ? "w-8 bg-gold" : "w-3 bg-white/60"}`}
-                />
+                  type="button"
+                  tabIndex={-1}
+                  onClick={() => {
+                    setDir(i > index ? 1 : -1);
+                    setIndex(i);
+                    setCycle((c) => c + 1);
+                  }}
+                  className={`relative h-1 overflow-hidden rounded-full transition-all duration-500 ${i === index ? "w-10 bg-white/40" : "w-3 bg-white/60"}`}
+                >
+                  {i === index && (
+                    <motion.span
+                      key={cycle}
+                      className="absolute inset-y-0 left-0 bg-gold"
+                      initial={{ width: "0%" }}
+                      animate={{ width: playing ? "100%" : "0%" }}
+                      transition={{ duration: playing ? AUTOPLAY_MS / 1000 : 0.2, ease: "linear" }}
+                    />
+                  )}
+                </button>
               ))}
             </div>
           </div>
@@ -101,7 +145,7 @@ export function StorySlider() {
                   exit={{ opacity: 0, y: -12 }}
                   transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
                 >
-                  <p className="font-mono text-sm text-coral">{s.n} — </p>
+                  <p className="font-mono text-sm text-coral">{s.n}</p>
                   <h3 className="text-h2 mt-2 text-emerald">{s.title}</h3>
                   <p className="text-lead mt-4 text-muted">{s.text}</p>
                 </motion.div>
@@ -124,7 +168,16 @@ export function StorySlider() {
               >
                 <ArrowRight className="size-5" />
               </button>
-              <span className="ml-2 font-mono text-sm text-muted">
+              <button
+                type="button"
+                onClick={() => setPaused((p) => !p)}
+                className="grid size-12 place-items-center rounded-full text-emerald/70 transition-colors hover:bg-emerald/5 hover:text-emerald"
+                aria-label={paused ? "Play slideshow" : "Pause slideshow"}
+                aria-pressed={paused}
+              >
+                {paused ? <Play className="size-4" /> : <Pause className="size-4" />}
+              </button>
+              <span className="ml-1 font-mono text-sm text-muted">
                 {index + 1} / {slides.length}
               </span>
             </div>
