@@ -7,22 +7,41 @@ import { Home, MessageCircle, Clock, Users, MoreHorizontal, BookOpen, CalendarDa
 import { cn } from "@/lib/cn";
 import { useLang } from "@/components/providers/LanguageProvider";
 
-const primary = [
+export type NavItem = { href: string; icon: typeof Home; en: string; rw: string; exact?: boolean };
+export type NavConfig = { primary: NavItem[]; secondary: NavItem[]; home: string; moreHref: string };
+
+export const motherNav: NavConfig = {
+  home: "/app",
+  moreHref: "/app/guidance",
+  primary: [
   { href: "/app", icon: Home, en: "Home", rw: "Ahabanza", exact: true },
   { href: "/app/chat", icon: MessageCircle, en: "Chat", rw: "Ikiganiro" },
   { href: "/app/timeline", icon: Clock, en: "Timeline", rw: "Urugendo" },
   { href: "/app/circle", icon: Users, en: "My circle", rw: "Abanshyigikira" },
-];
-const secondary = [
+  ],
+  secondary: [
   { href: "/app/guidance", icon: BookOpen, en: "Guidance", rw: "Inama" },
   { href: "/app/visits", icon: CalendarDays, en: "Visits", rw: "Gusura" },
   { href: "/app/access-log", icon: ShieldCheck, en: "Who viewed", rw: "Abarebye" },
   { href: "/app/profile", icon: UserRound, en: "Profile", rw: "Umwirondoro" },
   { href: "/app/settings", icon: Settings, en: "Settings", rw: "Igenamiterere" },
   { href: "/app/data", icon: Database, en: "My data", rw: "Amakuru yanjye" },
-];
+  ],
+};
 
-export function AppShell({ children, name, signOutAction }: { children: React.ReactNode; name: string; signOutAction: () => Promise<void> }) {
+export const familyNav: NavConfig = {
+  home: "/family",
+  moreHref: "/family/settings",
+  primary: [
+    { href: "/family", icon: Home, en: "Home", rw: "Ahabanza", exact: true },
+    { href: "/family/report", icon: MessageCircle, en: "Report", rw: "Menyesha" },
+    { href: "/family/settings", icon: Settings, en: "Settings", rw: "Igenamiterere" },
+  ],
+  secondary: [],
+};
+
+export function AppShell({ children, name, signOutAction, nav = motherNav }: { children: React.ReactNode; name: string; signOutAction: () => Promise<void>; nav?: NavConfig }) {
+  const { primary, secondary } = nav;
   const pathname = usePathname();
   const { lang, toggle } = useLang();
   const isActive = (href: string, exact?: boolean) => (exact ? pathname === href : pathname.startsWith(href));
@@ -47,6 +66,7 @@ export function AppShell({ children, name, signOutAction }: { children: React.Re
               </li>
             ))}
           </ul>
+          {secondary.length > 0 && (
           <div>
             <p className="text-eyebrow px-3 text-muted">More</p>
             <ul className="mt-2 space-y-1">
@@ -59,6 +79,7 @@ export function AppShell({ children, name, signOutAction }: { children: React.Re
               ))}
             </ul>
           </div>
+          )}
         </nav>
         <div className="space-y-2 border-t border-emerald/10 p-4">
           <Link href="/emergency" className="flex items-center justify-center gap-2 rounded-full bg-coral px-4 py-2.5 text-sm font-bold text-white">
@@ -76,7 +97,7 @@ export function AppShell({ children, name, signOutAction }: { children: React.Re
         {/* Top bar */}
         <header className="sticky top-0 z-30 border-b border-emerald/10 bg-ivory/85 backdrop-blur-xl">
           <div className="flex h-14 items-center justify-between px-4 sm:px-6 lg:h-[72px]">
-            <Link href="/app" className="inline-flex items-center gap-2 lg:hidden" aria-label="MamaCare home">
+            <Link href={nav.home} className="inline-flex items-center gap-2 lg:hidden" aria-label="MamaCare home">
               <Image src="/brand/mark.png" alt="" width={32} height={37} className="h-8 w-auto" />
               <Image src="/brand/wordmark.png" alt="MamaCare" width={110} height={16} className="h-4 w-auto" />
             </Link>
@@ -97,7 +118,7 @@ export function AppShell({ children, name, signOutAction }: { children: React.Re
 
         {/* Mobile bottom tabs */}
         <nav className="fixed inset-x-0 bottom-0 z-30 border-t border-emerald/10 bg-white/95 pb-[env(safe-area-inset-bottom)] backdrop-blur lg:hidden" aria-label="App">
-          <ul className="grid grid-cols-5">
+          <ul className={cn("grid", secondary.length > 0 ? "grid-cols-5" : "grid-cols-3")}>
             {primary.map((i) => (
               <li key={i.href}>
                 <Link href={i.href} className={cn("flex flex-col items-center gap-1 py-2.5 text-[11px] font-semibold", isActive(i.href, i.exact) ? "text-emerald" : "text-muted")} aria-current={isActive(i.href, i.exact) ? "page" : undefined}>
@@ -105,11 +126,13 @@ export function AppShell({ children, name, signOutAction }: { children: React.Re
                 </Link>
               </li>
             ))}
+            {secondary.length > 0 && (
             <li>
-              <Link href="/app/guidance" className={cn("flex flex-col items-center gap-1 py-2.5 text-[11px] font-semibold", moreActive ? "text-emerald" : "text-muted")}>
+              <Link href={nav.moreHref} className={cn("flex flex-col items-center gap-1 py-2.5 text-[11px] font-semibold", moreActive ? "text-emerald" : "text-muted")}>
                 <MoreHorizontal className="size-5" aria-hidden /> {lang === "rw" ? "Ibindi" : "More"}
               </Link>
             </li>
+            )}
           </ul>
         </nav>
       </div>
