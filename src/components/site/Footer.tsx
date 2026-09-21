@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { Reveal } from "@/components/ui/Reveal";
+import { SocialLinks } from "@/components/site/Social";
 
 const columns = [
   {
@@ -88,7 +89,10 @@ export function Footer() {
               MamaCare is a decision-support tool. It does not diagnose and does not replace doctors, midwives or Community
               Health Workers. In an emergency, <Link href="/emergency" className="text-gold underline underline-offset-2">call 912</Link>.
             </p>
-            <p className="text-xs text-ivory/45">© {new Date().getFullYear()} MamaCare · Kigali, Rwanda</p>
+            <div className="flex flex-col gap-4 md:items-end">
+              <SocialLinks />
+              <p className="text-xs text-ivory/45">© {new Date().getFullYear()} MamaCare · Kigali, Rwanda</p>
+            </div>
           </div>
         </div>
       </div>
