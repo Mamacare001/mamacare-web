@@ -20,8 +20,20 @@ const fraunces = localFont({
   weight: "100 900",
 });
 
+/** Resolve the canonical site URL: explicit env → Vercel deployment URL → placeholder. Empty strings are treated as unset. */
+function siteUrl(): URL {
+  const explicit = process.env.NEXT_PUBLIC_SITE_URL?.trim();
+  const vercel = process.env.VERCEL_PROJECT_PRODUCTION_URL?.trim() || process.env.VERCEL_URL?.trim();
+  const raw = explicit || (vercel ? `https://${vercel}` : "https://mamacare.rw");
+  try {
+    return new URL(raw);
+  } catch {
+    return new URL("https://mamacare.rw");
+  }
+}
+
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://mamacare.rw"),
+  metadataBase: siteUrl(),
   title: { default: "MamaCare — The warning can come before the emergency", template: "%s · MamaCare" },
   description:
     "MamaCare connects mothers, families, Community Health Workers and clinics into one continuous picture of every pregnancy, in Kinyarwanda and English.",
