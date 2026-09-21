@@ -32,6 +32,7 @@ const columns = [
       { label: "Privacy", href: "/privacy" },
       { label: "Terms", href: "/terms" },
       { label: "Emergency", href: "/emergency" },
+      { label: "System status", href: "/status" },
     ],
   },
 ];

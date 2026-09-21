@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Activity, Users, Building2, Ticket, Scale, Cpu, Languages, FileSearch, ShieldCheck, ScrollText, KeyRound, Plug, LifeBuoy, Receipt, Settings, LogOut, Lock } from "lucide-react";
+import { Bell, CircleHelp, Activity, Users, Building2, Ticket, Scale, Cpu, Languages, FileSearch, ShieldCheck, ScrollText, KeyRound, Plug, LifeBuoy, Receipt, Settings, LogOut, Lock } from "lucide-react";
 import { cn } from "@/lib/cn";
 
 const groups = [
@@ -47,6 +47,10 @@ export function AdminShell({ children, name, roles, signOutAction }: { children:
           <div className="flex h-14 items-center justify-between lg:h-[72px]">
             <div className="flex items-center gap-2 lg:hidden"><Image src="/brand/mark.png" alt="" width={32} height={37} className="h-8 w-auto" /><span className="text-eyebrow text-gold">Admin</span></div>
             <p className="hidden text-sm text-muted lg:block">Every action here is written to the audit log.</p>
+            <div className="hidden items-center gap-1 lg:flex">
+              <Link href="/notifications" className="grid size-9 place-items-center rounded-full text-emerald hover:bg-emerald/5" aria-label="Notifications"><Bell className="size-5" /></Link>
+              <Link href="/help" className="grid size-9 place-items-center rounded-full text-emerald hover:bg-emerald/5" aria-label="Help"><CircleHelp className="size-5" /></Link>
+            </div>
             <select className="h-9 rounded-full border border-emerald/15 bg-white px-3 text-sm lg:hidden" value={pathname} onChange={(e) => { window.location.href = e.target.value; }} aria-label="Admin section">
               {groups.flatMap((g) => g.items).map((i) => <option key={i.href} value={i.href}>{i.label}</option>)}
             </select>

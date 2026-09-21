@@ -1,5 +1,6 @@
 import { redirect } from "next/navigation";
 import { auth, signOut } from "@/auth";
+import { notificationsByRole } from "@/lib/mock/shared";
 import { AppShell } from "@/components/app/AppShell";
 
 export const metadata = { title: { default: "MamaCare", template: "%s · MamaCare" } };
@@ -13,7 +14,7 @@ export default async function MotherAppLayout({ children }: { children: React.Re
     await signOut({ redirectTo: "/" });
   }
   return (
-    <AppShell name={name} signOutAction={doSignOut}>
+    <AppShell name={name} signOutAction={doSignOut} unread={(notificationsByRole[session.user.role ?? ""] ?? []).filter((n) => !n.read).length}>
       {children}
     </AppShell>
   );

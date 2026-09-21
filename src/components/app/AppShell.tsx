@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Home, MessageCircle, Clock, Users, MoreHorizontal, BookOpen, CalendarDays, ShieldCheck, UserRound, Settings, Database, Phone, LogOut, BellRing, UserPlus, Send, Baby, Shuffle, BarChart3 } from "lucide-react";
+import { Home, MessageCircle, Clock, Users, MoreHorizontal, BookOpen, CalendarDays, ShieldCheck, UserRound, Settings, Database, Phone, LogOut, BellRing, UserPlus, Send, Baby, Shuffle, BarChart3, Bell, CircleHelp, ArrowLeftRight } from "lucide-react";
 import { cn } from "@/lib/cn";
 import { useLang } from "@/components/providers/LanguageProvider";
 
@@ -109,7 +109,7 @@ export const familyNav: NavConfig = {
   secondary: [],
 };
 
-export function AppShell({ children, name, signOutAction, nav = motherNav, status }: { children: React.ReactNode; name: string; signOutAction: () => Promise<void>; nav?: NavConfig; status?: React.ReactNode }) {
+export function AppShell({ children, name, signOutAction, nav = motherNav, status, unread = 0 }: { children: React.ReactNode; name: string; signOutAction: () => Promise<void>; nav?: NavConfig; status?: React.ReactNode; unread?: number }) {
   const { primary, secondary } = nav;
   const pathname = usePathname();
   const { lang, toggle } = useLang();
@@ -154,6 +154,7 @@ export function AppShell({ children, name, signOutAction, nav = motherNav, statu
           <Link href="/emergency" className="flex items-center justify-center gap-2 rounded-full bg-coral px-4 py-2.5 text-sm font-bold text-white">
             <Phone className="size-4" /> {lang === "rw" ? "Ibyihutirwa · 912" : "Emergency · 912"}
           </Link>
+          <Link href="/switch-role" className="flex items-center justify-center gap-2 rounded-full px-4 py-2 text-sm font-semibold text-muted hover:bg-emerald/5 hover:text-emerald"><ArrowLeftRight className="size-4" /> Switch role</Link>
           <form action={signOutAction}>
             <button className="flex w-full items-center justify-center gap-2 rounded-full px-4 py-2 text-sm font-semibold text-muted hover:bg-emerald/5 hover:text-emerald">
               <LogOut className="size-4" /> Sign out
@@ -171,8 +172,13 @@ export function AppShell({ children, name, signOutAction, nav = motherNav, statu
               <Image src="/brand/wordmark.png" alt="MamaCare" width={110} height={16} className="hidden h-4 w-auto min-[420px]:block" />
             </Link>
             <p className="hidden text-sm text-muted lg:block">{lang === "rw" ? "Muraho" : "Hello"}, <span className="font-semibold text-emerald">{name}</span></p>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-1.5 sm:gap-2">
               {status}
+              <Link href="/notifications" className="relative grid size-9 place-items-center rounded-full text-emerald hover:bg-emerald/5" aria-label="Notifications">
+                <Bell className="size-5" />
+                {unread > 0 && <span className="absolute right-1.5 top-1.5 grid min-w-4 place-items-center rounded-full bg-coral px-1 text-[10px] font-bold leading-4 text-white">{unread}</span>}
+              </Link>
+              <Link href="/help" className="hidden size-9 place-items-center rounded-full text-emerald hover:bg-emerald/5 sm:grid" aria-label="Help"><CircleHelp className="size-5" /></Link>
               <button type="button" onClick={toggle} className="rounded-full px-3 py-1.5 text-xs font-bold text-emerald hover:bg-emerald/5" aria-label="Switch language">
                 {lang === "en" ? "RW" : "EN"}
               </button>

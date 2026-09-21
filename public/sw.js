@@ -2,7 +2,7 @@
    Strategy: network-first for pages (fresh when online, cached copy when offline),
    cache-first for static assets. Server actions (POST) are never cached. */
 const VERSION = "mc-v1";
-const SHELL = ["/chw", "/chw/caseload", "/chw/escalations", "/chw/learn", "/chw/enrol", "/chw/refer", "/chw/profile", "/offline", "/emergency", "/brand/mark.png", "/brand/wordmark.png", "/icon.png"];
+const SHELL = ["/chw", "/chw/caseload", "/chw/escalations", "/chw/learn", "/chw/enrol", "/chw/refer", "/chw/profile", "/offline", "/emergency", "/status", "/brand/mark.png", "/brand/wordmark.png", "/icon.png"];
 
 self.addEventListener("install", (e) => {
   e.waitUntil(caches.open(VERSION).then((c) => c.addAll(SHELL).catch(() => {})).then(() => self.skipWaiting()));

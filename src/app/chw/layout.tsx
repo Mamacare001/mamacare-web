@@ -1,5 +1,6 @@
 import { redirect } from "next/navigation";
 import { auth, signOut } from "@/auth";
+import { notificationsByRole } from "@/lib/mock/shared";
 import { AppShell, chwNav } from "@/components/app/AppShell";
 import { SyncStatus } from "@/components/chw/SyncStatus";
 
@@ -14,7 +15,7 @@ export default async function ChwLayout({ children }: { children: React.ReactNod
     await signOut({ redirectTo: "/" });
   }
   return (
-    <AppShell name={name} signOutAction={doSignOut} nav={chwNav} status={<SyncStatus />}>
+    <AppShell name={name} signOutAction={doSignOut} nav={chwNav} status={<SyncStatus />} unread={(notificationsByRole[session.user.role ?? ""] ?? []).filter((n) => !n.read).length}>
       {children}
     </AppShell>
   );
