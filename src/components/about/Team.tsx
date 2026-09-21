@@ -1,12 +1,31 @@
 "use client";
 
+import Image from "next/image";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
 
 const team = [
-  { initials: "PI", name: "Patrice Iradukunda", role: "Data Scientist", text: "AI engineering, partnerships and social impact.", tone: "bg-emerald text-ivory" },
-  { initials: "DI", name: "Donatien Iranshubije", role: "Business Developer", text: "Strategy and operational planning.", tone: "bg-coral text-white" },
-  { initials: "PD", name: "Pascal Dukundane", role: "Software Developer", text: "Backend and frontend engineering, technology advancement.", tone: "bg-gold text-midnight" },
+  {
+    name: "Patrice Iradukunda",
+    role: "Data Scientist",
+    text: "AI engineering, partnerships and social impact.",
+    photo: "/images/team/patrice.jpg",
+    accent: "ring-emerald",
+  },
+  {
+    name: "Donatien Iranshubije",
+    role: "Business Developer",
+    text: "Strategy and operational planning.",
+    photo: "/images/team/donatien.png",
+    accent: "ring-coral",
+  },
+  {
+    name: "Pascal Dukundane",
+    role: "Software Developer",
+    text: "Backend and frontend engineering, technology advancement.",
+    photo: "/images/team/pascal.jpg",
+    accent: "ring-gold",
+  },
 ];
 
 const milestones = [
@@ -28,12 +47,23 @@ export function Team() {
           <RevealGroup className="mt-12 grid gap-5 md:grid-cols-3" stagger={0.1}>
             {team.map((m) => (
               <RevealItem key={m.name}>
-                <div className="group h-full rounded-lg bg-white p-6 ring-1 ring-emerald/5 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-float">
-                  <span className={`grid size-16 place-items-center rounded-full font-display text-2xl ${m.tone}`}>{m.initials}</span>
-                  <h3 className="text-h3 mt-5 text-emerald">{m.name}</h3>
-                  <p className="text-eyebrow mt-1 text-coral">{m.role}</p>
-                  <p className="mt-3 text-[15px] leading-relaxed text-muted">{m.text}</p>
-                </div>
+                <article className="group h-full overflow-hidden rounded-lg bg-white ring-1 ring-emerald/5 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-float">
+                  <figure className="relative aspect-[4/5] overflow-hidden">
+                    <Image
+                      src={m.photo}
+                      alt={m.name}
+                      fill
+                      sizes="(min-width: 768px) 30vw, 92vw"
+                      className="object-cover object-[50%_20%] transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-midnight/40 via-transparent to-transparent" />
+                  </figure>
+                  <div className="p-6">
+                    <h3 className="text-h3 text-emerald">{m.name}</h3>
+                    <p className="text-eyebrow mt-1 text-coral">{m.role}</p>
+                    <p className="mt-3 text-[15px] leading-relaxed text-muted">{m.text}</p>
+                  </div>
+                </article>
               </RevealItem>
             ))}
           </RevealGroup>
