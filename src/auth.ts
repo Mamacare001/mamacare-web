@@ -46,7 +46,7 @@ export const authConfig = {
   ],
   callbacks: {
     authorized({ auth, request }) {
-      const isProtected = ["/dashboard", "/app", "/family"].some((r) => request.nextUrl.pathname.startsWith(r));
+      const isProtected = ["/dashboard", "/app", "/family", "/chw"].some((r) => request.nextUrl.pathname.startsWith(r));
       return isProtected ? !!auth?.user : true;
     },
     jwt({ token, user }) {

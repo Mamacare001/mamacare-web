@@ -43,7 +43,8 @@ export const metadata: Metadata = {
     images: ["/images/mother-home-phone.jpg"],
     type: "website",
   },
-  icons: { icon: "/icon.png" },
+  icons: { icon: "/icon.png", apple: "/icon.png" },
+  manifest: "/manifest.webmanifest",
 };
 
 export const viewport: Viewport = {

@@ -27,6 +27,7 @@ export default async function DashboardPage({ searchParams }: { searchParams: Pr
   const user = session.user;
   if (user.role === "mother") redirect("/app" + (welcome ? "?welcome=1" : ""));
   if (user.role === "family") redirect("/family" + (welcome ? "?welcome=1" : ""));
+  if (user.role === "chw") redirect("/chw" + (welcome ? "?welcome=1" : ""));
 
   return (
     <div className="min-h-[100svh] bg-ivory">

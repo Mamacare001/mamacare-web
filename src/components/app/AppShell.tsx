@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Home, MessageCircle, Clock, Users, MoreHorizontal, BookOpen, CalendarDays, ShieldCheck, UserRound, Settings, Database, Phone, LogOut } from "lucide-react";
+import { Home, MessageCircle, Clock, Users, MoreHorizontal, BookOpen, CalendarDays, ShieldCheck, UserRound, Settings, Database, Phone, LogOut, BellRing, UserPlus, Send } from "lucide-react";
 import { cn } from "@/lib/cn";
 import { useLang } from "@/components/providers/LanguageProvider";
 
@@ -29,6 +29,22 @@ export const motherNav: NavConfig = {
   ],
 };
 
+export const chwNav: NavConfig = {
+  home: "/chw",
+  moreHref: "/chw/learn",
+  primary: [
+    { href: "/chw", icon: Home, en: "Today", rw: "Uyu munsi", exact: true },
+    { href: "/chw/caseload", icon: Users, en: "Caseload", rw: "Ababyeyi" },
+    { href: "/chw/escalations", icon: BellRing, en: "Alerts", rw: "Imenyesha" },
+    { href: "/chw/enrol", icon: UserPlus, en: "Enrol", rw: "Kwandika" },
+  ],
+  secondary: [
+    { href: "/chw/refer", icon: Send, en: "Refer", rw: "Kohereza" },
+    { href: "/chw/learn", icon: BookOpen, en: "Learn", rw: "Kwiga" },
+    { href: "/chw/profile", icon: UserRound, en: "Profile", rw: "Umwirondoro" },
+  ],
+};
+
 export const familyNav: NavConfig = {
   home: "/family",
   moreHref: "/family/settings",
@@ -40,7 +56,7 @@ export const familyNav: NavConfig = {
   secondary: [],
 };
 
-export function AppShell({ children, name, signOutAction, nav = motherNav }: { children: React.ReactNode; name: string; signOutAction: () => Promise<void>; nav?: NavConfig }) {
+export function AppShell({ children, name, signOutAction, nav = motherNav, status }: { children: React.ReactNode; name: string; signOutAction: () => Promise<void>; nav?: NavConfig; status?: React.ReactNode }) {
   const { primary, secondary } = nav;
   const pathname = usePathname();
   const { lang, toggle } = useLang();
@@ -99,10 +115,11 @@ export function AppShell({ children, name, signOutAction, nav = motherNav }: { c
           <div className="flex h-14 items-center justify-between px-4 sm:px-6 lg:h-[72px]">
             <Link href={nav.home} className="inline-flex items-center gap-2 lg:hidden" aria-label="MamaCare home">
               <Image src="/brand/mark.png" alt="" width={32} height={37} className="h-8 w-auto" />
-              <Image src="/brand/wordmark.png" alt="MamaCare" width={110} height={16} className="h-4 w-auto" />
+              <Image src="/brand/wordmark.png" alt="MamaCare" width={110} height={16} className="hidden h-4 w-auto min-[420px]:block" />
             </Link>
             <p className="hidden text-sm text-muted lg:block">{lang === "rw" ? "Muraho" : "Hello"}, <span className="font-semibold text-emerald">{name}</span></p>
             <div className="flex items-center gap-2">
+              {status}
               <button type="button" onClick={toggle} className="rounded-full px-3 py-1.5 text-xs font-bold text-emerald hover:bg-emerald/5" aria-label="Switch language">
                 {lang === "en" ? "RW" : "EN"}
               </button>

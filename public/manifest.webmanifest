@@ -1,0 +1,10 @@
+{
+  "name": "MamaCare",
+  "short_name": "MamaCare",
+  "description": "The warning can come before the emergency.",
+  "start_url": "/chw",
+  "display": "standalone",
+  "background_color": "#F8F7F2",
+  "theme_color": "#123C35",
+  "icons": [{ "src": "/icon.png", "sizes": "256x256", "type": "image/png", "purpose": "any" }]
+}
