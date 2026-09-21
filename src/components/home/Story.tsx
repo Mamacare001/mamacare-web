@@ -2,7 +2,7 @@
 
 import { useCallback, useState } from "react";
 import Image from "next/image";
-import { BookOpen } from "lucide-react";
+import { Mic, Play } from "lucide-react";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { StoryReader } from "@/components/home/StoryReader";
 import { Reveal, RevealGroup, RevealItem, GrowRule } from "@/components/ui/Reveal";
@@ -14,14 +14,25 @@ const signs = [
   { when: "Two days later", what: "The baby has gone quiet." },
 ];
 
+/** A heartbeat trace that draws itself, then flattens for a breath before starting again. */
+function Heartbeat() {
+  const d = "M0 40 H120 L132 40 L140 14 L150 66 L160 40 H300 L312 40 L320 18 L330 62 L340 40 H520 L532 40 L540 20 L550 60 L560 40 H760";
+  return (
+    <svg viewBox="0 0 760 80" preserveAspectRatio="none" className="pointer-events-none absolute inset-x-0 top-1/2 h-20 w-full -translate-y-1/2 opacity-40" aria-hidden>
+      <path d={d} fill="none" stroke="rgb(248 247 242 / 0.15)" strokeWidth="1.5" />
+      <path d={d} fill="none" stroke="#FF6B5E" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" pathLength={1} className="[stroke-dasharray:0.25_1] [animation:ecg_4s_linear_infinite]" />
+    </svg>
+  );
+}
+
 /** Section 2 — the problem, told as a story (ivory). */
 export function Story() {
-  const [reader, setReader] = useState<{ open: boolean; chapter?: number }>({ open: false });
-  const openAt = (chapter?: number) => setReader({ open: true, chapter });
+  const [reader, setReader] = useState<{ open: boolean; chapter?: number; mode?: "pitch" | "read" }>({ open: false });
+  const openAt = (chapter?: number, mode: "pitch" | "read" = "pitch") => setReader({ open: true, chapter, mode });
   const close = useCallback(() => setReader((r) => ({ ...r, open: false })), []);
   return (
     <section id="story" className="bg-ivory py-24 md:py-32">
-      <StoryReader open={reader.open} chapter={reader.chapter} onClose={close} />
+      <StoryReader open={reader.open} chapter={reader.chapter} mode={reader.mode} onClose={close} />
       <div className="container-x">
         <div className="grid gap-12 md:grid-cols-12 md:gap-8">
           <div className="md:col-span-5">
@@ -39,7 +50,7 @@ export function Story() {
                 <RevealItem key={s.when}>
                   <button
                     type="button"
-                    onClick={() => openAt(i + 1)}
+                    onClick={() => openAt(i + 1, "read")}
                     title="Read what was really happening"
                     className="group flex w-full gap-5 py-4 text-left transition-transform duration-300 hover:translate-x-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green"
                   >
@@ -62,9 +73,6 @@ export function Story() {
               <p className="mt-2 text-sm leading-relaxed text-ink/80">
                 Four ordinary signs. One dangerous, treatable condition — missed until it was severe.
               </p>
-              <button type="button" onClick={() => openAt()} className="link-underline mt-3 inline-flex items-center gap-2 text-sm font-semibold text-emerald">
-                <BookOpen className="size-4" /> Read the whole week
-              </button>
             </Reveal>
           </div>
 
@@ -106,9 +114,32 @@ export function Story() {
                   <span className="absolute inset-0 block rounded-lg bg-coral p-5 text-white shadow-float [backface-visibility:hidden] [transform:rotateY(180deg)]">
                     <span className="block text-eyebrow text-white/70">That’s what her aunt said.</span>
                     <span className="mt-2 block font-display text-xl leading-snug md:text-2xl">Here is what her body was saying.</span>
-                    <span className="mt-3 inline-flex items-center gap-2 text-sm font-semibold"><BookOpen className="size-4" /> Read the whole week ↗</span>
+                    <span className="mt-3 inline-flex items-center gap-2 text-sm font-semibold"><Mic className="size-4" /> Hear the whole week ↗</span>
                   </span>
                 </span>
+              </button>
+            </Reveal>
+
+            {/* The invitation — a heartbeat that draws itself, and a single button. It never says what is behind it. */}
+            <Reveal delay={0.2} className="mt-8">
+              <button
+                type="button"
+                onClick={() => openAt(undefined, "pitch")}
+                className="group relative block w-full overflow-hidden rounded-xl bg-emerald p-6 text-left text-ivory shadow-float transition-transform duration-500 hover:-translate-y-1 md:p-8"
+              >
+                <Heartbeat />
+                <div className="relative flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
+                  <div>
+                    <p className="text-eyebrow text-gold">Three minutes</p>
+                    <p className="mt-2 font-display text-2xl leading-snug md:text-3xl">There is more to this week<br />than four lines.</p>
+                    <p className="mt-2 text-sm text-ivory/70">Press play. Let it be told to you.</p>
+                  </div>
+                  <span className="relative grid size-16 shrink-0 place-items-center rounded-full bg-coral text-white shadow-float transition-transform duration-500 group-hover:scale-110">
+                    <span className="absolute inset-0 animate-ping rounded-full bg-coral/60 [animation-duration:2.2s]" aria-hidden />
+                    <span className="absolute -inset-2 rounded-full border border-coral/40 [animation:pulse-ring_2.2s_ease-out_infinite]" aria-hidden />
+                    <Play className="relative ml-1 size-7" />
+                  </span>
+                </div>
               </button>
             </Reveal>
           </div>
