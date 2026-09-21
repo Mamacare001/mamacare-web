@@ -29,8 +29,15 @@ export const authConfig = {
         const email = String(creds?.email ?? "").toLowerCase().trim();
         const password = String(creds?.password ?? "");
         // TODO: replace with a real lookup against the MamaCare API.
-        if (email === "demo@mamacare.rw" && password === "mamacare") {
-          return { id: "demo-user", name: "Demo CHW", email, role: "chw" };
+        const demo: Record<string, { name: string; role: string }> = {
+          "demo@mamacare.rw": { name: "Marie Mukamana", role: "chw" },
+          "mother@mamacare.rw": { name: "Uwase Claudine", role: "mother" },
+          "family@mamacare.rw": { name: "Jean Bosco", role: "family" },
+          "supervisor@mamacare.rw": { name: "Aline Uwimana", role: "supervisor" },
+          "provider@mamacare.rw": { name: "Nurse Aline Mukeshimana", role: "provider" },
+        };
+        if (demo[email] && password === "mamacare") {
+          return { id: `demo-${demo[email].role}`, name: demo[email].name, email, role: demo[email].role };
         }
         // Onboarding hand-off: the consent step signs the new user in with a one-time token.
         if (password.startsWith("onboarding:")) {
@@ -46,7 +53,7 @@ export const authConfig = {
   ],
   callbacks: {
     authorized({ auth, request }) {
-      const isProtected = ["/dashboard", "/app", "/family", "/chw"].some((r) => request.nextUrl.pathname.startsWith(r));
+      const isProtected = ["/dashboard", "/app", "/family", "/chw", "/supervisor", "/clinic"].some((r) => request.nextUrl.pathname.startsWith(r));
       return isProtected ? !!auth?.user : true;
     },
     jwt({ token, user }) {

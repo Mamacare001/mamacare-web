@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Home, MessageCircle, Clock, Users, MoreHorizontal, BookOpen, CalendarDays, ShieldCheck, UserRound, Settings, Database, Phone, LogOut, BellRing, UserPlus, Send } from "lucide-react";
+import { Home, MessageCircle, Clock, Users, MoreHorizontal, BookOpen, CalendarDays, ShieldCheck, UserRound, Settings, Database, Phone, LogOut, BellRing, UserPlus, Send, Baby, Shuffle, BarChart3 } from "lucide-react";
 import { cn } from "@/lib/cn";
 import { useLang } from "@/components/providers/LanguageProvider";
 
@@ -42,6 +42,32 @@ export const chwNav: NavConfig = {
     { href: "/chw/refer", icon: Send, en: "Refer", rw: "Kohereza" },
     { href: "/chw/learn", icon: BookOpen, en: "Learn", rw: "Kwiga" },
     { href: "/chw/profile", icon: UserRound, en: "Profile", rw: "Umwirondoro" },
+  ],
+};
+
+export const supervisorNav: NavConfig = {
+  home: "/supervisor",
+  moreHref: "/supervisor/reassign",
+  primary: [
+    { href: "/supervisor", icon: Home, en: "Overview", rw: "Incamake", exact: true },
+    { href: "/supervisor/escalations", icon: BellRing, en: "Alerts", rw: "Imenyesha" },
+    { href: "/supervisor/chws", icon: Users, en: "CHWs", rw: "Abajyanama" },
+    { href: "/supervisor/mothers", icon: Baby, en: "Mothers", rw: "Ababyeyi" },
+  ],
+  secondary: [{ href: "/supervisor/reassign", icon: Shuffle, en: "Reassign", rw: "Guhindura" }],
+};
+
+export const clinicNav: NavConfig = {
+  home: "/clinic",
+  moreHref: "/clinic/reports",
+  primary: [
+    { href: "/clinic", icon: Home, en: "Today", rw: "Uyu munsi", exact: true },
+    { href: "/clinic/queue", icon: BellRing, en: "Queue", rw: "Umurongo" },
+    { href: "/clinic/close-loop", icon: Send, en: "Close loop", rw: "Gusubiza" },
+  ],
+  secondary: [
+    { href: "/clinic/reports", icon: BarChart3, en: "Reports", rw: "Raporo" },
+    { href: "/clinic/staff", icon: Users, en: "Staff", rw: "Abakozi" },
   ],
 };
 
