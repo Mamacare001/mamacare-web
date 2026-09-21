@@ -20,7 +20,8 @@ const riskStyle: Record<string, string> = {
   Low: "bg-green text-ivory",
 };
 
-export default async function DashboardPage() {
+export default async function DashboardPage({ searchParams }: { searchParams: Promise<{ welcome?: string }> }) {
+  const { welcome } = await searchParams;
   const session = await auth();
   if (!session?.user) redirect("/login?callbackUrl=/dashboard");
   const user = session.user;
@@ -66,6 +67,18 @@ export default async function DashboardPage() {
       </header>
 
       <main className="container-x py-8 md:py-12">
+        {welcome && (
+          <div className="mb-8 flex items-start gap-3 rounded-lg border border-green/30 bg-green-100 p-5 text-emerald">
+            <CheckCircle2 className="mt-0.5 size-5 shrink-0 text-green" />
+            <div>
+              <p className="font-display text-2xl">Welcome to MamaCare, {user.name?.split(" ")[0]}.</p>
+              <p className="mt-1 text-sm text-ink/80">
+                Your account is set up as <strong>{user.role}</strong>. This dashboard is a placeholder until the role-specific apps are built —
+                the mother, family and CHW experiences will replace it.
+              </p>
+            </div>
+          </div>
+        )}
         <p className="text-eyebrow text-green">Kinyinya sector · CHW caseload</p>
         <h1 className="text-h2 mt-2 text-emerald">Muraho, {user.name?.split(" ")[0] ?? "there"}.</h1>
         <p className="mt-2 text-muted">This is a placeholder dashboard — connect it to the MamaCare API to show live data.</p>

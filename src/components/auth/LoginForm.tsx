@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/Button";
 import { useLang } from "@/components/providers/LanguageProvider";
 import { signInWithEmail, signInWithGoogle, type CredState } from "@/app/login/actions";
+import { startSignup, type ActionState } from "@/app/onboarding/actions";
 import { cn } from "@/lib/cn";
 
 const ease = [0.16, 1, 0.3, 1] as const;
@@ -40,8 +41,9 @@ export function LoginForm({
   const { t, lang, setLang } = useLang();
   const [show, setShow] = useState(false);
   const [state, action, pending] = useActionState<CredState, FormData>(signInWithEmail, null);
+  const [suState, suAction, suPending] = useActionState<ActionState, FormData>(startSignup, null);
   const isSignup = mode === "signup";
-  const errorMsg = state?.error ?? (error ? "Sign-in failed. Please try again." : null);
+  const errorMsg = (isSignup ? suState?.error : state?.error) ?? (error ? "Sign-in failed. Please try again." : null);
 
   return (
     <motion.div
@@ -71,7 +73,7 @@ export function LoginForm({
 
       {googleEnabled ? (
         <form action={signInWithGoogle}>
-          <input type="hidden" name="callbackUrl" value={callbackUrl} />
+          <input type="hidden" name="callbackUrl" value={isSignup ? "/onboarding/role" : callbackUrl} />
           <button
             type="submit"
             className="flex h-12 w-full items-center justify-center gap-3 rounded-full border border-emerald/15 bg-white text-[15px] font-semibold text-ink transition-[box-shadow,transform] hover:shadow-soft active:scale-[0.99]"
@@ -99,76 +101,90 @@ export function LoginForm({
         <span className="h-px flex-1 bg-emerald/10" />
       </div>
 
-      <form action={action} className="space-y-4" noValidate>
-        <input type="hidden" name="callbackUrl" value={callbackUrl} />
-        {isSignup && (
+      {isSignup ? (
+        <form action={suAction} className="space-y-4" noValidate>
           <div className="relative">
-            <input id="name" name="name" autoComplete="name" placeholder=" " className={field} />
-            <label htmlFor="name" className={floatLabel}>
-              {lang === "en" ? "Full name" : "Amazina yombi"}
-            </label>
+            <input id="name" name="name" autoComplete="name" required placeholder=" " className={field} />
+            <label htmlFor="name" className={floatLabel}>{lang === "en" ? "Full name" : "Amazina yombi"}</label>
           </div>
-        )}
-        <div className="relative">
-          <input id="email" name="email" type="email" autoComplete="email" required placeholder=" " className={field} />
-          <label htmlFor="email" className={floatLabel}>
-            {t.login.email}
-          </label>
-        </div>
-        <div className="relative">
-          <input
-            id="password"
-            name="password"
-            type={show ? "text" : "password"}
-            autoComplete={isSignup ? "new-password" : "current-password"}
-            required
-            placeholder=" "
-            className={cn(field, "pr-12")}
-          />
-          <label htmlFor="password" className={floatLabel}>
-            {t.login.password}
-          </label>
-          <button
-            type="button"
-            onClick={() => setShow((s) => !s)}
-            className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full p-1.5 text-muted hover:text-emerald"
-            aria-label={show ? "Hide password" : "Show password"}
-          >
-            {show ? <EyeOff className="size-5" /> : <Eye className="size-5" />}
-          </button>
-        </div>
-
-        {!isSignup && (
-          <div className="flex items-center justify-between text-sm">
-            <label className="inline-flex items-center gap-2 text-muted">
-              <input type="checkbox" name="remember" className="size-4 accent-emerald" /> {lang === "en" ? "Remember me" : "Unyibuke"}
-            </label>
-            <Link href="/contact" className="link-underline font-semibold text-emerald">
-              {t.login.forgot}
-            </Link>
+          <div className="relative">
+            <input id="phone" name="phone" type="tel" inputMode="tel" autoComplete="tel" required placeholder=" " className={field} />
+            <label htmlFor="phone" className={floatLabel}>{lang === "en" ? "Mobile number" : "Nimero ya telefoni"}</label>
           </div>
-        )}
-
-        {errorMsg && (
-          <p role="alert" className="flex items-center gap-2 rounded-md bg-coral-100 px-3 py-2 text-sm text-coral">
-            <AlertCircle className="size-4" /> {errorMsg}
-          </p>
-        )}
-
-        <Button type="submit" variant="coral" size="lg" className="w-full" disabled={pending} arrow={!pending}>
-          {pending ? (
-            <span className="inline-flex items-center gap-2">
-              <Loader2 className="size-4 animate-spin" /> …
-            </span>
-          ) : isSignup ? (
-            t.nav.getStarted
-          ) : (
-            t.login.submit
+          <p className="text-xs text-muted">{lang === "en" ? "We will send a 6-digit code by SMS to confirm it is you." : "Tuzakoherereza kode y’imibare 6 kuri SMS."}</p>
+          {errorMsg && (
+            <p role="alert" className="flex items-center gap-2 rounded-md bg-coral-100 px-3 py-2 text-sm text-coral">
+              <AlertCircle className="size-4" /> {errorMsg}
+            </p>
           )}
-        </Button>
+          <Button type="submit" variant="coral" size="lg" className="w-full" disabled={suPending} arrow={!suPending}>
+            {suPending ? <Loader2 className="size-4 animate-spin" /> : t.nav.getStarted}
+          </Button>
+        </form>
+      ) : (
+        <form action={action} className="space-y-4" noValidate>
+          <input type="hidden" name="callbackUrl" value={callbackUrl} />
+          <div className="relative">
+            <input id="email" name="email" type="email" autoComplete="email" required placeholder=" " className={field} />
+            <label htmlFor="email" className={floatLabel}>
+              {t.login.email}
+            </label>
+          </div>
+          <div className="relative">
+            <input
+              id="password"
+              name="password"
+              type={show ? "text" : "password"}
+              autoComplete={isSignup ? "new-password" : "current-password"}
+              required
+              placeholder=" "
+              className={cn(field, "pr-12")}
+            />
+            <label htmlFor="password" className={floatLabel}>
+              {t.login.password}
+            </label>
+            <button
+              type="button"
+              onClick={() => setShow((s) => !s)}
+              className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full p-1.5 text-muted hover:text-emerald"
+              aria-label={show ? "Hide password" : "Show password"}
+            >
+              {show ? <EyeOff className="size-5" /> : <Eye className="size-5" />}
+            </button>
+          </div>
 
-        <p className="text-center text-xs text-muted">{t.login.demoHint}</p>
-      </form>
+          {!isSignup && (
+            <div className="flex items-center justify-between text-sm">
+              <label className="inline-flex items-center gap-2 text-muted">
+                <input type="checkbox" name="remember" className="size-4 accent-emerald" /> {lang === "en" ? "Remember me" : "Unyibuke"}
+              </label>
+              <Link href="/forgot" className="link-underline font-semibold text-emerald">
+                {t.login.forgot}
+              </Link>
+            </div>
+          )}
+
+          {errorMsg && (
+            <p role="alert" className="flex items-center gap-2 rounded-md bg-coral-100 px-3 py-2 text-sm text-coral">
+              <AlertCircle className="size-4" /> {errorMsg}
+            </p>
+          )}
+
+          <Button type="submit" variant="coral" size="lg" className="w-full" disabled={pending} arrow={!pending}>
+            {pending ? (
+              <span className="inline-flex items-center gap-2">
+                <Loader2 className="size-4 animate-spin" /> …
+              </span>
+            ) : isSignup ? (
+              t.nav.getStarted
+            ) : (
+              t.login.submit
+            )}
+          </Button>
+
+          <p className="text-center text-xs text-muted">{t.login.demoHint}</p>
+        </form>
+      )}
 
       <p className="mt-8 text-center text-sm text-muted">
         {isSignup ? (lang === "en" ? "Already have an account?" : "Usanzwe ufite konti?") : t.login.noAccount}{" "}

@@ -1,6 +1,7 @@
 import NextAuth, { type NextAuthConfig } from "next-auth";
 import Google from "next-auth/providers/google";
 import Credentials from "next-auth/providers/credentials";
+import { readOnboarding } from "@/lib/onboarding";
 
 /**
  * Auth.js (NextAuth v5) configuration.
@@ -30,6 +31,14 @@ export const authConfig = {
         // TODO: replace with a real lookup against the MamaCare API.
         if (email === "demo@mamacare.rw" && password === "mamacare") {
           return { id: "demo-user", name: "Demo CHW", email, role: "chw" };
+        }
+        // Onboarding hand-off: the consent step signs the new user in with a one-time token.
+        if (password.startsWith("onboarding:")) {
+          const ob = await readOnboarding();
+          if (ob.token && password === `onboarding:${ob.token}` && ob.consent?.agreed) {
+            const role = ob.role === "worker" ? (ob.worker?.kind ?? "chw") : (ob.role ?? "mother");
+            return { id: `ob-${ob.token.slice(0, 8)}`, name: ob.name ?? "MamaCare user", email, role };
+          }
         }
         return null;
       },
