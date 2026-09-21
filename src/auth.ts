@@ -2,14 +2,15 @@ import NextAuth, { type NextAuthConfig } from "next-auth";
 import Google from "next-auth/providers/google";
 import Credentials from "next-auth/providers/credentials";
 import { readOnboarding } from "@/lib/onboarding";
+import { demoEnabled, DEMO_PASSWORD } from "@/lib/demo";
 
 /**
  * Auth.js (NextAuth v5) configuration.
  *
  * Providers
  *  - Google OAuth  → set AUTH_GOOGLE_ID / AUTH_GOOGLE_SECRET (see README)
- *  - Credentials   → demo only (demo@mamacare.rw / mamacare). Replace `authorize`
- *                    with a call to your backend once the API exists.
+ *  - Credentials   → demo accounts (gated by ALLOW_DEMO, see src/lib/demo.ts) and the
+ *                    onboarding hand-off. Replace `authorize` with a call to your backend.
  */
 const isProd = process.env.NODE_ENV === "production";
 
@@ -40,7 +41,7 @@ export const authConfig = {
           "researcher@mamacare.rw": { name: "Dr. Kevine Mutesi", role: "researcher" },
           "admin@mamacare.rw": { name: "Pascal Dukundane", role: "admin" },
         };
-        if (demo[email] && password === "mamacare") {
+        if (demoEnabled && demo[email] && password === DEMO_PASSWORD) {
           return { id: `demo-${demo[email].role}`, name: demo[email].name, email, role: demo[email].role };
         }
         // Onboarding hand-off: the consent step signs the new user in with a one-time token.

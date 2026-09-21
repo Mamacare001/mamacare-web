@@ -30,11 +30,13 @@ function GoogleIcon() {
 export function LoginForm({
   mode,
   googleEnabled,
+  demoEnabled = false,
   callbackUrl,
   error,
 }: {
   mode: "signin" | "signup";
   googleEnabled: boolean;
+  demoEnabled?: boolean;
   callbackUrl: string;
   error?: string;
 }) {
@@ -182,7 +184,7 @@ export function LoginForm({
             )}
           </Button>
 
-          <p className="text-center text-xs text-muted">{t.login.demoHint}</p>
+          {demoEnabled && <p className="text-center text-xs text-muted">{t.login.demoHint}</p>}
         </form>
       )}
 

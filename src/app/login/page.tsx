@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { auth, googleEnabled } from "@/auth";
+import { demoEnabled } from "@/lib/demo";
 import { LoginForm } from "@/components/auth/LoginForm";
 
 export const metadata: Metadata = { title: "Sign in" };
@@ -62,7 +63,7 @@ export default async function LoginPage({ searchParams }: { searchParams: Search
           </Link>
         </div>
         <div className="flex flex-1 items-center justify-center py-10">
-          <LoginForm mode={mode} googleEnabled={googleEnabled} callbackUrl={sp.callbackUrl ?? "/dashboard"} error={sp.error} />
+          <LoginForm mode={mode} googleEnabled={googleEnabled} demoEnabled={demoEnabled} callbackUrl={sp.callbackUrl ?? "/dashboard"} error={sp.error} />
         </div>
         <p className="text-center text-xs text-muted">
           By continuing you agree to our terms and consent to MamaCare handling your data under Rwanda’s data-protection law.

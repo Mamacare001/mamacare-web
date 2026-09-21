@@ -4,6 +4,7 @@ import { redirect } from "next/navigation";
 import { randomBytes } from "node:crypto";
 import { signIn } from "@/auth";
 import { readOnboarding, writeOnboarding, clearOnboarding, type Role, type WorkerKind } from "@/lib/onboarding";
+import { demoEnabled, DEMO_OTP } from "@/lib/demo";
 
 export type ActionState = { error?: string } | null;
 
@@ -24,8 +25,9 @@ export async function startSignup(_prev: ActionState, fd: FormData): Promise<Act
 export async function verifyOtp(_prev: ActionState, fd: FormData): Promise<ActionState> {
   const code = [1, 2, 3, 4, 5, 6].map((i) => str(fd, `d${i}`)).join("");
   if (code.length !== 6) return { error: "Enter the 6-digit code." };
-  // TODO: verify against the API. Demo accepts 123456.
-  if (code !== "123456") return { error: "That code is not right. Try again or resend." };
+  // TODO: verify against the API. Until then only the demo code is accepted, and only in demo mode.
+  if (!demoEnabled) return { error: "SMS verification is not connected yet. Ask the MamaCare team for access." };
+  if (code !== DEMO_OTP) return { error: "That code is not right. Try again or resend." };
   const ob = await readOnboarding();
   await writeOnboarding({ verified: true });
   redirect(ob.role ? `/onboarding/${ob.role}` : "/onboarding/role");

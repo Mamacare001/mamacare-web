@@ -3,6 +3,7 @@
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
+import { demoEnabled, DEMO_OTP } from "@/lib/demo";
 
 export type State = { ok?: boolean; error?: string; message?: string } | null;
 const delay = (ms = 400) => new Promise((r) => setTimeout(r, ms));
@@ -11,7 +12,8 @@ const str = (fd: FormData, k: string) => String(fd.get(k) ?? "").trim();
 /* MFA step-up: admin routes require a fresh second factor. Demo code 123456. In production: WebAuthn / TOTP via the IdP. */
 export async function verifyAdminMfa(_prev: State, fd: FormData): Promise<State> {
   const code = [1, 2, 3, 4, 5, 6].map((i) => str(fd, `d${i}`)).join("");
-  if (code !== "123456") return { error: "Code not accepted." };
+  if (!demoEnabled) return { error: "MFA is not connected to the identity provider yet." }; // TODO: WebAuthn / TOTP
+  if (code !== DEMO_OTP) return { error: "Code not accepted." };
   (await cookies()).set("mc_admin_mfa", "1", { httpOnly: true, sameSite: "strict", secure: process.env.NODE_ENV === "production", path: "/admin", maxAge: 60 * 30 });
   redirect(str(fd, "next") || "/admin");
 }

@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/Button";
 import { FormError } from "@/components/auth/fields";
 import { verifyOtp, resendOtp, type ActionState } from "@/app/onboarding/actions";
 
-export function OtpForm({ phone }: { phone: string }) {
+export function OtpForm({ phone, demoEnabled = false }: { phone: string; demoEnabled?: boolean }) {
   const [state, action, pending] = useActionState<ActionState, FormData>(verifyOtp, null);
   const [cooldown, setCooldown] = useState(30);
   const [resent, setResent] = useState(false);
@@ -80,7 +80,7 @@ export function OtpForm({ phone }: { phone: string }) {
         )}
         {resent && cooldown > 25 && <span className="ml-2 text-green">Sent.</span>}
       </p>
-      <p className="text-center text-xs text-muted">Demo code: 123456</p>
+      {demoEnabled && <p className="text-center text-xs text-muted">Demo code: 123456</p>}
     </form>
   );
 }

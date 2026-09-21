@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/Button";
 import { FormError } from "@/components/auth/fields";
 import { verifyAdminMfa, type State } from "@/app/admin/actions";
 
-export function MfaForm({ next }: { next: string }) {
+export function MfaForm({ next, demoEnabled = false }: { next: string; demoEnabled?: boolean }) {
   const [state, action, pending] = useActionState<State, FormData>(verifyAdminMfa, null);
   const inputs = useRef<(HTMLInputElement | null)[]>([]);
   return (
@@ -22,7 +22,7 @@ export function MfaForm({ next }: { next: string }) {
       </div>
       <FormError message={state?.error} />
       <Button type="submit" variant="primary" size="lg" className="w-full" disabled={pending}>{pending ? <Loader2 className="size-4 animate-spin" /> : <><ShieldCheck className="size-4" /> Verify</>}</Button>
-      <p className="text-center text-xs text-muted">Demo code: 123456 · In production this is your authenticator app or security key.</p>
+      {demoEnabled && <p className="text-center text-xs text-muted">Demo code: 123456 · In production this is your authenticator app or security key.</p>}
     </form>
   );
 }

@@ -48,6 +48,7 @@ Marketing chrome (nav, footer, mobile sticky CTA) is hidden on `/login` and `/da
 | Variable               | Required | Notes                                                                                              |
 | ---------------------- | -------- | -------------------------------------------------------------------------------------------------- |
 | `AUTH_SECRET`          | prod     | `npx auth secret` or `openssl rand -base64 32`. A dev-only fallback is used when unset locally.     |
+| `ALLOW_DEMO`           | optional | `true` enables demo accounts / demo OTP / demo MFA code in production. Always on locally. |
 | `AUTH_GOOGLE_ID`       | optional | From Google Cloud Console → *APIs & Services → Credentials → OAuth client ID (Web application)*.    |
 | `AUTH_GOOGLE_SECRET`   | optional | Same place. When both Google vars are set the "Continue with Google" button becomes active.         |
 | `NEXT_PUBLIC_SITE_URL` | optional | Used for `metadataBase` (Open Graph URLs).                                                          |
@@ -66,7 +67,7 @@ https://<your-custom-domain>/api/auth/callback/google
 
 1. Push this folder to a Git repository (GitHub / GitLab / Bitbucket).
 2. In Vercel: **Add New → Project → Import** the repo. Framework preset is detected as Next.js — no build settings to change.
-3. Under **Settings → Environment Variables** add `AUTH_SECRET`, `AUTH_GOOGLE_ID`, `AUTH_GOOGLE_SECRET`, `NEXT_PUBLIC_SITE_URL` (Production + Preview).
+3. Under **Settings → Environment Variables** add `AUTH_SECRET`, `ALLOW_DEMO=true` (for reviewer links), `AUTH_GOOGLE_ID`, `AUTH_GOOGLE_SECRET`, `NEXT_PUBLIC_SITE_URL` (Production + Preview).
 4. Deploy. Then add the Vercel URL to your Google OAuth redirect URIs (§3).
 
 Or from the CLI: `npx vercel` (preview) → `npx vercel --prod`.
