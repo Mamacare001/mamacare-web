@@ -1,0 +1,60 @@
+import type { Metadata, Viewport } from "next";
+import localFont from "next/font/local";
+import "./globals.css";
+import { LanguageProvider } from "@/components/providers/LanguageProvider";
+import { Nav } from "@/components/site/Nav";
+import { Footer } from "@/components/site/Footer";
+import { StickyCta } from "@/components/site/StickyCta";
+import { MarketingOnly } from "@/components/site/Chrome";
+
+const manrope = localFont({
+  src: "../fonts/manrope-latin.woff2",
+  variable: "--font-manrope",
+  display: "swap",
+  weight: "200 800",
+});
+const fraunces = localFont({
+  src: "../fonts/fraunces-latin.woff2",
+  variable: "--font-fraunces",
+  display: "swap",
+  weight: "100 900",
+});
+
+export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://mamacare.rw"),
+  title: { default: "MamaCare — The warning can come before the emergency", template: "%s · MamaCare" },
+  description:
+    "MamaCare connects mothers, families, Community Health Workers and clinics into one continuous picture of every pregnancy, in Kinyarwanda and English.",
+  openGraph: {
+    title: "MamaCare",
+    description: "AI-supported maternal health early-warning platform for Rwanda.",
+    images: ["/images/mother-home-phone.jpg"],
+    type: "website",
+  },
+  icons: { icon: "/icon.png" },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#123C35",
+  width: "device-width",
+  initialScale: 1,
+};
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="en" className={`${manrope.variable} ${fraunces.variable} h-full antialiased`}>
+      <body className="flex min-h-full flex-col">
+        <LanguageProvider>
+          <MarketingOnly>
+            <Nav />
+          </MarketingOnly>
+          <main className="flex-1">{children}</main>
+          <MarketingOnly>
+            <Footer />
+            <StickyCta />
+          </MarketingOnly>
+        </LanguageProvider>
+      </body>
+    </html>
+  );
+}
