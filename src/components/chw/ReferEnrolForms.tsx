@@ -1,11 +1,11 @@
 "use client";
 
 import { useActionState, useState } from "react";
-import { Loader2, CheckCircle2, WifiOff, Copy, Check, Send } from "lucide-react";
+import { Loader2, CheckCircle2, WifiOff, Copy, Check, Send, Users } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { Field, FormError, fieldCls } from "@/components/auth/fields";
 import { createReferral, enrolMother, type State } from "@/app/chw/actions";
-import type { CaseMother } from "@/lib/mock/chw";
+import { RELATIONS, type CaseMother } from "@/lib/mock/chw";
 import { enqueue, formToPayload, useOnline } from "@/lib/offline/queue";
 
 function OfflineNote() {
@@ -89,6 +89,17 @@ export function EnrolForm() {
         <Field label="Village"><input name="village" className={fieldCls} defaultValue="Gasharu" /></Field>
         <Field label="Preferred language"><select name="language" className={fieldCls} defaultValue="rw"><option value="rw">Ikinyarwanda</option><option value="en">English</option></select></Field>
       </div>
+      <details className="group rounded-md border border-emerald/15 bg-white p-4 open:bg-emerald/[0.03]">
+        <summary className="cursor-pointer list-none text-sm font-semibold text-emerald">
+          <span className="inline-flex items-center gap-2"><Users className="size-4" /> Add a family supporter now <span className="font-normal text-muted">(optional — you can add more later)</span></span>
+        </summary>
+        <p className="mt-2 text-xs text-muted">Husband, mother, sister, neighbour… They get an SMS invite and can report danger signs and receive her reminders. She confirms them from her phone.</p>
+        <div className="mt-3 grid gap-4 sm:grid-cols-3">
+          <Field label="Supporter’s name"><input name="supName" className={fieldCls} autoComplete="off" /></Field>
+          <Field label="Relationship"><select name="supRelation" className={fieldCls} defaultValue={RELATIONS[0]}>{RELATIONS.map((r) => <option key={r}>{r}</option>)}</select></Field>
+          <Field label="Mobile number"><input name="supPhone" type="tel" inputMode="tel" className={fieldCls} placeholder="078 123 4567" /></Field>
+        </div>
+      </details>
       <label className="flex items-start gap-3 rounded-md border border-emerald/15 bg-white p-3 text-sm text-ink/90 has-[:checked]:border-emerald has-[:checked]:bg-emerald/5"><input type="checkbox" name="consent" className="mt-0.5 size-4 accent-emerald" required /> I have explained MamaCare to her in Kinyarwanda, what it is not (a doctor), who will see her information, and she agrees to be enrolled. She will confirm on her own phone.</label>
       <FormError message={state?.error} />
       <Button type="submit" variant="coral" size="lg" disabled={pending} arrow={!pending}>{pending ? <Loader2 className="size-4 animate-spin" /> : online ? "Enrol and send SMS" : "Save on phone"}</Button>

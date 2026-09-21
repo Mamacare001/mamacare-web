@@ -65,9 +65,25 @@ export async function enrolMother(_prev: State, fd: FormData): Promise<State> {
   const phone = str(fd, "phone").replace(/\s+/g, "");
   if (!name) return { error: "Enter her name." };
   if (!/^(\+?250|0)?7[2389]\d{7}$/.test(phone)) return { error: "Enter a valid mobile number." };
+  const supName = str(fd, "supName");
+  const supPhone = str(fd, "supPhone").replace(/\s+/g, "");
+  if (supName && !/^(\+?250|0)?7[2389]\d{7}$/.test(supPhone)) return { error: "Enter a valid mobile number for the supporter, or leave the supporter section empty." };
   const code = Array.from({ length: 6 }, () => "ABCDEFGHJKMNPQRSTUVWXYZ23456789"[Math.floor(Math.random() * 31)]).join("");
-  await delay(); // TODO: POST /mothers → returns invite code; SMS sent to her with the link
+  await delay(); // TODO: POST /mothers → returns invite code; SMS sent to her with the link. If supName set: POST /mothers/{id}/supporters (invite SMS, pending her confirmation)
   return { ok: true, message: code };
+}
+
+/** Add a family supporter to a mother's circle (CHW). Invite goes by SMS; the mother confirms from her phone. */
+export async function addSupporter(_prev: State, fd: FormData): Promise<State> {
+  const motherId = str(fd, "motherId");
+  const name = str(fd, "name");
+  const phone = str(fd, "phone").replace(/\s+/g, "");
+  if (!motherId) return { error: "Missing mother." };
+  if (!name) return { error: "Enter the supporter’s name." };
+  if (!/^(\+?250|0)?7[2389]\d{7}$/.test(phone)) return { error: "Enter a valid mobile number." };
+  await delay(); // TODO: POST /mothers/{motherId}/supporters { name, relation, phone, permissions } → SMS invite; status "invited" until she confirms
+  revalidatePath(`/chw/mother/${motherId}`);
+  return { ok: true, message: `${name} has been sent an SMS invite. They will be able to report observations once she confirms them from her phone.` };
 }
 
 export async function syncQueued(kind: string, payload: Record<string, string>): Promise<{ ok: boolean }> {
@@ -77,6 +93,7 @@ export async function syncQueued(kind: string, payload: Record<string, string>):
   if (kind === "visit") await recordVisit(null, fd);
   else if (kind === "referral") await createReferral(null, fd);
   else if (kind === "enrol") await enrolMother(null, fd);
+  else if (kind === "supporter") await addSupporter(null, fd);
   else await delay(200);
   return { ok: true };
 }

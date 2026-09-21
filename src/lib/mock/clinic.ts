@@ -1,5 +1,6 @@
 /** Mock data for the Provider (facility) workspace. Replace with API calls. */
 import type { Risk } from "@/lib/mock/mother";
+import type { Supporter } from "@/lib/mock/chw";
 
 export const facility = { id: "hc_kinyinya", name: "Kinyinya Health Centre", level: "Health centre" as "Health centre" | "District hospital", district: "Gasabo", referral: "Kibagabaga District Hospital", phone: "+250 788 000 222", inCharge: "Dr. Uwera Immaculée" };
 
@@ -59,7 +60,17 @@ export type ClinicMother = {
   encounters: { at: string; by: string; bp?: string; urine?: string; hb?: string; fh?: string; fhr?: string; impression: string; plan: string }[];
   chwVisits: { at: string; bp?: string; signs: string[]; note?: string }[];
   conversationSummary?: string;
+  supporters?: Supporter[];
 };
+
+/** CHWs a clinic can assign a newly enrolled mother to (its catchment). */
+export const catchmentChws = [
+  { id: "chw_01", name: "Marie Mukamana", cell: "Kinyinya", village: "Gasharu" },
+  { id: "chw_02", name: "Jean Claude Habimana", cell: "Kinyinya", village: "Gasharu" },
+  { id: "chw_03", name: "Claudine Nyiraneza", cell: "Gacuriro", village: "Rugando" },
+  { id: "chw_04", name: "Emmanuel Niyonzima", cell: "Gacuriro", village: "Kabuga" },
+  { id: "chw_05", name: "Josephine Uwera", cell: "Kagugu", village: "Kagugu I" },
+];
 
 export const clinicMothers: ClinicMother[] = [
   {
@@ -73,6 +84,7 @@ export const clinicMothers: ClinicMother[] = [
       { at: "2026-09-21T10:50:00", bp: "152/96", signs: ["Severe headache", "Blurred vision", "Swelling of face or hands"], note: "Referred NOW. Transport requested." },
       { at: "2026-09-18T15:02:00", bp: "118/76", signs: [], note: "Baby moving well." },
     ],
+    supporters: [{ name: "Jean Bosco", relation: "Husband / partner", phone: "+250 781 234 568", status: "active" }],
     conversationSummary: "21 Sept 10:24 — Reported headache since yesterday and swollen feet. On follow-up: vision blurred at times. No bleeding, no fits. System risk: elevated; CHW and facility alerted.",
   },
   { id: "m_20", name: "Mukashema Béatrice", age: 31, phone: "+250 789 100 200", village: "Rugando", chwName: "Claudine Nyiraneza", chwPhone: "+250 788 000 555", weeks: 31, edd: "2026-11-23", gravida: 3, para: 2, risk: "high", history: ["Two previous normal deliveries"], encounters: [{ at: "2026-08-20T09:00:00", by: "Nurse Aline", bp: "118/78", urine: "Protein neg", hb: "10.9", fh: "27 cm", fhr: "140", impression: "Mild anaemia", plan: "Iron doubled. Recheck Hb." }], chwVisits: [], conversationSummary: "19 Sept 14:00 — SMS: ‘ndi kuva amaraso’ (I am bleeding). No further messages. Not reached by CHW. Escalated by supervisor 21 Sept." },

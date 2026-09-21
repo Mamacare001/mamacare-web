@@ -30,11 +30,15 @@ export type CaseMother = {
   ancDone: number;
   flags: string[];
   openEscalation?: string;
+  supporters?: Supporter[];
 };
 
+export type Supporter = { name: string; relation: string; phone: string; status: "active" | "invited" };
+export const RELATIONS = ["Husband / partner", "Mother", "Mother-in-law", "Sister", "Neighbour", "Other"] as const;
+
 export const caseload: CaseMother[] = [
-  { id: "m_01", name: "Uwase Claudine", age: 27, village: "Gasharu", phone: "+250 781 234 567", weeks: 28, edd: "2026-12-14", gravida: 2, risk: "high", riskReason: "Headache + blurred vision + swelling reported 10:26", lastContact: "2026-09-21T10:33:00", nextVisitDue: "2026-09-21", ancDone: 3, flags: ["Possible pre-eclampsia"], openEscalation: "esc_01" },
-  { id: "m_03", name: "Mukamana Josiane", age: 34, village: "Gasharu", phone: "+250 782 111 222", weeks: 24, edd: "2027-01-10", gravida: 4, risk: "moderate", riskReason: "Partner reported reduced fetal movement", lastContact: "2026-09-21T08:15:00", nextVisitDue: "2026-09-22", ancDone: 2, flags: ["Grand multipara"], openEscalation: "esc_02" },
+  { id: "m_01", name: "Uwase Claudine", age: 27, village: "Gasharu", phone: "+250 781 234 567", weeks: 28, edd: "2026-12-14", gravida: 2, risk: "high", riskReason: "Headache + blurred vision + swelling reported 10:26", lastContact: "2026-09-21T10:33:00", nextVisitDue: "2026-09-21", ancDone: 3, flags: ["Possible pre-eclampsia"], openEscalation: "esc_01", supporters: [{ name: "Jean Bosco", relation: "Husband / partner", phone: "+250 781 234 568", status: "active" }] },
+  { id: "m_03", name: "Mukamana Josiane", age: 34, village: "Gasharu", phone: "+250 782 111 222", weeks: 24, edd: "2027-01-10", gravida: 4, risk: "moderate", riskReason: "Partner reported reduced fetal movement", lastContact: "2026-09-21T08:15:00", nextVisitDue: "2026-09-22", ancDone: 2, flags: ["Grand multipara"], openEscalation: "esc_02", supporters: [{ name: "Ntwari Alexis", relation: "Husband / partner", phone: "+250 782 111 223", status: "active" }, { name: "Mukamana Vestine", relation: "Mother-in-law", phone: "+250 782 111 224", status: "invited" }] },
   { id: "m_04", name: "Nyirahabimana Diane", age: 19, village: "Rugando", phone: "+250 783 333 444", weeks: 36, edd: "2026-10-18", gravida: 1, risk: "moderate", riskReason: "First pregnancy, 36 weeks, no birth plan recorded", lastContact: "2026-09-19T14:00:00", nextVisitDue: "2026-09-23", ancDone: 4, flags: ["Adolescent", "No birth plan"] },
   { id: "m_05", name: "Ingabire Alice", age: 23, village: "Gasharu", phone: "+250 784 555 666", weeks: 18, edd: "2027-02-20", gravida: 1, risk: "low", lastContact: "2026-09-15T11:00:00", nextVisitDue: "2026-09-29", ancDone: 1, flags: [] },
   { id: "m_06", name: "Uwimana Grace", age: 31, village: "Rugando", phone: "+250 785 777 888", weeks: 32, edd: "2026-11-16", gravida: 3, risk: "low", lastContact: "2026-09-17T09:30:00", nextVisitDue: "2026-09-24", ancDone: 3, flags: ["Previous C-section"] },

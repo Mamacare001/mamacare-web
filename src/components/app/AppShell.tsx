@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Home, MessageCircle, Clock, Users, MoreHorizontal, BookOpen, CalendarDays, ShieldCheck, UserRound, Settings, Database, Phone, LogOut, BellRing, UserPlus, Send, Baby, Shuffle, BarChart3, Bell, CircleHelp, ArrowLeftRight } from "lucide-react";
+import { Home, MessageCircle, Clock, Users, MoreHorizontal, BookOpen, CalendarDays, ShieldCheck, UserRound, Settings, Database, Phone, LogOut, BellRing, UserPlus, Send, Baby, Shuffle, BarChart3, Bell, CircleHelp, ArrowLeftRight, ClipboardPlus } from "lucide-react";
 import { cn } from "@/lib/cn";
 import { useLang } from "@/components/providers/LanguageProvider";
 
@@ -39,6 +39,7 @@ export const chwNav: NavConfig = {
     { href: "/chw/enrol", icon: UserPlus, en: "Enrol", rw: "Kwandika" },
   ],
   secondary: [
+    { href: "/chw/visit", icon: ClipboardPlus, en: "Report visit", rw: "Raporo y’uruzinduko" },
     { href: "/chw/refer", icon: Send, en: "Refer", rw: "Kohereza" },
     { href: "/chw/learn", icon: BookOpen, en: "Learn", rw: "Kwiga" },
     { href: "/chw/profile", icon: UserRound, en: "Profile", rw: "Umwirondoro" },
@@ -64,8 +65,10 @@ export const clinicNav: NavConfig = {
     { href: "/clinic", icon: Home, en: "Today", rw: "Uyu munsi", exact: true },
     { href: "/clinic/queue", icon: BellRing, en: "Queue", rw: "Umurongo" },
     { href: "/clinic/close-loop", icon: Send, en: "Close loop", rw: "Gusubiza" },
+    { href: "/clinic/enrol", icon: UserPlus, en: "Enrol", rw: "Kwandika" },
   ],
   secondary: [
+    { href: "/clinic/visit", icon: ClipboardPlus, en: "Report visit", rw: "Raporo y’uruzinduko" },
     { href: "/clinic/reports", icon: BarChart3, en: "Reports", rw: "Raporo" },
     { href: "/clinic/staff", icon: Users, en: "Staff", rw: "Abakozi" },
   ],

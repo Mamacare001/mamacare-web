@@ -7,7 +7,7 @@
  */
 import { useCallback, useEffect, useState } from "react";
 
-export type QueuedItem = { id: string; kind: "visit" | "referral" | "enrol" | "escalation"; label: string; at: number; payload: Record<string, string> };
+export type QueuedItem = { id: string; kind: "visit" | "referral" | "enrol" | "escalation" | "supporter"; label: string; at: number; payload: Record<string, string> };
 const KEY = "mc.chw.queue";
 const EVENT = "mc-queue-change";
 

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { Stethoscope, ArrowUpRight, Baby, Phone, MessageSquareText, Activity, Home as HomeIcon, Lock } from "lucide-react";
+import { Stethoscope, ArrowUpRight, Baby, Phone, MessageSquareText, Activity, Home as HomeIcon, Lock, ClipboardList, Users, UserPlus } from "lucide-react";
 import { clinicMothers } from "@/lib/mock/clinic";
 import { PageTitle, Card, RiskPill, fmtDate, fmtTime } from "@/components/app/ui";
 import { Button } from "@/components/ui/Button";
@@ -18,6 +18,7 @@ export default async function ClinicMotherPage({ params }: { params: Promise<{ i
 
       <div className="flex flex-wrap gap-2">
         <Button href={`/clinic/mother/${m.id}/encounter`} variant="coral"><Stethoscope className="size-4" /> New encounter</Button>
+        <Button href={`/clinic/mother/${m.id}/visit`} variant="primary"><ClipboardList className="size-4" /> ANC visit</Button>
         <Button href={`/clinic/mother/${m.id}/refer`} variant="primary"><ArrowUpRight className="size-4" /> Refer up</Button>
         <Button href={`/clinic/mother/${m.id}/outcome`} variant="secondary"><Baby className="size-4" /> Record outcome</Button>
         <Button href={`tel:${m.chwPhone.replace(/\s/g, "")}`} variant="ghost"><Phone className="size-4" /> {m.chwName} (CHW)</Button>
@@ -68,6 +69,17 @@ export default async function ClinicMotherPage({ params }: { params: Promise<{ i
             <dl className="mt-2 space-y-1.5 text-sm">
               {[["Blood group", m.bloodGroup], ["HIV", m.hiv], ["Allergies", m.allergies], ["Phone", m.phone], ["CHW", m.chwName]].map(([k, v]) => v && <div key={k} className="flex justify-between gap-3"><dt className="text-muted">{k}</dt><dd className="text-right font-semibold text-emerald">{v}</dd></div>)}
             </dl>
+          </Card>
+          <Card>
+            <div className="flex items-center justify-between gap-2">
+              <p className="flex items-center gap-2 text-eyebrow text-muted"><Users className="size-3.5" /> Family circle</p>
+              <Link href={`/clinic/mother/${m.id}/supporters`} className="inline-flex items-center gap-1 text-xs font-semibold text-green"><UserPlus className="size-3.5" /> Add</Link>
+            </div>
+            {(m.supporters ?? []).length === 0 ? <p className="mt-2 text-sm text-muted">No supporter yet.</p> : (
+              <ul className="mt-2 space-y-2 text-sm">
+                {(m.supporters ?? []).map((s) => <li key={s.phone}><p className="font-semibold text-emerald">{s.name} <span className="font-normal text-muted">· {s.relation}</span></p><p className="text-xs text-muted">{s.phone} · {s.status === "active" ? "confirmed" : "invited"}</p></li>)}
+              </ul>
+            )}
           </Card>
           <Card>
             <p className="text-eyebrow text-muted">History</p>

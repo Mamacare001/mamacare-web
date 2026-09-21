@@ -60,3 +60,49 @@ export async function requestStaffAccount(_prev: State, fd: FormData): Promise<S
   revalidatePath("/clinic/staff");
   return { ok: true, message: "Request sent. MamaCare admin and your in-charge must both approve; usually within 1 working day." };
 }
+
+const phoneOk = (p: string) => /^(\+?250|0)?7[2389]\d{7}$/.test(p.replace(/\s+/g, ""));
+
+/** ANC booking at the facility. Creates the mother record, assigns a CHW, sends her the invite SMS. */
+export async function enrolMotherAtClinic(_prev: State, fd: FormData): Promise<State> {
+  const name = str(fd, "name");
+  const phone = str(fd, "phone");
+  const chwId = str(fd, "chwId");
+  if (!name) return { error: "Enter her name." };
+  if (!phoneOk(phone)) return { error: "Enter a valid mobile number." };
+  if (!str(fd, "weeks") && !str(fd, "lmp")) return { error: "Enter gestational age (weeks) or the date of her last period." };
+  if (!chwId) return { error: "Assign a CHW so she is followed at home between visits." };
+  const supName = str(fd, "supName");
+  if (supName && !phoneOk(str(fd, "supPhone"))) return { error: "Enter a valid mobile number for the supporter, or leave the supporter section empty." };
+  const code = Array.from({ length: 6 }, () => "ABCDEFGHJKMNPQRSTUVWXYZ23456789"[Math.floor(Math.random() * 31)]).join("");
+  await delay(700); // TODO: POST /mothers { …, enrolledBy: facility, chwId } → invite code + SMS; CHW notified of the new assignment; optional POST /mothers/{id}/supporters
+  revalidatePath("/clinic"); revalidatePath("/clinic/queue");
+  return { ok: true, message: code };
+}
+
+/** Add a family supporter from the clinic (same rules as the CHW path: SMS invite, mother confirms). */
+export async function addSupporterAtClinic(_prev: State, fd: FormData): Promise<State> {
+  const motherId = str(fd, "motherId");
+  const name = str(fd, "name");
+  if (!motherId) return { error: "Missing mother." };
+  if (!name) return { error: "Enter the supporter’s name." };
+  if (!phoneOk(str(fd, "phone"))) return { error: "Enter a valid mobile number." };
+  await delay(); // TODO: POST /mothers/{motherId}/supporters — status "invited" until she confirms from her phone
+  revalidatePath(`/clinic/mother/${motherId}`);
+  return { ok: true, message: `${name} has been sent an SMS invite. They become active once she confirms them from her phone.` };
+}
+
+/** Routine ANC visit report (scheduled visit, not a referral encounter). Rule hints only; the clinician's plan is authoritative. */
+export async function recordAncVisit(_prev: State, fd: FormData): Promise<State> {
+  const motherId = str(fd, "motherId");
+  if (!motherId) return { error: "Missing mother." };
+  if (!str(fd, "visitNo")) return { error: "Which ANC visit is this?" };
+  if (!str(fd, "sys") || !str(fd, "dia")) return { error: "Blood pressure is required at every ANC visit." };
+  if (!str(fd, "nextVisit")) return { error: "Set the next appointment date — she and her CHW get the reminder." };
+  const sys = Number(str(fd, "sys")), dia = Number(str(fd, "dia"));
+  const signs = fd.getAll("signs").map(String);
+  const flagged = sys >= 140 || dia >= 90 || signs.length > 0;
+  await delay(700); // TODO: POST /anc-visits → updates ANC count, next-visit reminder (SMS to her + CHW), and re-scores risk
+  revalidatePath(`/clinic/mother/${motherId}`); revalidatePath("/clinic");
+  return { ok: true, message: flagged ? "Visit saved. Findings raised her risk level — her CHW has been notified to follow up at home this week." : "Visit saved. She and her CHW will get a reminder before the next appointment." };
+}

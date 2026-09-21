@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { BellRing, CalendarCheck, Users, UserPlus, ArrowRight, Phone } from "lucide-react";
+import { BellRing, CalendarCheck, Users, UserPlus, ArrowRight, Phone, ClipboardPlus } from "lucide-react";
 import { chw, caseload, escalations } from "@/lib/mock/chw";
 import { Card } from "@/components/app/ui";
 import { MotherRow } from "@/components/chw/MotherRow";
@@ -73,6 +73,10 @@ export default async function ChwToday({ searchParams }: { searchParams: Promise
       </section>
 
       <div className="grid gap-3 sm:grid-cols-2">
+        <Card className="flex items-center justify-between gap-3 border-l-4 border-coral">
+          <div><p className="font-semibold text-emerald">Just visited someone?</p><p className="text-sm text-muted">Report the visit — works offline.</p></div>
+          <Button href="/chw/visit" variant="coral" size="sm"><ClipboardPlus className="size-4" /> Report visit</Button>
+        </Card>
         <Card className="flex items-center justify-between gap-3">
           <div><p className="font-semibold text-emerald">New mother in the village?</p><p className="text-sm text-muted">Enrol her in two minutes.</p></div>
           <Button href="/chw/enrol" variant="primary" size="sm"><UserPlus className="size-4" /> Enrol</Button>

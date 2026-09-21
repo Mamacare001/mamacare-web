@@ -1,7 +1,8 @@
 import Link from "next/link";
-import { BellRing, Send, CalendarDays, ArrowUpRight, ArrowRight } from "lucide-react";
+import { BellRing, Send, CalendarDays, ArrowUpRight, ArrowRight, ClipboardList, UserPlus } from "lucide-react";
 import { facility, queue, pendingFeedback, reports } from "@/lib/mock/clinic";
 import { Card } from "@/components/app/ui";
+import { Button } from "@/components/ui/Button";
 import { QueueList } from "@/components/clinic/QueueList";
 import { cn } from "@/lib/cn";
 
@@ -35,6 +36,17 @@ export default async function ClinicToday({ searchParams }: { searchParams: Prom
             <p className="text-xs text-muted">{s.sub}</p>
           </Link>
         ))}
+      </div>
+
+      <div className="grid gap-3 sm:grid-cols-2">
+        <Card className="flex items-center justify-between gap-3">
+          <div><p className="font-semibold text-emerald">Routine ANC visit?</p><p className="text-sm text-muted">Report it — she and her CHW get the next reminder.</p></div>
+          <Button href="/clinic/visit" variant="primary" size="sm"><ClipboardList className="size-4" /> Report visit</Button>
+        </Card>
+        <Card className="flex items-center justify-between gap-3">
+          <div><p className="font-semibold text-emerald">Booking ANC, not on MamaCare yet?</p><p className="text-sm text-muted">Enrol her and assign a CHW.</p></div>
+          <Button href="/clinic/enrol" variant="secondary" size="sm"><UserPlus className="size-4" /> Enrol</Button>
+        </Card>
       </div>
 
       <section>

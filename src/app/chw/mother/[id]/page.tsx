@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { Phone, ClipboardPlus, Send, MessageCircle, AlertTriangle, Activity, Home as HomeIcon, Users } from "lucide-react";
+import { Phone, ClipboardPlus, Send, MessageCircle, AlertTriangle, Activity, Home as HomeIcon, Users, UserPlus } from "lucide-react";
 import { caseload, escalations } from "@/lib/mock/chw";
 import { timeline } from "@/lib/mock/mother";
 import { PageTitle, Card, RiskPill, fmtDate, fmtTime } from "@/components/app/ui";
@@ -44,6 +44,25 @@ export default async function ChwMotherPage({ params }: { params: Promise<{ id: 
         <Card><p className="text-eyebrow text-muted">Last contact</p><p className="mt-1 font-display text-xl text-emerald">{fmtDate(m.lastContact)}</p><p className="text-xs text-muted">{fmtTime(m.lastContact)}</p></Card>
         <Card><p className="text-eyebrow text-muted">Next visit due</p><p className="mt-1 font-display text-xl text-emerald">{fmtDate(m.nextVisitDue)}</p></Card>
       </div>
+
+      <Card>
+        <div className="flex flex-wrap items-center justify-between gap-2">
+          <p className="flex items-center gap-2 text-eyebrow text-muted"><Users className="size-3.5" /> Family circle</p>
+          <Button href={`/chw/mother/${m.id}/supporters`} variant="secondary" size="sm"><UserPlus className="size-4" /> Add supporter</Button>
+        </div>
+        {(m.supporters ?? []).length === 0 ? (
+          <p className="mt-2 text-sm text-muted">No family supporter yet. Someone at home who can spot danger signs and get her to care makes the biggest difference.</p>
+        ) : (
+          <ul className="mt-2 divide-y divide-emerald/10">
+            {(m.supporters ?? []).map((s) => (
+              <li key={s.phone} className="flex flex-wrap items-center justify-between gap-2 py-2">
+                <div><p className="font-semibold text-emerald">{s.name}</p><p className="text-xs text-muted">{s.relation} · {s.phone}</p></div>
+                <span className={`rounded-full px-2 py-0.5 text-[10px] font-bold uppercase ${s.status === "active" ? "bg-green-100 text-green" : "bg-gold-100 text-[#8a6a10]"}`}>{s.status === "active" ? "confirmed" : "invited · awaiting her confirmation"}</span>
+              </li>
+            ))}
+          </ul>
+        )}
+      </Card>
 
       {esc.length > 0 && (
         <section>
