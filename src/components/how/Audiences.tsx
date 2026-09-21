@@ -45,7 +45,7 @@ export function Audiences() {
                   alt=""
                   fill
                   sizes="(min-width: 768px) 45vw, 92vw"
-                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+                  className="object-cover object-[50%_25%] transition-transform duration-700 ease-out group-hover:scale-[1.04]"
                 />
                 <div className="absolute inset-0 bg-emerald/0 transition-colors duration-500 group-hover:bg-emerald/15" />
               </figure>

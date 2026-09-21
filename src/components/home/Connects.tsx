@@ -57,13 +57,13 @@ export function Connects() {
                 className="group relative flex h-full flex-col overflow-hidden rounded-lg bg-ivory ring-1 ring-emerald/5 transition-shadow duration-300 hover:shadow-float"
                 style={{ marginTop: i % 2 === 1 ? undefined : 0 }}
               >
-                <figure className="relative aspect-[4/3] overflow-hidden">
+                <figure className="relative aspect-[5/4] overflow-hidden">
                   <Image
                     src={p.image}
                     alt=""
                     fill
                     sizes="(min-width: 1024px) 24vw, (min-width: 640px) 45vw, 92vw"
-                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+                    className="object-cover object-[50%_22%] transition-transform duration-700 ease-out group-hover:scale-[1.04]"
                   />
                   <div className="absolute inset-0 bg-emerald/0 transition-colors duration-500 group-hover:bg-emerald/15" />
                   <span

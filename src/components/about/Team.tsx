@@ -4,7 +4,7 @@ import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
 
 const team = [
-  { initials: "PI", name: "Patrice Iradukunda", role: "Data Scientist", text: "AI engineering, partnerships and social impact. AIMS Rwanda, Class of 2026.", tone: "bg-emerald text-ivory" },
+  { initials: "PI", name: "Patrice Iradukunda", role: "Data Scientist", text: "AI engineering, partnerships and social impact.", tone: "bg-emerald text-ivory" },
   { initials: "DI", name: "Donatien Iranshubije", role: "Business Developer", text: "Strategy and operational planning.", tone: "bg-coral text-white" },
   { initials: "PD", name: "Pascal Dukundane", role: "Software Developer", text: "Backend and frontend engineering, technology advancement.", tone: "bg-gold text-midnight" },
 ];

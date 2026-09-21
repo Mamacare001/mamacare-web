@@ -52,7 +52,7 @@ export function PageHero({
             animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ delay: 0.9, duration: 0.9, ease }}
           >
-            <Image src={image} alt={imageAlt} fill priority sizes="(min-width: 768px) 40vw, 92vw" className="object-cover" />
+            <Image src={image} alt={imageAlt} fill priority sizes="(min-width: 768px) 40vw, 92vw" className="object-cover object-[50%_25%]" />
           </motion.div>
         )}
       </div>

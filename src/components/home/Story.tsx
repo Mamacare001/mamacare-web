@@ -54,7 +54,7 @@ export function Story() {
           </div>
 
           <div className="md:col-span-7">
-            <Reveal delay={0.1} className="relative">
+            <Reveal delay={0.1} className="relative pb-24 md:pb-28">
               <div className="grid grid-cols-2 gap-4 md:gap-6">
                 <figure className="group relative aspect-[3/4] overflow-hidden rounded-xl">
                   <Image
@@ -62,7 +62,7 @@ export function Story() {
                     alt="A pregnant woman outdoors, holding her belly"
                     fill
                     sizes="(min-width: 768px) 30vw, 45vw"
-                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+                    className="object-cover object-[50%_25%] transition-transform duration-700 ease-out group-hover:scale-[1.04]"
                   />
                   <div className="absolute inset-0 bg-emerald/0 transition-colors duration-500 group-hover:bg-emerald/15" />
                 </figure>
@@ -72,12 +72,12 @@ export function Story() {
                     alt="A family looking at a phone together"
                     fill
                     sizes="(min-width: 768px) 30vw, 45vw"
-                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+                    className="object-cover object-[50%_25%] transition-transform duration-700 ease-out group-hover:scale-[1.04]"
                   />
                   <div className="absolute inset-0 bg-emerald/0 transition-colors duration-500 group-hover:bg-emerald/15" />
                 </figure>
               </div>
-              <div className="absolute -bottom-6 left-1/2 w-[min(90%,380px)] -translate-x-1/2 rounded-lg bg-midnight p-5 text-ivory shadow-float md:-bottom-8">
+              <div className="absolute bottom-0 left-1/2 w-[min(90%,380px)] -translate-x-1/2 rounded-lg bg-midnight p-5 text-ivory shadow-float">
                 <p className="font-display text-xl leading-snug md:text-2xl">
                   “Babies rest before they’re born, dear. It’s a good sign.”
                 </p>
