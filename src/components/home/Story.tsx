@@ -1,7 +1,10 @@
 "use client";
 
+import { useCallback, useState } from "react";
 import Image from "next/image";
+import { BookOpen } from "lucide-react";
 import { Eyebrow } from "@/components/ui/Eyebrow";
+import { StoryReader } from "@/components/home/StoryReader";
 import { Reveal, RevealGroup, RevealItem, GrowRule } from "@/components/ui/Reveal";
 
 const signs = [
@@ -13,8 +16,12 @@ const signs = [
 
 /** Section 2 — the problem, told as a story (ivory). */
 export function Story() {
+  const [reader, setReader] = useState<{ open: boolean; chapter?: number }>({ open: false });
+  const openAt = (chapter?: number) => setReader({ open: true, chapter });
+  const close = useCallback(() => setReader((r) => ({ ...r, open: false })), []);
   return (
     <section id="story" className="bg-ivory py-24 md:py-32">
+      <StoryReader open={reader.open} chapter={reader.chapter} onClose={close} />
       <div className="container-x">
         <div className="grid gap-12 md:grid-cols-12 md:gap-8">
           <div className="md:col-span-5">
@@ -30,15 +37,20 @@ export function Story() {
             <RevealGroup className="mt-10 space-y-0">
               {signs.map((s, i) => (
                 <RevealItem key={s.when}>
-                  <div className="flex gap-5 py-4">
-                    <span className="mt-1 grid size-8 shrink-0 place-items-center rounded-full bg-emerald text-xs font-bold text-ivory">
+                  <button
+                    type="button"
+                    onClick={() => openAt(i + 1)}
+                    title="Read what was really happening"
+                    className="group flex w-full gap-5 py-4 text-left transition-transform duration-300 hover:translate-x-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green"
+                  >
+                    <span className="mt-1 grid size-8 shrink-0 place-items-center rounded-full bg-emerald text-xs font-bold text-ivory transition-colors duration-300 group-hover:bg-coral">
                       {i + 1}
                     </span>
                     <div>
                       <p className="text-eyebrow text-muted">{s.when}</p>
                       <p className="mt-1 font-display text-xl text-ink md:text-2xl">{s.what}</p>
                     </div>
-                  </div>
+                  </button>
                   <GrowRule className="text-emerald" />
                 </RevealItem>
               ))}
@@ -50,6 +62,9 @@ export function Story() {
               <p className="mt-2 text-sm leading-relaxed text-ink/80">
                 Four ordinary signs. One dangerous, treatable condition — missed until it was severe.
               </p>
+              <button type="button" onClick={() => openAt()} className="link-underline mt-3 inline-flex items-center gap-2 text-sm font-semibold text-emerald">
+                <BookOpen className="size-4" /> Read the whole week
+              </button>
             </Reveal>
           </div>
 
@@ -77,12 +92,24 @@ export function Story() {
                   <div className="absolute inset-0 bg-emerald/0 transition-colors duration-500 group-hover:bg-emerald/15" />
                 </figure>
               </div>
-              <div className="absolute bottom-0 left-1/2 w-[min(90%,380px)] -translate-x-1/2 rounded-lg bg-midnight p-5 text-ivory shadow-float">
-                <p className="font-display text-xl leading-snug md:text-2xl">
-                  “Babies rest before they’re born, dear. It’s a good sign.”
-                </p>
-                <p className="mt-3 text-xs text-ivory/60"> — what her aunt said. So she waited.</p>
-              </div>
+              <button
+                type="button"
+                onClick={() => openAt()}
+                aria-label="Read Aline’s whole story"
+                className="group absolute bottom-0 left-1/2 w-[min(90%,380px)] -translate-x-1/2 text-left [perspective:1200px] focus-visible:outline-none"
+              >
+                <span className="relative block min-h-[150px] transition-transform duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)] group-focus-visible:[transform:rotateY(180deg)]">
+                  <span className="absolute inset-0 block rounded-lg bg-midnight p-5 text-ivory shadow-float [backface-visibility:hidden]">
+                    <span className="block font-display text-xl leading-snug md:text-2xl">“Babies rest before they’re born, dear. It’s a good sign.”</span>
+                    <span className="mt-3 block text-xs text-ivory/60"> — what her aunt said. So she waited.</span>
+                  </span>
+                  <span className="absolute inset-0 block rounded-lg bg-coral p-5 text-white shadow-float [backface-visibility:hidden] [transform:rotateY(180deg)]">
+                    <span className="block text-eyebrow text-white/70">That’s what her aunt said.</span>
+                    <span className="mt-2 block font-display text-xl leading-snug md:text-2xl">Here is what her body was saying.</span>
+                    <span className="mt-3 inline-flex items-center gap-2 text-sm font-semibold"><BookOpen className="size-4" /> Read the whole week ↗</span>
+                  </span>
+                </span>
+              </button>
             </Reveal>
           </div>
         </div>
