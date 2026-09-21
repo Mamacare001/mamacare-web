@@ -71,6 +71,33 @@ export const clinicNav: NavConfig = {
   ],
 };
 
+export const insightsNav: NavConfig = {
+  home: "/insights",
+  moreHref: "/insights/export",
+  primary: [
+    { href: "/insights", icon: BarChart3, en: "Insights", rw: "Isesengura", exact: true },
+    { href: "/insights/export", icon: Database, en: "Export", rw: "Kohereza" },
+  ],
+  secondary: [],
+};
+
+export const careNav: NavConfig = {
+  home: "/care",
+  moreHref: "/care",
+  primary: [
+    { href: "/care", icon: Users, en: "Members", rw: "Abanyamuryango", exact: true },
+    { href: "/insights", icon: BarChart3, en: "Insights", rw: "Isesengura" },
+  ],
+  secondary: [],
+};
+
+export const portalNav: NavConfig = {
+  home: "/portal",
+  moreHref: "/portal",
+  primary: [{ href: "/portal", icon: Database, en: "Data portal", rw: "Amakuru", exact: true }],
+  secondary: [],
+};
+
 export const familyNav: NavConfig = {
   home: "/family",
   moreHref: "/family/settings",

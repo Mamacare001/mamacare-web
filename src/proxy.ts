@@ -4,5 +4,5 @@ import { auth } from "@/auth";
 export default auth;
 
 export const config = {
-  matcher: ["/dashboard/:path*", "/app/:path*", "/family/:path*", "/chw/:path*", "/supervisor/:path*", "/clinic/:path*"],
+  matcher: ["/dashboard/:path*", "/app/:path*", "/family/:path*", "/chw/:path*", "/supervisor/:path*", "/clinic/:path*", "/insights/:path*", "/care/:path*", "/portal/:path*"],
 };

@@ -38,7 +38,7 @@ export const dict = {
       submit: "Sign in",
       noAccount: "New to MamaCare?",
       create: "Create an account",
-      demoHint: "Demo: demo@mamacare.rw / mamacare",
+      demoHint: "Demo accounts (password: mamacare): demo@ · mother@ · family@ · supervisor@ · provider@ · analyst@ · care@ · researcher@ mamacare.rw",
     },
     common: {
       notDiagnosis:
@@ -79,7 +79,7 @@ export const dict = {
       submit: "Injira",
       noAccount: "Uri mushya kuri MamaCare?",
       create: "Fungura konti",
-      demoHint: "Igerageza: demo@mamacare.rw / mamacare",
+      demoHint: "Igerageza (ijambobanga: mamacare): demo@ · mother@ · family@ · supervisor@ · provider@ · analyst@ · care@ · researcher@ mamacare.rw",
     },
     common: {
       notDiagnosis:

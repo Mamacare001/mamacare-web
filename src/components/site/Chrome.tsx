@@ -2,7 +2,7 @@
 
 import { usePathname } from "next/navigation";
 
-const BARE_ROUTES = ["/login", "/dashboard", "/app", "/family", "/chw", "/supervisor", "/clinic", "/offline", "/verify", "/forgot", "/reset", "/onboarding", "/invite"];
+const BARE_ROUTES = ["/login", "/dashboard", "/app", "/family", "/chw", "/supervisor", "/clinic", "/insights", "/care", "/portal", "/offline", "/verify", "/forgot", "/reset", "/onboarding", "/invite"];
 
 /** Hides marketing chrome (nav/footer) on app-style routes. */
 export function MarketingOnly({ children }: { children: React.ReactNode }) {

@@ -30,6 +30,9 @@ export default async function DashboardPage({ searchParams }: { searchParams: Pr
   if (user.role === "chw") redirect("/chw" + (welcome ? "?welcome=1" : ""));
   if (user.role === "supervisor") redirect("/supervisor");
   if (user.role === "provider") redirect("/clinic" + (welcome ? "?welcome=1" : ""));
+  if (user.role === "analyst") redirect("/insights");
+  if (user.role === "care-manager") redirect("/care");
+  if (user.role === "researcher") redirect("/portal");
 
   return (
     <div className="min-h-[100svh] bg-ivory">
