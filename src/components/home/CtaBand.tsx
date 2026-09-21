@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/Button";
 import { Reveal } from "@/components/ui/Reveal";
 
-/** Section 8 — large colour section (coral). */
+/** Section 8 --- large colour section (coral). */
 export function CtaBand() {
   return (
     <section className="relative overflow-hidden bg-coral py-28 text-white md:py-40">

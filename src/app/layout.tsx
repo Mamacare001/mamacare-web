@@ -34,7 +34,7 @@ function siteUrl(): URL {
 
 export const metadata: Metadata = {
   metadataBase: siteUrl(),
-  title: { default: "MamaCare — The warning can come before the emergency", template: "%s · MamaCare" },
+  title: { default: "MamaCare --- The warning can come before the emergency", template: "%s · MamaCare" },
   description:
     "MamaCare connects mothers, families, Community Health Workers and clinics into one continuous picture of every pregnancy, in Kinyarwanda and English.",
   openGraph: {

@@ -4,7 +4,7 @@ import { useRef } from "react";
 import { motion, useScroll, useTransform, type MotionValue } from "framer-motion";
 
 const TEXT =
-  "We believe the information needed to keep a mother safe already exists. It lives with her, her family, her Community Health Worker and her clinic. Our job is to connect it — in time.";
+  "We believe the information needed to keep a mother safe already exists. It lives with her, her family, her Community Health Worker and her clinic. Our job is to connect it --- in time.";
 
 function Word({ children, range, progress }: { children: string; range: [number, number]; progress: MotionValue<number> }) {
   const opacity = useTransform(progress, range, [0.18, 1]);

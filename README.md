@@ -1,4 +1,4 @@
-# MamaCare — web frontend
+# MamaCare --- web frontend
 
 > The warning can come before the emergency.
 
@@ -37,7 +37,7 @@ npx tsc --noEmit
 | `/`              | Landing: sequenced hero, story, four voices, interactive "how it works", bilingual chat demo, stats, safety, CTA |
 | `/about`         | Scroll-revealed statement, story slider, team, roadmap                                            |
 | `/how-it-works`  | The 5-step flow, risk levels, audiences (mothers / families / health workers), safety            |
-| `/contact`       | Contact form (server action — wire to email/CRM in `src/app/contact/actions.ts`)                 |
+| `/contact`       | Contact form (server action --- wire to email/CRM in `src/app/contact/actions.ts`)                 |
 | `/login`         | Sign in / sign up (`?mode=signup`) with Google + email/password                                   |
 | `/dashboard`     | Protected placeholder CHW dashboard (redirects to `/login` when signed out)                       |
 
@@ -52,7 +52,7 @@ Marketing chrome (nav, footer, mobile sticky CTA) is hidden on `/login` and `/da
 | `AUTH_GOOGLE_SECRET`   | optional | Same place. When both Google vars are set the "Continue with Google" button becomes active.         |
 | `NEXT_PUBLIC_SITE_URL` | optional | Used for `metadataBase` (Open Graph URLs).                                                          |
 
-**Google OAuth — authorised redirect URIs to add:**
+**Google OAuth --- authorised redirect URIs to add:**
 
 ```
 http://localhost:3000/api/auth/callback/google
@@ -65,7 +65,7 @@ https://<your-custom-domain>/api/auth/callback/google
 ## 4. Deploy to Vercel
 
 1. Push this folder to a Git repository (GitHub / GitLab / Bitbucket).
-2. In Vercel: **Add New → Project → Import** the repo. Framework preset is detected as Next.js — no build settings to change.
+2. In Vercel: **Add New → Project → Import** the repo. Framework preset is detected as Next.js --- no build settings to change.
 3. Under **Settings → Environment Variables** add `AUTH_SECRET`, `AUTH_GOOGLE_ID`, `AUTH_GOOGLE_SECRET`, `NEXT_PUBLIC_SITE_URL` (Production + Preview).
 4. Deploy. Then add the Vercel URL to your Google OAuth redirect URIs (§3).
 
@@ -85,7 +85,7 @@ src/
     about/  how-it-works/  contact/  login/  dashboard/
     api/auth/[...nextauth]/route.ts
   auth.ts                 Auth.js config (Google + credentials)
-  proxy.ts                Next 16 proxy (formerly middleware) — protects /dashboard
+  proxy.ts                Next 16 proxy (formerly middleware) --- protects /dashboard
   lib/i18n.ts             EN / RW dictionary
   components/
     ui/        Button, Reveal (scroll animations), CountUp, Eyebrow
@@ -117,7 +117,7 @@ Radii: 8 / 16 / 24 / 32 / 40 px. Motion: micro 100–180 ms, hover 150–250 ms,
 
 ## 7. Content notes
 
-- **Kinyarwanda copy** (`src/lib/i18n.ts`, chat demo in `ChatPreview.tsx`) is a first draft — please have a native speaker review before launch.
+- **Kinyarwanda copy** (`src/lib/i18n.ts`, chat demo in `ChatPreview.tsx`) is a first draft --- please have a native speaker review before launch.
 - Photos are ~500 px on the short side. For the hero on large screens, swap in higher-resolution originals in `public/images/`.
 - Stats on the landing page come from the 20-interview user research; the MMR figure used elsewhere is 105/100k (HSSP V, 2023).
-- MamaCare is decision support. The "does not diagnose" line appears in the hero, footer and how-it-works page on purpose — keep it.
+- MamaCare is decision support. The "does not diagnose" line appears in the hero, footer and how-it-works page on purpose --- keep it.

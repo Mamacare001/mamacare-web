@@ -7,11 +7,11 @@ import { Reveal, RevealGroup, RevealItem, GrowRule } from "@/components/ui/Revea
 const signs = [
   { when: "Day 1", what: "Her wedding ring feels a little tight." },
   { when: "A few days later", what: "A headache." },
-  { when: "The next week", what: "The window blurs. She blinks — it's gone." },
+  { when: "The next week", what: "The window blurs. She blinks --- it's gone." },
   { when: "Two days later", what: "The baby has gone quiet." },
 ];
 
-/** Section 2 — the problem, told as a story (ivory). */
+/** Section 2 --- the problem, told as a story (ivory). */
 export function Story() {
   return (
     <section id="story" className="bg-ivory py-24 md:py-32">
@@ -48,7 +48,7 @@ export function Story() {
               <p className="text-eyebrow text-coral">What was actually happening</p>
               <p className="mt-2 font-display text-2xl text-emerald">Preeclampsia.</p>
               <p className="mt-2 text-sm leading-relaxed text-ink/80">
-                Four ordinary signs. One dangerous, treatable condition — missed until it was severe.
+                Four ordinary signs. One dangerous, treatable condition --- missed until it was severe.
               </p>
             </Reveal>
           </div>
@@ -81,7 +81,7 @@ export function Story() {
                 <p className="font-display text-xl leading-snug md:text-2xl">
                   “Babies rest before they’re born, dear. It’s a good sign.”
                 </p>
-                <p className="mt-3 text-xs text-ivory/60">— what her aunt said. So she waited.</p>
+                <p className="mt-3 text-xs text-ivory/60"> --- what her aunt said. So she waited.</p>
               </div>
             </Reveal>
           </div>

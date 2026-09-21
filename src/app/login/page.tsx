@@ -38,7 +38,7 @@ export default async function LoginPage({ searchParams }: { searchParams: Search
           <div>
             <p className="text-h2 max-w-[16ch]">The warning can come before the emergency.</p>
             <p className="mt-4 max-w-md text-ivory/70">
-              One continuous picture of every pregnancy — for mothers, families, CHWs and clinics.
+              One continuous picture of every pregnancy --- for mothers, families, CHWs and clinics.
             </p>
           </div>
         </div>

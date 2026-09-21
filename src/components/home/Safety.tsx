@@ -5,14 +5,14 @@ import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
 
 const pillars = [
-  { icon: UserCheck, title: "Humans decide", text: "MamaCare supports — never replaces — doctors, midwives and CHWs. It does not diagnose." },
+  { icon: UserCheck, title: "Humans decide", text: "MamaCare supports --- never replaces --- doctors, midwives and CHWs. It does not diagnose." },
   { icon: FileCheck2, title: "Medically reviewed rules", text: "Every recommended action follows clinical rules reviewed by health professionals, fully auditable." },
   { icon: Lock, title: "Data protection", text: "Consent first. Health data handled under Rwanda's data-protection law, with independent ethics review." },
-  { icon: Languages, title: "Built for Kinyarwanda", text: "Misunderstanding is a safety risk. When the system is unsure, it asks — or hands over to a person." },
+  { icon: Languages, title: "Built for Kinyarwanda", text: "Misunderstanding is a safety risk. When the system is unsure, it asks --- or hands over to a person." },
   { icon: Route, title: "A clear care pathway", text: "Escalations go to a named CHW and facility, through a defined channel, with the loop closed back." },
 ];
 
-/** Section 7 — responsible AI pillars (ivory). */
+/** Section 7 --- responsible AI pillars (ivory). */
 export function Safety() {
   return (
     <section id="safety" className="bg-ivory py-24 md:py-32">

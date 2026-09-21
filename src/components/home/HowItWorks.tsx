@@ -14,7 +14,7 @@ const steps = [
     n: "01",
     title: "Speak",
     icon: MessageSquareText,
-    text: "In Kinyarwanda or English — by web, app, WhatsApp or SMS. Text, voice or a photo.",
+    text: "In Kinyarwanda or English --- by web, app, WhatsApp or SMS. Text, voice or a photo.",
     image: "/images/chat-on-phone.jpg",
     accent: "text-green",
   },
@@ -46,13 +46,13 @@ const steps = [
     n: "05",
     title: "Act",
     icon: BellRing,
-    text: "The right person is alerted through the right care pathway — and the loop is closed back to the CHW.",
+    text: "The right person is alerted through the right care pathway --- and the loop is closed back to the CHW.",
     image: "/images/chw-visit.jpg",
     accent: "text-coral",
   },
 ];
 
-/** Section 4 — interactive list; hovering/focusing a step swaps the large visual (ivory). */
+/** Section 4 --- interactive list; hovering/focusing a step swaps the large visual (ivory). */
 export function HowItWorks() {
   const [active, setActive] = useState(0);
   const current = steps[active];
