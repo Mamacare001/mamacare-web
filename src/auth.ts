@@ -38,6 +38,7 @@ export const authConfig = {
           "analyst@mamacare.rw": { name: "Eric Habimana", role: "analyst" },
           "care@mamacare.rw": { name: "Diane Uwase", role: "care-manager" },
           "researcher@mamacare.rw": { name: "Dr. Kevine Mutesi", role: "researcher" },
+          "admin@mamacare.rw": { name: "Pascal Dukundane", role: "admin" },
         };
         if (demo[email] && password === "mamacare") {
           return { id: `demo-${demo[email].role}`, name: demo[email].name, email, role: demo[email].role };
@@ -56,7 +57,7 @@ export const authConfig = {
   ],
   callbacks: {
     authorized({ auth, request }) {
-      const isProtected = ["/dashboard", "/app", "/family", "/chw", "/supervisor", "/clinic", "/insights", "/care", "/portal"].some((r) => request.nextUrl.pathname.startsWith(r));
+      const isProtected = ["/dashboard", "/app", "/family", "/chw", "/supervisor", "/clinic", "/insights", "/care", "/portal", "/admin"].some((r) => request.nextUrl.pathname.startsWith(r));
       return isProtected ? !!auth?.user : true;
     },
     jwt({ token, user }) {
