@@ -34,7 +34,7 @@ const channels = [
   { icon: MessageSquare, label: "SMS" },
 ];
 
-/** Section 5 --- emerald band with an animated mock conversation. */
+/** Section 5 — emerald band with an animated mock conversation. */
 export function ChatPreview() {
   const { lang } = useLang();
   const ref = useRef<HTMLDivElement>(null);
@@ -58,7 +58,7 @@ export function ChatPreview() {
             <Eyebrow tone="gold">Any device. Any channel. Any time.</Eyebrow>
             <h2 className="text-h1 mt-5">Chat in Kinyarwanda or English.</h2>
             <p className="text-lead mt-6 max-w-[48ch] text-ivory/75">
-              Mothers use whatever phone they already have. CHWs and clinicians see the same conversation, structured --- no
+              Mothers use whatever phone they already have. CHWs and clinicians see the same conversation, structured — no
               retyping, no lost messages.
             </p>
           </Reveal>

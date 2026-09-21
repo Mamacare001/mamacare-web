@@ -4,7 +4,7 @@ export type ContactState = { ok: boolean; message: string } | null;
 
 /**
  * Contact form handler. Wire this to your email provider or CRM
- * (Resend, SendGrid, HubSpot…) --- for now it validates and logs.
+ * (Resend, SendGrid, HubSpot…) — for now it validates and logs.
  */
 export async function sendContact(_prev: ContactState, formData: FormData): Promise<ContactState> {
   const name = String(formData.get("name") ?? "").trim();
@@ -21,5 +21,5 @@ export async function sendContact(_prev: ContactState, formData: FormData): Prom
   console.info("[contact]", { name, email, org, topic, message });
   await new Promise((r) => setTimeout(r, 600));
 
-  return { ok: true, message: "Thank you --- we'll reply within two working days." };
+  return { ok: true, message: "Thank you — we'll reply within two working days." };
 }

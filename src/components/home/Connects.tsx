@@ -9,7 +9,7 @@ const people = [
   {
     icon: Baby,
     title: "Mother",
-    text: "Shares symptoms and concerns in her own words --- by chat, WhatsApp or SMS.",
+    text: "Shares symptoms and concerns in her own words — by chat, WhatsApp or SMS.",
     image: "/images/mother-home-phone.jpg",
     tone: "bg-coral-100 text-coral",
   },
@@ -36,7 +36,7 @@ const people = [
   },
 ];
 
-/** Section 3 --- the four voices → one picture (white). */
+/** Section 3 — the four voices → one picture (white). */
 export function Connects() {
   return (
     <section className="bg-white py-24 md:py-32">
@@ -45,7 +45,7 @@ export function Connects() {
           <Eyebrow>Our insight</Eyebrow>
           <h2 className="text-h1 mt-5 text-emerald">One continuous picture of every pregnancy.</h2>
           <p className="text-lead mt-6 text-muted">
-            The information already exists --- it is just held by four different people. MamaCare brings it together into a
+            The information already exists — it is just held by four different people. MamaCare brings it together into a
             single timeline that everyone caring for her can act on.
           </p>
         </Reveal>

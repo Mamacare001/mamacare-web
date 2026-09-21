@@ -11,7 +11,7 @@ const stats = [
   { value: 45000, suffix: "+", label: "Community Health Workers in Rwanda", note: "The network we build on" },
 ];
 
-/** Section 6 --- dark statistics with animated counters. */
+/** Section 6 — dark statistics with animated counters. */
 export function Stats() {
   return (
     <section className="relative overflow-hidden bg-midnight py-24 text-ivory md:py-32">

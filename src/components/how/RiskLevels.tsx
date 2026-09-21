@@ -39,7 +39,7 @@ export function RiskLevels() {
           <Eyebrow tone="coral">Guided by medical rules</Eyebrow>
           <h2 className="text-h1 mt-5 text-emerald">Three levels. One clear next step.</h2>
           <p className="text-lead mt-5 text-muted">
-            The risk model produces an interpretable score. Medically reviewed rules translate it into an action --- never a
+            The risk model produces an interpretable score. Medically reviewed rules translate it into an action — never a
             diagnosis.
           </p>
         </Reveal>

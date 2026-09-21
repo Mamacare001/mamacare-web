@@ -1,7 +1,7 @@
 export type Lang = "en" | "rw";
 
 /**
- * Bilingual UI copy. Kinyarwanda strings are a first draft --- have a native
+ * Bilingual UI copy. Kinyarwanda strings are a first draft — have a native
  * speaker on the team review them before launch.
  */
 export const dict = {
@@ -19,7 +19,7 @@ export const dict = {
       title1: "The warning can come",
       title2: "before the emergency.",
       lead:
-        "MamaCare connects a mother, her family, her Community Health Worker and her clinic into one continuous picture of the pregnancy --- so a warning sign is never missed.",
+        "MamaCare connects a mother, her family, her Community Health Worker and her clinic into one continuous picture of the pregnancy — so a warning sign is never missed.",
       ctaPrimary: "Start a check-in",
       ctaSecondary: "See how it works",
       scroll: "Scroll",
@@ -41,7 +41,7 @@ export const dict = {
     },
     common: {
       notDiagnosis:
-        "MamaCare does not diagnose. It helps mothers, families and health workers recognise risk earlier --- and act sooner.",
+        "MamaCare does not diagnose. It helps mothers, families and health workers recognise risk earlier — and act sooner.",
       emergency: "In an emergency call 912",
     },
   },
@@ -59,7 +59,7 @@ export const dict = {
       title1: "Ikimenyetso gishobora kuza",
       title2: "mbere y'ibyihutirwa.",
       lead:
-        "MamaCare ihuza umubyeyi, umuryango we, umujyanama w'ubuzima n'ivuriro mu ishusho imwe ihoraho y'inda --- kugira ngo nta kimenyetso cy'akaga kibura kubonwa.",
+        "MamaCare ihuza umubyeyi, umuryango we, umujyanama w'ubuzima n'ivuriro mu ishusho imwe ihoraho y'inda — kugira ngo nta kimenyetso cy'akaga kibura kubonwa.",
       ctaPrimary: "Tangira isuzuma",
       ctaSecondary: "Reba uko bikora",
       scroll: "Manuka",
@@ -81,7 +81,7 @@ export const dict = {
     },
     common: {
       notDiagnosis:
-        "MamaCare ntisuzuma indwara. Ifasha ababyeyi, imiryango n'abakozi b'ubuzima kumenya ingaruka hakiri kare --- no gufata ingamba vuba.",
+        "MamaCare ntisuzuma indwara. Ifasha ababyeyi, imiryango n'abakozi b'ubuzima kumenya ingaruka hakiri kare — no gufata ingamba vuba.",
       emergency: "Mu byihutirwa hamagara 912",
     },
   },

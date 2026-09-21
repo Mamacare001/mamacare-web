@@ -5,6 +5,7 @@ import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion
 import { useRef } from "react";
 import { ShieldCheck, Languages, ArrowDown, Activity } from "lucide-react";
 import { Button } from "@/components/ui/Button";
+import { EyebrowArrow } from "@/components/ui/Eyebrow";
 import { useLang } from "@/components/providers/LanguageProvider";
 
 const ease = [0.16, 1, 0.3, 1] as const;
@@ -40,7 +41,7 @@ export function Hero() {
         {/* copy */}
         <div className="md:col-span-6 lg:col-span-6">
           <motion.p {...seq(0.5)} className="text-eyebrow flex items-center gap-3 text-gold">
-            <span className="h-px w-8 bg-gold/70" />
+            <EyebrowArrow />
             {t.hero.eyebrow}
           </motion.p>
           <motion.h1 {...seq(0.5)} className="text-display mt-6">

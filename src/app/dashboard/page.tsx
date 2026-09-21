@@ -68,7 +68,7 @@ export default async function DashboardPage() {
       <main className="container-x py-8 md:py-12">
         <p className="text-eyebrow text-green">Kinyinya sector · CHW caseload</p>
         <h1 className="text-h2 mt-2 text-emerald">Muraho, {user.name?.split(" ")[0] ?? "there"}.</h1>
-        <p className="mt-2 text-muted">This is a placeholder dashboard --- connect it to the MamaCare API to show live data.</p>
+        <p className="mt-2 text-muted">This is a placeholder dashboard — connect it to the MamaCare API to show live data.</p>
 
         <div className="mt-8 grid gap-4 sm:grid-cols-3">
           {[

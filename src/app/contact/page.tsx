@@ -19,7 +19,7 @@ export default function ContactPage() {
             Let’s build something <span className="text-coral">meaningful</span>.
           </>
         }
-        lead="Clinical partners, researchers, CHW cooperatives, insurers and funders --- we would love to talk."
+        lead="Clinical partners, researchers, CHW cooperatives, insurers and funders — we would love to talk."
       />
       <section className="bg-ivory pb-24 md:pb-32">
         <div className="container-x grid gap-12 lg:grid-cols-12">

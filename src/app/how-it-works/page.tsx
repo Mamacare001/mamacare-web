@@ -9,7 +9,7 @@ import { CtaBand } from "@/components/home/CtaBand";
 
 export const metadata: Metadata = {
   title: "How it works",
-  description: "Speak, understand, assess, guide, act --- how MamaCare turns a conversation into timely, medically reviewed action.",
+  description: "Speak, understand, assess, guide, act — how MamaCare turns a conversation into timely, medically reviewed action.",
 };
 
 export default function HowItWorksPage() {
@@ -22,7 +22,7 @@ export default function HowItWorksPage() {
             The language model <span className="text-violet">understands</span>. Clinical rules guide the action.
           </>
         }
-        lead="MamaCare is a hybrid system --- not a chatbot alone. Every recommendation passes through medically reviewed rules, and a human is always in the loop."
+        lead="MamaCare is a hybrid system — not a chatbot alone. Every recommendation passes through medically reviewed rules, and a human is always in the loop."
       />
       <HowItWorks />
       <RiskLevels />

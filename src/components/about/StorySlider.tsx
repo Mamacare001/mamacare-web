@@ -11,7 +11,7 @@ const slides = [
   {
     n: "01",
     title: "Our beginning",
-    text: "A sister's ordinary symptoms --- a tight ring, a headache, a blurred window --- turned out to be preeclampsia, missed until it was severe. That story is why MamaCare exists.",
+    text: "A sister's ordinary symptoms — a tight ring, a headache, a blurred window — turned out to be preeclampsia, missed until it was severe. That story is why MamaCare exists.",
     image: "/images/mother-outdoors.jpg",
   },
   {
@@ -23,7 +23,7 @@ const slides = [
   {
     n: "03",
     title: "What we learned",
-    text: "The gap is not awareness or effort. It is that no one holds the full picture --- and the CHW-to-clinic feedback loop is where warnings most often go quiet.",
+    text: "The gap is not awareness or effort. It is that no one holds the full picture — and the CHW-to-clinic feedback loop is where warnings most often go quiet.",
     image: "/images/provider-tablet.jpg",
   },
   {
@@ -101,7 +101,7 @@ export function StorySlider() {
                   exit={{ opacity: 0, y: -12 }}
                   transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
                 >
-                  <p className="font-mono text-sm text-coral">{s.n} --- </p>
+                  <p className="font-mono text-sm text-coral">{s.n} — </p>
                   <h3 className="text-h2 mt-2 text-emerald">{s.title}</h3>
                   <p className="text-lead mt-4 text-muted">{s.text}</p>
                 </motion.div>
