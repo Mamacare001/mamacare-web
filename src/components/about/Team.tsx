@@ -48,7 +48,7 @@ export function Team() {
             {team.map((m) => (
               <RevealItem key={m.name}>
                 <article className="group h-full overflow-hidden rounded-lg bg-white ring-1 ring-emerald/5 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-float">
-                  <figure className="relative aspect-[4/5] overflow-hidden">
+                  <figure className="relative mx-auto size-48 overflow-hidden rounded-full ring-4 ring-white shadow-float md:size-52">
                     <Image
                       src={m.photo}
                       alt={m.name}
