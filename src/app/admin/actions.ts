@@ -52,3 +52,15 @@ export async function markBreakGlassReviewed(id: string, note: string) { void id
 export async function rotateKey(name: string) { void name; await delay(800); revalidatePath("/admin/integrations"); }
 export async function assignTicket(id: string) { void id; await delay(); revalidatePath("/admin/support"); }
 export async function toggleFlag(key: string, on: boolean) { void key; void on; await delay(200); revalidatePath("/admin/settings"); }
+
+/* ---------------- Talent & ideas ---------------- */
+export async function setApplicationStatus(id: string, status: string, note?: string) {
+  void id; void status; void note; await delay(400); // TODO: PATCH /talent/applications/{id} { status, note } → candidate emailed on interview/offer/declined
+  revalidatePath("/admin/talent");
+  return { ok: true };
+}
+export async function setIdeaStatus(id: string, status: string, reply?: string) {
+  void id; void status; void reply; await delay(400); // TODO: PATCH /talent/ideas/{id} { status, reply } → submitter notified with the reply
+  revalidatePath("/admin/talent");
+  return { ok: true };
+}

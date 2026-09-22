@@ -22,6 +22,7 @@ const columns = [
       { label: "Partners", href: "/partners" },
       { label: "Research", href: "/research" },
       { label: "Team", href: "/about#team" },
+      { label: "Join us", href: "/join" },
       { label: "Contact", href: "/contact" },
     ],
   },

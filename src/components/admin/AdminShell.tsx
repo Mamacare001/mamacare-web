@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Bell, CircleHelp, Activity, Users, Building2, Ticket, Scale, Cpu, Languages, FileSearch, ShieldCheck, ScrollText, KeyRound, Plug, LifeBuoy, Receipt, Settings, LogOut, Lock } from "lucide-react";
+import { Bell, CircleHelp, Activity, Users, Building2, Ticket, Scale, Cpu, Languages, FileSearch, ShieldCheck, ScrollText, KeyRound, Plug, LifeBuoy, Receipt, Settings, LogOut, Lock, Lightbulb } from "lucide-react";
 import { cn } from "@/lib/cn";
 
 const groups = [
@@ -11,7 +11,7 @@ const groups = [
   { title: "Access", items: [{ href: "/admin/users", label: "Users & roles", icon: Users }, { href: "/admin/organisations", label: "Organisations", icon: Building2 }, { href: "/admin/invites", label: "Invites", icon: Ticket }] },
   { title: "Clinical & AI", items: [{ href: "/admin/rules", label: "Clinical rules", icon: Scale }, { href: "/admin/models", label: "Models", icon: Cpu }, { href: "/admin/content", label: "Content · EN/RW", icon: Languages }, { href: "/admin/case-review", label: "Case review", icon: FileSearch }] },
   { title: "Privacy & security", items: [{ href: "/admin/consent", label: "Consent & requests", icon: ShieldCheck }, { href: "/admin/audit", label: "Audit log", icon: ScrollText }, { href: "/admin/break-glass", label: "Break-glass", icon: KeyRound }] },
-  { title: "Business", items: [{ href: "/admin/billing", label: "Billing", icon: Receipt }, { href: "/admin/settings", label: "Settings & flags", icon: Settings }] },
+  { title: "Business", items: [{ href: "/admin/talent", label: "Talent & ideas", icon: Lightbulb }, { href: "/admin/billing", label: "Billing", icon: Receipt }, { href: "/admin/settings", label: "Settings & flags", icon: Settings }] },
 ];
 
 export function AdminShell({ children, name, roles, signOutAction }: { children: React.ReactNode; name: string; roles: string; signOutAction: () => Promise<void> }) {
