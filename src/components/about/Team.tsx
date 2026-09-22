@@ -70,6 +70,19 @@ export function Team() {
         </div>
       </section>
 
+      <section className="bg-ivory pb-24 md:pb-32">
+        <div className="container-x">
+          <Reveal>
+            <a href="/join" className="group flex flex-col gap-4 rounded-2xl bg-coral p-8 text-white shadow-float transition-transform duration-500 hover:-translate-y-1 md:flex-row md:items-center md:justify-between md:p-10">
+              <div>
+                <p className="text-eyebrow text-white/70">There is a chair for you</p>
+                <p className="mt-2 font-display text-3xl leading-tight md:text-4xl">Three of us is not enough. Apply, or write your own role.</p>
+              </div>
+              <span className="inline-flex shrink-0 items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-semibold text-coral">Join us <span className="transition-transform group-hover:translate-x-1">→</span></span>
+            </a>
+          </Reveal>
+        </div>
+      </section>
       <section id="research" className="relative overflow-hidden bg-midnight py-24 text-ivory md:py-32">
         <div className="grain absolute inset-0" aria-hidden />
         <div className="container-x relative">
