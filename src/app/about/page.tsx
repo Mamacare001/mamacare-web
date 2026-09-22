@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { PageHero } from "@/components/site/PageHero";
 import { Statement } from "@/components/about/Statement";
 import { StorySlider } from "@/components/about/StorySlider";
+import { Manifesto } from "@/components/about/Manifesto";
 import { Team } from "@/components/about/Team";
 import { CtaBand } from "@/components/home/CtaBand";
 
@@ -25,6 +26,7 @@ export default function AboutPage() {
         imageAlt="A Community Health Worker visiting a pregnant woman at home"
       />
       <Statement />
+      <Manifesto />
       <StorySlider />
       <Team />
       <CtaBand />
