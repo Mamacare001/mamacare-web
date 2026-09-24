@@ -83,7 +83,7 @@ export function Footer() {
               <Image src="/brand/mark.png" alt="" width={36} height={42} className="h-9 w-auto" />
               <div>
                 <Image src="/brand/wordmark-white.png" alt="MamaCare" width={120} height={18} className="h-4 w-auto" />
-                <p className="mt-1 text-xs text-ivory/50">Connected for healthier pregnancies</p>
+                <p className="mt-1 text-xs text-ivory/50">Two hearts, timely care</p>
               </div>
             </div>
             <p className="max-w-md text-xs leading-relaxed text-ivory/45">
