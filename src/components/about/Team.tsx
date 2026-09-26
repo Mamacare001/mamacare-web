@@ -7,21 +7,21 @@ import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
 const team = [
   {
     name: "Patrice Iradukunda",
-    role: "Data Scientist",
+    role: "Founder & CEO · Chief of Finance, Legal & Compliance",
     text: "AI engineering, partnerships and social impact.",
     photo: "/images/team/patrice.jpg",
     accent: "ring-emerald",
   },
   {
     name: "Donatien Iranshubije",
-    role: "Business Developer",
+    role: "Co-Founder · Chief of Medical & Commercial",
     text: "Strategy and operational planning.",
     photo: "/images/team/donatien.png",
     accent: "ring-coral",
   },
   {
     name: "Pascal Dukundane",
-    role: "Software Developer",
+    role: "Co-Founder · Chief of Technology & Operations",
     text: "Backend and frontend engineering, technology advancement.",
     photo: "/images/team/pascal.jpg",
     accent: "ring-gold",
