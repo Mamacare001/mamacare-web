@@ -6,38 +6,18 @@ import { AnimatePresence, motion, useInView, useReducedMotion } from "framer-mot
 import { ArrowLeft, ArrowRight, Pause, Play } from "lucide-react";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Reveal } from "@/components/ui/Reveal";
+import { useLang } from "@/components/providers/LanguageProvider";
 
-const slides = [
-  {
-    n: "01",
-    title: "Our beginning",
-    text: "A sister's ordinary symptoms — a tight ring, a headache, a blurred window — turned out to be preeclampsia, missed until it was severe. That story is why MamaCare exists.",
-    image: "/images/mother-outdoors.jpg",
-  },
-  {
-    n: "02",
-    title: "Listening first",
-    text: "Before writing code we spoke with pregnant women, family members, Community Health Workers and midwives across five facilities in Northern and Western Province.",
-    image: "/images/chw-visit.jpg",
-  },
-  {
-    n: "03",
-    title: "What we learned",
-    text: "The gap is not awareness or effort. It is that no one holds the full picture — and the CHW-to-clinic feedback loop is where warnings most often go quiet.",
-    image: "/images/provider-tablet.jpg",
-  },
-  {
-    n: "04",
-    title: "Where we are going",
-    text: "A clinically validated prototype, an ethics-approved two-district pilot, and a platform that complements Rwanda's existing health systems rather than competing with them.",
-    image: "/images/telehealth-call.jpg",
-  },
-];
+const images = ["/images/mother-outdoors.jpg", "/images/chw-visit.jpg", "/images/provider-tablet.jpg", "/images/telehealth-call.jpg"];
 
 const AUTOPLAY_MS = 6000;
 const ease = [0.65, 0, 0.35, 1] as const;
 
 export function StorySlider() {
+  const { t } = useLang();
+  const ss = t.about.storySlider;
+  const slides = ss.slides.map((s, i) => ({ ...s, n: `0${i + 1}`, image: images[i] }));
+
   const [index, setIndex] = useState(0);
   const [dir, setDir] = useState(1);
   const [paused, setPaused] = useState(false); // user-toggled
@@ -51,7 +31,7 @@ export function StorySlider() {
     setDir(d);
     setIndex((i) => (i + d + slides.length) % slides.length);
     setCycle((c) => c + 1);
-  }, []);
+  }, [slides.length]);
 
   const playing = !paused && !hovering && inView && !reduce;
 
@@ -78,8 +58,8 @@ export function StorySlider() {
     <section className="bg-white py-24 md:py-32">
       <div className="container-x">
         <Reveal>
-          <Eyebrow>Our story</Eyebrow>
-          <h2 className="text-h1 mt-5 max-w-3xl text-emerald">Built from the ground up, with the people it serves.</h2>
+          <Eyebrow>{ss.eyebrow}</Eyebrow>
+          <h2 className="text-h1 mt-5 max-w-3xl text-emerald">{ss.heading}</h2>
         </Reveal>
 
         <div
@@ -156,7 +136,7 @@ export function StorySlider() {
                 type="button"
                 onClick={() => go(-1)}
                 className="grid size-12 place-items-center rounded-full border border-emerald/15 text-emerald transition-colors hover:bg-emerald hover:text-ivory"
-                aria-label="Previous"
+                aria-label={ss.prevAria}
               >
                 <ArrowLeft className="size-5" />
               </button>
@@ -164,7 +144,7 @@ export function StorySlider() {
                 type="button"
                 onClick={() => go(1)}
                 className="grid size-12 place-items-center rounded-full border border-emerald/15 text-emerald transition-colors hover:bg-emerald hover:text-ivory"
-                aria-label="Next"
+                aria-label={ss.nextAria}
               >
                 <ArrowRight className="size-5" />
               </button>
@@ -172,7 +152,7 @@ export function StorySlider() {
                 type="button"
                 onClick={() => setPaused((p) => !p)}
                 className="grid size-12 place-items-center rounded-full text-emerald/70 transition-colors hover:bg-emerald/5 hover:text-emerald"
-                aria-label={paused ? "Play slideshow" : "Pause slideshow"}
+                aria-label={paused ? ss.playAria : ss.pauseAria}
                 aria-pressed={paused}
               >
                 {paused ? <Play className="size-4" /> : <Pause className="size-4" />}

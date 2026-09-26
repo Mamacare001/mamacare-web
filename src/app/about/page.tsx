@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { PageHero } from "@/components/site/PageHero";
+import { AboutHero } from "@/components/about/AboutHero";
 import { Statement } from "@/components/about/Statement";
 import { StorySlider } from "@/components/about/StorySlider";
 import { Manifesto } from "@/components/about/Manifesto";
@@ -14,17 +14,7 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <>
-      <PageHero
-        eyebrow="About MamaCare"
-        title={
-          <>
-            Connected for <span className="text-coral">healthier</span> pregnancies.
-          </>
-        }
-        lead="MamaCare is an early-stage research and technology project from Kigali, Rwanda, at the intersection of AI, maternal health, multilingual care and responsible innovation."
-        image="/images/chw-visit.jpg"
-        imageAlt="A Community Health Worker visiting a pregnant woman at home"
-      />
+      <AboutHero />
       <Statement />
       <Manifesto />
       <StorySlider />

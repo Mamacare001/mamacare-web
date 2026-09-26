@@ -3,46 +3,27 @@
 import Image from "next/image";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
+import { useLang } from "@/components/providers/LanguageProvider";
 
-const team = [
-  {
-    name: "Patrice Iradukunda",
-    role: "Founder & CEO · Chief of Finance, Legal & Compliance",
-    text: "Sets MamaCare's vision and leads finance, legal structuring and regulatory compliance in Rwanda.",
-    photo: "/images/team/patrice.jpg",
-    accent: "ring-emerald",
-  },
-  {
-    name: "Donatien Iranshubije",
-    role: "Co-Founder · Chief of Medical & Commercial",
-    text: "Leads clinical partnerships, commercial strategy and go-to-market across facilities and CHW networks.",
-    photo: "/images/team/donatien.png",
-    accent: "ring-coral",
-  },
-  {
-    name: "Pascal Dukundane",
-    role: "Co-Founder · Chief of Technology & Operations",
-    text: "Leads the technology platform and day-to-day operations, from engineering to delivery.",
-    photo: "/images/team/pascal.jpg",
-    accent: "ring-gold",
-  },
-];
-
-const milestones = [
-  { when: "Months 1–6", title: "Prototype & clinical validation", text: "Build the intake, risk and rules layers; review with midwives and CHWs." },
-  { when: "Months 7–12", title: "Two-district pilot", text: "~5,000 mothers, ~200 CHWs, 5 facilities, with ethics approval." },
-  { when: "Months 13–18", title: "Evaluate & refine", text: "Independent evaluation, then the first insurer and research partnerships." },
+const meta = [
+  { name: "Patrice Iradukunda", photo: "/images/team/patrice.jpg", accent: "ring-emerald" },
+  { name: "Donatien Iranshubije", photo: "/images/team/donatien.png", accent: "ring-coral" },
+  { name: "Pascal Dukundane", photo: "/images/team/pascal.jpg", accent: "ring-gold" },
 ];
 
 export function Team() {
+  const { t } = useLang();
+  const tm = t.about.team;
+  const team = tm.members.map((m, i) => ({ ...m, ...meta[i] }));
+
   return (
     <>
       <section id="team" className="bg-ivory py-24 md:py-32">
         <div className="container-x">
           <Reveal>
-            <Eyebrow>The team</Eyebrow>
-            <h2 className="text-h1 mt-5 max-w-3xl text-emerald">Three disciplines. One shared conviction.</h2>
-            <p className="text-lead mt-5 max-w-2xl text-muted">The data already exists to save her.</p>
+            <Eyebrow>{tm.eyebrow}</Eyebrow>
+            <h2 className="text-h1 mt-5 max-w-3xl text-emerald">{tm.heading}</h2>
+            <p className="text-lead mt-5 max-w-2xl text-muted">{tm.lead}</p>
           </Reveal>
           <RevealGroup className="mt-12 grid gap-5 md:grid-cols-3" stagger={0.1}>
             {team.map((m) => (
@@ -75,10 +56,10 @@ export function Team() {
           <Reveal>
             <a href="/join" className="group flex flex-col gap-4 rounded-2xl bg-coral p-8 text-white shadow-float transition-transform duration-500 hover:-translate-y-1 md:flex-row md:items-center md:justify-between md:p-10">
               <div>
-                <p className="text-eyebrow text-white/70">There is a chair for you</p>
-                <p className="mt-2 font-display text-3xl leading-tight md:text-4xl">Three of us is not enough. Apply, or write your own role.</p>
+                <p className="text-eyebrow text-white/70">{tm.joinEyebrow}</p>
+                <p className="mt-2 font-display text-3xl leading-tight md:text-4xl">{tm.joinTitle}</p>
               </div>
-              <span className="inline-flex shrink-0 items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-semibold text-coral">Join us <span className="transition-transform group-hover:translate-x-1">→</span></span>
+              <span className="inline-flex shrink-0 items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-semibold text-coral">{tm.joinCta} <span className="transition-transform group-hover:translate-x-1">→</span></span>
             </a>
           </Reveal>
         </div>
@@ -87,11 +68,11 @@ export function Team() {
         <div className="grain absolute inset-0" aria-hidden />
         <div className="container-x relative">
           <Reveal>
-            <Eyebrow tone="gold">Roadmap</Eyebrow>
-            <h2 className="text-h1 mt-5 max-w-3xl">From research to a deployable innovation.</h2>
+            <Eyebrow tone="gold">{tm.roadmapEyebrow}</Eyebrow>
+            <h2 className="text-h1 mt-5 max-w-3xl">{tm.roadmapHeading}</h2>
           </Reveal>
           <RevealGroup className="mt-14 grid gap-8 md:grid-cols-3" stagger={0.12}>
-            {milestones.map((m, i) => (
+            {tm.milestones.map((m, i) => (
               <RevealItem key={m.when}>
                 <div className="relative border-t border-ivory/15 pt-6">
                   <span className="absolute -top-[5px] left-0 size-2.5 rounded-full bg-gold" aria-hidden />

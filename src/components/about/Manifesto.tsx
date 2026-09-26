@@ -6,22 +6,15 @@ import { Fingerprint, HeartHandshake, Languages, BellRing, UserCheck, Signal, Ma
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Reveal } from "@/components/ui/Reveal";
 import { cn } from "@/lib/cn";
+import { useLang } from "@/components/providers/LanguageProvider";
+import type { Dict } from "@/lib/i18n";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
 /* ------------------------------------------------------------------ */
 /* 1. Who we are — an identity card you can tilt                        */
 /* ------------------------------------------------------------------ */
-const idFields = [
-  { k: "Name", v: "MamaCare" },
-  { k: "Born", v: "Kigali, Rwanda · 2026" },
-  { k: "Occupation", v: "Making sure a warning reaches someone who can act" },
-  { k: "Languages", v: "Ikinyarwanda · English" },
-  { k: "Distinguishing marks", v: "Works offline. Works on a basic phone. Never diagnoses." },
-  { k: "Next of kin", v: "Mothers, families, CHWs, midwives" },
-];
-
-function IdCard() {
+function IdCard({ id }: { id: Dict["about"]["idCard"] }) {
   const ref = useRef<HTMLDivElement>(null);
   const mx = useMotionValue(0.5);
   const my = useMotionValue(0.5);
@@ -49,14 +42,14 @@ function IdCard() {
 
         <div className="relative flex items-start justify-between gap-4">
           <div>
-            <p className="text-eyebrow text-gold">Republic of Care · Identity card</p>
-            <p className="mt-1 font-display text-3xl">Who we are</p>
+            <p className="text-eyebrow text-gold">{id.eyebrow}</p>
+            <p className="mt-1 font-display text-3xl">{id.title}</p>
           </div>
           <span className="grid size-14 shrink-0 place-items-center rounded-lg bg-ivory/10 ring-1 ring-white/15"><Fingerprint className="size-7 text-gold" /></span>
         </div>
 
         <dl className="relative mt-6 space-y-3">
-          {idFields.map((f, i) => (
+          {id.fields.map((f, i) => (
             <motion.div key={f.k} initial={{ opacity: 0, x: -10 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: 0.15 + i * 0.08, duration: 0.6, ease }} className="grid grid-cols-[130px_1fr] gap-3 border-b border-white/10 pb-2.5 text-sm md:grid-cols-[160px_1fr]">
               <dt className="text-eyebrow text-ivory/50">{f.k}</dt>
               <dd className="font-semibold">{f.v}</dd>
@@ -65,8 +58,8 @@ function IdCard() {
         </dl>
 
         <div className="relative mt-6 flex items-end justify-between gap-4">
-          <p className="max-w-[28ch] text-xs leading-relaxed text-ivory/60">Issued by three people who grew up around this problem and refused to accept it as normal.</p>
-          <span className="rotate-[-8deg] rounded-md border-2 border-coral px-3 py-1 font-display text-lg uppercase tracking-widest text-coral [translate:0_0_30px]">Kigali</span>
+          <p className="max-w-[28ch] text-xs leading-relaxed text-ivory/60">{id.footer}</p>
+          <span className="rotate-[-8deg] rounded-md border-2 border-coral px-3 py-1 font-display text-lg uppercase tracking-widest text-coral [translate:0_0_30px]">{id.stamp}</span>
         </div>
       </motion.div>
     </div>
@@ -76,15 +69,17 @@ function IdCard() {
 /* ------------------------------------------------------------------ */
 /* 2. Values — five promises to a mother, stacking as you scroll        */
 /* ------------------------------------------------------------------ */
-const promises = [
-  { rw: "Uruhushya", en: "We ask before we share.", why: "She decides who sees what — her partner, her CHW, her clinic. Consent is a setting she controls, not a form she signed once.", icon: HeartHandshake, tone: "bg-white text-emerald" },
-  { rw: "Ikinyarwanda", en: "We speak her language.", why: "Care in the language of the kitchen, not the clinic. Every message, every alert, every explanation — Kinyarwanda first, English when she wants it.", icon: Languages, tone: "bg-emerald text-ivory" },
-  { rw: "Gukurikirana", en: "We never let a warning sit.", why: "An alert is not finished when it is sent. It is finished when someone has acted and told the others. If nobody moves, we escalate.", icon: BellRing, tone: "bg-coral text-white" },
-  { rw: "Umuntu", en: "A human makes the call.", why: "Our models raise a flag. A CHW or a nurse decides. We will never tell a mother she is fine, and we will never tell her she is sick.", icon: UserCheck, tone: "bg-gold text-midnight" },
-  { rw: "Umudugudu", en: "We build for the village, not the boardroom.", why: "If it does not work on a basic phone, offline, on a hill with one bar of signal, it does not work. That is our test — before any demo.", icon: Signal, tone: "bg-midnight text-ivory" },
+const promiseMeta = [
+  { label: "Uruhushya", icon: HeartHandshake, tone: "bg-white text-emerald" },
+  { label: "Ikinyarwanda", icon: Languages, tone: "bg-emerald text-ivory" },
+  { label: "Gukurikirana", icon: BellRing, tone: "bg-coral text-white" },
+  { label: "Umuntu", icon: UserCheck, tone: "bg-gold text-midnight" },
+  { label: "Umudugudu", icon: Signal, tone: "bg-midnight text-ivory" },
 ];
 
-function PromiseCard({ p, i, total }: { p: (typeof promises)[number]; i: number; total: number }) {
+type Promise = { label: string; title: string; why: string; icon: typeof HeartHandshake; tone: string };
+
+function PromiseCard({ p, i, total, promiseLabel, ofLabel }: { p: Promise; i: number; total: number; promiseLabel: string; ofLabel: string }) {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start 0.35", "end 0.35"] });
   const scale = useTransform(scrollYProgress, [0, 1], [1, 1 - (total - i) * 0.03]);
@@ -93,10 +88,10 @@ function PromiseCard({ p, i, total }: { p: (typeof promises)[number]; i: number;
     <div ref={ref} className="sticky" style={{ top: `calc(6rem + ${i * 14}px)` }}>
       <motion.article style={{ scale, y }} className={cn("origin-top rounded-2xl p-7 shadow-float ring-1 ring-emerald/10 md:p-10", p.tone)}>
         <div className="flex items-center justify-between gap-4">
-          <p className="text-eyebrow opacity-70">Promise {i + 1} of {total} · {p.rw}</p>
+          <p className="text-eyebrow opacity-70">{promiseLabel} {i + 1} {ofLabel} {total} · {p.label}</p>
           <span className="grid size-11 place-items-center rounded-full bg-current/10"><p.icon className="size-5" /></span>
         </div>
-        <h3 className="mt-4 font-display text-3xl leading-tight md:text-5xl">{p.en}</h3>
+        <h3 className="mt-4 font-display text-3xl leading-tight md:text-5xl">{p.title}</h3>
         <p className="mt-4 max-w-[52ch] text-[15px] leading-relaxed opacity-85 md:text-base">{p.why}</p>
       </motion.article>
     </div>
@@ -106,7 +101,7 @@ function PromiseCard({ p, i, total }: { p: (typeof promises)[number]; i: number;
 /* ------------------------------------------------------------------ */
 /* 3. Vision & mission — the far hill and the road                      */
 /* ------------------------------------------------------------------ */
-function Hills() {
+function Hills({ visionLabel }: { visionLabel: string }) {
   const ref = useRef<SVGSVGElement>(null);
   const inView = useInView(ref, { once: true, margin: "0px 0px -20% 0px" });
   return (
@@ -128,7 +123,7 @@ function Hills() {
       {/* the hill top */}
       <motion.g initial={{ opacity: 0, y: 10 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ delay: 3.2, duration: 0.8, ease }}>
         <circle cx="720" cy="96" r="8" fill="#F4C95D" /><circle cx="720" cy="96" r="18" fill="#F4C95D" opacity="0.25" />
-        <text x="720" y="70" textAnchor="middle" fill="#F4C95D" fontSize="13" fontFamily="var(--font-sans)" fontWeight="700" letterSpacing="2">THE VISION</text>
+        <text x="720" y="70" textAnchor="middle" fill="#F4C95D" fontSize="13" fontFamily="var(--font-sans)" fontWeight="700" letterSpacing="2">{visionLabel}</text>
       </motion.g>
       <motion.text initial={{ opacity: 0 }} animate={inView ? { opacity: 1 } : {}} transition={{ delay: 0.8 }} x="40" y="295" fill="#FF6B5E" fontSize="13" fontFamily="var(--font-sans)" fontWeight="700" letterSpacing="2">HERE · 2026</motion.text>
     </svg>
@@ -146,6 +141,12 @@ function Highlight({ children, delay = 0 }: { children: React.ReactNode; delay?:
 
 /* ------------------------------------------------------------------ */
 export function Manifesto() {
+  const { t } = useLang();
+  const id = t.about.idCard;
+  const v = t.about.values;
+  const vis = t.about.vision;
+  const promises: Promise[] = v.promises.map((p, i) => ({ ...p, ...promiseMeta[i] }));
+
   return (
     <>
       {/* 1 — Who we are */}
@@ -153,17 +154,14 @@ export function Manifesto() {
         <div className="container-x grid items-center gap-12 md:grid-cols-12 md:gap-8">
           <div className="md:col-span-5">
             <Reveal>
-              <Eyebrow tone="coral">Who MamaCare is</Eyebrow>
-              <h2 className="text-h1 mt-5 text-emerald">Every mother carries a card. Here is ours.</h2>
-              <p className="text-lead mt-6 text-muted">
-                We are a Kigali-born maternal-health companion: data scientists, engineers and public-health people who grew up
-                around this problem. Not a product landing in Rwanda — one growing out of it.
-              </p>
-              <p className="mt-4 flex items-center gap-2 text-sm text-muted"><MapPin className="size-4 text-coral" /> Move your mouse over the card.</p>
+              <Eyebrow tone="coral">{id.whoEyebrow}</Eyebrow>
+              <h2 className="text-h1 mt-5 text-emerald">{id.whoHeading}</h2>
+              <p className="text-lead mt-6 text-muted">{id.whoLead}</p>
+              <p className="mt-4 flex items-center gap-2 text-sm text-muted"><MapPin className="size-4 text-coral" /> {id.hint}</p>
             </Reveal>
           </div>
           <div className="md:col-span-7">
-            <Reveal delay={0.1}><IdCard /></Reveal>
+            <Reveal delay={0.1}><IdCard id={id} /></Reveal>
           </div>
         </div>
       </section>
@@ -175,17 +173,15 @@ export function Manifesto() {
             <div className="md:col-span-4">
               <div className="md:sticky md:top-32">
                 <Reveal>
-                  <Eyebrow tone="coral">Our values</Eyebrow>
-                  <h2 className="text-h1 mt-5 text-emerald">Five promises to a mother.</h2>
-                  <p className="text-lead mt-6 text-muted">
-                    We don’t have values on a poster. We have promises we can be held to — by her, by her CHW, by the ministry.
-                  </p>
-                  <p className="mt-6 text-sm text-muted">Keep scrolling. They stack.</p>
+                  <Eyebrow tone="coral">{v.eyebrow}</Eyebrow>
+                  <h2 className="text-h1 mt-5 text-emerald">{v.heading}</h2>
+                  <p className="text-lead mt-6 text-muted">{v.lead}</p>
+                  <p className="mt-6 text-sm text-muted">{v.scrollHint}</p>
                 </Reveal>
               </div>
             </div>
             <div className="space-y-6 md:col-span-8">
-              {promises.map((p, i) => <PromiseCard key={p.rw} p={p} i={i} total={promises.length} />)}
+              {promises.map((p, i) => <PromiseCard key={p.label} p={p} i={i} total={promises.length} promiseLabel={v.promiseLabel} ofLabel={v.ofLabel} />)}
               <div className="h-8" />
             </div>
           </div>
@@ -197,30 +193,30 @@ export function Manifesto() {
         <div className="grain absolute inset-0" aria-hidden />
         <div className="container-x relative">
           <Reveal className="max-w-3xl">
-            <Eyebrow tone="gold">Vision &amp; mission</Eyebrow>
-            <h2 className="text-h1 mt-5">The far hill, and the road to it.</h2>
-            <p className="text-lead mt-6 text-ivory/70">Rwanda is a land of a thousand hills. We picked one.</p>
+            <Eyebrow tone="gold">{vis.eyebrow}</Eyebrow>
+            <h2 className="text-h1 mt-5">{vis.heading}</h2>
+            <p className="text-lead mt-6 text-ivory/70">{vis.lead}</p>
           </Reveal>
 
           <div className="mt-12 grid gap-10 md:grid-cols-12 md:items-end">
-            <div className="md:col-span-7"><Reveal delay={0.1}><Hills /></Reveal></div>
+            <div className="md:col-span-7"><Reveal delay={0.1}><Hills visionLabel={vis.svgLabel} /></Reveal></div>
             <div className="space-y-8 md:col-span-5">
               <Reveal delay={0.2}>
-                <p className="text-eyebrow text-gold">Vision · the hill</p>
+                <p className="text-eyebrow text-gold">{vis.visionLabel}</p>
                 <p className="mt-3 font-display text-3xl leading-tight md:text-4xl">
-                  A Rwanda — and then an Africa — where <Highlight delay={0.6}>no mother dies of a warning that was already there.</Highlight>
+                  {vis.visionPre}<Highlight delay={0.6}>{vis.visionHighlight}</Highlight>
                 </p>
               </Reveal>
               <Reveal delay={0.3}>
-                <p className="text-eyebrow text-coral">Mission · the road</p>
+                <p className="text-eyebrow text-coral">{vis.missionLabel}</p>
                 <p className="mt-3 text-lg leading-relaxed text-ivory/85 md:text-xl">
-                  To connect every pregnancy to the people who can act — <Highlight delay={0.9}>mother, family, CHW, clinic</Highlight> — by turning everyday signs into one shared, timely picture, in Kinyarwanda, on any phone.
+                  {vis.missionPre}<Highlight delay={0.9}>{vis.missionHighlight}</Highlight>{vis.missionSuffix}
                 </p>
               </Reveal>
               <Reveal delay={0.4}>
                 <div className="grid grid-cols-3 gap-3 border-t border-ivory/10 pt-6">
-                  {[["2026", "Kigali pilot"], ["4", "roles, one picture"], ["0", "warnings left alone"]].map(([n, l]) => (
-                    <div key={l}><p className="font-display text-3xl text-gold">{n}</p><p className="text-xs text-ivory/60">{l}</p></div>
+                  {vis.stats.map((s) => (
+                    <div key={s.l}><p className="font-display text-3xl text-gold">{s.n}</p><p className="text-xs text-ivory/60">{s.l}</p></div>
                   ))}
                 </div>
               </Reveal>
