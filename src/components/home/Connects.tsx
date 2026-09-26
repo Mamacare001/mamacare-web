@@ -4,50 +4,28 @@ import Image from "next/image";
 import { Baby, Users, Stethoscope, HeartHandshake } from "lucide-react";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
+import { useLang } from "@/components/providers/LanguageProvider";
 
-const people = [
-  {
-    icon: Baby,
-    title: "Mother",
-    text: "Shares symptoms and concerns in her own words — by chat, WhatsApp or SMS.",
-    image: "/images/mother-home-phone.jpg",
-    tone: "bg-coral-100 text-coral",
-  },
-  {
-    icon: Users,
-    title: "Family",
-    text: "Notices changes at home and provides support between visits.",
-    image: "/images/family-together.jpg",
-    tone: "bg-gold-100 text-[#b8860b]",
-  },
-  {
-    icon: HeartHandshake,
-    title: "Community Health Worker",
-    text: "Observes on home visits and shares key information with the clinic.",
-    image: "/images/chw-visit.jpg",
-    tone: "bg-green-100 text-green",
-  },
-  {
-    icon: Stethoscope,
-    title: "Healthcare provider",
-    text: "Adds clinical data, reviews escalations and closes the loop.",
-    image: "/images/provider-tablet.jpg",
-    tone: "bg-violet-100 text-violet",
-  },
+const meta = [
+  { icon: Baby, image: "/images/mother-home-phone.jpg", tone: "bg-coral-100 text-coral" },
+  { icon: Users, image: "/images/family-together.jpg", tone: "bg-gold-100 text-[#b8860b]" },
+  { icon: HeartHandshake, image: "/images/chw-visit.jpg", tone: "bg-green-100 text-green" },
+  { icon: Stethoscope, image: "/images/provider-tablet.jpg", tone: "bg-violet-100 text-violet" },
 ];
 
 /** Section 3 — the four voices → one picture (white). */
 export function Connects() {
+  const { t } = useLang();
+  const c = t.connects;
+  const people = c.people.map((p, i) => ({ ...p, ...meta[i] }));
+
   return (
     <section className="bg-white py-24 md:py-32">
       <div className="container-x">
         <Reveal className="max-w-3xl">
-          <Eyebrow>Our insight</Eyebrow>
-          <h2 className="text-h1 mt-5 text-emerald">One continuous picture of every pregnancy.</h2>
-          <p className="text-lead mt-6 text-muted">
-            The information already exists — it is just held by four different people. MamaCare brings it together into a
-            single timeline that everyone caring for her can act on.
-          </p>
+          <Eyebrow>{c.eyebrow}</Eyebrow>
+          <h2 className="text-h1 mt-5 text-emerald">{c.heading}</h2>
+          <p className="text-lead mt-6 text-muted">{c.lead}</p>
         </Reveal>
 
         <RevealGroup className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4" stagger={0.1}>
@@ -87,9 +65,7 @@ export function Connects() {
             <span className="absolute inset-0 rounded-full bg-green/20 animate-pulse-ring" aria-hidden />
             <Image src="/brand/mark.png" alt="" width={72} height={84} className="relative h-20 w-auto" />
           </div>
-          <p className="mt-5 font-display text-2xl text-emerald md:text-3xl">
-            Four voices. One early-warning signal.
-          </p>
+          <p className="mt-5 font-display text-2xl text-emerald md:text-3xl">{c.closing}</p>
         </Reveal>
       </div>
     </section>

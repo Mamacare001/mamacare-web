@@ -1,60 +1,65 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { Reveal } from "@/components/ui/Reveal";
 import { SocialLinks } from "@/components/site/Social";
+import { useLang } from "@/components/providers/LanguageProvider";
 
-const columns = [
+const hrefs = [
   {
-    title: "Product",
     links: [
-      { label: "How it works", href: "/how-it-works" },
-      { label: "For mothers", href: "/how-it-works#mothers" },
-      { label: "For families", href: "/how-it-works#families" },
-      { label: "For health workers", href: "/how-it-works#health-workers" },
-      { label: "FAQ", href: "/faq" },
+      { href: "/how-it-works" },
+      { href: "/how-it-works#mothers" },
+      { href: "/how-it-works#families" },
+      { href: "/how-it-works#health-workers" },
+      { href: "/faq" },
     ],
   },
   {
-    title: "Company",
     links: [
-      { label: "About", href: "/about" },
-      { label: "Partners", href: "/partners" },
-      { label: "Research", href: "/research" },
-      { label: "Team", href: "/about#team" },
-      { label: "Join us", href: "/join" },
-      { label: "Contact", href: "/contact" },
+      { href: "/about" },
+      { href: "/partners" },
+      { href: "/research" },
+      { href: "/about#team" },
+      { href: "/join" },
+      { href: "/contact" },
     ],
   },
   {
-    title: "Trust",
     links: [
-      { label: "Safety & ethics", href: "/how-it-works#safety" },
-      { label: "Consent", href: "/consent" },
-      { label: "Privacy", href: "/privacy" },
-      { label: "Terms", href: "/terms" },
-      { label: "Emergency", href: "/emergency" },
-      { label: "System status", href: "/status" },
+      { href: "/how-it-works#safety" },
+      { href: "/consent" },
+      { href: "/privacy" },
+      { href: "/terms" },
+      { href: "/emergency" },
+      { href: "/status" },
     ],
   },
 ];
 
 export function Footer() {
+  const { t } = useLang();
+  const f = t.footer;
+  const columns = f.columns.map((col, i) => ({
+    title: col.title,
+    links: col.links.map((l, j) => ({ label: l.label, href: hrefs[i].links[j].href })),
+  }));
+
   return (
     <footer className="relative overflow-hidden bg-midnight text-ivory">
       <div className="grain absolute inset-0" aria-hidden />
       <div className="container-x relative py-20 md:py-28">
         <div className="grid gap-12 md:grid-cols-12 md:gap-8">
           <Reveal className="md:col-span-7">
-            <h2 className="text-display max-w-[12ch]">
-              No warning sign should go unheard.
-            </h2>
+            <h2 className="text-display max-w-[12ch]">{f.headline}</h2>
             <div className="mt-8 flex flex-wrap gap-3">
               <Button href="/contact" variant="coral" size="lg" arrow>
-                Start a conversation
+                {f.startConversation}
               </Button>
               <Button href="/login?mode=signup" variant="light" size="lg">
-                Create an account
+                {f.createAccount}
               </Button>
             </div>
           </Reveal>
@@ -83,16 +88,16 @@ export function Footer() {
               <Image src="/brand/mark.png" alt="" width={36} height={42} className="h-9 w-auto" />
               <div>
                 <Image src="/brand/wordmark-white.png" alt="MamaCare" width={120} height={18} className="h-4 w-auto" />
-                <p className="mt-1 text-xs text-ivory/50">Two hearts, timely care</p>
+                <p className="mt-1 text-xs text-ivory/50">{f.tagline}</p>
               </div>
             </div>
             <p className="max-w-md text-xs leading-relaxed text-ivory/45">
-              MamaCare is a decision-support tool. It does not diagnose and does not replace doctors, midwives or Community
-              Health Workers. In an emergency, <Link href="/emergency" className="text-gold underline underline-offset-2">call 912</Link>.
+              {f.disclaimerLead}
+              <Link href="/emergency" className="text-gold underline underline-offset-2">{f.call912}</Link>.
             </p>
             <div className="flex flex-col gap-4 md:items-end">
               <SocialLinks />
-              <p className="text-xs text-ivory/45">© {new Date().getFullYear()} MamaCare · Kigali, Rwanda</p>
+              <p className="text-xs text-ivory/45">© {new Date().getFullYear()} {f.copyright}</p>
             </div>
           </div>
         </div>

@@ -6,13 +6,7 @@ import { Mic, Play } from "lucide-react";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { StoryReader } from "@/components/home/StoryReader";
 import { Reveal, RevealGroup, RevealItem, GrowRule } from "@/components/ui/Reveal";
-
-const signs = [
-  { when: "Day 1", what: "Her wedding ring feels a little tight." },
-  { when: "A few days later", what: "A headache." },
-  { when: "The next week", what: "The window blurs. She blinks — it's gone." },
-  { when: "Two days later", what: "The baby has gone quiet." },
-];
+import { useLang } from "@/components/providers/LanguageProvider";
 
 /** A heartbeat trace that draws itself, then flattens for a breath before starting again. */
 function Heartbeat() {
@@ -27,6 +21,8 @@ function Heartbeat() {
 
 /** Section 2 — the problem, told as a story (ivory). */
 export function Story() {
+  const { t } = useLang();
+  const s = t.story;
   const [reader, setReader] = useState<{ open: boolean; chapter?: number; mode?: "pitch" | "read" }>({ open: false });
   const openAt = (chapter?: number, mode: "pitch" | "read" = "pitch") => setReader({ open: true, chapter, mode });
   const close = useCallback(() => setReader((r) => ({ ...r, open: false })), []);
@@ -37,29 +33,26 @@ export function Story() {
         <div className="grid gap-12 md:grid-cols-12 md:gap-8">
           <div className="md:col-span-5">
             <Reveal>
-              <Eyebrow tone="coral">The problem</Eyebrow>
-              <h2 className="text-h1 mt-5 text-emerald">Every sign looked ordinary.</h2>
-              <p className="text-lead mt-6 text-muted">
-                A mother feels one sign at home. A family member notices a second. A Community Health Worker hears a third.
-                A clinic sees a fourth. They never meet in one place, in time.
-              </p>
+              <Eyebrow tone="coral">{s.eyebrow}</Eyebrow>
+              <h2 className="text-h1 mt-5 text-emerald">{s.heading}</h2>
+              <p className="text-lead mt-6 text-muted">{s.lead}</p>
             </Reveal>
 
             <RevealGroup className="mt-10 space-y-0">
-              {signs.map((s, i) => (
-                <RevealItem key={s.when}>
+              {s.signs.map((sign, i) => (
+                <RevealItem key={sign.when}>
                   <button
                     type="button"
                     onClick={() => openAt(i + 1, "read")}
-                    title="Read what was really happening"
+                    title={s.readAria}
                     className="group flex w-full gap-5 py-4 text-left transition-transform duration-300 hover:translate-x-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green"
                   >
                     <span className="mt-1 grid size-8 shrink-0 place-items-center rounded-full bg-emerald text-xs font-bold text-ivory transition-colors duration-300 group-hover:bg-coral">
                       {i + 1}
                     </span>
                     <div>
-                      <p className="text-eyebrow text-muted">{s.when}</p>
-                      <p className="mt-1 font-display text-xl text-ink md:text-2xl">{s.what}</p>
+                      <p className="text-eyebrow text-muted">{sign.when}</p>
+                      <p className="mt-1 font-display text-xl text-ink md:text-2xl">{sign.what}</p>
                     </div>
                   </button>
                   <GrowRule className="text-emerald" />
@@ -68,11 +61,9 @@ export function Story() {
             </RevealGroup>
 
             <Reveal delay={0.2} className="mt-8 rounded-lg border-l-4 border-coral bg-coral-100/60 p-5">
-              <p className="text-eyebrow text-coral">What was actually happening</p>
-              <p className="mt-2 font-display text-2xl text-emerald">Preeclampsia.</p>
-              <p className="mt-2 text-sm leading-relaxed text-ink/80">
-                Four ordinary signs. One dangerous, treatable condition — missed until it was severe.
-              </p>
+              <p className="text-eyebrow text-coral">{s.diagnosisLabel}</p>
+              <p className="mt-2 font-display text-2xl text-emerald">{s.diagnosisName}</p>
+              <p className="mt-2 text-sm leading-relaxed text-ink/80">{s.diagnosisText}</p>
             </Reveal>
           </div>
 
@@ -103,18 +94,18 @@ export function Story() {
               <button
                 type="button"
                 onClick={() => openAt()}
-                aria-label="Read Aline’s whole story"
+                aria-label={s.readWholeAria}
                 className="group absolute bottom-0 left-1/2 w-[min(90%,380px)] -translate-x-1/2 text-left [perspective:1200px] focus-visible:outline-none"
               >
                 <span className="relative block min-h-[150px] transition-transform duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)] group-focus-visible:[transform:rotateY(180deg)]">
                   <span className="absolute inset-0 block rounded-lg bg-midnight p-5 text-ivory shadow-float [backface-visibility:hidden]">
-                    <span className="block font-display text-xl leading-snug md:text-2xl">“Babies rest before they’re born, dear. It’s a good sign.”</span>
-                    <span className="mt-3 block text-xs text-ivory/60"> — what her aunt said. So she waited.</span>
+                    <span className="block font-display text-xl leading-snug md:text-2xl">{s.quote}</span>
+                    <span className="mt-3 block text-xs text-ivory/60"> {s.quoteAttribution}</span>
                   </span>
                   <span className="absolute inset-0 block rounded-lg bg-coral p-5 text-white shadow-float [backface-visibility:hidden] [transform:rotateY(180deg)]">
-                    <span className="block text-eyebrow text-white/70">That’s what her aunt said.</span>
-                    <span className="mt-2 block font-display text-xl leading-snug md:text-2xl">Here is what her body was saying.</span>
-                    <span className="mt-3 inline-flex items-center gap-2 text-sm font-semibold"><Mic className="size-4" /> Hear the whole week ↗</span>
+                    <span className="block text-eyebrow text-white/70">{s.flipFront}</span>
+                    <span className="mt-2 block font-display text-xl leading-snug md:text-2xl">{s.flipBack}</span>
+                    <span className="mt-3 inline-flex items-center gap-2 text-sm font-semibold"><Mic className="size-4" /> {s.flipCta}</span>
                   </span>
                 </span>
               </button>
@@ -130,9 +121,9 @@ export function Story() {
                 <Heartbeat />
                 <div className="relative flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
                   <div>
-                    <p className="text-eyebrow text-gold">Three minutes</p>
-                    <p className="mt-2 font-display text-2xl leading-snug md:text-3xl">There is more to this week<br />than four lines.</p>
-                    <p className="mt-2 text-sm text-ivory/70">Press play. Let it be told to you.</p>
+                    <p className="text-eyebrow text-gold">{s.inviteEyebrow}</p>
+                    <p className="mt-2 font-display text-2xl leading-snug md:text-3xl">{s.inviteTitle1}<br />{s.inviteTitle2}</p>
+                    <p className="mt-2 text-sm text-ivory/70">{s.inviteText}</p>
                   </div>
                   <span className="relative grid size-16 shrink-0 place-items-center rounded-full bg-coral text-white shadow-float transition-transform duration-500 group-hover:scale-110">
                     <span className="absolute inset-0 animate-ping rounded-full bg-coral/60 [animation-duration:2.2s]" aria-hidden />
