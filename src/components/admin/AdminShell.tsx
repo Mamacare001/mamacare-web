@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Bell, CircleHelp, Activity, Users, Building2, Ticket, Scale, Cpu, Languages, FileSearch, ShieldCheck, ScrollText, KeyRound, Plug, LifeBuoy, Receipt, Settings, LogOut, Lock, Lightbulb } from "lucide-react";
 import { cn } from "@/lib/cn";
+import { AccountMenu } from "@/components/shared/AccountMenu";
 
 const groups = [
   { title: "Operate", items: [{ href: "/admin", label: "Overview", icon: Activity, exact: true }, { href: "/admin/support", label: "Support", icon: LifeBuoy }, { href: "/admin/integrations", label: "Integrations", icon: Plug }] },
@@ -51,9 +52,12 @@ export function AdminShell({ children, name, roles, signOutAction }: { children:
               <Link href="/notifications" className="grid size-9 place-items-center rounded-full text-emerald hover:bg-emerald/5" aria-label="Notifications"><Bell className="size-5" /></Link>
               <Link href="/help" className="grid size-9 place-items-center rounded-full text-emerald hover:bg-emerald/5" aria-label="Help"><CircleHelp className="size-5" /></Link>
             </div>
-            <select className="h-9 rounded-full border border-emerald/15 bg-white px-3 text-sm lg:hidden" value={pathname} onChange={(e) => { window.location.href = e.target.value; }} aria-label="Admin section">
-              {groups.flatMap((g) => g.items).map((i) => <option key={i.href} value={i.href}>{i.label}</option>)}
-            </select>
+            <div className="flex items-center gap-2">
+              <select className="h-9 max-w-[46vw] rounded-full border border-emerald/15 bg-white px-3 text-sm lg:hidden" value={pathname} onChange={(e) => { window.location.href = e.target.value; }} aria-label="Admin section">
+                {groups.flatMap((g) => g.items).map((i) => <option key={i.href} value={i.href}>{i.label}</option>)}
+              </select>
+              <AccountMenu name={name} subtitle={roles} signOutAction={signOutAction} extraItems={[{ href: "/notifications", icon: Bell, label: "Notifications" }]} />
+            </div>
           </div>
         </header>
         <main className="flex-1 px-4 py-6 lg:px-8 lg:py-8">{children}</main>

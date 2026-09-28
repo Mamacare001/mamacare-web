@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { Home, MessageCircle, Clock, Users, MoreHorizontal, BookOpen, CalendarDays, ShieldCheck, UserRound, Settings, Database, Phone, LogOut, BellRing, UserPlus, Send, Baby, Shuffle, BarChart3, Bell, CircleHelp, ArrowLeftRight, ClipboardPlus } from "lucide-react";
 import { cn } from "@/lib/cn";
 import { useLang } from "@/components/providers/LanguageProvider";
+import { AccountMenu } from "@/components/shared/AccountMenu";
 
 export type NavItem = { href: string; icon: typeof Home; en: string; rw: string; exact?: boolean };
 export type NavConfig = { primary: NavItem[]; secondary: NavItem[]; home: string; moreHref: string };
@@ -188,7 +189,7 @@ export function AppShell({ children, name, signOutAction, nav = motherNav, statu
               <Link href="/emergency" className="inline-flex items-center gap-1.5 rounded-full bg-coral px-3 py-1.5 text-xs font-bold text-white lg:hidden">
                 <Phone className="size-3.5" /> 912
               </Link>
-              <span className="grid size-9 place-items-center rounded-full bg-emerald text-xs font-bold text-ivory" aria-hidden>{name.slice(0, 1)}</span>
+              <AccountMenu name={name} signOutAction={signOutAction} lang={lang} />
             </div>
           </div>
         </header>
