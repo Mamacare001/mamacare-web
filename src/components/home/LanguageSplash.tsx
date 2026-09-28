@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { ArrowRight } from "lucide-react";
 import { useLang } from "@/components/providers/LanguageProvider";
 import { FlagGB, FlagRW } from "@/components/ui/Flags";
 import type { Lang } from "@/lib/i18n";
@@ -141,25 +142,37 @@ export function LanguageSplash() {
             </motion.div>
 
             {/* language choices */}
-            <div className="mt-14 flex w-full max-w-lg flex-col gap-4 sm:flex-row">
+            <p className="mt-14 text-[11px] font-semibold uppercase tracking-[0.28em] text-ivory/45">
+              Choose your language · Hitamo ururimi
+            </p>
+            <div className="mt-5 flex w-full max-w-xl flex-col gap-3 sm:flex-row">
               <motion.button
                 type="button"
                 onClick={() => choose("en")}
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.15, duration: 0.6, ease }}
-                whileHover={reduce ? undefined : { y: -4, scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className="group relative flex-1 overflow-hidden rounded-2xl bg-gradient-to-br from-coral to-[#ff8a75] px-8 py-6 text-left shadow-[0_20px_60px_-15px_rgb(255_107_94/0.5)] transition-shadow duration-300 hover:shadow-[0_24px_70px_-12px_rgb(255_107_94/0.65)]"
+                whileHover={reduce ? undefined : { y: -3 }}
+                whileTap={{ scale: 0.99 }}
+                className="group relative flex flex-1 items-center gap-4 overflow-hidden rounded-2xl border border-ivory/15 bg-ivory/[0.06] px-6 py-5 text-left backdrop-blur-xl transition-colors duration-300 hover:border-ivory/30 hover:bg-ivory/[0.1]"
               >
-                <span
-                  className="absolute inset-0 -translate-x-full bg-white/20 transition-transform duration-700 ease-out group-hover:translate-x-0"
+                <span className="relative flex h-11 w-14 shrink-0 items-center justify-center overflow-hidden rounded-lg ring-1 ring-ivory/20">
+                  <FlagGB className="h-full w-full object-cover" />
+                </span>
+                <span className="min-w-0 flex-1">
+                  <span className="block font-display text-lg font-semibold text-ivory sm:text-xl">
+                    Continue in English
+                  </span>
+                  <span className="mt-0.5 block text-sm text-ivory/50">English</span>
+                </span>
+                <ArrowRight
+                  className="h-5 w-5 shrink-0 text-ivory/35 transition-all duration-300 group-hover:translate-x-1 group-hover:text-ivory/80"
                   aria-hidden
                 />
-                <FlagGB className="relative block h-6 w-auto rounded-[3px] shadow-sm" />
-                <span className="relative mt-2 block font-display text-xl font-bold text-white sm:text-2xl">
-                  Continue in English
-                </span>
+                <span
+                  className="pointer-events-none absolute inset-x-6 bottom-0 h-px scale-x-0 bg-gradient-to-r from-transparent via-coral to-transparent transition-transform duration-500 group-hover:scale-x-100"
+                  aria-hidden
+                />
               </motion.button>
 
               <motion.button
@@ -168,18 +181,27 @@ export function LanguageSplash() {
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3, duration: 0.6, ease }}
-                whileHover={reduce ? undefined : { y: -4, scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className="group relative flex-1 overflow-hidden rounded-2xl bg-gradient-to-br from-ivory to-[#ece7d6] px-8 py-6 text-left shadow-[0_20px_60px_-15px_rgb(244_201_93/0.35)] transition-shadow duration-300 hover:shadow-[0_24px_70px_-12px_rgb(244_201_93/0.5)]"
+                whileHover={reduce ? undefined : { y: -3 }}
+                whileTap={{ scale: 0.99 }}
+                className="group relative flex flex-1 items-center gap-4 overflow-hidden rounded-2xl border border-ivory/15 bg-ivory/[0.06] px-6 py-5 text-left backdrop-blur-xl transition-colors duration-300 hover:border-ivory/30 hover:bg-ivory/[0.1]"
               >
-                <span
-                  className="absolute inset-0 -translate-x-full bg-emerald/10 transition-transform duration-700 ease-out group-hover:translate-x-0"
+                <span className="relative flex h-11 w-14 shrink-0 items-center justify-center overflow-hidden rounded-lg ring-1 ring-ivory/20">
+                  <FlagRW className="h-full w-full object-cover" />
+                </span>
+                <span className="min-w-0 flex-1">
+                  <span className="block font-display text-lg font-semibold text-ivory sm:text-xl">
+                    Komeza mu Kinyarwanda
+                  </span>
+                  <span className="mt-0.5 block text-sm text-ivory/50">Ikinyarwanda</span>
+                </span>
+                <ArrowRight
+                  className="h-5 w-5 shrink-0 text-ivory/35 transition-all duration-300 group-hover:translate-x-1 group-hover:text-ivory/80"
                   aria-hidden
                 />
-                <FlagRW className="relative block h-6 w-auto rounded-[3px] shadow-sm" />
-                <span className="relative mt-2 block font-display text-xl font-bold text-emerald sm:text-2xl">
-                  Komeza mu Kinyarwanda
-                </span>
+                <span
+                  className="pointer-events-none absolute inset-x-6 bottom-0 h-px scale-x-0 bg-gradient-to-r from-transparent via-gold to-transparent transition-transform duration-500 group-hover:scale-x-100"
+                  aria-hidden
+                />
               </motion.button>
             </div>
           </motion.div>
