@@ -79,15 +79,7 @@ export function LanguageSplash() {
               </motion.span>
             </div>
 
-            <p className="mt-7 font-display text-3xl sm:text-4xl">
-              Welcome. <span className="text-ivory/50">·</span> Murakaza neza.
-            </p>
-            <p className="mt-3 max-w-md text-[15px] leading-relaxed text-ivory/60">
-              Choose how you'd like to continue. <br className="hidden sm:block" />
-              Hitamo uko ushaka gukomeza.
-            </p>
-
-            <div className="mt-9 flex w-full max-w-md flex-col gap-3 sm:flex-row">
+            <div className="mt-10 flex w-full max-w-md flex-col gap-3 sm:flex-row">
               <button
                 type="button"
                 onClick={() => choose("en")}
@@ -103,10 +95,6 @@ export function LanguageSplash() {
                 Komeza mu Kinyarwanda
               </button>
             </div>
-
-            <p className="mt-6 text-xs text-ivory/40">
-              You can change this anytime · Ushobora kubihindura igihe icyo ari cyo cyose
-            </p>
           </motion.div>
         </motion.div>
       )}
