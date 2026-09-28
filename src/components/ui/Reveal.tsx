@@ -11,7 +11,10 @@ import { cn } from "@/lib/cn";
 ------------------------------------------------------------------- */
 
 export const EASE = [0.16, 1, 0.3, 1] as const;
-export const VIEWPORT = { once: true, margin: "0px 0px -10% 0px" } as const;
+/** Reveals replay every time an element comes back into view – scrolling up
+ *  re-runs them just like scrolling down. The bottom margin keeps things from
+ *  flickering right at the viewport edge. */
+export const VIEWPORT = { once: false, margin: "0px 0px -8% 0px" } as const;
 
 /**
  * up    – rises 36px and fades (the default, for body copy and small things)
@@ -83,7 +86,7 @@ export function Reveal({
   delay = 0,
   duration = 0.9,
   distance,
-  once = true,
+  once = false,
   as = "div",
   y,
 }: RevealProps) {
@@ -189,7 +192,7 @@ export function GrowRule({ className, delay = 0 }: { className?: string; delay?:
       className={cn("rule-grow", className)}
       initial={{ scaleX: 0 }}
       whileInView={{ scaleX: 1 }}
-      viewport={{ once: true }}
+      viewport={VIEWPORT}
       transition={{ duration: 1.1, ease: EASE, delay }}
     />
   );

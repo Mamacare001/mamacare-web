@@ -51,7 +51,7 @@ function IdCard({ id }: { id: Dict["about"]["idCard"] }) {
 
         <dl className="relative mt-6 space-y-3">
           {id.fields.map((f, i) => (
-            <motion.div key={f.k} initial={{ opacity: 0, x: -10 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: 0.15 + i * 0.08, duration: 0.6, ease }} className="grid grid-cols-[130px_1fr] gap-3 border-b border-white/10 pb-2.5 text-sm md:grid-cols-[160px_1fr]">
+            <motion.div key={f.k} initial={{ opacity: 0, x: -10 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: false }} transition={{ delay: 0.15 + i * 0.08, duration: 0.6, ease }} className="grid grid-cols-[130px_1fr] gap-3 border-b border-white/10 pb-2.5 text-sm md:grid-cols-[160px_1fr]">
               <dt className="text-eyebrow text-ivory/50">{f.k}</dt>
               <dd className="font-semibold">{f.v}</dd>
             </motion.div>
@@ -104,7 +104,7 @@ function PromiseCard({ p, i, total, promiseLabel, ofLabel }: { p: Promise; i: nu
 /* ------------------------------------------------------------------ */
 function Hills({ visionLabel }: { visionLabel: string }) {
   const ref = useRef<SVGSVGElement>(null);
-  const inView = useInView(ref, { once: true, margin: "0px 0px -20% 0px" });
+  const inView = useInView(ref, { once: false, margin: "0px 0px -20% 0px" });
   return (
     <svg ref={ref} viewBox="0 0 800 300" className="h-auto w-full" aria-hidden>
       <defs>
@@ -134,7 +134,7 @@ function Hills({ visionLabel }: { visionLabel: string }) {
 function Highlight({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
   return (
     <span className="relative inline">
-      <motion.span initial={{ scaleX: 0 }} whileInView={{ scaleX: 1 }} viewport={{ once: true }} transition={{ delay, duration: 0.8, ease }} className="absolute inset-x-0 bottom-[0.08em] -z-0 h-[0.42em] origin-left bg-coral/35" aria-hidden />
+      <motion.span initial={{ scaleX: 0 }} whileInView={{ scaleX: 1 }} viewport={{ once: false }} transition={{ delay, duration: 0.8, ease }} className="absolute inset-x-0 bottom-[0.08em] -z-0 h-[0.42em] origin-left bg-coral/35" aria-hidden />
       <span className="relative">{children}</span>
     </span>
   );

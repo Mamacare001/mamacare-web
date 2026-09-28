@@ -48,7 +48,7 @@ export function ImageReveal({
   zoom = true,
   delay = 0,
   duration = 1.1,
-  once = true,
+  once = false,
   shimmer = true,
   innerClassName,
 }: Props) {
@@ -64,7 +64,7 @@ export function ImageReveal({
         className={cn("absolute inset-0 overflow-hidden rounded-[inherit]", shimmer && "shimmer")}
         initial="hidden"
         whileInView="show"
-        viewport={{ once, margin: "0px 0px -12% 0px" }}
+        viewport={{ once, margin: "0px 0px -8% 0px" }}
         variants={{
           hidden: { clipPath: reduce ? CLIP.none : CLIP[from] },
           show: { clipPath: CLIP.none, transition: { duration, ease: EASE, delay } },

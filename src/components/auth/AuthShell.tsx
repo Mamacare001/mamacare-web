@@ -2,6 +2,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { Check } from "lucide-react";
 import { cn } from "@/lib/cn";
+import { Reveal } from "@/components/ui/Reveal";
+import { TextReveal } from "@/components/ui/TextReveal";
+import { ImageReveal } from "@/components/ui/ImageReveal";
 
 type Step = { href: string; label: string };
 
@@ -29,7 +32,9 @@ export function AuthShell({
   return (
     <section className="min-h-[100svh] bg-ivory md:grid md:grid-cols-12">
       <aside className="relative hidden overflow-hidden bg-midnight text-ivory md:col-span-5 md:block lg:col-span-5">
-        <Image src={image} alt="" fill priority quality={90} sizes="45vw" className="object-cover object-[50%_25%] opacity-80" />
+        <ImageReveal from="left" parallax={0} zoom duration={1.3} shimmer={false} className="absolute inset-0">
+          <Image src={image} alt="" fill priority quality={90} sizes="45vw" className="object-cover object-[50%_25%] opacity-80" />
+        </ImageReveal>
         <div className="absolute inset-0 bg-gradient-to-t from-midnight via-midnight/40 to-transparent" />
         <div className="grain absolute inset-0" aria-hidden />
         <div className="relative flex h-full flex-col justify-between p-10 lg:p-14">
@@ -59,8 +64,12 @@ export function AuthShell({
                 })}
               </ol>
             )}
-            <p className="text-h2 max-w-[16ch]">{quote}</p>
-            <p className="mt-4 max-w-md text-ivory/70">{sub}</p>
+            <TextReveal as="p" trigger="mount" delay={0.5} className="text-h2 max-w-[16ch]">
+              {quote}
+            </TextReveal>
+            <Reveal variant="blur" delay={0.9} as="p" className="mt-4 max-w-md text-ivory/70">
+              {sub}
+            </Reveal>
           </div>
         </div>
       </aside>
@@ -84,7 +93,9 @@ export function AuthShell({
           <Link href={backHref} className="link-underline text-sm font-semibold text-emerald">← {backLabel}</Link>
         </div>
         <div className="flex flex-1 items-center justify-center py-10">
-          <div className="w-full max-w-[480px]">{children}</div>
+          <Reveal variant="scale" distance={40} duration={0.9} delay={0.15} className="w-full max-w-[480px]">
+            {children}
+          </Reveal>
         </div>
         <p className="text-center text-xs text-muted">
           MamaCare does not diagnose. In an emergency, <Link href="/emergency" className="font-semibold text-coral underline underline-offset-4">call 912</Link>.
