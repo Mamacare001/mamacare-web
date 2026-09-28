@@ -13,21 +13,17 @@ export function ContactContent({ topic }: { topic?: string }) {
     <>
       <PageHero
         eyebrow={c.hero.eyebrow}
-        title={
-          <>
-            {c.hero.titlePre}<span className="text-coral">{c.hero.titleHighlight}</span>{c.hero.titleSuffix}
-          </>
-        }
+        segments={[c.hero.titlePre, { text: c.hero.titleHighlight, className: "text-coral" }, c.hero.titleSuffix]}
         lead={c.hero.lead}
       />
       <section className="bg-ivory pb-24 md:pb-32">
         <div className="container-x grid gap-12 lg:grid-cols-12">
-          <Reveal className="lg:col-span-7">
+          <Reveal variant="scale" distance={60} duration={1} className="lg:col-span-7">
             <div className="rounded-xl bg-white p-6 shadow-soft ring-1 ring-emerald/5 md:p-10">
               <ContactForm defaultTopic={topic} />
             </div>
           </Reveal>
-          <Reveal delay={0.1} className="lg:col-span-5">
+          <Reveal variant="right" delay={0.2} className="lg:col-span-5">
             <div className="space-y-6">
               <div className="flex gap-4">
                 <span className="grid size-11 shrink-0 place-items-center rounded-full bg-green-100 text-green"><Mail className="size-5" /></span>

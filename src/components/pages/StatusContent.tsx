@@ -74,7 +74,7 @@ export function StatusContent() {
         <Reveal as="h2" className="text-h3 mt-10 text-emerald">
           {st.incidentsHeading}
         </Reveal>
-        <RevealGroup as="ul" className="mt-3 space-y-3" stagger={0.06}>
+        <RevealGroup as="ul" className="mt-3 space-y-3" stagger={0.06} variant="scale">
           {s.incidents.map((i) => (
             <RevealItem as="li" key={i.title}>
               <div className="rounded-lg bg-white p-4 ring-1 ring-emerald/5">

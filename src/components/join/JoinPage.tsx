@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Briefcase, Lightbulb, MapPin, Clock, ArrowRight, Sparkles, X } from "lucide-react";
 import { Eyebrow } from "@/components/ui/Eyebrow";
+import { TextReveal } from "@/components/ui/TextReveal";
 import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
 import { Button } from "@/components/ui/Button";
 import { roles, type Role } from "@/lib/mock/careers";
@@ -59,11 +60,20 @@ export function JoinPage() {
       {/* Hero — two doors */}
       <section className="bg-ivory pb-16 pt-32 md:pb-24 md:pt-44">
         <div className="container-x">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3, duration: 0.7, ease }}>
+          <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.35, duration: 0.7, ease }}>
             <Eyebrow>{j.hero.eyebrow}</Eyebrow>
-            <h1 className="text-display mt-6 max-w-[16ch] text-emerald">{j.hero.title}</h1>
-            <p className="text-lead mt-6 max-w-[56ch] text-muted">{j.hero.lead}</p>
           </motion.div>
+          <TextReveal as="h1" trigger="mount" delay={0.45} className="text-display mt-6 max-w-[16ch] text-emerald">
+            {j.hero.title}
+          </TextReveal>
+          <motion.p
+            className="text-lead mt-6 max-w-[56ch] text-muted"
+            initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
+            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            transition={{ delay: 0.95, duration: 0.9, ease }}
+          >
+            {j.hero.lead}
+          </motion.p>
 
           <div className="mt-12 grid gap-4 md:grid-cols-2 md:gap-6">
             {doors.map((d, i) => (
@@ -93,11 +103,11 @@ export function JoinPage() {
       {/* Open roles */}
       <section id="roles" className="bg-ivory-200/60 py-20 md:py-28">
         <div className="container-x">
-          <Reveal>
-            <Eyebrow tone="coral">{j.rolesEyebrow}</Eyebrow>
-            <h2 className="text-h1 mt-5 text-emerald">{j.rolesHeading}</h2>
-          </Reveal>
-          <RevealGroup className="mt-10 grid gap-4 md:grid-cols-2" stagger={0.08}>
+          <div>
+            <Reveal variant="fade" duration={0.6}><Eyebrow tone="coral">{j.rolesEyebrow}</Eyebrow></Reveal>
+            <TextReveal as="h2" className="text-h1 mt-5 text-emerald" delay={0.1}>{j.rolesHeading}</TextReveal>
+          </div>
+          <RevealGroup className="mt-10 grid gap-4 md:grid-cols-2" stagger={0.08} variant="tilt" distance={44} duration={0.95}>
             {roles.map((r) => (
               <RevealItem key={r.id}>
                 <article className="group flex h-full flex-col rounded-2xl bg-white p-6 ring-1 ring-emerald/10 transition-shadow hover:shadow-float md:p-7">
@@ -182,8 +192,11 @@ export function JoinPage() {
       <section className="relative overflow-hidden bg-midnight py-20 text-ivory md:py-28">
         <div className="grain absolute inset-0" aria-hidden />
         <div className="container-x relative">
-          <Reveal><Eyebrow tone="gold">{j.howWeHire.eyebrow}</Eyebrow><h2 className="text-h1 mt-5 max-w-3xl">{j.howWeHire.heading}</h2></Reveal>
-          <RevealGroup className="mt-12 grid gap-8 md:grid-cols-4" stagger={0.1}>
+          <div>
+            <Reveal variant="fade" duration={0.6}><Eyebrow tone="gold">{j.howWeHire.eyebrow}</Eyebrow></Reveal>
+            <TextReveal as="h2" className="text-h1 mt-5 max-w-3xl" delay={0.1}>{j.howWeHire.heading}</TextReveal>
+          </div>
+          <RevealGroup className="mt-12 grid gap-8 md:grid-cols-4" stagger={0.1} variant="up">
             {j.howWeHire.steps.map((s) => (
               <RevealItem key={s.n}>
                 <div className="border-t border-ivory/15 pt-5"><p className="text-eyebrow text-gold">{s.n}</p><h3 className="mt-2 font-display text-2xl">{s.title}</h3><p className="mt-2 text-sm leading-relaxed text-ivory/65">{s.text}</p></div>

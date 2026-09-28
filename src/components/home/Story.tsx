@@ -6,6 +6,8 @@ import { Mic, Play } from "lucide-react";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { StoryReader } from "@/components/home/StoryReader";
 import { Reveal, RevealGroup, RevealItem, GrowRule } from "@/components/ui/Reveal";
+import { TextReveal } from "@/components/ui/TextReveal";
+import { ImageReveal } from "@/components/ui/ImageReveal";
 import { useLang } from "@/components/providers/LanguageProvider";
 
 /** A heartbeat trace that draws itself, then flattens for a breath before starting again. */
@@ -32,13 +34,17 @@ export function Story() {
       <div className="container-x">
         <div className="grid gap-12 md:grid-cols-12 md:gap-8">
           <div className="md:col-span-5">
-            <Reveal>
+            <Reveal variant="fade" duration={0.6}>
               <Eyebrow tone="coral">{s.eyebrow}</Eyebrow>
-              <h2 className="text-h1 mt-5 text-emerald">{s.heading}</h2>
-              <p className="text-lead mt-6 text-muted">{s.lead}</p>
+            </Reveal>
+            <TextReveal as="h2" className="text-h1 mt-5 text-emerald" delay={0.1}>
+              {s.heading}
+            </TextReveal>
+            <Reveal variant="blur" delay={0.35} as="p" className="text-lead mt-6 text-muted">
+              {s.lead}
             </Reveal>
 
-            <RevealGroup className="mt-10 space-y-0">
+            <RevealGroup className="mt-10 space-y-0" variant="left" stagger={0.12}>
               {s.signs.map((sign, i) => (
                 <RevealItem key={sign.when}>
                   <button
@@ -60,7 +66,7 @@ export function Story() {
               ))}
             </RevealGroup>
 
-            <Reveal delay={0.2} className="mt-8 rounded-lg border-l-4 border-coral bg-coral-100/60 p-5">
+            <Reveal variant="clip" delay={0.2} className="mt-8 rounded-lg border-l-4 border-coral bg-coral-100/60 p-5">
               <p className="text-eyebrow text-coral">{s.diagnosisLabel}</p>
               <p className="mt-2 font-display text-2xl text-emerald">{s.diagnosisName}</p>
               <p className="mt-2 text-sm leading-relaxed text-ink/80">{s.diagnosisText}</p>
@@ -68,9 +74,9 @@ export function Story() {
           </div>
 
           <div className="md:col-span-7">
-            <Reveal delay={0.1} className="relative pb-24 md:pb-28">
+            <div className="relative pb-24 md:pb-28">
               <div className="grid grid-cols-2 gap-4 md:gap-6">
-                <figure className="group relative aspect-[3/4] overflow-hidden rounded-xl">
+                <ImageReveal from="left" parallax={36} className="group aspect-[3/4] rounded-xl shadow-soft">
                   <Image
                     src="/images/mother-outdoors.jpg"
                     alt="A pregnant woman outdoors, holding her belly"
@@ -79,8 +85,8 @@ export function Story() {
                     className="object-cover object-[50%_25%] transition-transform duration-700 ease-out group-hover:scale-[1.04]"
                   />
                   <div className="absolute inset-0 bg-emerald/0 transition-colors duration-500 group-hover:bg-emerald/15" />
-                </figure>
-                <figure className="group relative mt-10 aspect-[3/4] overflow-hidden rounded-xl md:mt-16">
+                </ImageReveal>
+                <ImageReveal from="right" parallax={-24} delay={0.15} className="group mt-10 aspect-[3/4] rounded-xl shadow-soft md:mt-16">
                   <Image
                     src="/images/family-together.jpg"
                     alt="A family looking at a phone together"
@@ -89,13 +95,14 @@ export function Story() {
                     className="object-cover object-[50%_25%] transition-transform duration-700 ease-out group-hover:scale-[1.04]"
                   />
                   <div className="absolute inset-0 bg-emerald/0 transition-colors duration-500 group-hover:bg-emerald/15" />
-                </figure>
+                </ImageReveal>
               </div>
+              <Reveal variant="scale" delay={0.4} className="absolute bottom-0 left-1/2 w-[min(90%,380px)] -translate-x-1/2">
               <button
                 type="button"
                 onClick={() => openAt()}
                 aria-label={s.readWholeAria}
-                className="group absolute bottom-0 left-1/2 w-[min(90%,380px)] -translate-x-1/2 text-left [perspective:1200px] focus-visible:outline-none"
+                className="group block w-full text-left [perspective:1200px] focus-visible:outline-none"
               >
                 <span className="relative block min-h-[150px] transition-transform duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)] group-focus-visible:[transform:rotateY(180deg)]">
                   <span className="absolute inset-0 block rounded-lg bg-midnight p-5 text-ivory shadow-float [backface-visibility:hidden]">
@@ -109,10 +116,11 @@ export function Story() {
                   </span>
                 </span>
               </button>
-            </Reveal>
+              </Reveal>
+            </div>
 
             {/* The invitation — a heartbeat that draws itself, and a single button. It never says what is behind it. */}
-            <Reveal delay={0.2} className="mt-8">
+            <Reveal variant="scale" delay={0.1} className="mt-8">
               <button
                 type="button"
                 onClick={() => openAt(undefined, "pitch")}

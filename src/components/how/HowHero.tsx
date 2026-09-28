@@ -9,11 +9,7 @@ export function HowHero() {
   return (
     <PageHero
       eyebrow={h.eyebrow}
-      title={
-        <>
-          {h.titlePre}<span className="text-violet">{h.titleHighlight}</span>{h.titleSuffix}
-        </>
-      }
+      segments={[h.titlePre, { text: h.titleHighlight, className: "text-violet" }, h.titleSuffix]}
       lead={h.lead}
     />
   );

@@ -2,6 +2,7 @@
 
 import { Info, PhoneCall, Siren } from "lucide-react";
 import { Eyebrow } from "@/components/ui/Eyebrow";
+import { TextReveal } from "@/components/ui/TextReveal";
 import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
 import { useLang } from "@/components/providers/LanguageProvider";
 
@@ -19,12 +20,14 @@ export function RiskLevels() {
   return (
     <section className="bg-white py-24 md:py-32">
       <div className="container-x">
-        <Reveal className="max-w-3xl">
-          <Eyebrow tone="coral">{rl.eyebrow}</Eyebrow>
-          <h2 className="text-h1 mt-5 text-emerald">{rl.heading}</h2>
+        <div className="max-w-3xl">
+            <Reveal variant="fade" duration={0.6}><Eyebrow tone="coral">{rl.eyebrow}</Eyebrow></Reveal>
+            <TextReveal as="h2" className="text-h1 mt-5 text-emerald" delay={0.1}>{rl.heading}</TextReveal>
+            <Reveal variant="blur" delay={0.35}>
           <p className="text-lead mt-5 text-muted">{rl.lead}</p>
-        </Reveal>
-        <RevealGroup className="mt-12 grid gap-5 md:grid-cols-3" stagger={0.12}>
+            </Reveal>
+          </div>
+        <RevealGroup className="mt-12 grid gap-5 md:grid-cols-3" stagger={0.12} variant="tilt" distance={44} duration={0.95}>
           {levels.map((l) => (
             <RevealItem key={l.level}>
               <div className={`group flex h-full flex-col rounded-lg bg-ivory p-6 ring-1 ${l.ring} transition-all duration-300 hover:-translate-y-0.5 hover:shadow-float`}>

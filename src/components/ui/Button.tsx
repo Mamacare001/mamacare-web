@@ -20,7 +20,7 @@ type ButtonProps = BaseProps &
   );
 
 const base =
-  "group inline-flex items-center justify-center gap-2 font-semibold rounded-full transition-[background-color,color,box-shadow,transform] duration-200 ease-out select-none disabled:opacity-60 disabled:pointer-events-none active:scale-[0.98]";
+  "group inline-flex items-center justify-center gap-2 font-semibold rounded-full transition-[background-color,color,box-shadow,transform] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] select-none disabled:opacity-60 disabled:pointer-events-none hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98]";
 
 const variants: Record<Variant, string> = {
   primary: "bg-emerald text-ivory hover:bg-emerald-700 shadow-soft",

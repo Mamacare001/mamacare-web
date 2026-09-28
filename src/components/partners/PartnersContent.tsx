@@ -4,7 +4,9 @@ import Image from "next/image";
 import { Building2, ShieldCheck, FlaskConical, HeartHandshake, BarChart3, Lock, Users, ArrowUpRight } from "lucide-react";
 import { PageHero } from "@/components/site/PageHero";
 import { Eyebrow } from "@/components/ui/Eyebrow";
+import { TextReveal } from "@/components/ui/TextReveal";
 import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
+import { ImageReveal } from "@/components/ui/ImageReveal";
 import { Button } from "@/components/ui/Button";
 import { CtaBand } from "@/components/home/CtaBand";
 import { useLang } from "@/components/providers/LanguageProvider";
@@ -28,11 +30,7 @@ export function PartnersContent() {
     <>
       <PageHero
         eyebrow={p.hero.eyebrow}
-        title={
-          <>
-            {p.hero.titlePre}<span className="text-coral">{p.hero.titleHighlight}</span>{p.hero.titleSuffix}
-          </>
-        }
+        segments={[p.hero.titlePre, { text: p.hero.titleHighlight, className: "text-coral" }, p.hero.titleSuffix]}
         lead={p.hero.lead}
         image="/images/chw-visit.jpg"
         imageAlt="A Community Health Worker with a pregnant woman"
@@ -40,11 +38,11 @@ export function PartnersContent() {
 
       <section className="bg-white py-24 md:py-32">
         <div className="container-x">
-          <Reveal className="max-w-3xl">
-            <Eyebrow>{p.whoWeWorkWith.eyebrow}</Eyebrow>
-            <h2 className="text-h1 mt-5 text-emerald">{p.whoWeWorkWith.heading}</h2>
-          </Reveal>
-          <RevealGroup className="mt-14 grid gap-6 lg:grid-cols-2" stagger={0.1}>
+          <div className="max-w-3xl">
+            <Reveal variant="fade" duration={0.6}><Eyebrow>{p.whoWeWorkWith.eyebrow}</Eyebrow></Reveal>
+            <TextReveal as="h2" className="text-h1 mt-5 text-emerald" delay={0.1}>{p.whoWeWorkWith.heading}</TextReveal>
+          </div>
+          <RevealGroup className="mt-14 grid gap-6 lg:grid-cols-2" stagger={0.1} variant="tilt" distance={44} duration={0.95}>
             {partners.map((pt) => (
               <RevealItem key={pt.title}>
                 <article className="flex h-full flex-col rounded-lg bg-ivory p-7 ring-1 ring-emerald/5 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-float md:p-9">
@@ -83,12 +81,14 @@ export function PartnersContent() {
       <section className="relative overflow-hidden bg-midnight py-24 text-ivory md:py-32">
         <div className="grain absolute inset-0" aria-hidden />
         <div className="container-x relative grid gap-12 lg:grid-cols-12">
-          <Reveal className="lg:col-span-5">
-            <Eyebrow tone="gold">{p.safe.eyebrow}</Eyebrow>
-            <h2 className="text-h1 mt-5">{p.safe.heading}</h2>
+          <div className="lg:col-span-5">
+            <Reveal variant="fade" duration={0.6}><Eyebrow tone="gold">{p.safe.eyebrow}</Eyebrow></Reveal>
+            <TextReveal as="h2" className="text-h1 mt-5" delay={0.1}>{p.safe.heading}</TextReveal>
+            <Reveal variant="blur" delay={0.35}>
             <p className="text-lead mt-6 text-ivory/70">{p.safe.lead}</p>
-          </Reveal>
-          <RevealGroup className="grid gap-4 lg:col-span-7" stagger={0.1}>
+            </Reveal>
+          </div>
+          <RevealGroup className="grid gap-4 lg:col-span-7" stagger={0.1} variant="scale">
             {principles.map((pr) => (
               <RevealItem key={pr.title}>
                 <div className="flex gap-5 rounded-lg bg-white/5 p-6 ring-1 ring-white/10">
@@ -108,9 +108,10 @@ export function PartnersContent() {
 
       <section className="bg-ivory py-24 md:py-32">
         <div className="container-x grid items-center gap-12 md:grid-cols-12">
-          <Reveal className="md:col-span-6">
-            <Eyebrow>{p.whereWeAre.eyebrow}</Eyebrow>
-            <h2 className="text-h1 mt-5 text-emerald">{p.whereWeAre.heading}</h2>
+          <div className="md:col-span-6">
+            <Reveal variant="fade" duration={0.6}><Eyebrow>{p.whereWeAre.eyebrow}</Eyebrow></Reveal>
+            <TextReveal as="h2" className="text-h1 mt-5 text-emerald" delay={0.1}>{p.whereWeAre.heading}</TextReveal>
+            <Reveal variant="blur" delay={0.35}>
             <ol className="mt-8 space-y-5">
               {p.timeline.map((step, i) => (
                 <li key={step.when} className="flex gap-4">
@@ -131,12 +132,11 @@ export function PartnersContent() {
                 <ArrowUpRight className="size-4" />
               </Button>
             </div>
-          </Reveal>
-          <Reveal delay={0.1} className="md:col-span-6">
-            <figure className="relative aspect-[4/3] overflow-hidden rounded-xl shadow-float">
-              <Image src="/images/provider-tablet.jpg" alt="A clinician reviewing a case on a tablet" fill sizes="(min-width: 768px) 45vw, 92vw" className="object-cover object-[50%_25%]" />
-            </figure>
-          </Reveal>
+            </Reveal>
+          </div>
+          <ImageReveal from="right" parallax={36} delay={0.1} className="aspect-[4/3] rounded-xl shadow-float md:col-span-6">
+            <Image src="/images/provider-tablet.jpg" alt="A clinician reviewing a case on a tablet" fill sizes="(min-width: 768px) 45vw, 92vw" className="object-cover object-[50%_25%]" />
+          </ImageReveal>
         </div>
       </section>
 

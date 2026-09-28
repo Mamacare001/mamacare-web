@@ -4,6 +4,7 @@ import { useRef } from "react";
 import { motion, useMotionValue, useSpring, useTransform, useScroll, useInView } from "framer-motion";
 import { Fingerprint, HeartHandshake, Languages, BellRing, UserCheck, Signal, MapPin } from "lucide-react";
 import { Eyebrow } from "@/components/ui/Eyebrow";
+import { TextReveal } from "@/components/ui/TextReveal";
 import { Reveal } from "@/components/ui/Reveal";
 import { cn } from "@/lib/cn";
 import { useLang } from "@/components/providers/LanguageProvider";
@@ -153,12 +154,14 @@ export function Manifesto() {
       <section className="relative overflow-hidden bg-ivory py-24 md:py-32">
         <div className="container-x grid items-center gap-12 md:grid-cols-12 md:gap-8">
           <div className="md:col-span-5">
-            <Reveal>
-              <Eyebrow tone="coral">{id.whoEyebrow}</Eyebrow>
-              <h2 className="text-h1 mt-5 text-emerald">{id.whoHeading}</h2>
+            <div>
+            <Reveal variant="fade" duration={0.6}><Eyebrow tone="coral">{id.whoEyebrow}</Eyebrow></Reveal>
+            <TextReveal as="h2" className="text-h1 mt-5 text-emerald" delay={0.1}>{id.whoHeading}</TextReveal>
+            <Reveal variant="blur" delay={0.35}>
               <p className="text-lead mt-6 text-muted">{id.whoLead}</p>
               <p className="mt-4 flex items-center gap-2 text-sm text-muted"><MapPin className="size-4 text-coral" /> {id.hint}</p>
             </Reveal>
+          </div>
           </div>
           <div className="md:col-span-7">
             <Reveal delay={0.1}><IdCard id={id} /></Reveal>
@@ -172,12 +175,14 @@ export function Manifesto() {
           <div className="grid gap-12 md:grid-cols-12 md:gap-8">
             <div className="md:col-span-4">
               <div className="md:sticky md:top-32">
-                <Reveal>
-                  <Eyebrow tone="coral">{v.eyebrow}</Eyebrow>
-                  <h2 className="text-h1 mt-5 text-emerald">{v.heading}</h2>
+                <div>
+            <Reveal variant="fade" duration={0.6}><Eyebrow tone="coral">{v.eyebrow}</Eyebrow></Reveal>
+            <TextReveal as="h2" className="text-h1 mt-5 text-emerald" delay={0.1}>{v.heading}</TextReveal>
+            <Reveal variant="blur" delay={0.35}>
                   <p className="text-lead mt-6 text-muted">{v.lead}</p>
                   <p className="mt-6 text-sm text-muted">{v.scrollHint}</p>
-                </Reveal>
+            </Reveal>
+          </div>
               </div>
             </div>
             <div className="space-y-6 md:col-span-8">
@@ -192,11 +197,13 @@ export function Manifesto() {
       <section className="relative overflow-hidden bg-midnight py-24 text-ivory md:py-32">
         <div className="grain absolute inset-0" aria-hidden />
         <div className="container-x relative">
-          <Reveal className="max-w-3xl">
-            <Eyebrow tone="gold">{vis.eyebrow}</Eyebrow>
-            <h2 className="text-h1 mt-5">{vis.heading}</h2>
+          <div className="max-w-3xl">
+            <Reveal variant="fade" duration={0.6}><Eyebrow tone="gold">{vis.eyebrow}</Eyebrow></Reveal>
+            <TextReveal as="h2" className="text-h1 mt-5" delay={0.1}>{vis.heading}</TextReveal>
+            <Reveal variant="blur" delay={0.35}>
             <p className="text-lead mt-6 text-ivory/70">{vis.lead}</p>
-          </Reveal>
+            </Reveal>
+          </div>
 
           <div className="mt-12 grid gap-10 md:grid-cols-12 md:items-end">
             <div className="md:col-span-7"><Reveal delay={0.1}><Hills visionLabel={vis.svgLabel} /></Reveal></div>

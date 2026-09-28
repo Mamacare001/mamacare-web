@@ -3,6 +3,7 @@
 import { FileText, CheckCircle2, Clock, Circle, Database, Scale, ArrowUpRight } from "lucide-react";
 import { PageHero } from "@/components/site/PageHero";
 import { Eyebrow } from "@/components/ui/Eyebrow";
+import { TextReveal } from "@/components/ui/TextReveal";
 import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
 import { Button } from "@/components/ui/Button";
 import { CountUp } from "@/components/ui/CountUp";
@@ -26,18 +27,14 @@ export function ResearchContent() {
     <>
       <PageHero
         eyebrow={r.hero.eyebrow}
-        title={
-          <>
-            {r.hero.titlePre}<span className="text-violet">{r.hero.titleHighlight}</span>{r.hero.titleSuffix}
-          </>
-        }
+        segments={[r.hero.titlePre, { text: r.hero.titleHighlight, className: "text-violet" }, r.hero.titleSuffix]}
         lead={r.hero.lead}
       />
 
       <section className="bg-white py-20 md:py-24">
         <div className="container-x grid gap-8 sm:grid-cols-3">
           {r.stats.map((s, i) => (
-            <Reveal key={s.label} className="border-t border-emerald/10 pt-6">
+            <Reveal key={s.label} variant="blur" delay={i * 0.12} className="border-t border-emerald/10 pt-6">
               <p className="font-display text-6xl text-emerald">
                 <CountUp to={statNums[i]} suffix="" />
               </p>
@@ -49,12 +46,14 @@ export function ResearchContent() {
 
       <section className="bg-ivory py-24 md:py-32">
         <div className="container-x grid gap-12 lg:grid-cols-12">
-          <Reveal className="lg:col-span-4">
-            <Eyebrow tone="violet">{r.validationEyebrow}</Eyebrow>
-            <h2 className="text-h1 mt-5 text-emerald">{r.validationHeading}</h2>
+          <div className="lg:col-span-4">
+            <Reveal variant="fade" duration={0.6}><Eyebrow tone="violet">{r.validationEyebrow}</Eyebrow></Reveal>
+            <TextReveal as="h2" className="text-h1 mt-5 text-emerald" delay={0.1}>{r.validationHeading}</TextReveal>
+            <Reveal variant="blur" delay={0.35}>
             <p className="text-lead mt-5 text-muted">{r.validationLead}</p>
-          </Reveal>
-          <RevealGroup className="lg:col-span-8" stagger={0.06}>
+            </Reveal>
+          </div>
+          <RevealGroup className="lg:col-span-8" stagger={0.06} variant="left">
             {r.milestones.map((m, i) => {
               const status = m.status as Status;
               const s = statusCls[status];
@@ -81,11 +80,11 @@ export function ResearchContent() {
 
       <section className="bg-white py-24 md:py-32">
         <div className="container-x">
-          <Reveal className="max-w-3xl">
-            <Eyebrow>{r.questionsEyebrow}</Eyebrow>
-            <h2 className="text-h1 mt-5 text-emerald">{r.questionsHeading}</h2>
-          </Reveal>
-          <RevealGroup className="mt-12 grid gap-4 md:grid-cols-2" stagger={0.08}>
+          <div className="max-w-3xl">
+            <Reveal variant="fade" duration={0.6}><Eyebrow>{r.questionsEyebrow}</Eyebrow></Reveal>
+            <TextReveal as="h2" className="text-h1 mt-5 text-emerald" delay={0.1}>{r.questionsHeading}</TextReveal>
+          </div>
+          <RevealGroup className="mt-12 grid gap-4 md:grid-cols-2" stagger={0.08} variant="tilt" distance={44} duration={0.95}>
             {r.questions.map((q, i) => (
               <RevealItem key={q.area} className={i === 0 ? "md:col-span-2" : ""}>
                 <div className="h-full rounded-lg bg-ivory p-6 ring-1 ring-emerald/5">
@@ -101,17 +100,19 @@ export function ResearchContent() {
       <section className="relative overflow-hidden bg-emerald py-24 text-ivory md:py-32">
         <div className="grain absolute inset-0" aria-hidden />
         <div className="container-x relative grid gap-12 lg:grid-cols-12">
-          <Reveal className="lg:col-span-5">
-            <Eyebrow tone="gold">{r.dataEyebrow}</Eyebrow>
-            <h2 className="text-h1 mt-5">{r.dataHeading}</h2>
+          <div className="lg:col-span-5">
+            <Reveal variant="fade" duration={0.6}><Eyebrow tone="gold">{r.dataEyebrow}</Eyebrow></Reveal>
+            <TextReveal as="h2" className="text-h1 mt-5" delay={0.1}>{r.dataHeading}</TextReveal>
+            <Reveal variant="blur" delay={0.35}>
             <p className="text-lead mt-5 text-ivory/75">{r.dataLead}</p>
             <div className="mt-8">
               <Button href="/contact?topic=research" variant="coral" arrow>
                 {r.proposeBtn}
               </Button>
             </div>
-          </Reveal>
-          <RevealGroup className="grid gap-4 lg:col-span-7" stagger={0.1}>
+            </Reveal>
+          </div>
+          <RevealGroup className="grid gap-4 lg:col-span-7" stagger={0.1} variant="scale">
             {r.dataSteps.map((s, i) => {
               const Icon = dataStepIcons[i];
               return (
@@ -134,9 +135,10 @@ export function ResearchContent() {
 
       <section className="bg-ivory py-24 md:py-32">
         <div className="container-x">
-          <Reveal className="max-w-3xl">
-            <Eyebrow>{r.pubEyebrow}</Eyebrow>
-            <h2 className="text-h1 mt-5 text-emerald">{r.pubHeading}</h2>
+          <div className="max-w-3xl">
+            <Reveal variant="fade" duration={0.6}><Eyebrow>{r.pubEyebrow}</Eyebrow></Reveal>
+            <TextReveal as="h2" className="text-h1 mt-5 text-emerald" delay={0.1}>{r.pubHeading}</TextReveal>
+            <Reveal variant="blur" delay={0.35}>
             <p className="text-lead mt-5 text-muted">{r.pubLead}</p>
             <div className="mt-8">
               <Button href="/contact?topic=research" variant="secondary">
@@ -144,7 +146,8 @@ export function ResearchContent() {
                 <ArrowUpRight className="size-4" />
               </Button>
             </div>
-          </Reveal>
+            </Reveal>
+          </div>
         </div>
       </section>
     </>

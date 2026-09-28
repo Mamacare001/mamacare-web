@@ -5,7 +5,8 @@ import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowUpRight, MessageSquareText, Brain, Gauge, ClipboardCheck, BellRing } from "lucide-react";
 import { Eyebrow } from "@/components/ui/Eyebrow";
-import { Reveal } from "@/components/ui/Reveal";
+import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
+import { TextReveal } from "@/components/ui/TextReveal";
 import { Button } from "@/components/ui/Button";
 import { cn } from "@/lib/cn";
 import { useLang } from "@/components/providers/LanguageProvider";
@@ -29,20 +30,24 @@ export function HowItWorks() {
   return (
     <section className="bg-ivory py-24 md:py-32">
       <div className="container-x">
-        <Reveal className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+        <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <div className="max-w-2xl">
-            <Eyebrow tone="violet">{f.eyebrow}</Eyebrow>
-            <h2 className="text-h1 mt-5 text-emerald">{f.heading}</h2>
+            <Reveal variant="fade" duration={0.6}>
+              <Eyebrow tone="violet">{f.eyebrow}</Eyebrow>
+            </Reveal>
+            <TextReveal as="h2" className="text-h1 mt-5 text-emerald" delay={0.1}>
+              {f.heading}
+            </TextReveal>
           </div>
-          <p className="max-w-md text-muted md:text-right">
+          <Reveal variant="blur" delay={0.4} as="p" className="max-w-md text-muted md:text-right">
             <span className="font-semibold text-emerald">{f.subtextBold}</span> {f.subtextRest}
-          </p>
-        </Reveal>
+          </Reveal>
+        </div>
 
         <div className="mt-14 grid gap-10 lg:grid-cols-12 lg:gap-12">
-          <ol className="lg:col-span-6" role="list">
+          <RevealGroup as="ol" className="lg:col-span-6" variant="left" stagger={0.1} distance={28}>
             {steps.map((s, i) => (
-              <li key={s.n}>
+              <RevealItem as="li" key={s.n}>
                 <button
                   type="button"
                   onMouseEnter={() => setActive(i)}
@@ -84,17 +89,17 @@ export function HowItWorks() {
                     </AnimatePresence>
                   </span>
                 </button>
-              </li>
+              </RevealItem>
             ))}
-            <li className="border-t border-emerald/10 pt-8">
+            <RevealItem as="li" className="border-t border-emerald/10 pt-8">
               <Button href="/how-it-works" variant="primary" arrow>
                 {f.exploreCta}
               </Button>
-            </li>
-          </ol>
+            </RevealItem>
+          </RevealGroup>
 
           <div className="relative lg:col-span-6">
-            <div className="sticky top-28 aspect-[4/5] overflow-hidden rounded-xl shadow-float sm:aspect-[5/4] lg:aspect-[4/5]">
+            <Reveal variant="clip" distance={60} duration={1.2} className="sticky top-28 aspect-[4/5] overflow-hidden rounded-xl shadow-float sm:aspect-[5/4] lg:aspect-[4/5]">
               <AnimatePresence mode="sync">
                 <motion.div
                   key={current.image}
@@ -117,7 +122,7 @@ export function HowItWorks() {
                   <p className="font-display text-xl">{current.title}</p>
                 </div>
               </div>
-            </div>
+            </Reveal>
           </div>
         </div>
       </div>

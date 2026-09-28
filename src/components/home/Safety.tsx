@@ -3,6 +3,7 @@
 import { Lock, FileCheck2, UserCheck, Languages, Route } from "lucide-react";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
+import { TextReveal } from "@/components/ui/TextReveal";
 import { useLang } from "@/components/providers/LanguageProvider";
 
 const icons = [UserCheck, FileCheck2, Lock, Languages, Route];
@@ -17,12 +18,18 @@ export function Safety() {
     <section id="safety" className="bg-ivory py-24 md:py-32">
       <div className="container-x">
         <div className="grid gap-12 lg:grid-cols-12">
-          <Reveal className="lg:col-span-4">
-            <Eyebrow>{sf.eyebrow}</Eyebrow>
-            <h2 className="text-h1 mt-5 text-emerald">{sf.heading}</h2>
-            <p className="text-lead mt-6 text-muted">{sf.lead}</p>
-          </Reveal>
-          <RevealGroup className="grid gap-4 sm:grid-cols-2 lg:col-span-8" stagger={0.08}>
+          <div className="lg:col-span-4">
+            <Reveal variant="fade" duration={0.6}>
+              <Eyebrow>{sf.eyebrow}</Eyebrow>
+            </Reveal>
+            <TextReveal as="h2" className="text-h1 mt-5 text-emerald" delay={0.1}>
+              {sf.heading}
+            </TextReveal>
+            <Reveal variant="blur" delay={0.35} as="p" className="text-lead mt-6 text-muted">
+              {sf.lead}
+            </Reveal>
+          </div>
+          <RevealGroup className="grid gap-4 sm:grid-cols-2 lg:col-span-8" stagger={0.1} variant="tilt" distance={40} duration={0.9}>
             {pillars.map((p, i) => (
               <RevealItem key={p.title} className={i === 0 ? "sm:col-span-2" : ""}>
                 <div className="group flex h-full gap-4 rounded-lg bg-white p-6 ring-1 ring-emerald/5 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-float">

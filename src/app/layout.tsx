@@ -6,6 +6,7 @@ import { Nav } from "@/components/site/Nav";
 import { Footer } from "@/components/site/Footer";
 import { StickyCta } from "@/components/site/StickyCta";
 import { MarketingOnly } from "@/components/site/Chrome";
+import { ScrollProgress } from "@/components/ui/ScrollProgress";
 
 const manrope = localFont({
   src: "../fonts/manrope-latin.woff2",
@@ -59,6 +60,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="flex min-h-full flex-col">
         <LanguageProvider>
           <MarketingOnly>
+            <ScrollProgress />
             <Nav />
           </MarketingOnly>
           <main className="flex-1">{children}</main>

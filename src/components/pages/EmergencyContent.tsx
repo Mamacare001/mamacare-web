@@ -59,7 +59,7 @@ export function EmergencyContent() {
           </Button>
         </motion.div>
 
-        <RevealGroup as="ul" className="mt-14 grid gap-3 sm:grid-cols-2 lg:grid-cols-3" stagger={0.06}>
+        <RevealGroup as="ul" className="mt-14 grid gap-3 sm:grid-cols-2 lg:grid-cols-3" stagger={0.06} variant="scale" duration={0.6}>
           {signs.map((s) => (
             <RevealItem as="li" key={s.en}>
               <div className="flex items-center gap-4 rounded-lg bg-white/15 p-5 ring-1 ring-white/25">

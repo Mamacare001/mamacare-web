@@ -4,6 +4,7 @@ import Image from "next/image";
 import { Baby, Users, Stethoscope, HeartHandshake } from "lucide-react";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
+import { TextReveal } from "@/components/ui/TextReveal";
 import { useLang } from "@/components/providers/LanguageProvider";
 
 const meta = [
@@ -22,13 +23,19 @@ export function Connects() {
   return (
     <section className="bg-white py-24 md:py-32">
       <div className="container-x">
-        <Reveal className="max-w-3xl">
-          <Eyebrow>{c.eyebrow}</Eyebrow>
-          <h2 className="text-h1 mt-5 text-emerald">{c.heading}</h2>
-          <p className="text-lead mt-6 text-muted">{c.lead}</p>
-        </Reveal>
+        <div className="max-w-3xl">
+          <Reveal variant="fade" duration={0.6}>
+            <Eyebrow>{c.eyebrow}</Eyebrow>
+          </Reveal>
+          <TextReveal as="h2" className="text-h1 mt-5 text-emerald" delay={0.1}>
+            {c.heading}
+          </TextReveal>
+          <Reveal variant="blur" delay={0.35} as="p" className="text-lead mt-6 text-muted">
+            {c.lead}
+          </Reveal>
+        </div>
 
-        <RevealGroup className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4" stagger={0.1}>
+        <RevealGroup className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4" stagger={0.12} variant="tilt" distance={48} duration={1}>
           {people.map((p, i) => (
             <RevealItem key={p.title}>
               <article
@@ -60,7 +67,7 @@ export function Connects() {
           ))}
         </RevealGroup>
 
-        <Reveal delay={0.15} className="mx-auto mt-14 flex max-w-2xl flex-col items-center text-center">
+        <Reveal variant="scale" delay={0.15} className="mx-auto mt-14 flex max-w-2xl flex-col items-center text-center">
           <div className="relative">
             <span className="absolute inset-0 rounded-full bg-green/20 animate-pulse-ring" aria-hidden />
             <Image src="/brand/mark.png" alt="" width={72} height={84} className="relative h-20 w-auto" />

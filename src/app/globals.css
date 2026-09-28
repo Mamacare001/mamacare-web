@@ -196,6 +196,63 @@ body {
   transform-origin: left;
 }
 
+/* Route curtain (see app/template.tsx): CSS-driven so it runs before hydration */
+.route-curtain {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+  background: var(--color-emerald);
+  clip-path: inset(0 0 0 0);
+}
+.route-curtain__mark {
+  height: 56px;
+  width: auto;
+  opacity: 0;
+  animation: mark-breathe 1.8s ease-in-out 0.25s infinite;
+}
+.route-curtain.is-lifting {
+  animation: curtain-lift 0.9s cubic-bezier(0.76, 0, 0.24, 1) 0.1s forwards;
+}
+.route-curtain.is-lifting .route-curtain__mark {
+  animation: mark-out 0.3s ease-out forwards;
+}
+@keyframes curtain-lift {
+  to { clip-path: inset(100% 0 0 0); }
+}
+@keyframes mark-breathe {
+  0%, 100% { opacity: 0.55; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.06); }
+}
+@keyframes mark-out {
+  from { opacity: 0.7; transform: scale(1); }
+  to { opacity: 0; transform: scale(0.9); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .route-curtain {
+    display: none;
+  }
+}
+
+/* Skeleton shimmer under photos while they decode (see ImageReveal) */
+.shimmer {
+  background-color: color-mix(in srgb, var(--color-emerald) 6%, var(--color-ivory));
+  background-image: linear-gradient(
+    100deg,
+    transparent 30%,
+    color-mix(in srgb, var(--color-ivory) 70%, transparent) 50%,
+    transparent 70%
+  );
+  background-size: 220% 100%;
+  animation: shimmer 1.8s ease-in-out infinite;
+}
+@keyframes shimmer {
+  from { background-position: 120% 0; }
+  to { background-position: -120% 0; }
+}
+
 .rule-grow {
   height: 1px;
   background: currentColor;

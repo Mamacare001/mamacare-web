@@ -6,6 +6,8 @@ import { useRef } from "react";
 import { Globe, Smartphone, MessageCircle, MessageSquare, ShieldAlert } from "lucide-react";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
+import { TextReveal } from "@/components/ui/TextReveal";
+import { Parallax } from "@/components/ui/ImageReveal";
 import { useLang } from "@/components/providers/LanguageProvider";
 
 type Msg = { from: "user" | "bot" | "system"; text: string; time?: string };
@@ -54,15 +56,17 @@ export function ChatPreview() {
       <div className="grain absolute inset-0" aria-hidden />
       <div className="container-x relative grid items-center gap-14 py-24 md:grid-cols-12 md:py-32">
         <div className="md:col-span-6">
-          <Reveal>
+          <Reveal variant="fade" duration={0.6}>
             <Eyebrow tone="gold">Any device. Any channel. Any time.</Eyebrow>
-            <h2 className="text-h1 mt-5">Chat in Kinyarwanda or English.</h2>
-            <p className="text-lead mt-6 max-w-[48ch] text-ivory/75">
-              Mothers use whatever phone they already have. CHWs and clinicians see the same conversation, structured — no
-              retyping, no lost messages.
-            </p>
           </Reveal>
-          <RevealGroup className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-4 md:grid-cols-2 xl:grid-cols-4">
+          <TextReveal as="h2" className="text-h1 mt-5" delay={0.1}>
+            Chat in Kinyarwanda or English.
+          </TextReveal>
+          <Reveal variant="blur" delay={0.35} as="p" className="text-lead mt-6 max-w-[48ch] text-ivory/75">
+            Mothers use whatever phone they already have. CHWs and clinicians see the same conversation, structured — no
+            retyping, no lost messages.
+          </Reveal>
+          <RevealGroup className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-4 md:grid-cols-2 xl:grid-cols-4" variant="scale" stagger={0.07} delay={0.3}>
             {channels.map((c) => (
               <RevealItem key={c.label}>
                 <div className="flex items-center gap-3 rounded-md bg-white/5 p-3 ring-1 ring-white/10 transition-colors hover:bg-white/10">
@@ -78,7 +82,8 @@ export function ChatPreview() {
 
         {/* phone mock */}
         <div ref={ref} className="md:col-span-6">
-          <Reveal delay={0.1} className="mx-auto w-full max-w-[380px]">
+          <Reveal variant="scale" distance={80} duration={1.2} delay={0.1} className="mx-auto w-full max-w-[380px]">
+            <Parallax speed={30}>
             <div className="rounded-[36px] bg-midnight p-2.5 shadow-float ring-1 ring-white/10">
               <div className="flex h-[600px] flex-col sm:h-[580px] overflow-hidden rounded-[28px] bg-ivory text-ink">
                 <header className="flex items-center gap-3 border-b border-emerald/10 bg-white px-4 py-3">
@@ -149,6 +154,7 @@ export function ChatPreview() {
                 </footer>
               </div>
             </div>
+            </Parallax>
           </Reveal>
         </div>
       </div>

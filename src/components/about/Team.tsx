@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { Eyebrow } from "@/components/ui/Eyebrow";
+import { TextReveal } from "@/components/ui/TextReveal";
 import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
 import { useLang } from "@/components/providers/LanguageProvider";
 
@@ -20,12 +21,14 @@ export function Team() {
     <>
       <section id="team" className="bg-ivory py-24 md:py-32">
         <div className="container-x">
-          <Reveal>
-            <Eyebrow>{tm.eyebrow}</Eyebrow>
-            <h2 className="text-h1 mt-5 max-w-3xl text-emerald">{tm.heading}</h2>
+          <div>
+            <Reveal variant="fade" duration={0.6}><Eyebrow>{tm.eyebrow}</Eyebrow></Reveal>
+            <TextReveal as="h2" className="text-h1 mt-5 max-w-3xl text-emerald" delay={0.1}>{tm.heading}</TextReveal>
+            <Reveal variant="blur" delay={0.35}>
             <p className="text-lead mt-5 max-w-2xl text-muted">{tm.lead}</p>
-          </Reveal>
-          <RevealGroup className="mt-12 grid gap-5 md:grid-cols-3" stagger={0.1}>
+            </Reveal>
+          </div>
+          <RevealGroup className="mt-12 grid gap-5 md:grid-cols-3" stagger={0.1} variant="tilt" distance={44} duration={0.95}>
             {team.map((m) => (
               <RevealItem key={m.name}>
                 <article className="group h-full overflow-hidden rounded-lg bg-white ring-1 ring-emerald/5 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-float">
@@ -67,11 +70,11 @@ export function Team() {
       <section id="research" className="relative overflow-hidden bg-midnight py-24 text-ivory md:py-32">
         <div className="grain absolute inset-0" aria-hidden />
         <div className="container-x relative">
-          <Reveal>
-            <Eyebrow tone="gold">{tm.roadmapEyebrow}</Eyebrow>
-            <h2 className="text-h1 mt-5 max-w-3xl">{tm.roadmapHeading}</h2>
-          </Reveal>
-          <RevealGroup className="mt-14 grid gap-8 md:grid-cols-3" stagger={0.12}>
+          <div>
+            <Reveal variant="fade" duration={0.6}><Eyebrow tone="gold">{tm.roadmapEyebrow}</Eyebrow></Reveal>
+            <TextReveal as="h2" className="text-h1 mt-5 max-w-3xl" delay={0.1}>{tm.roadmapHeading}</TextReveal>
+          </div>
+          <RevealGroup className="mt-14 grid gap-8 md:grid-cols-3" stagger={0.12} variant="blur">
             {tm.milestones.map((m, i) => (
               <RevealItem key={m.when}>
                 <div className="relative border-t border-ivory/15 pt-6">

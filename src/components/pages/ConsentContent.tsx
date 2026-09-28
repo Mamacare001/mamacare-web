@@ -3,6 +3,7 @@
 import { Users, Eye, XCircle, ClipboardList, Baby, HeartHandshake, Stethoscope } from "lucide-react";
 import { PageHero } from "@/components/site/PageHero";
 import { Eyebrow } from "@/components/ui/Eyebrow";
+import { TextReveal } from "@/components/ui/TextReveal";
 import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
 import { Prose } from "@/components/pages/Prose";
 import { useLang } from "@/components/providers/LanguageProvider";
@@ -20,21 +21,17 @@ export function ConsentContent() {
     <>
       <PageHero
         eyebrow={c.hero.eyebrow}
-        title={
-          <>
-            {c.hero.titlePre}<span className="text-coral">{c.hero.titleHighlight}</span>{c.hero.titleSuffix}
-          </>
-        }
+        segments={[c.hero.titlePre, { text: c.hero.titleHighlight, className: "text-coral" }, c.hero.titleSuffix]}
         lead={c.hero.lead}
       />
 
       <section className="bg-white py-20 md:py-28">
         <div className="container-x">
-          <Reveal className="max-w-3xl">
-            <Eyebrow>{c.careCircle.eyebrow}</Eyebrow>
-            <h2 className="text-h1 mt-5 text-emerald">{c.careCircle.heading}</h2>
-          </Reveal>
-          <RevealGroup className="mt-12 grid gap-4 md:grid-cols-2" stagger={0.08}>
+          <div className="max-w-3xl">
+            <Reveal variant="fade" duration={0.6}><Eyebrow>{c.careCircle.eyebrow}</Eyebrow></Reveal>
+            <TextReveal as="h2" className="text-h1 mt-5 text-emerald" delay={0.1}>{c.careCircle.heading}</TextReveal>
+          </div>
+          <RevealGroup className="mt-12 grid gap-4 md:grid-cols-2" stagger={0.08} variant="tilt" distance={44} duration={0.95}>
             {circle.map((it) => (
               <RevealItem key={it.who}>
                 <div className="h-full rounded-lg bg-ivory p-6 ring-1 ring-emerald/5">
@@ -55,10 +52,10 @@ export function ConsentContent() {
 
       <section className="bg-ivory py-20 md:py-28">
         <div className="container-x grid gap-12 lg:grid-cols-12">
-          <Reveal className="lg:col-span-4">
-            <Eyebrow tone="coral">{c.agreeing.eyebrow}</Eyebrow>
-            <h2 className="text-h1 mt-5 text-emerald">{c.agreeing.heading}</h2>
-          </Reveal>
+          <div className="lg:col-span-4">
+            <Reveal variant="fade" duration={0.6}><Eyebrow tone="coral">{c.agreeing.eyebrow}</Eyebrow></Reveal>
+            <TextReveal as="h2" className="text-h1 mt-5 text-emerald" delay={0.1}>{c.agreeing.heading}</TextReveal>
+          </div>
           <Reveal delay={0.1} className="lg:col-span-8">
             <Prose>
               <p><strong>{c.understand}</strong></p>
@@ -81,7 +78,7 @@ export function ConsentContent() {
 
       <section className="bg-white py-20 md:py-28">
         <div className="container-x">
-          <RevealGroup className="grid gap-4 sm:grid-cols-3" stagger={0.1}>
+          <RevealGroup className="grid gap-4 sm:grid-cols-3" stagger={0.1} variant="scale">
             {controls.map((x) => (
               <RevealItem key={x.t}>
                 <div className="flex gap-4 rounded-lg bg-ivory p-6 ring-1 ring-emerald/5">
