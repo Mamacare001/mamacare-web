@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/Button";
+import { FlagGB, FlagRW } from "@/components/ui/Flags";
 import { useLang } from "@/components/providers/LanguageProvider";
 import { cn } from "@/lib/cn";
 
@@ -98,9 +99,11 @@ export function Nav() {
               )}
               aria-label="Switch language"
             >
-              <span className="text-lg leading-none" aria-hidden>
-                {lang === "en" ? "🇷🇼" : "🇬🇧"}
-              </span>
+              {lang === "en" ? (
+                <FlagRW className="h-4 w-auto rounded-[2px]" />
+              ) : (
+                <FlagGB className="h-4 w-auto rounded-[2px]" />
+              )}
             </button>
             <Button href="/login" variant={onDark ? "light" : "secondary"} size="sm">
               {t.nav.signIn}
@@ -187,9 +190,11 @@ export function Nav() {
                   onClick={toggle}
                   className="inline-flex h-11 items-center justify-center gap-2 rounded-full border border-emerald/15 text-sm font-semibold text-emerald"
                 >
-                  <span className="text-base leading-none" aria-hidden>
-                    {lang === "en" ? "🇷🇼" : "🇬🇧"}
-                  </span>
+                  {lang === "en" ? (
+                    <FlagRW className="h-4 w-auto rounded-[2px]" />
+                  ) : (
+                    <FlagGB className="h-4 w-auto rounded-[2px]" />
+                  )}
                   {lang === "en" ? "Kinyarwanda" : "English"}
                 </button>
                 <Button href="/login" variant="secondary" size="lg">

@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { useLang } from "@/components/providers/LanguageProvider";
+import { FlagGB, FlagRW } from "@/components/ui/Flags";
 import type { Lang } from "@/lib/i18n";
 
 const STORAGE_KEY = "mamacare.lang";
@@ -168,9 +169,7 @@ export function LanguageSplash() {
                   className="absolute inset-0 -translate-x-full bg-white/20 transition-transform duration-700 ease-out group-hover:translate-x-0"
                   aria-hidden
                 />
-                <span className="relative block text-2xl leading-none" aria-hidden>
-                  🇬🇧
-                </span>
+                <FlagGB className="relative block h-6 w-auto rounded-[3px] shadow-sm" />
                 <span className="relative mt-2 block font-display text-xl font-bold text-white sm:text-2xl">
                   Continue in English
                 </span>
@@ -190,9 +189,7 @@ export function LanguageSplash() {
                   className="absolute inset-0 -translate-x-full bg-emerald/10 transition-transform duration-700 ease-out group-hover:translate-x-0"
                   aria-hidden
                 />
-                <span className="relative block text-2xl leading-none" aria-hidden>
-                  🇷🇼
-                </span>
+                <FlagRW className="relative block h-6 w-auto rounded-[3px] shadow-sm" />
                 <span className="relative mt-2 block font-display text-xl font-bold text-emerald sm:text-2xl">
                   Komeza mu Kinyarwanda
                 </span>
