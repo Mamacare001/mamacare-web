@@ -35,13 +35,9 @@ export function LanguageSplash() {
   const { setLang } = useLang();
   const router = useRouter();
   const reduce = useReducedMotion();
-  const [visible, setVisible] = useState(false);
+  const [visible] = useState(true);
   const [chosen, setChosen] = useState<Lang | null>(null);
   const [slide, setSlide] = useState(0);
-
-  useEffect(() => {
-    setVisible(true);
-  }, []);
 
   useEffect(() => {
     document.body.style.overflow = visible ? "hidden" : "";
