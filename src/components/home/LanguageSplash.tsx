@@ -8,7 +8,6 @@ import { useLang } from "@/components/providers/LanguageProvider";
 import { FlagGB, FlagRW } from "@/components/ui/Flags";
 import type { Lang } from "@/lib/i18n";
 
-const STORAGE_KEY = "mamacare.lang";
 const ease = [0.16, 1, 0.3, 1] as const;
 
 const SLIDES = [
@@ -24,11 +23,13 @@ const SLIDE_SECONDS = 5.5;
 
 /**
  * A full-screen welcome gate at "/" — the first thing any visitor lands
- * on. A slow-panning slideshow of real MamaCare moments (a CHW home
- * visit, a telehealth call, a mother on her phone) plays behind a
- * floating signature mark and two choices: English or Kinyarwanda.
- * Picking one sends the visitor on to "/home". Anyone who already has a
- * saved language is sent straight there without seeing this screen again.
+ * on, every time. A slow-panning slideshow of real MamaCare moments (a
+ * CHW home visit, a telehealth call, a mother on her phone) plays behind
+ * a floating signature mark and two choices: English or Kinyarwanda.
+ * Picking one sends the visitor on to "/home". The choice is still saved
+ * so the rest of the site opens in that language, but "/" itself always
+ * shows this screen — it's the front door, and a visitor arriving here
+ * should always see it, not sometimes be skipped past it.
  */
 export function LanguageSplash() {
   const { setLang } = useLang();
@@ -39,17 +40,7 @@ export function LanguageSplash() {
   const [slide, setSlide] = useState(0);
 
   useEffect(() => {
-    try {
-      const saved = window.localStorage.getItem(STORAGE_KEY);
-      if (saved) {
-        router.replace("/home");
-        return;
-      }
-    } catch {
-      /* ignore */
-    }
     setVisible(true);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
