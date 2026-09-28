@@ -72,7 +72,7 @@ export function Nav() {
             />
           </Link>
 
-          <ul className="hidden items-center gap-8 md:flex">
+          <ul className="hidden items-center gap-8 lg:flex">
             {links.map((l) => (
               <li key={l.href}>
                 <Link
@@ -89,7 +89,7 @@ export function Nav() {
             ))}
           </ul>
 
-          <div className="hidden items-center gap-2 md:flex">
+          <div className="hidden items-center gap-2 lg:flex">
             <button
               type="button"
               onClick={toggle}
@@ -117,7 +117,7 @@ export function Nav() {
             type="button"
             onClick={() => setOpen(true)}
             className={cn(
-              "inline-flex size-11 items-center justify-center rounded-full md:hidden",
+              "inline-flex size-11 items-center justify-center rounded-full lg:hidden",
               onDark ? "text-ivory hover:bg-white/10" : "text-emerald hover:bg-emerald/5",
             )}
             aria-label="Open menu"
@@ -135,7 +135,7 @@ export function Nav() {
             <motion.button
               type="button"
               aria-label="Close menu"
-              className="fixed inset-0 z-[60] bg-midnight/40 backdrop-blur-sm md:hidden"
+              className="fixed inset-0 z-[60] bg-midnight/40 backdrop-blur-sm lg:hidden"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -145,7 +145,7 @@ export function Nav() {
             <motion.aside
               role="dialog"
               aria-modal="true"
-              className="fixed inset-y-0 right-0 z-[70] flex w-[min(88vw,380px)] flex-col bg-ivory p-6 shadow-float md:hidden"
+              className="fixed inset-y-0 right-0 z-[70] flex w-[min(88vw,380px)] flex-col bg-ivory p-6 shadow-float lg:hidden"
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}

@@ -49,7 +49,7 @@ export function Hero() {
             <br />
             <span className="text-coral">{t.hero.title2}</span>
           </motion.h1>
-          <motion.p {...seq(0.7)} className="text-lead mt-6 max-w-[52ch] text-ivory/75">
+          <motion.p {...seq(0.7)} className="text-lead mt-6 max-w-[52ch] text-ivory/75 2xl:max-w-[58ch]">
             {t.hero.lead}
           </motion.p>
           <motion.div {...seq(0.9)} className="mt-9 flex flex-wrap items-center gap-3">
@@ -71,7 +71,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 40, scale: 0.96 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ delay: 1.1, duration: 1, ease }}
-            className="relative mx-auto aspect-[4/5] w-full max-w-[520px] sm:aspect-square md:aspect-[4/5] lg:aspect-[5/6]"
+            className="relative mx-auto aspect-[4/5] w-full max-w-[520px] sm:aspect-square md:aspect-[4/5] lg:aspect-[5/6] 2xl:max-w-[640px]"
           >
             <motion.div
               style={{ y: imgY, scale: imgScale }}

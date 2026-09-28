@@ -149,6 +149,22 @@ body {
   padding-inline: clamp(1rem, 4vw, 3rem);
   max-width: 80rem;
 }
+/* On large monitors a flat 80rem cap leaves the page looking like a small
+   site stranded in empty space. Let the content column grow with very wide
+   viewports instead of freezing at typical-laptop width - text elements
+   keep their own ch-based measure caps, so lines don't get harder to read,
+   the grids and imagery just get more room to breathe. */
+@media (min-width: 96rem) {
+  .container-x {
+    max-width: 92rem;
+    padding-inline: clamp(2rem, 3vw, 4rem);
+  }
+}
+@media (min-width: 120rem) {
+  .container-x {
+    max-width: 104rem;
+  }
+}
 
 .grain::before {
   content: "";
