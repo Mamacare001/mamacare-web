@@ -106,7 +106,7 @@ export function LanguageSplash() {
                     fill
                     priority={slide === 0}
                     sizes="100vw"
-                    className="object-cover"
+                    className="object-cover object-[50%_15%]"
                   />
                 </motion.div>
               </motion.div>
@@ -168,10 +168,10 @@ export function LanguageSplash() {
                   className="absolute inset-0 -translate-x-full bg-white/20 transition-transform duration-700 ease-out group-hover:translate-x-0"
                   aria-hidden
                 />
-                <span className="relative block text-xs font-semibold uppercase tracking-[0.28em] text-white/70">
-                  EN
+                <span className="relative block text-2xl leading-none" aria-hidden>
+                  🇬🇧
                 </span>
-                <span className="relative mt-1.5 block font-display text-xl font-bold text-white sm:text-2xl">
+                <span className="relative mt-2 block font-display text-xl font-bold text-white sm:text-2xl">
                   Continue in English
                 </span>
               </motion.button>
@@ -190,10 +190,10 @@ export function LanguageSplash() {
                   className="absolute inset-0 -translate-x-full bg-emerald/10 transition-transform duration-700 ease-out group-hover:translate-x-0"
                   aria-hidden
                 />
-                <span className="relative block text-xs font-semibold uppercase tracking-[0.28em] text-emerald/60">
-                  RW
+                <span className="relative block text-2xl leading-none" aria-hidden>
+                  🇷🇼
                 </span>
-                <span className="relative mt-1.5 block font-display text-xl font-bold text-emerald sm:text-2xl">
+                <span className="relative mt-2 block font-display text-xl font-bold text-emerald sm:text-2xl">
                   Komeza mu Kinyarwanda
                 </span>
               </motion.button>

@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { Menu, X, Globe } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { useLang } from "@/components/providers/LanguageProvider";
 import { cn } from "@/lib/cn";
@@ -98,8 +98,9 @@ export function Nav() {
               )}
               aria-label="Switch language"
             >
-              <Globe className="size-4" aria-hidden />
-              {lang === "en" ? "RW" : "EN"}
+              <span className="text-lg leading-none" aria-hidden>
+                {lang === "en" ? "🇷🇼" : "🇬🇧"}
+              </span>
             </button>
             <Button href="/login" variant={onDark ? "light" : "secondary"} size="sm">
               {t.nav.signIn}
@@ -186,7 +187,9 @@ export function Nav() {
                   onClick={toggle}
                   className="inline-flex h-11 items-center justify-center gap-2 rounded-full border border-emerald/15 text-sm font-semibold text-emerald"
                 >
-                  <Globe className="size-4" aria-hidden />
+                  <span className="text-base leading-none" aria-hidden>
+                    {lang === "en" ? "🇷🇼" : "🇬🇧"}
+                  </span>
                   {lang === "en" ? "Kinyarwanda" : "English"}
                 </button>
                 <Button href="/login" variant="secondary" size="lg">
