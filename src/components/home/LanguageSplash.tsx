@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { useLang } from "@/components/providers/LanguageProvider";
 import type { Lang } from "@/lib/i18n";
@@ -9,26 +10,45 @@ import type { Lang } from "@/lib/i18n";
 const STORAGE_KEY = "mamacare.lang";
 const ease = [0.16, 1, 0.3, 1] as const;
 
+const SLIDES = [
+  { src: "/images/chw-visit.jpg", alt: "A Community Health Worker visiting a mother at home" },
+  { src: "/images/mother-home-phone.jpg", alt: "A mother checking in with MamaCare from her phone" },
+  { src: "/images/telehealth-call.jpg", alt: "A telehealth video call with a clinician" },
+  { src: "/images/provider-tablet.jpg", alt: "A health provider reviewing a case on a tablet" },
+  { src: "/images/family-together.jpg", alt: "A family together at home" },
+  { src: "/images/chat-on-phone.jpg", alt: "Chatting with MamaCare on a phone" },
+];
+
+const SLIDE_SECONDS = 5.5;
+
 /**
- * A full-screen welcome gate shown once, before a first-time visitor ever
- * sees the homepage. An ambient aurora backdrop and a floating signature
- * mark frame two choices — English or Kinyarwanda — then dissolve to
- * reveal the site underneath. Returning visitors (anyone with a saved
- * language) never see it again.
+ * A full-screen welcome gate at "/" — the first thing any visitor lands
+ * on. A slow-panning slideshow of real MamaCare moments (a CHW home
+ * visit, a telehealth call, a mother on her phone) plays behind a
+ * floating signature mark and two choices: English or Kinyarwanda.
+ * Picking one sends the visitor on to "/home". Anyone who already has a
+ * saved language is sent straight there without seeing this screen again.
  */
 export function LanguageSplash() {
   const { setLang } = useLang();
+  const router = useRouter();
   const reduce = useReducedMotion();
   const [visible, setVisible] = useState(false);
   const [chosen, setChosen] = useState<Lang | null>(null);
+  const [slide, setSlide] = useState(0);
 
   useEffect(() => {
     try {
       const saved = window.localStorage.getItem(STORAGE_KEY);
-      if (!saved) setVisible(true);
+      if (saved) {
+        router.replace("/home");
+        return;
+      }
     } catch {
       /* ignore */
     }
+    setVisible(true);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -38,10 +58,16 @@ export function LanguageSplash() {
     };
   }, [visible]);
 
+  useEffect(() => {
+    if (!visible) return;
+    const id = window.setInterval(() => setSlide((s) => (s + 1) % SLIDES.length), SLIDE_SECONDS * 1000);
+    return () => window.clearInterval(id);
+  }, [visible]);
+
   const choose = (lang: Lang) => {
     setLang(lang);
     setChosen(lang);
-    window.setTimeout(() => setVisible(false), reduce ? 0 : 650);
+    window.setTimeout(() => router.push("/home"), reduce ? 0 : 650);
   };
 
   return (
@@ -57,30 +83,42 @@ export function LanguageSplash() {
           aria-modal="true"
           aria-label="Choose your language · Hitamo ururimi"
         >
-          {/* aurora backdrop */}
+          {/* photo slideshow */}
+          <div className="absolute inset-0 -z-20" aria-hidden>
+            <AnimatePresence initial={false}>
+              <motion.div
+                key={slide}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0, transition: { duration: 1.2, ease } }}
+                transition={{ duration: 1.2, ease }}
+                className="absolute inset-0"
+              >
+                <motion.div
+                  initial={{ scale: 1 }}
+                  animate={{ scale: reduce ? 1 : 1.09 }}
+                  transition={{ duration: SLIDE_SECONDS + 1.2, ease: "linear" }}
+                  className="absolute inset-0"
+                >
+                  <Image
+                    src={SLIDES[slide].src}
+                    alt={SLIDES[slide].alt}
+                    fill
+                    priority={slide === 0}
+                    sizes="100vw"
+                    className="object-cover"
+                  />
+                </motion.div>
+              </motion.div>
+            </AnimatePresence>
+          </div>
+
+          {/* legibility wash + grain */}
           <div className="absolute inset-0 -z-10" aria-hidden>
-            <motion.div
-              className="absolute -left-1/3 -top-1/4 size-[65vmax] rounded-full bg-emerald/50 blur-[130px]"
-              animate={reduce ? undefined : { x: [0, 50, -20, 0], y: [0, 30, -15, 0] }}
-              transition={{ duration: 24, repeat: Infinity, ease: "easeInOut" }}
-            />
-            <motion.div
-              className="absolute -right-1/3 -bottom-1/4 size-[60vmax] rounded-full bg-coral/25 blur-[130px]"
-              animate={reduce ? undefined : { x: [0, -40, 25, 0], y: [0, -25, 15, 0] }}
-              transition={{ duration: 28, repeat: Infinity, ease: "easeInOut" }}
-            />
-            <motion.div
-              className="absolute left-1/3 top-1/3 size-[42vmax] -translate-x-1/2 -translate-y-1/2 rounded-full bg-violet/25 blur-[120px]"
-              animate={reduce ? undefined : { scale: [1, 1.15, 1] }}
-              transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
-            />
-            <motion.div
-              className="absolute right-1/4 top-1/4 size-[30vmax] rounded-full bg-gold/20 blur-[100px]"
-              animate={reduce ? undefined : { scale: [1, 1.2, 1], opacity: [0.6, 1, 0.6] }}
-              transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
-            />
-            <div className="absolute inset-0 bg-midnight/45" />
-            <div className="grain absolute inset-0" />
+            <div className="absolute inset-0 bg-midnight/72" />
+            <div className="absolute inset-0 bg-gradient-to-t from-midnight via-midnight/35 to-midnight/25" />
+            <div className="absolute inset-0 bg-[radial-gradient(60%_50%_at_50%_35%,rgb(46_139_112/0.3),transparent_65%)]" />
+            <div className="grain absolute inset-0 opacity-70" />
           </div>
 
           <motion.div
@@ -161,6 +199,18 @@ export function LanguageSplash() {
               </motion.button>
             </div>
           </motion.div>
+
+          {/* slide progress */}
+          <div className="absolute bottom-8 left-1/2 flex -translate-x-1/2 gap-1.5" aria-hidden>
+            {SLIDES.map((s, i) => (
+              <span
+                key={s.src}
+                className={`h-1 rounded-full transition-all duration-500 ${
+                  i === slide ? "w-6 bg-ivory/80" : "w-1.5 bg-ivory/30"
+                }`}
+              />
+            ))}
+          </div>
         </motion.div>
       )}
     </AnimatePresence>

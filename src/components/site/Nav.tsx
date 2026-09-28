@@ -10,7 +10,7 @@ import { Button } from "@/components/ui/Button";
 import { useLang } from "@/components/providers/LanguageProvider";
 import { cn } from "@/lib/cn";
 
-const DARK_HERO_ROUTES = ["/"]; // routes whose hero is dark → light text over hero
+const DARK_HERO_ROUTES = ["/home"]; // routes whose hero is dark → light text over hero
 
 export function Nav() {
   const pathname = usePathname();
@@ -40,7 +40,7 @@ export function Nav() {
   }, [open]);
 
   const links = [
-    { href: "/", label: t.nav.home },
+    { href: "/home", label: t.nav.home },
     { href: "/about", label: t.nav.about },
     { href: "/how-it-works", label: t.nav.how },
     { href: "/partners", label: t.nav.partners },
@@ -59,7 +59,7 @@ export function Nav() {
         )}
       >
         <nav className="container-x flex h-[72px] items-center justify-between md:h-20" aria-label="Main">
-          <Link href="/" className="flex items-center gap-2.5" aria-label="MamaCare home">
+          <Link href="/home" className="flex items-center gap-2.5" aria-label="MamaCare home">
             <Image src="/brand/mark.png" alt="" width={40} height={46} priority className="h-10 w-auto" />
             <Image
               src={onDark ? "/brand/wordmark-white.png" : "/brand/wordmark.png"}

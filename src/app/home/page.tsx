@@ -1,5 +1,12 @@
 import type { Metadata } from "next";
-import { LanguageSplash } from "@/components/home/LanguageSplash";
+import { Hero } from "@/components/home/Hero";
+import { Story } from "@/components/home/Story";
+import { Connects } from "@/components/home/Connects";
+import { HowItWorks } from "@/components/home/HowItWorks";
+import { ChatPreview } from "@/components/home/ChatPreview";
+import { Stats } from "@/components/home/Stats";
+import { Safety } from "@/components/home/Safety";
+import { CtaBand } from "@/components/home/CtaBand";
 
 export const metadata: Metadata = {
   title: "MamaCare — Maternal Health Early-Warning Platform for Rwanda",
@@ -15,12 +22,12 @@ export const metadata: Metadata = {
     "antenatal care Rwanda",
     "maternal health AI",
   ],
-  alternates: { canonical: "/" },
+  alternates: { canonical: "/home" },
   openGraph: {
     title: "MamaCare — The warning can come before the emergency",
     description:
       "An AI-supported maternal-health early-warning platform connecting mothers, families, CHWs and clinics across Rwanda.",
-    url: "/",
+    url: "/home",
     images: ["/images/mother-home-phone.jpg"],
     type: "website",
   },
@@ -45,11 +52,18 @@ const jsonLd = {
   sameAs: [] as string[],
 };
 
-export default function LandingPage() {
+export default function HomePage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <LanguageSplash />
+      <Hero />
+      <Story />
+      <Connects />
+      <HowItWorks />
+      <ChatPreview />
+      <Stats />
+      <Safety />
+      <CtaBand />
     </>
   );
 }
