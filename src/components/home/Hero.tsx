@@ -37,14 +37,60 @@ export function Hero() {
         <div className="grain absolute inset-0" />
       </motion.div>
 
+      {/* the mark, huge and faint, as a watermark signature behind everything */}
+      <motion.div
+        aria-hidden
+        initial={{ opacity: 0, scale: 0.92 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 1.6, ease }}
+        className="pointer-events-none absolute -right-[8%] top-[6%] -z-10 w-[46vw] max-w-[620px] opacity-[0.07] mix-blend-screen sm:w-[38vw] md:-right-[4%] md:top-[2%]"
+      >
+        <Image src="/brand/mark.png" alt="" width={974} height={1128} className="h-auto w-full" priority={false} />
+      </motion.div>
+
       <div className="container-x grid min-h-[100svh] items-center gap-12 pb-20 pt-32 md:grid-cols-12 md:gap-8 md:pb-24 md:pt-36 lg:pt-40">
         {/* copy */}
         <div className="md:col-span-6 lg:col-span-6">
+          {/* the mark as a small glowing seal, the first thing to appear */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.7, y: -10 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ delay: 0.15, duration: 0.9, ease }}
+            className="relative mb-6 inline-flex"
+          >
+            <span className="absolute inset-0 -z-10 rounded-full bg-gold/25 blur-xl" aria-hidden />
+            <span className="absolute inset-0 -z-10 rounded-full bg-coral/20 animate-pulse-ring" aria-hidden />
+            <span className="relative grid size-16 place-items-center rounded-full bg-ivory/10 ring-1 ring-ivory/20 backdrop-blur-sm sm:size-[72px]">
+              <Image src="/brand/mark.png" alt="MamaCare" width={502} height={580} className="h-10 w-auto sm:h-[46px]" priority />
+            </span>
+          </motion.div>
+
           <motion.p {...seq(0.5)} className="text-eyebrow flex items-center gap-3 text-gold">
             <EyebrowArrow />
             {t.hero.eyebrow}
           </motion.p>
-          <motion.h1 {...seq(0.5)} className="text-display mt-6">
+
+          {/* the heartbeat trace — draws itself in once, sits in the normal text flow so it never collides with wrapped headline text */}
+          <motion.svg
+            aria-hidden
+            viewBox="0 0 460 32"
+            preserveAspectRatio="none"
+            className="mt-3 h-5 w-full max-w-[460px] opacity-70"
+          >
+            <motion.path
+              d="M0,16 L172,16 L188,16 L198,2 L209,29 L220,9 L231,16 L460,16"
+              fill="none"
+              stroke="#F4C95D"
+              strokeWidth={2}
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              initial={{ pathLength: 0, opacity: 0 }}
+              animate={{ pathLength: 1, opacity: 1 }}
+              transition={{ delay: 0.65, duration: reduce ? 0 : 1.6, ease: "easeInOut" }}
+            />
+          </motion.svg>
+
+          <motion.h1 {...seq(0.5)} className="text-display mt-3">
             {t.hero.title1}
             <br />
             <span className="text-coral">{t.hero.title2}</span>

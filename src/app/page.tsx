@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { LanguageSplash } from "@/components/home/LanguageSplash";
 import { Hero } from "@/components/home/Hero";
 import { Story } from "@/components/home/Story";
 import { Connects } from "@/components/home/Connects";
@@ -56,6 +57,7 @@ export default function HomePage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <LanguageSplash />
       <Hero />
       <Story />
       <Connects />
