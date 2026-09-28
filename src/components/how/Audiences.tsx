@@ -4,35 +4,18 @@ import Image from "next/image";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Reveal } from "@/components/ui/Reveal";
 import { Button } from "@/components/ui/Button";
+import { useLang } from "@/components/providers/LanguageProvider";
 
-const audiences = [
-  {
-    id: "mothers",
-    eyebrow: "For mothers",
-    title: "Describe how you feel, in your own words.",
-    text: "No forms, no medical language. Tell MamaCare what is happening — a headache, swelling, less movement — and it will ask the right follow-up questions and tell you what to do next. Core check-ins by SMS and WhatsApp are always free.",
-    image: "/images/mother-home-phone.jpg",
-    cta: "Start a check-in",
-  },
-  {
-    id: "families",
-    eyebrow: "For families",
-    title: "You notice things she might not mention.",
-    text: "A partner, a mother, a sister can report what they see — with her consent — so a sign noticed at home reaches the people who can act on it.",
-    image: "/images/family-together.jpg",
-    cta: "Support someone",
-  },
-  {
-    id: "health-workers",
-    eyebrow: "For CHWs & providers",
-    title: "One timeline. No retyping. A closed loop.",
-    text: "See every pregnancy in your caseload, review escalations, record visit observations in seconds and get feedback from the clinic on what happened next — the gap 100% of interviewed CHWs identified.",
-    image: "/images/provider-tablet.jpg",
-    cta: "Request access",
-  },
+const meta = [
+  { id: "mothers", image: "/images/mother-home-phone.jpg" },
+  { id: "families", image: "/images/family-together.jpg" },
+  { id: "health-workers", image: "/images/provider-tablet.jpg" },
 ];
 
 export function Audiences() {
+  const { t } = useLang();
+  const audiences = t.how.audiences.map((a, i) => ({ ...a, ...meta[i] }));
+
   return (
     <section className="bg-ivory py-24 md:py-32">
       <div className="container-x space-y-24 md:space-y-32">

@@ -3,45 +3,26 @@
 import { Info, PhoneCall, Siren } from "lucide-react";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
+import { useLang } from "@/components/providers/LanguageProvider";
 
-const levels = [
-  {
-    level: "Low",
-    icon: Info,
-    color: "bg-green text-ivory",
-    ring: "ring-green/20",
-    action: "Provide safe information and self-care advice",
-    text: "Reassurance, what to watch for, and a scheduled follow-up check-in.",
-  },
-  {
-    level: "Moderate",
-    icon: PhoneCall,
-    color: "bg-gold text-midnight",
-    ring: "ring-gold/40",
-    action: "Recommend contact with a healthcare professional",
-    text: "The CHW is notified and a visit or call is arranged within an agreed time window.",
-  },
-  {
-    level: "High",
-    icon: Siren,
-    color: "bg-coral text-white",
-    ring: "ring-coral/30",
-    action: "Escalate through the right care pathway",
-    text: "Immediate alert to the CHW and the linked health facility, with clear instructions for the family.",
-  },
+const meta = [
+  { icon: Info, color: "bg-green text-ivory", ring: "ring-green/20" },
+  { icon: PhoneCall, color: "bg-gold text-midnight", ring: "ring-gold/40" },
+  { icon: Siren, color: "bg-coral text-white", ring: "ring-coral/30" },
 ];
 
 export function RiskLevels() {
+  const { t } = useLang();
+  const rl = t.how.riskLevels;
+  const levels = rl.levels.map((l, i) => ({ ...l, ...meta[i] }));
+
   return (
     <section className="bg-white py-24 md:py-32">
       <div className="container-x">
         <Reveal className="max-w-3xl">
-          <Eyebrow tone="coral">Guided by medical rules</Eyebrow>
-          <h2 className="text-h1 mt-5 text-emerald">Three levels. One clear next step.</h2>
-          <p className="text-lead mt-5 text-muted">
-            The risk model produces an interpretable score. Medically reviewed rules translate it into an action — never a
-            diagnosis.
-          </p>
+          <Eyebrow tone="coral">{rl.eyebrow}</Eyebrow>
+          <h2 className="text-h1 mt-5 text-emerald">{rl.heading}</h2>
+          <p className="text-lead mt-5 text-muted">{rl.lead}</p>
         </Reveal>
         <RevealGroup className="mt-12 grid gap-5 md:grid-cols-3" stagger={0.12}>
           {levels.map((l) => (
@@ -50,7 +31,7 @@ export function RiskLevels() {
                 <div className="flex items-center justify-between">
                   <span className={`inline-flex items-center gap-2 rounded-full px-3 py-1 text-sm font-bold ${l.color}`}>
                     <l.icon className="size-4" aria-hidden />
-                    {l.level} risk
+                    {l.level} {rl.riskSuffix}
                   </span>
                 </div>
                 <h3 className="text-h3 mt-6 text-emerald">{l.action}</h3>

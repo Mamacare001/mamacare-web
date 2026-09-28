@@ -10,31 +10,35 @@ import { roles, type Role } from "@/lib/mock/careers";
 import { submitApplication, submitIdea } from "@/app/join/actions";
 import { Conversation, Done, type Q } from "@/components/join/Conversation";
 import { cn } from "@/lib/cn";
+import { useLang } from "@/components/providers/LanguageProvider";
+import type { Dict } from "@/lib/i18n";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
-const applyQs = (role?: Role): Q[] => [
-  { name: "name", ask: "First things first — what should we call you?", kind: "text", placeholder: "Your name" },
-  { name: "contact", ask: "And how do we reach you?", hint: "Email or phone. We reply to everyone, within 14 days.", kind: "contact", placeholder: "you@example.com · 078 …" },
-  { name: "where", ask: "Where are you based?", hint: "Most roles are in Kigali or in the field; some can be hybrid.", kind: "text", placeholder: "Kigali, Huye, Nairobi…" },
+const applyQs = (j: Dict["join"], role?: Role): Q[] => [
+  { name: "name", ask: j.applyQ.name.ask, kind: "text", placeholder: j.applyQ.name.placeholder },
+  { name: "contact", ask: j.applyQ.contact.ask, hint: j.applyQ.contact.hint, kind: "contact", placeholder: j.applyQ.contact.placeholder },
+  { name: "where", ask: j.applyQ.where.ask, hint: j.applyQ.where.hint, kind: "text", placeholder: j.applyQ.where.placeholder },
   role
-    ? { name: "pitch", ask: `What would you do in your first 90 days as ${role.title.toLowerCase()}?`, hint: "Not a CV summary. Tell us what you would actually change.", kind: "textarea", placeholder: "In my first month I would…" }
-    : { name: "pitch", ask: "Write your own role. What would you do here, and why does it matter for a mother in Gasabo?", hint: "The best people here invented their job. Be specific.", kind: "textarea", placeholder: "I would…" },
-  { name: "link", ask: "Anything we should look at?", hint: "LinkedIn, GitHub, a portfolio, a paper, a video. Optional.", kind: "text", placeholder: "https://", optional: true },
-  { name: "cv", ask: "A CV, if you have one.", hint: "Optional. We read the answer above first.", kind: "file", accept: ".pdf", optional: true },
+    ? { name: "pitch", ask: `${j.applyQ.pitchRolePre}${role.title.toLowerCase()}${j.applyQ.pitchRoleSuffix}`, hint: j.applyQ.pitchRoleHint, kind: "textarea", placeholder: j.applyQ.pitchRolePlaceholder }
+    : { name: "pitch", ask: j.applyQ.pitchOwn.ask, hint: j.applyQ.pitchOwn.hint, kind: "textarea", placeholder: j.applyQ.pitchOwn.placeholder },
+  { name: "link", ask: j.applyQ.link.ask, hint: j.applyQ.link.hint, kind: "text", placeholder: j.applyQ.link.placeholder, optional: true },
+  { name: "cv", ask: j.applyQ.cv.ask, hint: j.applyQ.cv.hint, kind: "file", accept: ".pdf", optional: true },
 ];
 
-const ideaQs: Q[] = [
-  { name: "who", ask: "Who is speaking?", hint: "Ideas from mothers and CHWs go to the top of the pile.", kind: "choice", options: ["Mother", "Family member", "CHW", "Clinician", "Researcher", "Developer", "Other"] },
-  { name: "title", ask: "Give your idea a name.", kind: "text", placeholder: "e.g. ‘Cover me’ button for sick CHWs" },
-  { name: "problem", ask: "What is the problem you keep running into?", hint: "One real moment is better than a theory.", kind: "textarea", placeholder: "Last week…" },
-  { name: "idea", ask: "What would you build, change or stop doing?", kind: "textarea", placeholder: "It would…" },
-  { name: "involved", ask: "If we build it, do you want to be part of it?", hint: "Testing, co-designing, or simply your name on it.", kind: "yesno" },
-  { name: "name", ask: "Your name — or ‘Anonymous’.", kind: "text", placeholder: "Name" },
-  { name: "contact", ask: "How do we reply?", hint: "Phone, WhatsApp or email. Optional if anonymous.", kind: "contact", placeholder: "078 … · you@example.com", optional: true },
+const ideaQs = (j: Dict["join"]): Q[] => [
+  { name: "who", ask: j.ideaQ.who.ask, hint: j.ideaQ.who.hint, kind: "choice", options: ["Mother", "Family member", "CHW", "Clinician", "Researcher", "Developer", "Other"] },
+  { name: "title", ask: j.ideaQ.title.ask, kind: "text", placeholder: j.ideaQ.title.placeholder },
+  { name: "problem", ask: j.ideaQ.problem.ask, hint: j.ideaQ.problem.hint, kind: "textarea", placeholder: j.ideaQ.problem.placeholder },
+  { name: "idea", ask: j.ideaQ.idea.ask, kind: "textarea", placeholder: j.ideaQ.idea.placeholder },
+  { name: "involved", ask: j.ideaQ.involved.ask, hint: j.ideaQ.involved.hint, kind: "yesno" },
+  { name: "name", ask: j.ideaQ.name.ask, kind: "text", placeholder: j.ideaQ.name.placeholder },
+  { name: "contact", ask: j.ideaQ.contact.ask, hint: j.ideaQ.contact.hint, kind: "contact", placeholder: j.ideaQ.contact.placeholder, optional: true },
 ];
 
 export function JoinPage() {
+  const { t } = useLang();
+  const j = t.join;
   const [door, setDoor] = useState<"work" | "idea" | null>(null);
   const [role, setRole] = useState<Role | undefined>();
   const formRef = useRef<HTMLDivElement>(null);
@@ -45,22 +49,24 @@ export function JoinPage() {
 
   const openRole = (r?: Role) => { setRole(r); setDoor("work"); };
 
+  const doors = [
+    { k: "work" as const, icon: Briefcase, eyebrow: j.doorWork.eyebrow, title: j.doorWork.title, text: `${roles.length}${j.doorWork.textSuffix}`, tone: "bg-emerald text-ivory", ring: "group-hover:ring-emerald" },
+    { k: "idea" as const, icon: Lightbulb, eyebrow: j.doorIdea.eyebrow, title: j.doorIdea.title, text: j.doorIdea.text, tone: "bg-coral text-white", ring: "group-hover:ring-coral" },
+  ];
+
   return (
     <>
       {/* Hero — two doors */}
       <section className="bg-ivory pb-16 pt-32 md:pb-24 md:pt-44">
         <div className="container-x">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3, duration: 0.7, ease }}>
-            <Eyebrow>Join the loop</Eyebrow>
-            <h1 className="text-display mt-6 max-w-[16ch] text-emerald">Some people apply. Some people arrive with an idea.</h1>
-            <p className="text-lead mt-6 max-w-[56ch] text-muted">Both doors lead to the same room. Pick the one that feels like you — we answer everyone within 14 days, and we mean everyone.</p>
+            <Eyebrow>{j.hero.eyebrow}</Eyebrow>
+            <h1 className="text-display mt-6 max-w-[16ch] text-emerald">{j.hero.title}</h1>
+            <p className="text-lead mt-6 max-w-[56ch] text-muted">{j.hero.lead}</p>
           </motion.div>
 
           <div className="mt-12 grid gap-4 md:grid-cols-2 md:gap-6">
-            {[
-              { k: "work" as const, icon: Briefcase, eyebrow: "Door one", title: "I want to work here.", text: `${roles.length} open roles — or write your own. We have hired people for jobs that did not exist until they described them.`, tone: "bg-emerald text-ivory", ring: "group-hover:ring-emerald" },
-              { k: "idea" as const, icon: Lightbulb, eyebrow: "Door two", title: "I have an idea.", text: "You are a mother, a CHW, a nurse, a developer, a neighbour. You saw something we missed. Tell us — in three questions.", tone: "bg-coral text-white", ring: "group-hover:ring-coral" },
-            ].map((d, i) => (
+            {doors.map((d, i) => (
               <motion.button
                 key={d.k}
                 type="button"
@@ -76,7 +82,7 @@ export function JoinPage() {
                   <p className="mt-6 text-eyebrow opacity-70">{d.eyebrow}</p>
                   <p className="mt-2 font-display text-3xl leading-tight md:text-4xl">{d.title}</p>
                   <p className="mt-3 max-w-[40ch] text-[15px] leading-relaxed opacity-85">{d.text}</p>
-                  <span className="mt-6 inline-flex items-center gap-2 text-sm font-semibold">Open the door <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" /></span>
+                  <span className="mt-6 inline-flex items-center gap-2 text-sm font-semibold">{j.openDoor} <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" /></span>
                 </div>
               </motion.button>
             ))}
@@ -88,8 +94,8 @@ export function JoinPage() {
       <section id="roles" className="bg-ivory-200/60 py-20 md:py-28">
         <div className="container-x">
           <Reveal>
-            <Eyebrow tone="coral">Open roles</Eyebrow>
-            <h2 className="text-h1 mt-5 text-emerald">Jobs written as what you would do — not what you must have.</h2>
+            <Eyebrow tone="coral">{j.rolesEyebrow}</Eyebrow>
+            <h2 className="text-h1 mt-5 text-emerald">{j.rolesHeading}</h2>
           </Reveal>
           <RevealGroup className="mt-10 grid gap-4 md:grid-cols-2" stagger={0.08}>
             {roles.map((r) => (
@@ -97,16 +103,16 @@ export function JoinPage() {
                 <article className="group flex h-full flex-col rounded-2xl bg-white p-6 ring-1 ring-emerald/10 transition-shadow hover:shadow-float md:p-7">
                   <div className="flex flex-wrap items-center gap-2">
                     <span className="rounded-full bg-emerald/5 px-2.5 py-1 text-[11px] font-bold uppercase tracking-wider text-emerald">{r.team}</span>
-                    {r.urgent && <span className="rounded-full bg-coral-100 px-2.5 py-1 text-[11px] font-bold uppercase tracking-wider text-coral">Hiring now</span>}
+                    {r.urgent && <span className="rounded-full bg-coral-100 px-2.5 py-1 text-[11px] font-bold uppercase tracking-wider text-coral">{j.hiringNow}</span>}
                   </div>
                   <h3 className="mt-4 font-display text-2xl text-emerald">{r.title}</h3>
                   <p className="mt-1 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-muted"><span className="inline-flex items-center gap-1"><Clock className="size-3.5" /> {r.type}</span><span className="inline-flex items-center gap-1"><MapPin className="size-3.5" /> {r.where}</span></p>
-                  <p className="mt-4 text-eyebrow text-muted">You would</p>
+                  <p className="mt-4 text-eyebrow text-muted">{j.youWouldLabel}</p>
                   <ul className="mt-1 space-y-1 text-sm text-ink/85">{r.youWould.map((y) => <li key={y} className="flex gap-2"><span className="mt-2 size-1.5 shrink-0 rounded-full bg-coral" />{y}</li>)}</ul>
-                  <p className="mt-4 text-eyebrow text-muted">You might be</p>
+                  <p className="mt-4 text-eyebrow text-muted">{j.youMightBeLabel}</p>
                   <ul className="mt-1 space-y-1 text-sm text-ink/85">{r.youMightBe.map((y) => <li key={y} className="flex gap-2"><span className="mt-2 size-1.5 shrink-0 rounded-full bg-green" />{y}</li>)}</ul>
                   <div className="mt-auto pt-6">
-                    <Button variant="primary" size="sm" onClick={() => openRole(r)} arrow>Apply in 6 questions</Button>
+                    <Button variant="primary" size="sm" onClick={() => openRole(r)} arrow>{j.applyBtn}</Button>
                   </div>
                 </article>
               </RevealItem>
@@ -115,10 +121,10 @@ export function JoinPage() {
               <button type="button" onClick={() => openRole(undefined)} className="group flex h-full w-full flex-col justify-between rounded-2xl border-2 border-dashed border-emerald/25 p-6 text-left transition-colors hover:border-coral md:p-7">
                 <div>
                   <span className="grid size-12 place-items-center rounded-full bg-gold-100 text-[#8a6a10]"><Sparkles className="size-6" /></span>
-                  <h3 className="mt-4 font-display text-2xl text-emerald">None of these? Write your own role.</h3>
-                  <p className="mt-2 text-sm text-muted">Tell us what you would do and why it matters for a mother in Gasabo. Three of our best conversations started this way.</p>
+                  <h3 className="mt-4 font-display text-2xl text-emerald">{j.writeOwn.title}</h3>
+                  <p className="mt-2 text-sm text-muted">{j.writeOwn.text}</p>
                 </div>
-                <span className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-coral">Start <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" /></span>
+                <span className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-coral">{j.writeOwn.cta} <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" /></span>
               </button>
             </RevealItem>
           </RevealGroup>
@@ -134,34 +140,34 @@ export function JoinPage() {
               <div className="mx-auto max-w-3xl">
                 <div className="mb-8 flex items-start justify-between gap-4">
                   <div>
-                    <Eyebrow tone="coral">{door === "work" ? (role ? role.title : "Write your own role") : "The idea box"}</Eyebrow>
-                    <h2 className="text-h2 mt-4 text-emerald">{door === "work" ? "Six questions. One at a time — the way we talk to mothers." : "Seven questions. The way we ask mothers."}</h2>
+                    <Eyebrow tone="coral">{door === "work" ? (role ? role.title : j.conversationWork.writeOwnRoleTitle) : j.conversationIdea.ideaEyebrow}</Eyebrow>
+                    <h2 className="text-h2 mt-4 text-emerald">{door === "work" ? j.conversationWork.sixQuestions : j.conversationIdea.sevenQuestions}</h2>
                   </div>
-                  <button type="button" onClick={() => setDoor(null)} aria-label="Close" className="grid size-10 shrink-0 place-items-center rounded-full bg-white text-emerald ring-1 ring-emerald/10 hover:bg-coral hover:text-white"><X className="size-5" /></button>
+                  <button type="button" onClick={() => setDoor(null)} aria-label={j.closeAria} className="grid size-10 shrink-0 place-items-center rounded-full bg-white text-emerald ring-1 ring-emerald/10 hover:bg-coral hover:text-white"><X className="size-5" /></button>
                 </div>
                 {door === "work" ? (
                   <Conversation
                     key={role?.id ?? "open"}
-                    questions={applyQs(role)}
+                    questions={applyQs(j, role)}
                     action={submitApplication}
-                    hidden={{ roleId: role?.id ?? "open", roleTitle: role?.title ?? "Write your own role" }}
-                    submitLabel="Send it"
+                    hidden={{ roleId: role?.id ?? "open", roleTitle: role?.title ?? j.conversationWork.writeOwnRoleTitle }}
+                    submitLabel={j.applySubmitLabel}
                     done={(ref) => (
-                      <Done refCode={ref} title="We have it. A human will read it." text="Not a filter, not a keyword scan — one of us reads every application. Expect a reply within 14 days. If you do not hear from us, write to us with that reference and we will apologise properly.">
-                        <Button href="/about#team" variant="light">Meet who reads it</Button>
-                        <Button href="/join" variant="ghost" className="!text-ivory">Back to roles</Button>
+                      <Done refCode={ref} title={j.doneApply.title} text={j.doneApply.text}>
+                        <Button href="/about#team" variant="light">{j.doneApply.meetBtn}</Button>
+                        <Button href="/join" variant="ghost" className="!text-ivory">{j.doneApply.backBtn}</Button>
                       </Done>
                     )}
                   />
                 ) : (
                   <Conversation
                     key="idea"
-                    questions={ideaQs}
+                    questions={ideaQs(j)}
                     action={submitIdea}
-                    submitLabel="Drop it in the box"
+                    submitLabel={j.ideaSubmitLabel}
                     done={(ref) => (
-                      <Done refCode={ref} title="Thank you. That is exactly how MamaCare gets better." text="Every idea gets a reply within 14 days — adopted, parked, or ‘tell us more’. If we build it, your name goes on it, unless you asked us not to.">
-                        <Button href="/how-it-works" variant="light">See what exists today</Button>
+                      <Done refCode={ref} title={j.doneIdea.title} text={j.doneIdea.text}>
+                        <Button href="/how-it-works" variant="light">{j.doneIdea.seeBtn}</Button>
                       </Done>
                     )}
                   />
@@ -176,16 +182,11 @@ export function JoinPage() {
       <section className="relative overflow-hidden bg-midnight py-20 text-ivory md:py-28">
         <div className="grain absolute inset-0" aria-hidden />
         <div className="container-x relative">
-          <Reveal><Eyebrow tone="gold">How we hire</Eyebrow><h2 className="text-h1 mt-5 max-w-3xl">No trick questions. No ghosting. One field day.</h2></Reveal>
+          <Reveal><Eyebrow tone="gold">{j.howWeHire.eyebrow}</Eyebrow><h2 className="text-h1 mt-5 max-w-3xl">{j.howWeHire.heading}</h2></Reveal>
           <RevealGroup className="mt-12 grid gap-8 md:grid-cols-4" stagger={0.1}>
-            {[
-              ["01", "A human reads it", "Within 14 days you hear from a person, with a name, whatever the answer."],
-              ["02", "A conversation", "45 minutes with someone you would work with. We talk about a real problem, not your weaknesses."],
-              ["03", "A field day", "You spend a day with a CHW or at a health centre — with us, paid. You will know if this is for you."],
-              ["04", "An honest offer", "Clear pay band, clear role, clear first 90 days. Written in plain language, in both languages."],
-            ].map(([n, t, x]) => (
-              <RevealItem key={n}>
-                <div className="border-t border-ivory/15 pt-5"><p className="text-eyebrow text-gold">{n}</p><h3 className="mt-2 font-display text-2xl">{t}</h3><p className="mt-2 text-sm leading-relaxed text-ivory/65">{x}</p></div>
+            {j.howWeHire.steps.map((s) => (
+              <RevealItem key={s.n}>
+                <div className="border-t border-ivory/15 pt-5"><p className="text-eyebrow text-gold">{s.n}</p><h3 className="mt-2 font-display text-2xl">{s.title}</h3><p className="mt-2 text-sm leading-relaxed text-ivory/65">{s.text}</p></div>
               </RevealItem>
             ))}
           </RevealGroup>

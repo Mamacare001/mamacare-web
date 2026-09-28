@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/Button";
 import { fieldCls } from "@/components/auth/fields";
 import type { JoinState } from "@/app/join/actions";
 import { cn } from "@/lib/cn";
+import { useLang } from "@/components/providers/LanguageProvider";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
@@ -33,6 +34,8 @@ export function Conversation({
   submitLabel: string;
   done: (ref: string) => React.ReactNode;
 }) {
+  const { t } = useLang();
+  const ui = t.join.ui;
   const [step, setStep] = useState(0);
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [file, setFile] = useState<File | null>(null);
@@ -104,8 +107,8 @@ export function Conversation({
               ) : q.kind === "file" ? (
                 <label className="flex cursor-pointer items-center gap-3 rounded-md border border-dashed border-emerald/30 bg-ivory px-4 py-4 text-sm text-emerald hover:border-emerald">
                   <Paperclip className="size-5" />
-                  <span className="font-semibold">{file ? file.name : "Choose a file"}</span>
-                  <span className="text-muted">{file ? `${(file.size / 1024 / 1024).toFixed(1)} MB` : "PDF, under 5 MB — or skip"}</span>
+                  <span className="font-semibold">{file ? file.name : ui.chooseFile}</span>
+                  <span className="text-muted">{file ? `${(file.size / 1024 / 1024).toFixed(1)} MB` : ui.pdfHint}</span>
                   <input type="file" accept={q.accept} className="sr-only" onChange={(e) => { const f = e.target.files?.[0] ?? null; setFile(f); set(f ? f.name : ""); }} />
                 </label>
               ) : null}
@@ -117,11 +120,11 @@ export function Conversation({
       {state?.error && <p role="alert" className="mt-4 rounded-md bg-coral-100 px-3 py-2 text-sm text-coral">{state.error}</p>}
 
       <div className="mt-8 flex items-center justify-between gap-3 pl-12">
-        <button type="button" onClick={() => setStep((s) => Math.max(0, s - 1))} disabled={step === 0} className="inline-flex items-center gap-1 text-sm font-semibold text-muted disabled:opacity-30"><ArrowLeft className="size-4" /> Back</button>
+        <button type="button" onClick={() => setStep((s) => Math.max(0, s - 1))} disabled={step === 0} className="inline-flex items-center gap-1 text-sm font-semibold text-muted disabled:opacity-30"><ArrowLeft className="size-4" /> {ui.back}</button>
         {last ? (
           <Button key="submit" type="submit" variant="coral" size="lg" disabled={pending || !canNext} arrow={!pending}>{pending ? <Loader2 className="size-4 animate-spin" /> : submitLabel}</Button>
         ) : (
-          <Button key="next" type="button" variant="primary" size="lg" onClick={next} disabled={!canNext} className="whitespace-nowrap"><span className="inline-flex items-center gap-2">{q.optional && !value ? "Skip" : "Next"} <ArrowRight className="size-4" /></span></Button>
+          <Button key="next" type="button" variant="primary" size="lg" onClick={next} disabled={!canNext} className="whitespace-nowrap"><span className="inline-flex items-center gap-2">{q.optional && !value ? ui.skip : ui.next} <ArrowRight className="size-4" /></span></Button>
         )}
       </div>
     </form>
@@ -129,9 +132,10 @@ export function Conversation({
 }
 
 export function Done({ title, text, refCode, children }: { title: string; text: string; refCode: string; children?: React.ReactNode }) {
+  const { t } = useLang();
   return (
     <motion.div initial={{ opacity: 0, scale: 0.98 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.6, ease }} className="rounded-2xl bg-emerald p-8 text-ivory shadow-float md:p-10">
-      <p className="flex items-center gap-2 text-eyebrow text-gold"><CheckCircle2 className="size-4" /> Received · {refCode}</p>
+      <p className="flex items-center gap-2 text-eyebrow text-gold"><CheckCircle2 className="size-4" /> {t.join.ui.received} · {refCode}</p>
       <h3 className="mt-3 font-display text-3xl md:text-4xl">{title}</h3>
       <p className="mt-3 max-w-[52ch] text-[15px] leading-relaxed text-ivory/80">{text}</p>
       {children && <div className="mt-6 flex flex-wrap gap-3">{children}</div>}

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { PageHero } from "@/components/site/PageHero";
+import { HowHero } from "@/components/how/HowHero";
 import { HowItWorks } from "@/components/home/HowItWorks";
 import { Audiences } from "@/components/how/Audiences";
 import { RiskLevels } from "@/components/how/RiskLevels";
@@ -15,15 +15,7 @@ export const metadata: Metadata = {
 export default function HowItWorksPage() {
   return (
     <>
-      <PageHero
-        eyebrow="How it works"
-        title={
-          <>
-            The language model <span className="text-violet">understands</span>. Clinical rules guide the action.
-          </>
-        }
-        lead="MamaCare is a hybrid system — not a chatbot alone. Every recommendation passes through medically reviewed rules, and a human is always in the loop."
-      />
+      <HowHero />
       <HowItWorks />
       <RiskLevels />
       <Audiences />
