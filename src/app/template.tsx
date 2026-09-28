@@ -30,6 +30,11 @@ export default function Template({ children }: { children: React.ReactNode }) {
     return () => window.cancelAnimationFrame(id);
   }, []);
 
+  // The language splash at "/" stages its own arrival from the first server-
+  // rendered frame; wrapping it in a JS fade would only blank the front door
+  // until hydration.
+  if (pathname === "/") return <>{children}</>;
+
   return (
     <>
       {curtain && (

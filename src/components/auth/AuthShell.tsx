@@ -32,7 +32,7 @@ export function AuthShell({
   return (
     <section className="min-h-[100svh] bg-ivory md:grid md:grid-cols-12">
       <aside className="relative hidden overflow-hidden bg-midnight text-ivory md:col-span-5 md:block lg:col-span-5">
-        <ImageReveal from="left" parallax={0} zoom duration={1.3} shimmer={false} className="absolute inset-0">
+        <ImageReveal from="left" parallax={0} zoom duration={1.3} shimmer={false} fill>
           <Image src={image} alt="" fill priority quality={90} sizes="45vw" className="object-cover object-[50%_25%] opacity-80" />
         </ImageReveal>
         <div className="absolute inset-0 bg-gradient-to-t from-midnight via-midnight/40 to-transparent" />

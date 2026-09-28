@@ -49,9 +49,9 @@ export function LoginForm({
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.7, ease, delay: 0.2 }}
+      initial={{ opacity: 0, y: 28, scale: 0.97, filter: "blur(8px)" }}
+      animate={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
+      transition={{ duration: 0.9, ease, delay: 0.25 }}
       className="w-full max-w-[440px]"
     >
       <div className="mb-8 flex items-center justify-between">

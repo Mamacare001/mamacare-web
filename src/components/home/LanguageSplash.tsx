@@ -8,6 +8,7 @@ import { ArrowRight } from "lucide-react";
 import { useLang } from "@/components/providers/LanguageProvider";
 import { FlagGB, FlagRW } from "@/components/ui/Flags";
 import type { Lang } from "@/lib/i18n";
+import { TextReveal } from "@/components/ui/TextReveal";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
@@ -72,8 +73,14 @@ export function LanguageSplash() {
           aria-modal="true"
           aria-label="Choose your language · Hitamo ururimi"
         >
-          {/* photo slideshow */}
-          <div className="absolute inset-0 -z-20" aria-hidden>
+          {/* photo slideshow – the whole layer is wiped up from the bottom on first load */}
+          <motion.div
+            className="absolute inset-0 -z-20"
+            aria-hidden
+            initial={{ clipPath: reduce ? "inset(0 0 0 0)" : "inset(100% 0 0 0)" }}
+            animate={{ clipPath: "inset(0 0 0 0)" }}
+            transition={{ duration: 1.4, ease }}
+          >
             <AnimatePresence initial={false}>
               <motion.div
                 key={slide}
@@ -100,7 +107,7 @@ export function LanguageSplash() {
                 </motion.div>
               </motion.div>
             </AnimatePresence>
-          </div>
+          </motion.div>
 
           {/* legibility wash + grain */}
           <div className="absolute inset-0 -z-10" aria-hidden>
@@ -113,21 +120,40 @@ export function LanguageSplash() {
           <motion.div
             initial={{ opacity: 0, y: 20, scale: 0.98 }}
             animate={{ opacity: chosen ? 0 : 1, y: 0, scale: chosen ? 0.97 : 1 }}
-            transition={{ duration: 0.7, ease }}
+            transition={{ duration: 0.7, ease, delay: chosen ? 0 : 0.3 }}
             className="container-x flex flex-col items-center px-6 text-center"
           >
-            {/* signature mark */}
+            {/* signature mark – a ring draws itself around the mark as it blooms in */}
             <motion.div
               className="relative"
               animate={reduce ? undefined : { y: [0, -8, 0] }}
               transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
             >
               <span className="absolute inset-0 -z-10 rounded-full bg-gold/30 blur-2xl" aria-hidden />
-              <span className="absolute -inset-4 -z-10 rounded-full border border-ivory/10" aria-hidden />
-              <span className="absolute -inset-4 -z-10 rounded-full bg-coral/15 animate-pulse-ring" aria-hidden />
+              <svg className="absolute -inset-4 -z-10 size-[calc(100%+2rem)] -rotate-90" viewBox="0 0 100 100" fill="none" aria-hidden>
+                <motion.circle
+                  cx="50"
+                  cy="50"
+                  r="48.5"
+                  stroke="rgb(248 247 242 / 0.45)"
+                  strokeWidth="1"
+                  strokeLinecap="round"
+                  initial={{ pathLength: 0, opacity: 0 }}
+                  animate={{ pathLength: 1, opacity: 1 }}
+                  transition={{ pathLength: { duration: 1.6, ease, delay: 0.5 }, opacity: { duration: 0.3, delay: 0.5 } }}
+                />
+              </svg>
               <motion.span
-                animate={reduce ? undefined : { scale: [1, 1.05, 1] }}
-                transition={{ duration: 3.4, repeat: Infinity, ease: "easeInOut" }}
+                className="absolute -inset-4 -z-10 rounded-full bg-coral/15 animate-pulse-ring"
+                aria-hidden
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 2, duration: 0.6 }}
+              />
+              <motion.span
+                initial={{ scale: reduce ? 1 : 0.6, opacity: 0, filter: "blur(10px)" }}
+                animate={{ scale: reduce ? 1 : [0.6, 1.05, 1], opacity: 1, filter: "blur(0px)" }}
+                transition={{ duration: 1.1, ease, delay: 0.35 }}
                 className="relative grid size-28 place-items-center rounded-full bg-ivory/10 ring-1 ring-ivory/20 backdrop-blur-md sm:size-32"
               >
                 <Image
@@ -142,16 +168,23 @@ export function LanguageSplash() {
             </motion.div>
 
             {/* language choices */}
-            <p className="mt-14 text-[11px] font-semibold uppercase tracking-[0.28em] text-ivory/45">
+            <TextReveal
+              as="p"
+              trigger="mount"
+              delay={1.1}
+              stagger={0.06}
+              duration={0.7}
+              className="mt-14 text-[11px] font-semibold uppercase tracking-[0.28em] text-ivory/45"
+            >
               Choose your language · Hitamo ururimi
-            </p>
+            </TextReveal>
             <div className="mt-5 flex w-full max-w-xl flex-col gap-3 sm:flex-row">
               <motion.button
                 type="button"
                 onClick={() => choose("en")}
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.15, duration: 0.6, ease }}
+                initial={{ opacity: 0, y: 28, scale: 0.96, filter: "blur(8px)" }}
+                animate={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
+                transition={{ delay: 1.35, duration: 0.8, ease }}
                 whileHover={reduce ? undefined : { y: -3 }}
                 whileTap={{ scale: 0.99 }}
                 className="group relative flex flex-1 items-center gap-4 overflow-hidden rounded-2xl border border-ivory/15 bg-ivory/[0.06] px-6 py-5 text-left backdrop-blur-xl transition-colors duration-300 hover:border-ivory/30 hover:bg-ivory/[0.1]"
@@ -170,6 +203,10 @@ export function LanguageSplash() {
                   aria-hidden
                 />
                 <span
+                  className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-ivory/10 to-transparent transition-transform duration-700 ease-out group-hover:translate-x-full"
+                  aria-hidden
+                />
+                <span
                   className="pointer-events-none absolute inset-x-6 bottom-0 h-px scale-x-0 bg-gradient-to-r from-transparent via-coral to-transparent transition-transform duration-500 group-hover:scale-x-100"
                   aria-hidden
                 />
@@ -178,9 +215,9 @@ export function LanguageSplash() {
               <motion.button
                 type="button"
                 onClick={() => choose("rw")}
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3, duration: 0.6, ease }}
+                initial={{ opacity: 0, y: 28, scale: 0.96, filter: "blur(8px)" }}
+                animate={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
+                transition={{ delay: 1.5, duration: 0.8, ease }}
                 whileHover={reduce ? undefined : { y: -3 }}
                 whileTap={{ scale: 0.99 }}
                 className="group relative flex flex-1 items-center gap-4 overflow-hidden rounded-2xl border border-ivory/15 bg-ivory/[0.06] px-6 py-5 text-left backdrop-blur-xl transition-colors duration-300 hover:border-ivory/30 hover:bg-ivory/[0.1]"
@@ -196,6 +233,10 @@ export function LanguageSplash() {
                 </span>
                 <ArrowRight
                   className="h-5 w-5 shrink-0 text-ivory/35 transition-all duration-300 group-hover:translate-x-1 group-hover:text-ivory/80"
+                  aria-hidden
+                />
+                <span
+                  className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-ivory/10 to-transparent transition-transform duration-700 ease-out group-hover:translate-x-full"
                   aria-hidden
                 />
                 <span

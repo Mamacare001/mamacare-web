@@ -33,6 +33,8 @@ type Props = {
   shimmer?: boolean;
   /** Extra classes for the moving inner layer (e.g. hover scale via `group-hover:`). */
   innerClassName?: string;
+  /** Fill the nearest positioned parent (absolute inset-0) instead of sizing itself. */
+  fill?: boolean;
 };
 
 /**
@@ -51,6 +53,7 @@ export function ImageReveal({
   once = false,
   shimmer = true,
   innerClassName,
+  fill = false,
 }: Props) {
   const reduce = useReducedMotion();
   const ref = useRef<HTMLDivElement>(null);
@@ -59,7 +62,7 @@ export function ImageReveal({
   const y = useTransform(scrollYProgress, [0, 1], [drift, -drift]);
 
   return (
-    <div ref={ref} className={cn("relative", className)}>
+    <div ref={ref} className={cn(fill ? "absolute inset-0" : "relative", className)}>
       <motion.div
         className={cn("absolute inset-0 overflow-hidden rounded-[inherit]", shimmer && "shimmer")}
         initial="hidden"
