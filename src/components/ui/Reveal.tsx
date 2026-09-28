@@ -33,18 +33,23 @@ export function Reveal({ children, className, delay = 0, y = 30, once = true, as
   );
 }
 
-/** Stagger container: wrap several <RevealItem /> children. */
+/** Stagger container: wrap several <RevealItem /> children. `as` defaults to "div"
+ *  but takes "ul" too, for when the group is semantically a list (pass as="li" on
+ *  the matching RevealItem) rather than losing that semantics to a generic div. */
 export function RevealGroup({
   children,
   className,
   stagger = 0.08,
+  as = "div",
 }: {
   children: React.ReactNode;
   className?: string;
   stagger?: number;
+  as?: "div" | "ul" | "ol";
 }) {
+  const Tag = motion[as];
   return (
-    <motion.div
+    <Tag
       className={className}
       initial="hidden"
       whileInView="show"
@@ -52,14 +57,23 @@ export function RevealGroup({
       variants={{ hidden: {}, show: { transition: { staggerChildren: stagger } } }}
     >
       {children}
-    </motion.div>
+    </Tag>
   );
 }
 
-export function RevealItem({ children, className }: { children: React.ReactNode; className?: string }) {
+export function RevealItem({
+  children,
+  className,
+  as = "div",
+}: {
+  children: React.ReactNode;
+  className?: string;
+  as?: "div" | "li";
+}) {
   const reduce = useReducedMotion();
+  const Tag = motion[as];
   return (
-    <motion.div
+    <Tag
       className={className}
       variants={{
         hidden: { opacity: 0, y: reduce ? 0 : 28 },
@@ -67,7 +81,7 @@ export function RevealItem({ children, className }: { children: React.ReactNode;
       }}
     >
       {children}
-    </motion.div>
+    </Tag>
   );
 }
 
