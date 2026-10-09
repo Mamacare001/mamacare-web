@@ -4,7 +4,7 @@ import { notificationsByRole } from "@/lib/mock/shared";
 import { AppShell, chwNav } from "@/components/app/AppShell";
 import { SyncStatus } from "@/components/chw/SyncStatus";
 
-export const metadata = { title: { default: "MamaCare · CHW", template: "%s · MamaCare CHW" } };
+export const metadata = { title: { default: "MamaRindwa · CHW", template: "%s · MamaRindwa CHW" } };
 
 export default async function ChwLayout({ children }: { children: React.ReactNode }) {
   const session = await auth();

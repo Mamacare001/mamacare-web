@@ -3,7 +3,7 @@ import { ResearchContent } from "@/components/research/ResearchContent";
 
 export const metadata: Metadata = {
   title: "Research & validation",
-  description: "MamaCare's research agenda, validation status, ethics approvals and how to request data.",
+  description: "MamaRindwa's research agenda, validation status, ethics approvals and how to request data.",
 };
 
 export default function ResearchPage() {

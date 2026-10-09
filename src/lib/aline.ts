@@ -5,7 +5,7 @@
  *   - `*word*`  → emphasised (coral, heavier) when spoken
  *   - `hold`    → extra silence after the beat, in ms (a pause for the room)
  *   - `sign`    → which of the four timeline signs this beat is
- *   - `kind`    → quote (the aunt), turn (the pivot), end (why MamaCare)
+ *   - `kind`    → quote (the aunt), turn (the pivot), end (why MamaRindwa)
  */
 export type StoryBeat = { text: string; sign?: 1 | 2 | 3 | 4; kind?: "quote" | "turn" | "end" | "whisper"; hold?: number };
 
@@ -44,7 +44,7 @@ export const alineStory: StoryBeat[] = [
   { text: "Not that the signs are hidden. It’s that they look *exactly* like ordinary life.", hold: 1600 },
   { text: "Aline could be your sister. Your colleague. Your daughter." },
   { text: "She could be *any one of us*.", hold: 2000 },
-  { kind: "end", text: "And that is exactly why MamaCare exists — because the warning was *already there*. It just needed somewhere to go." },
+  { kind: "end", text: "And that is exactly why MamaRindwa exists — because the warning was *already there*. It just needed somewhere to go." },
 ];
 
 /** Split a beat into words, keeping the emphasis flag per word. */

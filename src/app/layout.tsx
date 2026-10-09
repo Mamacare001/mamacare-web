@@ -25,21 +25,21 @@ const fraunces = localFont({
 function siteUrl(): URL {
   const explicit = process.env.NEXT_PUBLIC_SITE_URL?.trim();
   const vercel = process.env.VERCEL_PROJECT_PRODUCTION_URL?.trim() || process.env.VERCEL_URL?.trim();
-  const raw = explicit || (vercel ? `https://${vercel}` : "https://mamacare.rw");
+  const raw = explicit || (vercel ? `https://${vercel}` : "https://MamaRindwa.rw");
   try {
     return new URL(raw);
   } catch {
-    return new URL("https://mamacare.rw");
+    return new URL("https://MamaRindwa.rw");
   }
 }
 
 export const metadata: Metadata = {
   metadataBase: siteUrl(),
-  title: { default: "MamaCare — The warning can come before the emergency", template: "%s · MamaCare" },
+  title: { default: "MamaRindwa — The warning can come before the emergency", template: "%s · MamaRindwa" },
   description:
-    "MamaCare connects mothers, families, Community Health Workers and clinics into one continuous picture of every pregnancy, in Kinyarwanda and English.",
+    "MamaRindwa connects mothers, families, Community Health Workers and clinics into one continuous picture of every pregnancy, in Kinyarwanda and English.",
   openGraph: {
-    title: "MamaCare",
+    title: "MamaRindwa",
     description: "AI-supported maternal health early-warning platform for Rwanda.",
     images: ["/images/mother-home-phone.jpg"],
     type: "website",

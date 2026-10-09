@@ -3,7 +3,7 @@ import { ContactContent } from "@/components/site/ContactContent";
 
 export const metadata: Metadata = {
   title: "Contact",
-  description: "Partner with MamaCare, join the pilot, or collaborate on research.",
+  description: "Partner with MamaRindwa, join the pilot, or collaborate on research.",
 };
 
 type Search = Promise<{ topic?: string }>;

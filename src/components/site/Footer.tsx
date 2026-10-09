@@ -99,7 +99,7 @@ export function Footer() {
             <div className="flex items-center gap-3">
               <Image src="/brand/mark.png" alt="" width={36} height={42} className="h-9 w-auto" />
               <div>
-                <Image src="/brand/wordmark-white.png" alt="MamaCare" width={120} height={18} className="h-4 w-auto" />
+                <Image src="/brand/wordmark-white.png" alt="MamaRindwa" width={120} height={18} className="h-4 w-auto" />
                 <p className="mt-1 text-xs text-ivory/50">{f.tagline}</p>
               </div>
             </div>

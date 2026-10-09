@@ -10,7 +10,7 @@ const ease = [0.16, 1, 0.3, 1] as const;
 
 /**
  * Page transition. On the marketing site an emerald curtain carrying the
- * MamaCare mark lifts off the new page (top edge first, so the headline is the
+ * MamaRindwa mark lifts off the new page (top edge first, so the headline is the
  * first thing to appear) while the content settles up into place.
  *
  * The curtain is painted by CSS in the server HTML, so it is on screen from the

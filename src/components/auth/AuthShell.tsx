@@ -38,9 +38,9 @@ export function AuthShell({
         <div className="absolute inset-0 bg-gradient-to-t from-midnight via-midnight/40 to-transparent" />
         <div className="grain absolute inset-0" aria-hidden />
         <div className="relative flex h-full flex-col justify-between p-10 lg:p-14">
-          <Link href="/" aria-label="MamaCare home" className="inline-flex items-center gap-2.5">
+          <Link href="/" aria-label="MamaRindwa home" className="inline-flex items-center gap-2.5">
             <Image src="/brand/mark.png" alt="" width={40} height={46} className="h-10 w-auto" />
-            <Image src="/brand/wordmark-white.png" alt="MamaCare" width={135} height={20} className="h-5 w-auto" />
+            <Image src="/brand/wordmark-white.png" alt="MamaRindwa" width={135} height={20} className="h-5 w-auto" />
           </Link>
           <div>
             {steps && (
@@ -76,9 +76,9 @@ export function AuthShell({
 
       <div className="flex min-h-[100svh] flex-col px-5 pb-10 pt-6 sm:px-10 md:col-span-7 md:min-h-0 lg:col-span-7">
         <div className="flex items-center justify-between md:hidden">
-          <Link href="/" aria-label="MamaCare home" className="inline-flex items-center gap-2">
+          <Link href="/" aria-label="MamaRindwa home" className="inline-flex items-center gap-2">
             <Image src="/brand/mark.png" alt="" width={36} height={42} className="h-9 w-auto" />
-            <Image src="/brand/wordmark.png" alt="MamaCare" width={120} height={18} className="h-[18px] w-auto" />
+            <Image src="/brand/wordmark.png" alt="MamaRindwa" width={120} height={18} className="h-[18px] w-auto" />
           </Link>
           <Link href={backHref} className="text-sm font-semibold text-emerald">← {backLabel}</Link>
         </div>
@@ -98,7 +98,7 @@ export function AuthShell({
           </Reveal>
         </div>
         <p className="text-center text-xs text-muted">
-          MamaCare does not diagnose. In an emergency, <Link href="/emergency" className="font-semibold text-coral underline underline-offset-4">call 912</Link>.
+          MamaRindwa does not diagnose. In an emergency, <Link href="/emergency" className="font-semibold text-coral underline underline-offset-4">call 912</Link>.
         </p>
       </div>
     </section>

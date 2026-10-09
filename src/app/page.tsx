@@ -2,11 +2,11 @@ import type { Metadata } from "next";
 import { LanguageSplash } from "@/components/home/LanguageSplash";
 
 export const metadata: Metadata = {
-  title: "MamaCare — Maternal Health Early-Warning Platform for Rwanda",
+  title: "MamaRindwa — Maternal Health Early-Warning Platform for Rwanda",
   description:
-    "MamaCare connects mothers, families, Community Health Workers and clinics into one continuous picture of every pregnancy — catching danger signs like preeclampsia early, in Kinyarwanda and English. No warning sign should go unheard.",
+    "MamaRindwa connects mothers, families, Community Health Workers and clinics into one continuous picture of every pregnancy — catching danger signs like preeclampsia early, in Kinyarwanda and English. No warning sign should go unheard.",
   keywords: [
-    "MamaCare",
+    "MamaRindwa",
     "maternal health Rwanda",
     "pregnancy warning signs",
     "preeclampsia Rwanda",
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: "/" },
   openGraph: {
-    title: "MamaCare — The warning can come before the emergency",
+    title: "MamaRindwa — The warning can come before the emergency",
     description:
       "An AI-supported maternal-health early-warning platform connecting mothers, families, CHWs and clinics across Rwanda.",
     url: "/",
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "MamaCare — The warning can come before the emergency",
+    title: "MamaRindwa — The warning can come before the emergency",
     description:
       "An AI-supported maternal-health early-warning platform connecting mothers, families, CHWs and clinics across Rwanda.",
     images: ["/images/mother-home-phone.jpg"],
@@ -36,11 +36,11 @@ export const metadata: Metadata = {
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  name: "MamaCare",
-  url: "https://mamacare.rw",
-  logo: "https://mamacare.rw/brand/mark.png",
+  name: "MamaRindwa",
+  url: "https://MamaRindwa.rw",
+  logo: "https://MamaRindwa.rw/brand/mark.png",
   description:
-    "MamaCare connects mothers, families, Community Health Workers and clinics into one continuous picture of every pregnancy, catching danger signs early, in Kinyarwanda and English.",
+    "MamaRindwa connects mothers, families, Community Health Workers and clinics into one continuous picture of every pregnancy, catching danger signs early, in Kinyarwanda and English.",
   areaServed: { "@type": "Country", name: "Rwanda" },
   sameAs: [] as string[],
 };

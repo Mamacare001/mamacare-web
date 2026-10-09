@@ -14,14 +14,14 @@ type Msg = { from: "user" | "bot" | "system"; text: string; time?: string };
 
 const scripts: Record<"en" | "rw", Msg[]> = {
   en: [
-    { from: "user", text: "Hello MamaCare. I'm 7 months pregnant and I have a headache since yesterday.", time: "10:24" },
+    { from: "user", text: "Hello MamaRindwa. I'm 7 months pregnant and I have a headache since yesterday.", time: "10:24" },
     { from: "bot", text: "Thank you for telling me. Is your vision blurred, or do you see spots or flashes?", time: "10:24" },
     { from: "user", text: "Yes, sometimes things look blurry. My feet are also swollen.", time: "10:26" },
     { from: "bot", text: "I'm sorry you're feeling this way. These signs together need to be checked by a health worker today.", time: "10:26" },
     { from: "system", text: "Elevated risk · CHW Marie notified · Health centre Kinyinya alerted" },
   ],
   rw: [
-    { from: "user", text: "Muraho MamaCare. Ndatwite amezi 7, umutwe urandya kuva ejo.", time: "10:24" },
+    { from: "user", text: "Muraho MamaRindwa. Ndatwite amezi 7, umutwe urandya kuva ejo.", time: "10:24" },
     { from: "bot", text: "Murakoze kutubwira. Ese amaso yanyu abona bidasobanutse cyangwa mubona utudomo?", time: "10:24" },
     { from: "user", text: "Yego, rimwe na rimwe mbona bidasobanutse. Ibirenge byanjye nabyo byabyimbye.", time: "10:26" },
     { from: "bot", text: "Mbabajwe n'uko mumeze. Ibi bimenyetso hamwe bikeneye kurebwa n'umukozi w'ubuzima uyu munsi.", time: "10:26" },
@@ -89,7 +89,7 @@ export function ChatPreview() {
                 <header className="flex items-center gap-3 border-b border-emerald/10 bg-white px-4 py-3">
                   <span className="grid size-9 place-items-center rounded-full bg-emerald text-ivory text-sm font-bold">M</span>
                   <div className="flex-1">
-                    <p className="text-sm font-bold text-emerald">MamaCare</p>
+                    <p className="text-sm font-bold text-emerald">MamaRindwa</p>
                     <p className="text-[11px] text-muted">{lang === "en" ? "Kinyarwanda | English" : "Ikinyarwanda | Icyongereza"}</p>
                   </div>
                   <span className="rounded-full bg-green-100 px-2 py-0.5 text-[10px] font-bold text-green">Online</span>

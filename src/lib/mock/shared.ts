@@ -37,16 +37,16 @@ export const notificationsByRole: Record<string, Notif[]> = {
 };
 
 export const homeByRole: Record<string, string> = { mother: "/app", family: "/family", chw: "/chw", supervisor: "/supervisor", provider: "/clinic", analyst: "/insights", "care-manager": "/care", researcher: "/portal", admin: "/admin" };
-export const roleLabel: Record<string, string> = { mother: "Mother", family: "Family supporter", chw: "Community Health Worker", supervisor: "CHW supervisor", provider: "Health-facility provider", analyst: "Partner analyst", "care-manager": "Care manager (insurer)", researcher: "Researcher", admin: "MamaCare admin" };
+export const roleLabel: Record<string, string> = { mother: "Mother", family: "Family supporter", chw: "Community Health Worker", supervisor: "CHW supervisor", provider: "Health-facility provider", analyst: "Partner analyst", "care-manager": "Care manager (insurer)", researcher: "Researcher", admin: "MamaRindwa admin" };
 
 export type HelpSection = { title: string; items: { q: string; a: string }[] };
 const common: HelpSection[] = [
-  { title: "Account", items: [{ q: "I changed my phone number", a: "Sign in with your old number if you still can and update it under Profile. If not, contact support — we will verify you by the details on your record and re-issue a code." }, { q: "Switch language", a: "Tap RW / EN at the top of any page. The choice is saved on this device." }, { q: "Sign out on a shared phone", a: "Use Sign out in the menu. On shared phones, always sign out; MamaCare also signs you out after inactivity." }] },
+  { title: "Account", items: [{ q: "I changed my phone number", a: "Sign in with your old number if you still can and update it under Profile. If not, contact support — we will verify you by the details on your record and re-issue a code." }, { q: "Switch language", a: "Tap RW / EN at the top of any page. The choice is saved on this device." }, { q: "Sign out on a shared phone", a: "Use Sign out in the menu. On shared phones, always sign out; MamaRindwa also signs you out after inactivity." }] },
   { title: "Emergency", items: [{ q: "Someone is bleeding, having fits, or unconscious", a: "Do not use the app. Call 912 or go to the nearest health facility now." }] },
 ];
 export const helpByRole: Record<string, HelpSection[]> = {
   mother: [
-    { title: "Check-ins", items: [{ q: "How do I report how I feel?", a: "Open Chat and write in your own words, or tap a quick reply. MamaCare asks follow-up questions, then tells you what to do next. A person always decides what happens after." }, { q: "I did not get a reply", a: "Replies can take a minute on a slow network. If you have not heard back in 10 minutes and you feel unwell, call your CHW or the facility directly — their numbers are on your Home page." }] },
+    { title: "Check-ins", items: [{ q: "How do I report how I feel?", a: "Open Chat and write in your own words, or tap a quick reply. MamaRindwa asks follow-up questions, then tells you what to do next. A person always decides what happens after." }, { q: "I did not get a reply", a: "Replies can take a minute on a slow network. If you have not heard back in 10 minutes and you feel unwell, call your CHW or the facility directly — their numbers are on your Home page." }] },
     { title: "My circle", items: [{ q: "Who can see my information?", a: "Only the people listed in My circle: your CHW, your facility, and family members you approved. You can remove any family member and see who viewed your record." }, { q: "How does my husband join?", a: "Give him your code from My circle. He requests to join; nothing is shared until you approve." }] },
     ...common,
   ],

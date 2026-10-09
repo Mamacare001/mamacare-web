@@ -28,7 +28,7 @@ export default async function ClinicMotherPage({ params }: { params: Promise<{ i
         <div className="space-y-4 lg:col-span-2">
           {m.conversationSummary && (
             <Card className="border-l-4 border-violet">
-              <p className="flex items-center gap-2 text-eyebrow text-violet"><MessageSquareText className="size-3.5" /> What she told MamaCare · structured summary</p>
+              <p className="flex items-center gap-2 text-eyebrow text-violet"><MessageSquareText className="size-3.5" /> What she told MamaRindwa · structured summary</p>
               <p className="mt-2 text-[15px] leading-relaxed text-ink/90">{m.conversationSummary}</p>
               <p className="mt-2 flex items-center gap-1 text-xs text-muted"><Lock className="size-3" /> The full conversation is visible only to her and, on case review, the clinical lead.</p>
             </Card>

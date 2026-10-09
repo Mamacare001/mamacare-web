@@ -52,7 +52,7 @@ export function SettingsForm({ p }: { p: typeof P }) {
         </div>
       </fieldset>
       <fieldset className="space-y-3">
-        <legend className="text-eyebrow mb-2 text-muted">How MamaCare reaches you</legend>
+        <legend className="text-eyebrow mb-2 text-muted">How MamaRindwa reaches you</legend>
         <div className="grid grid-cols-3 gap-2">
           {[["whatsapp", "WhatsApp"], ["sms", "SMS"], ["app", "This app"]].map(([v, l]) => (
             <label key={v} className="cursor-pointer"><input type="radio" name="channel" value={v} defaultChecked={p.channel === v} className="peer sr-only" /><span className="block rounded-md border border-emerald/15 bg-white px-3 py-2.5 text-center text-sm font-semibold text-emerald peer-checked:border-emerald peer-checked:bg-emerald/5">{l}</span></label>
@@ -77,7 +77,7 @@ export function ExportCard() {
   return (
     <form action={action} className="rounded-lg bg-white p-5 ring-1 ring-emerald/5">
       <div className="flex items-center gap-3"><Download className="size-5 text-green" /><p className="font-display text-xl text-emerald">Export my data</p></div>
-      <p className="mt-2 text-sm text-muted">A copy of everything MamaCare holds about you — your record, conversations, and the access log — as a file you can keep.</p>
+      <p className="mt-2 text-sm text-muted">A copy of everything MamaRindwa holds about you — your record, conversations, and the access log — as a file you can keep.</p>
       <div className="mt-4 space-y-3"><Ok state={state} /><Button type="submit" variant="secondary" disabled={pending || !!state?.ok}>{pending ? <Loader2 className="size-4 animate-spin" /> : "Request export"}</Button></div>
     </form>
   );
@@ -88,7 +88,7 @@ export function DeleteCard() {
   return (
     <form action={action} className="rounded-lg bg-white p-5 ring-1 ring-coral/20">
       <div className="flex items-center gap-3"><Trash2 className="size-5 text-coral" /><p className="font-display text-xl text-emerald">Delete my account and data</p></div>
-      <p className="mt-2 text-sm text-muted">Your CHW and facility will no longer see you in MamaCare. Where a health-record rule requires something to be kept, our Data Protection Officer will tell you exactly what and why.</p>
+      <p className="mt-2 text-sm text-muted">Your CHW and facility will no longer see you in MamaRindwa. Where a health-record rule requires something to be kept, our Data Protection Officer will tell you exactly what and why.</p>
       {state?.ok ? <div className="mt-4"><Ok state={state} /></div> : (
         <div className="mt-4 space-y-3">
           <Field label="Type DELETE to confirm"><input name="confirm" className={fieldCls} autoComplete="off" /></Field>

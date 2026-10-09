@@ -20,7 +20,7 @@ export const dict = {
       title1: "The warning can come",
       title2: "before the emergency.",
       lead:
-        "MamaCare connects a mother, her family, her Community Health Worker and her clinic into one continuous picture of the pregnancy — so a warning sign is never missed.",
+        "MamaRindwa connects a mother, her family, her Community Health Worker and her clinic into one continuous picture of the pregnancy — so a warning sign is never missed.",
       ctaPrimary: "Start a check-in",
       ctaSecondary: "See how it works",
       scroll: "Scroll",
@@ -29,16 +29,16 @@ export const dict = {
     },
     login: {
       title: "Welcome back",
-      subtitle: "Sign in to your MamaCare account.",
+      subtitle: "Sign in to your MamaRindwa account.",
       google: "Continue with Google",
       or: "or continue with email",
       email: "Email address",
       password: "Password",
       forgot: "Forgot password?",
       submit: "Sign in",
-      noAccount: "New to MamaCare?",
+      noAccount: "New to MamaRindwa?",
       create: "Create an account",
-      demoHint: "Demo accounts (password: mamacare): demo@ · mother@ · family@ · supervisor@ · provider@ · analyst@ · care@ · researcher@ · admin@ mamacare.rw",
+      demoHint: "Demo accounts (password: MamaRindwa): demo@ · mother@ · family@ · supervisor@ · provider@ · analyst@ · care@ · researcher@ · admin@ MamaRindwa.rw",
     },
     common: {
       notDiagnosis:
@@ -75,7 +75,7 @@ export const dict = {
       eyebrow: "Our insight",
       heading: "One continuous picture of every pregnancy.",
       lead:
-        "The information already exists — it is just held by four different people. MamaCare brings it together into a single timeline that everyone caring for her can act on.",
+        "The information already exists — it is just held by four different people. MamaRindwa brings it together into a single timeline that everyone caring for her can act on.",
       people: [
         { title: "Mother", text: "Shares symptoms and concerns in her own words — by chat, WhatsApp or SMS." },
         { title: "Family", text: "Notices changes at home and provides support between visits." },
@@ -115,7 +115,7 @@ export const dict = {
       heading: "Safety is not a caveat. It’s the architecture.",
       lead: "For a maternal-health tool, trust is the product. These are the commitments we build against.",
       pillars: [
-        { title: "Humans decide", text: "MamaCare supports — never replaces — doctors, midwives and CHWs. It does not diagnose." },
+        { title: "Humans decide", text: "MamaRindwa supports — never replaces — doctors, midwives and CHWs. It does not diagnose." },
         { title: "Medically reviewed rules", text: "Every recommended action follows clinical rules reviewed by health professionals, fully auditable." },
         { title: "Data protection", text: "Consent first. Health data handled under Rwanda's data-protection law, with independent ethics review." },
         { title: "Built for Kinyarwanda", text: "Misunderstanding is a safety risk. When the system is unsure, it asks — or hands over to a person." },
@@ -133,9 +133,9 @@ export const dict = {
       createAccount: "Create an account",
       tagline: "Two hearts, timely care",
       disclaimerLead:
-        "MamaCare is a decision-support tool. It does not diagnose and does not replace doctors, midwives or Community Health Workers. In an emergency, ",
+        "MamaRindwa is a decision-support tool. It does not diagnose and does not replace doctors, midwives or Community Health Workers. In an emergency, ",
       call912: "call 912",
-      copyright: "MamaCare · Kigali, Rwanda",
+      copyright: "MamaRindwa · Kigali, Rwanda",
       columns: [
         {
           title: "Product",
@@ -173,12 +173,12 @@ export const dict = {
     },
     about: {
       hero: {
-        eyebrow: "About MamaCare",
+        eyebrow: "About MamaRindwa",
         titlePre: "Connected for ",
         titleHighlight: "healthier",
         titleSuffix: " pregnancies.",
         lead:
-          "MamaCare is an early-stage research and technology project from Kigali, Rwanda, at the intersection of AI, maternal health, multilingual care and responsible innovation.",
+          "MamaRindwa is an early-stage research and technology project from Kigali, Rwanda, at the intersection of AI, maternal health, multilingual care and responsible innovation.",
       },
       statement:
         "We believe the information needed to keep a mother safe already exists. It lives with her, her family, her Community Health Worker and her clinic. Our job is to connect it — in time.",
@@ -186,7 +186,7 @@ export const dict = {
         eyebrow: "Republic of Care · Identity card",
         title: "Who we are",
         fields: [
-          { k: "Name", v: "MamaCare" },
+          { k: "Name", v: "MamaRindwa" },
           { k: "Born", v: "Kigali, Rwanda · 2026" },
           { k: "Occupation", v: "Making sure a warning reaches someone who can act" },
           { k: "Languages", v: "Ikinyarwanda · English" },
@@ -195,7 +195,7 @@ export const dict = {
         ],
         footer: "Issued by three people who grew up around this problem and refused to accept it as normal.",
         stamp: "Kigali",
-        whoEyebrow: "Who MamaCare is",
+        whoEyebrow: "Who MamaRindwa is",
         whoHeading: "Every mother carries a card. Here is ours.",
         whoLead:
           "We are a Kigali-born maternal-health companion: data scientists, engineers and public-health people who grew up around this problem. Not a product landing in Rwanda — one growing out of it.",
@@ -238,7 +238,7 @@ export const dict = {
         eyebrow: "Our story",
         heading: "Built from the ground up, with the people it serves.",
         slides: [
-          { title: "Our beginning", text: "A sister's ordinary symptoms — a tight ring, a headache, a blurred window — turned out to be preeclampsia, missed until it was severe. That story is why MamaCare exists." },
+          { title: "Our beginning", text: "A sister's ordinary symptoms — a tight ring, a headache, a blurred window — turned out to be preeclampsia, missed until it was severe. That story is why MamaRindwa exists." },
           { title: "Listening first", text: "Before writing code we spoke with pregnant women, family members, Community Health Workers and midwives across five facilities in Northern and Western Province." },
           { title: "What we learned", text: "The gap is not awareness or effort. It is that no one holds the full picture — and the CHW-to-clinic feedback loop is where warnings most often go quiet." },
           { title: "Where we are going", text: "A clinically validated prototype, an ethics-approved two-district pilot, and a platform that complements Rwanda's existing health systems rather than competing with them." },
@@ -253,7 +253,7 @@ export const dict = {
         heading: "Three disciplines. One shared conviction.",
         lead: "The data already exists to save her.",
         members: [
-          { role: "Founder & CEO · Chief of Finance, Legal & Compliance", text: "Sets MamaCare's vision and leads finance, legal structuring and regulatory compliance in Rwanda." },
+          { role: "Founder & CEO · Chief of Finance, Legal & Compliance", text: "Sets MamaRindwa's vision and leads finance, legal structuring and regulatory compliance in Rwanda." },
           { role: "Co-Founder · Chief of Medical & Commercial", text: "Leads clinical partnerships, commercial strategy and go-to-market across facilities and CHW networks." },
           { role: "Co-Founder · Chief of Technology & Operations", text: "Leads the technology platform and day-to-day operations, from engineering to delivery." },
         ],
@@ -275,7 +275,7 @@ export const dict = {
         titlePre: "The language model ",
         titleHighlight: "understands",
         titleSuffix: ". Clinical rules guide the action.",
-        lead: "MamaCare is a hybrid system — not a chatbot alone. Every recommendation passes through medically reviewed rules, and a human is always in the loop.",
+        lead: "MamaRindwa is a hybrid system — not a chatbot alone. Every recommendation passes through medically reviewed rules, and a human is always in the loop.",
       },
       riskLevels: {
         eyebrow: "Guided by medical rules",
@@ -289,7 +289,7 @@ export const dict = {
         ],
       },
       audiences: [
-        { eyebrow: "For mothers", title: "Describe how you feel, in your own words.", text: "No forms, no medical language. Tell MamaCare what is happening — a headache, swelling, less movement — and it will ask the right follow-up questions and tell you what to do next. Core check-ins by SMS and WhatsApp are always free.", cta: "Start a check-in" },
+        { eyebrow: "For mothers", title: "Describe how you feel, in your own words.", text: "No forms, no medical language. Tell MamaRindwa what is happening — a headache, swelling, less movement — and it will ask the right follow-up questions and tell you what to do next. Core check-ins by SMS and WhatsApp are always free.", cta: "Start a check-in" },
         { eyebrow: "For families", title: "You notice things she might not mention.", text: "A partner, a mother, a sister can report what they see — with her consent — so a sign noticed at home reaches the people who can act on it.", cta: "Support someone" },
         { eyebrow: "For CHWs & providers", title: "One timeline. No retyping. A closed loop.", text: "See every pregnancy in your caseload, review escalations, record visit observations in seconds and get feedback from the clinic on what happened next — the gap 100% of interviewed CHWs identified.", cta: "Request access" },
       ],
@@ -303,17 +303,17 @@ export const dict = {
         lead: "From mothers, families, CHWs and midwives across our interviews. If yours is not here, write to us.",
       },
       sections: {
-        mothers: { eyebrow: "For mothers & families", heading: "Using MamaCare" },
+        mothers: { eyebrow: "For mothers & families", heading: "Using MamaRindwa" },
         workers: { eyebrow: "For CHWs & providers", heading: "Working with it" },
         general: { eyebrow: "Data & safety", heading: "Trust" },
       },
       mothersItems: [
-        { q: "Is MamaCare a doctor?", a: "No. MamaCare does not diagnose and does not replace your doctor, midwife or Community Health Worker. It helps you notice warning signs earlier and reach the right person faster. In an emergency, call 912 or go to the nearest health facility." },
+        { q: "Is MamaRindwa a doctor?", a: "No. MamaRindwa does not diagnose and does not replace your doctor, midwife or Community Health Worker. It helps you notice warning signs earlier and reach the right person faster. In an emergency, call 912 or go to the nearest health facility." },
         { q: "Does it cost money?", a: "Core check-ins by SMS and WhatsApp are free for mothers and will stay free. Your normal call and data charges may apply depending on your network." },
-        { q: "Can I use it in Kinyarwanda?", a: "Yes. You can write or speak in Kinyarwanda or English, and switch at any time. If MamaCare does not understand something, it will ask again or hand you to a person rather than guess." },
-        { q: "What if I don't have a smartphone?", a: "MamaCare works by SMS on any phone. You send a message, MamaCare asks short follow-up questions, and tells you what to do next." },
+        { q: "Can I use it in Kinyarwanda?", a: "Yes. You can write or speak in Kinyarwanda or English, and switch at any time. If MamaRindwa does not understand something, it will ask again or hand you to a person rather than guess." },
+        { q: "What if I don't have a smartphone?", a: "MamaRindwa works by SMS on any phone. You send a message, MamaRindwa asks short follow-up questions, and tells you what to do next." },
         { q: "Can my family report for me?", a: "Yes, if you approve them. A partner, parent or sister can report what they notice, and you decide whether they see your guidance. You can remove them at any time." },
-        { q: "What happens when I report a warning sign?", a: "MamaCare asks a few follow-up questions, then a medically reviewed set of rules decides the next step: safe information, a recommendation to contact a health worker, or an alert to your CHW and facility. A named person is always responsible for the alert." },
+        { q: "What happens when I report a warning sign?", a: "MamaRindwa asks a few follow-up questions, then a medically reviewed set of rules decides the next step: safe information, a recommendation to contact a health worker, or an alert to your CHW and facility. A named person is always responsible for the alert." },
       ],
       mothersLinked: {
         q: "Who can see what I share?",
@@ -322,16 +322,16 @@ export const dict = {
         aSuffix: ".",
       },
       workersItems: [
-        { q: "Does this replace e-Ubuzima or RapidSMS?", a: "No. Those systems record what happened. MamaCare listens to the mother, her family and you between visits, and warns before something happens. Where possible, MamaCare will feed structured data into the systems you already use rather than asking you to type twice." },
+        { q: "Does this replace e-Ubuzima or RapidSMS?", a: "No. Those systems record what happened. MamaRindwa listens to the mother, her family and you between visits, and warns before something happens. Where possible, MamaRindwa will feed structured data into the systems you already use rather than asking you to type twice." },
         { q: "Will it work offline?", a: "The CHW app is designed to work without a connection: you can view your caseload, record a visit and queue a referral. It syncs when you are back on network. Alerts arrive by SMS as a fallback." },
         { q: "How does an escalation reach me?", a: "By app notification and SMS, with the mother's name, the reason, and what the rules recommend. You acknowledge it, act, and record what happened. Your supervisor sees anything that stalls." },
         { q: "Will I get feedback from the clinic?", a: "Yes. Closing the loop is a core feature: when a mother you referred is seen at the facility, the outcome comes back to you. This was the single largest gap in our field interviews." },
         { q: "Who decides the risk rules?", a: "A clinical lead and reviewing midwives and obstetricians. Rules are versioned, reviewed and deployed by separate people, and every recommendation records which rule version produced it." },
-        { q: "Am I liable if the system is wrong?", a: "MamaCare is decision support. The clinical decision remains with the health worker, following normal protocols. We log what the system recommended and why, so that if it is wrong the error is on record and gets reviewed, not hidden." },
+        { q: "Am I liable if the system is wrong?", a: "MamaRindwa is decision support. The clinical decision remains with the health worker, following normal protocols. We log what the system recommended and why, so that if it is wrong the error is on record and gets reviewed, not hidden." },
       ],
       generalItems: [
         { q: "Where is my data stored?", a: "In line with Rwanda's data-protection law (Law No. 058/2021). We work with the Data Protection Office and RNEC on where and how health data is stored and for how long. Details are on our privacy page." },
-        { q: "Is MamaCare approved by the Ministry of Health?", a: "Not yet. We are at the pre-prototype stage and building toward a two-district pilot under ethics approval, in partnership with public health authorities. We will say clearly on this site when that changes." },
+        { q: "Is MamaRindwa approved by the Ministry of Health?", a: "Not yet. We are at the pre-prototype stage and building toward a two-district pilot under ethics approval, in partnership with public health authorities. We will say clearly on this site when that changes." },
         { q: "How is the AI kept safe?", a: "The language model only understands and structures what people say. It never decides on its own. A separate risk model scores the situation, and medically reviewed rules choose the action. Every step is attributed and auditable." },
       ],
       stillQuestion: "Still have a question?",
@@ -374,7 +374,7 @@ export const dict = {
         contact: { ask: "How do we reply?", hint: "Phone, WhatsApp or email. Optional if anonymous.", placeholder: "078 … · you@example.com" },
       },
       doneApply: { title: "We have it. A human will read it.", text: "Not a filter, not a keyword scan — one of us reads every application. Expect a reply within 14 days. If you do not hear from us, write to us with that reference and we will apologise properly.", meetBtn: "Meet who reads it", backBtn: "Back to roles" },
-      doneIdea: { title: "Thank you. That is exactly how MamaCare gets better.", text: "Every idea gets a reply within 14 days — adopted, parked, or ‘tell us more’. If we build it, your name goes on it, unless you asked us not to.", seeBtn: "See what exists today" },
+      doneIdea: { title: "Thank you. That is exactly how MamaRindwa gets better.", text: "Every idea gets a reply within 14 days — adopted, parked, or ‘tell us more’. If we build it, your name goes on it, unless you asked us not to.", seeBtn: "See what exists today" },
       applySubmitLabel: "Send it",
       ideaSubmitLabel: "Drop it in the box",
       howWeHire: {
@@ -390,7 +390,7 @@ export const dict = {
       ui: { back: "Back", skip: "Skip", next: "Next", chooseFile: "Choose a file", pdfHint: "PDF, under 5 MB — or skip", received: "Received" },
     },
     partners: {
-      hero: { eyebrow: "Partners", titlePre: "We ride the network Rwanda ", titleHighlight: "already built", titleSuffix: ".", lead: "MamaCare complements e-Ubuzima and the 45,000-strong Community Health Worker network. Here is what each kind of partner gets, and what we ask in return." },
+      hero: { eyebrow: "Partners", titlePre: "We ride the network Rwanda ", titleHighlight: "already built", titleSuffix: ".", lead: "MamaRindwa complements e-Ubuzima and the 45,000-strong Community Health Worker network. Here is what each kind of partner gets, and what we ask in return." },
       whoWeWorkWith: { eyebrow: "Who we work with", heading: "Four kinds of partner. One shared incentive: fewer emergencies." },
       items: [
         { title: "Ministry of Health & RBC", who: "District health teams, RBC, health centres", gets: ["An early-warning layer on top of e-Ubuzima and the CHW network — not a parallel system", "Escalation and time-to-care data by district, sector and facility", "A documented CHW-to-clinic feedback loop, the gap 100% of interviewed CHWs identified"], gives: "Pilot districts, facility access, clinical reviewers, and a pathway to national scale." },
@@ -405,7 +405,7 @@ export const dict = {
       principles: [
         { title: "Consent first", text: "A mother decides who is linked to her record. Partner access is opt-in, logged and revocable." },
         { title: "Aggregates for payers", text: "Insurers and analysts see de-identified figures with a minimum cell size of 20. No names, no scores." },
-        { title: "Humans stay in charge", text: "Every action MamaCare recommends passes through medically reviewed rules and a named health worker." },
+        { title: "Humans stay in charge", text: "Every action MamaRindwa recommends passes through medically reviewed rules and a named health worker." },
       ],
       whereWeAre: { eyebrow: "Where we are", heading: "Pre-prototype today. A two-district pilot next." },
       timeline: [
@@ -417,7 +417,7 @@ export const dict = {
       researchValidation: "Research & validation",
     },
     research: {
-      hero: { eyebrow: "Research & validation", titlePre: "Built with scientific and clinical validation ", titleHighlight: "from the beginning", titleSuffix: ".", lead: "MamaCare is a research and technology project as much as a product. This page tracks what we have validated, what we are testing, and how researchers can work with us." },
+      hero: { eyebrow: "Research & validation", titlePre: "Built with scientific and clinical validation ", titleHighlight: "from the beginning", titleSuffix: ".", lead: "MamaRindwa is a research and technology project as much as a product. This page tracks what we have validated, what we are testing, and how researchers can work with us." },
       stats: [
         { label: "field interviews completed" },
         { label: "facilities across two provinces" },
@@ -487,11 +487,11 @@ export const dict = {
       },
     },
     consent: {
-      hero: { eyebrow: "Consent", titlePre: "Who can see ", titleHighlight: "your", titleSuffix: " information.", lead: "Before you use MamaCare, this is what you are agreeing to. Written to be read, not skimmed." },
+      hero: { eyebrow: "Consent", titlePre: "Who can see ", titleHighlight: "your", titleSuffix: " information.", lead: "Before you use MamaRindwa, this is what you are agreeing to. Written to be read, not skimmed." },
       careCircle: { eyebrow: "Your care circle", heading: "Four kinds of people. You decide each one." },
       circle: [
         { who: "You (the mother)", sees: "Everything about your own pregnancy, and who has looked at it.", control: "You are in charge. You approve or remove everyone below." },
-        { who: "Family member you approve", sees: "The guidance MamaCare gives you. Not your conversation. Not your risk score, unless you turn that on.", control: "Remove them at any time." },
+        { who: "Family member you approve", sees: "The guidance MamaRindwa gives you. Not your conversation. Not your risk score, unless you turn that on.", control: "Remove them at any time." },
         { who: "Your Community Health Worker", sees: "Your risk level, warning signs, visits and referrals, so they can act.", control: "Ask for a different CHW through your facility." },
         { who: "Your health facility", sees: "Your full record when you are referred or registered there, so they can treat you.", control: "Your record moves with you if you change facility." },
       ],
@@ -500,14 +500,14 @@ export const dict = {
       agreeing: { eyebrow: "What you are agreeing to", heading: "In plain words." },
       understand: "I understand that:",
       points: [
-        "MamaCare is not a doctor and does not diagnose. It helps me and my care circle notice warning signs and act sooner. In an emergency I call 912 or go to a facility.",
+        "MamaRindwa is not a doctor and does not diagnose. It helps me and my care circle notice warning signs and act sooner. In an emergency I call 912 or go to a facility.",
         "What I share will be seen by my Community Health Worker and my health facility, so they can help me, and by any family member I approve.",
         "A computer system reads my messages to understand them and to assess risk. A person always decides what happens next.",
         "My information is protected under Rwanda's data-protection law and is never sold or used for advertising.",
         "Partners such as the Ministry of Health, insurers or researchers only ever receive numbers about many women together, never my name or my record, unless I separately choose to join a programme.",
         "I can see who has looked at my record, remove anyone from my care circle, export my data, or ask for it to be deleted, at any time.",
       ],
-      closingPre: "When you continue in MamaCare and tick “I agree”, you are agreeing to these six points, our ",
+      closingPre: "When you continue in MamaRindwa and tick “I agree”, you are agreeing to these six points, our ",
       closingPrivacyLink: "privacy policy",
       closingMid: " and ",
       closingTermsLink: "terms of use",
@@ -521,11 +521,11 @@ export const dict = {
     privacy: {
       hero: { eyebrow: "Privacy", titlePre: "Your information, ", titleHighlight: "your control", titleSuffix: ".", lead: "Last updated: September 2026. This policy is a draft for the pilot phase and will be reviewed with the Data Protection Office and RNEC before launch." },
       sections: [
-        { h: "1. Who we are", body: ["MamaCare is a maternal-health early-warning platform developed in Kigali, Rwanda. We are the data controller for information you share with MamaCare. Our Data Protection Officer can be reached through the "], link: "contact page", after: "." },
+        { h: "1. Who we are", body: ["MamaRindwa is a maternal-health early-warning platform developed in Kigali, Rwanda. We are the data controller for information you share with MamaRindwa. Our Data Protection Officer can be reached through the "], link: "contact page", after: "." },
         { h: "2. What we collect", items: [
           { strong: "Account details:", text: " name, phone number, preferred language, channel (web, app, WhatsApp, SMS), and, for health workers, facility and role." },
           { strong: "Pregnancy and health information you or your care circle share:", text: " symptoms, pregnancy stage and history, measurements, visit observations, clinical data entered by a provider." },
-          { strong: "Conversations:", text: " the messages you exchange with MamaCare, and the structured summary the system extracts from them." },
+          { strong: "Conversations:", text: " the messages you exchange with MamaRindwa, and the structured summary the system extracts from them." },
           { strong: "System records:", text: " risk levels, recommended actions, escalations, who viewed your record and when." },
           { strong: "Technical data:", text: " device and connection information needed to deliver messages." },
         ] },
@@ -538,7 +538,7 @@ export const dict = {
         ], extra: "We do not use your information for advertising, and we do not sell it." },
         { h: "4. Legal basis", body: ["We process personal and health data under Rwanda's Law No. 058/2021 relating to the protection of personal data and privacy, on the basis of your explicit consent, and, for health workers, the performance of their role. Health data is treated as sensitive data with additional safeguards."] },
         { h: "5. Who can see your information", bodyLink: "consent page", pre: "Only the people in your care circle whom you have approved: your Community Health Worker, your health facility, and any family member you link. Access is per person, logged, and revocable by you at any time. Details are on the ", post: ".", extraStrong: "only de-identified, aggregated figures", extraPre: "Partners such as the Ministry of Health, insurers and research institutions receive ", extraPost: " with a minimum group size, unless you separately opt in to a specific care-management programme." },
-        { h: "6. Automated decision-making", strong: "No decision about your care is made by the system alone.", pre: "MamaCare uses a language model to understand what you say and a risk model to assess your situation. ", post: " Recommended actions pass through medically reviewed rules and are carried out by a named health worker. You can ask for a human review of any recommendation." },
+        { h: "6. Automated decision-making", strong: "No decision about your care is made by the system alone.", pre: "MamaRindwa uses a language model to understand what you say and a risk model to assess your situation. ", post: " Recommended actions pass through medically reviewed rules and are carried out by a named health worker. You can ask for a human review of any recommendation." },
         { h: "7. Security", body: ["Data is encrypted in transit and at rest. Staff have no standing access to identified records; emergency access requires a stated reason, triggers an alert, and is reviewed. Every access to a record is logged, and you can request the log of who viewed yours."] },
         { h: "8. Retention", body: ["Pregnancy records are retained for the duration of care and a defined period after, aligned with health-record requirements agreed with health authorities. Conversation text is minimised after structuring. You may request deletion; where a health-record obligation prevents full deletion, we will tell you what is kept and why."] },
         { h: "9. Your rights", items2: [
@@ -554,32 +554,32 @@ export const dict = {
     },
     terms: {
       hero: { eyebrow: "Terms of use", titlePre: "Plain terms for a ", titleHighlight: "serious", titleSuffix: " service.", lead: "Last updated: September 2026. Draft for the pilot phase." },
-      s1: { h: "1. What MamaCare is, and is not", strong: "MamaCare is not a medical service, does not diagnose, and does not replace doctors, midwives or Community Health Workers.", pre: "MamaCare is a decision-support tool that helps mothers, families and health workers recognise possible pregnancy risks earlier and act sooner. ", post: " It is not an emergency service. In an emergency, call 912 or go to the nearest health facility." },
-      s2: { h: "2. Who may use it", body: "Pregnant and postpartum women, family members they approve, and health workers authorised by their facility or programme. Health-worker accounts are issued and revoked by MamaCare administrators on request of the facility." },
+      s1: { h: "1. What MamaRindwa is, and is not", strong: "MamaRindwa is not a medical service, does not diagnose, and does not replace doctors, midwives or Community Health Workers.", pre: "MamaRindwa is a decision-support tool that helps mothers, families and health workers recognise possible pregnancy risks earlier and act sooner. ", post: " It is not an emergency service. In an emergency, call 912 or go to the nearest health facility." },
+      s2: { h: "2. Who may use it", body: "Pregnant and postpartum women, family members they approve, and health workers authorised by their facility or programme. Health-worker accounts are issued and revoked by MamaRindwa administrators on request of the facility." },
       s3: { h: "3. Your responsibilities", items: [
         "Provide information that is accurate to the best of your knowledge.",
         "Keep your account and phone secure; tell us if you lose access.",
         "Only link people the mother has agreed to link.",
-        "Health workers: follow your professional protocols. MamaCare's recommendations support, and do not replace, your judgement.",
+        "Health workers: follow your professional protocols. MamaRindwa's recommendations support, and do not replace, your judgement.",
       ] },
       s4: { h: "4. Our responsibilities", items: [
         "Keep medically reviewed rules current and versioned.",
         "Attribute every system recommendation so it can be reviewed.",
       ], linkPre: "Protect your information as described in the ", linkText: "privacy policy", linkPost: ".", last: "Tell you promptly if something goes wrong that affects you." },
-      s5: { h: "5. Availability", body: "We aim for the service to be available at all times, but messages can be delayed by networks we do not control. Never rely on MamaCare alone in an emergency." },
-      s6: { h: "6. Limits of liability", body: "To the extent permitted by Rwandan law, MamaCare is not liable for outcomes arising from clinical decisions made by health workers, from inaccurate information provided to the system, or from network failures outside our control. Nothing in these terms limits liability that cannot be limited by law." },
-      s7: { h: "7. Ending use", body: "You can stop using MamaCare at any time and request deletion of your data. We may suspend accounts that misuse the service or endanger others." },
+      s5: { h: "5. Availability", body: "We aim for the service to be available at all times, but messages can be delayed by networks we do not control. Never rely on MamaRindwa alone in an emergency." },
+      s6: { h: "6. Limits of liability", body: "To the extent permitted by Rwandan law, MamaRindwa is not liable for outcomes arising from clinical decisions made by health workers, from inaccurate information provided to the system, or from network failures outside our control. Nothing in these terms limits liability that cannot be limited by law." },
+      s7: { h: "7. Ending use", body: "You can stop using MamaRindwa at any time and request deletion of your data. We may suspend accounts that misuse the service or endanger others." },
       s8: { h: "8. Governing law", body: "These terms are governed by the laws of the Republic of Rwanda." },
     },
     status: {
-      title: "MamaCare status",
+      title: "MamaRindwa status",
       overall: { operational: "All systems operational", degraded: "Some systems degraded", outage: "Service disruption" },
       statusLabel: { operational: "Operational", degraded: "Degraded", outage: "Outage" },
       updatedPrefix: "Updated",
       kigaliSuffix: "(Kigali)",
       incidentsHeading: "Incidents",
       uptimeSuffix: "90 d",
-      footer: { pre: "If MamaCare is unavailable, CHWs keep working: the app saves on the phone and syncs later. Mothers and families can always call their CHW or facility directly. In an emergency, ", link: "call 912", post: "." },
+      footer: { pre: "If MamaRindwa is unavailable, CHWs keep working: the app saves on the phone and syncs later. Mothers and families can always call their CHW or facility directly. In an emergency, ", link: "call 912", post: "." },
     },
   },
   rw: {
@@ -597,7 +597,7 @@ export const dict = {
       title1: "Ikimenyetso gishobora kuza",
       title2: "mbere y'ibyihutirwa.",
       lead:
-        "MamaCare ihuza umubyeyi, umuryango we, umujyanama w'ubuzima n'ivuriro mu ishusho imwe ihoraho y'inda — kugira ngo nta kimenyetso cy'akaga kibura kubonwa.",
+        "MamaRindwa ihuza umubyeyi, umuryango we, umujyanama w'ubuzima n'ivuriro mu ishusho imwe ihoraho y'inda — kugira ngo nta kimenyetso cy'akaga kibura kubonwa.",
       ctaPrimary: "Tangira isuzuma",
       ctaSecondary: "Reba uko bikora",
       scroll: "Manuka",
@@ -606,20 +606,20 @@ export const dict = {
     },
     login: {
       title: "Murakaza neza",
-      subtitle: "Injira muri konti yawe ya MamaCare.",
+      subtitle: "Injira muri konti yawe ya MamaRindwa.",
       google: "Komeza ukoresheje Google",
       or: "cyangwa ukoreshe imeyili",
       email: "Aderesi ya imeyili",
       password: "Ijambobanga",
       forgot: "Wibagiwe ijambobanga?",
       submit: "Injira",
-      noAccount: "Uri mushya kuri MamaCare?",
+      noAccount: "Uri mushya kuri MamaRindwa?",
       create: "Fungura konti",
-      demoHint: "Igerageza (ijambobanga: mamacare): demo@ · mother@ · family@ · supervisor@ · provider@ · analyst@ · care@ · researcher@ · admin@ mamacare.rw",
+      demoHint: "Igerageza (ijambobanga: MamaRindwa): demo@ · mother@ · family@ · supervisor@ · provider@ · analyst@ · care@ · researcher@ · admin@ MamaRindwa.rw",
     },
     common: {
       notDiagnosis:
-        "MamaCare ntisuzuma indwara. Ifasha ababyeyi, imiryango n'abakozi b'ubuzima kumenya ingaruka hakiri kare — no gufata ingamba vuba.",
+        "MamaRindwa ntisuzuma indwara. Ifasha ababyeyi, imiryango n'abakozi b'ubuzima kumenya ingaruka hakiri kare — no gufata ingamba vuba.",
       emergency: "Mu byihutirwa hamagara 912",
     },
     story: {
@@ -652,7 +652,7 @@ export const dict = {
       eyebrow: "Icyo twabonye",
       heading: "Ishusho imwe ihoraho ya buri gutwita.",
       lead:
-        "Amakuru asanzwe ahari — ariko afitwe n'abantu bane batandukanye. MamaCare ayahuza mu gihe kimwe abamwitaho bose bashobora gukoreraho.",
+        "Amakuru asanzwe ahari — ariko afitwe n'abantu bane batandukanye. MamaRindwa ayahuza mu gihe kimwe abamwitaho bose bashobora gukoreraho.",
       people: [
         { title: "Umubyeyi", text: "Asangira ibimenyetso n'impungenge mu magambo ye — binyuze mu ganira, WhatsApp cyangwa SMS." },
         { title: "Umuryango", text: "Yibonera impinduka mu rugo kandi agatanga ubufasha hagati y'inama." },
@@ -692,7 +692,7 @@ export const dict = {
       heading: "Umutekano si inama y'ubwitonzi. Ni imiterere y'ikigo.",
       lead: "Ku gikoresho cy'ubuzima bw'umubyeyi, icyizere ni cyo gicuruzwa. Aya ni amasezerano twiyemeje.",
       pillars: [
-        { title: "Abantu ni bo bafata icyemezo", text: "MamaCare ifasha — ntisimbura — abaganga, ababyaza n'abajyanama b'ubuzima. Ntisuzuma indwara." },
+        { title: "Abantu ni bo bafata icyemezo", text: "MamaRindwa ifasha — ntisimbura — abaganga, ababyaza n'abajyanama b'ubuzima. Ntisuzuma indwara." },
         { title: "Amategeko yasuzumwe n'abaganga", text: "Buri gikorwa cyasabwe gikurikiza amategeko y'ubuvuzi yasuzumwe n'abahanga b'ubuzima, kandi bishobora kugenzurwa byose." },
         { title: "Kurinda amakuru", text: "Uruhushya mbere ya byose. Amakuru y'ubuzima acungwa hakurikijwe amategeko y'u Rwanda ku kurinda amakuru, hamwe no gusuzumwa n'abigenga." },
         { title: "Byubatswe ku Kinyarwanda", text: "Kutumvikana ni akaga ku mutekano. Iyo sisitemu itizeye, ibaza — cyangwa igahereza umuntu." },
@@ -710,9 +710,9 @@ export const dict = {
       createAccount: "Fungura konti",
       tagline: "Imitima ibiri, ubwitonzi bumwe",
       disclaimerLead:
-        "MamaCare ni igikoresho gifasha gufata ibyemezo. Ntisuzuma indwara kandi ntisimbura abaganga, ababyaza cyangwa abajyanama b'ubuzima. Mu byihutirwa, ",
+        "MamaRindwa ni igikoresho gifasha gufata ibyemezo. Ntisuzuma indwara kandi ntisimbura abaganga, ababyaza cyangwa abajyanama b'ubuzima. Mu byihutirwa, ",
       call912: "hamagara 912",
-      copyright: "MamaCare · Kigali, u Rwanda",
+      copyright: "MamaRindwa · Kigali, u Rwanda",
       columns: [
         {
           title: "Igikorwa",
@@ -750,12 +750,12 @@ export const dict = {
     },
     about: {
       hero: {
-        eyebrow: "Ibyerekeye MamaCare",
+        eyebrow: "Ibyerekeye MamaRindwa",
         titlePre: "Duhuza ku buzima ",
         titleHighlight: "bwiza",
         titleSuffix: " bw'inda.",
         lead:
-          "MamaCare ni gahunda y'ubushakashatsi n'ikoranabuhanga itangira i Kigali, u Rwanda, ihuza ubwenge bw'ikoranabuhanga, ubuzima bw'umubyeyi, ubuvuzi mu ndimi nyinshi, n'ubuvumbuzi bwiyubashye.",
+          "MamaRindwa ni gahunda y'ubushakashatsi n'ikoranabuhanga itangira i Kigali, u Rwanda, ihuza ubwenge bw'ikoranabuhanga, ubuzima bw'umubyeyi, ubuvuzi mu ndimi nyinshi, n'ubuvumbuzi bwiyubashye.",
       },
       statement:
         "Twizera ko amakuru akenewe kugira ngo umubyeyi arinzwe asanzwe ahari. Aba n'umubyeyi, umuryango we, umujyanama we w'ubuzima n'ivuriro rye. Akazi kacu ni ukuyahuza — ku gihe.",
@@ -763,7 +763,7 @@ export const dict = {
         eyebrow: "Republika y'Ubwitonzi · Ikarita y'indangamuntu",
         title: "Uwo turi we",
         fields: [
-          { k: "Izina", v: "MamaCare" },
+          { k: "Izina", v: "MamaRindwa" },
           { k: "Yavutse", v: "Kigali, u Rwanda · 2026" },
           { k: "Umurimo", v: "Kwemeza ko ikimenyetso cy'iburira kigera ku muntu ushobora gukora ikintu" },
           { k: "Indimi", v: "Ikinyarwanda · Icyongereza" },
@@ -772,7 +772,7 @@ export const dict = {
         ],
         footer: "Yatanzwe n'abantu batatu bakuriye hafi y'iki kibazo maze banga kugifata nk'ibisanzwe.",
         stamp: "Kigali",
-        whoEyebrow: "Uwo MamaCare ari we",
+        whoEyebrow: "Uwo MamaRindwa ari we",
         whoHeading: "Buri mubyeyi afite ikarita. Iyi ni iyacu.",
         whoLead:
           "Turi umufasha w'ubuzima bw'umubyeyi wavukiye i Kigali: abahanga mu makuru, abanyabwenge n'abakozi b'ubuzima rusange bakuriye hafi y'iki kibazo. Si igicuruzwa kigwa mu Rwanda — ni ikimera mo.",
@@ -815,7 +815,7 @@ export const dict = {
         eyebrow: "Inkuru yacu",
         heading: "Yubatswe uhereye hasi, n'abantu ikorera.",
         slides: [
-          { title: "Intangiriro yacu", text: "Ibimenyetso bisanzwe by'umuvandimwe — impeta imufatanye, umutwe umubabaza, idirishya ridasobanutse — byagaragaye ko ari preeklampusi, yabuze kubonwa kugeza igihe yagize ingaruka. Iyo nkuru ni yo mpamvu MamaCare ibaho." },
+          { title: "Intangiriro yacu", text: "Ibimenyetso bisanzwe by'umuvandimwe — impeta imufatanye, umutwe umubabaza, idirishya ridasobanutse — byagaragaye ko ari preeklampusi, yabuze kubonwa kugeza igihe yagize ingaruka. Iyo nkuru ni yo mpamvu MamaRindwa ibaho." },
           { title: "Kumva mbere ya byose", text: "Mbere yo kwandika porogaramu twaganiriye n'abagore batwite, abagize imiryango, abajyanama b'ubuzima n'ababyaza mu bigo bitanu byo mu Ntara y'Amajyaruguru n'Iy'Iburengerazuba." },
           { title: "Icyo twize", text: "Icyuho si ukumenya cyangwa umwete. Ni uko nta muntu ufite ishusho yuzuye — kandi urunigi ruva ku mujyanama rugana ivuriro ni ho ibimenyetso by'iburira bikunda guceceka." },
           { title: "Aho tugana", text: "Icyitegererezo cyemejwe n'ubuvuzi, igerageza mu turere tubiri ryemejwe n'abarebera imyitwarire, na urubuga rusanzwe ruteza imbere gahunda z'ubuzima zisanzwe mu Rwanda aho kuzihangana." },
@@ -830,7 +830,7 @@ export const dict = {
         heading: "Inzobere eshatu. Icyizere kimwe basangiye.",
         lead: "Amakuru asanzwe ahari kugira ngo tumurinde.",
         members: [
-          { role: "Umushinze & Umuyobozi Mukuru · Umuyobozi w'Imari, Amategeko n'Ubwubahirizamategeko", text: "Ashyiraho icyerekezo cya MamaCare akayobora imari, imiterere y'amategeko n'ubwubahirizamategeko mu Rwanda." },
+          { role: "Umushinze & Umuyobozi Mukuru · Umuyobozi w'Imari, Amategeko n'Ubwubahirizamategeko", text: "Ashyiraho icyerekezo cya MamaRindwa akayobora imari, imiterere y'amategeko n'ubwubahirizamategeko mu Rwanda." },
           { role: "Umufatanyabikorwa mu gushinga · Umuyobozi w'Ubuvuzi n'Ubucuruzi", text: "Ayobora ubufatanye bw'ubuvuzi, ingamba z'ubucuruzi no kwinjira ku isoko mu bigo n'urusobe rw'abajyanama b'ubuzima." },
           { role: "Umufatanyabikorwa mu gushinga · Umuyobozi w'Ikoranabuhanga n'Imikorere", text: "Ayobora urubuga rw'ikoranabuhanga n'imikorere ya buri munsi, kuva ku iterambere kugeza ku gutanga serivisi." },
         ],
@@ -852,7 +852,7 @@ export const dict = {
         titlePre: "Porogaramu y'ururimi ",
         titleHighlight: "irumva",
         titleSuffix: ". Amategeko y'ubuvuzi ayobora igikorwa.",
-        lead: "MamaCare ni uburyo buvanze — atari porogaramu y'ikiganiro gusa. Buri nama ihita inyura mu mategeko y'ubuvuzi yasuzumwe, kandi umuntu aba ari kumwe igihe cyose.",
+        lead: "MamaRindwa ni uburyo buvanze — atari porogaramu y'ikiganiro gusa. Buri nama ihita inyura mu mategeko y'ubuvuzi yasuzumwe, kandi umuntu aba ari kumwe igihe cyose.",
       },
       riskLevels: {
         eyebrow: "Ayobowe n'amategeko y'ubuvuzi",
@@ -866,7 +866,7 @@ export const dict = {
         ],
       },
       audiences: [
-        { eyebrow: "Ku babyeyi", title: "Sobanura uko wiyumva, mu magambo yawe.", text: "Nta mafishi, nta magambo y'ubuvuzi. Bwira MamaCare icyo kirimo kubaho — umutwe, kubyimba, kwimuka bike — kandi izakubaza ibibazo bikwiye ikakubwira icyo ukora ukurikira. Check-in z'ibanze binyuze muri SMS na WhatsApp ni ubuntu buri gihe.", cta: "Tangira isuzuma" },
+        { eyebrow: "Ku babyeyi", title: "Sobanura uko wiyumva, mu magambo yawe.", text: "Nta mafishi, nta magambo y'ubuvuzi. Bwira MamaRindwa icyo kirimo kubaho — umutwe, kubyimba, kwimuka bike — kandi izakubaza ibibazo bikwiye ikakubwira icyo ukora ukurikira. Check-in z'ibanze binyuze muri SMS na WhatsApp ni ubuntu buri gihe.", cta: "Tangira isuzuma" },
         { eyebrow: "Ku miryango", title: "Ubona ibintu ashobora kutavuga.", text: "Umufasha, nyina, mushiki we bashobora kumenyesha ibyo babonye — abyemeye — kugira ngo ikimenyetso cyabonetse mu rugo kigere ku bantu bashobora gukora ikintu.", cta: "Fasha undi muntu" },
         { eyebrow: "Ku bajyanama n'abakozi b'ubuvuzi", title: "Igihe kimwe. Ntugasubiremo kwandika. Urunigi rusozwa.", text: "Reba buri gutwita ufite mu bakiriya bawe, usuzume ibyihutirwa, wandike ibyabonetse mu gusura mu masegonda make maze ubone igisubizo ivuriro kubyerekeye icyakurikiyeho — icyuho 100% by'abajyanama twaganiriye na bo babonye.", cta: "Saba uburenganzira" },
       ],
@@ -880,17 +880,17 @@ export const dict = {
         lead: "Biturutse ku babyeyi, imiryango, abajyanama b'ubuzima n'ababyaza mu biganiro twagiranye. Niba icyawe kitarimo, twandikire.",
       },
       sections: {
-        mothers: { eyebrow: "Ku babyeyi n'imiryango", heading: "Gukoresha MamaCare" },
+        mothers: { eyebrow: "Ku babyeyi n'imiryango", heading: "Gukoresha MamaRindwa" },
         workers: { eyebrow: "Ku bajyanama n'abatanga serivisi", heading: "Gukorana na yo" },
         general: { eyebrow: "Amakuru n'umutekano", heading: "Icyizere" },
       },
       mothersItems: [
-        { q: "Ese MamaCare ni muganga?", a: "Oya. MamaCare ntabwo isuzuma indwara kandi ntabwo isimbura muganga wawe, umubyaza cyangwa umujyanama w'ubuzima. Ifasha kumenya ibimenyetso by'ingenzi hakiri kare no kugera ku muntu ukwiye vuba. Mu bihe by'ihutirwa, hamagara 912 cyangwa ujye ku kigo nderabuzima kiri hafi." },
+        { q: "Ese MamaRindwa ni muganga?", a: "Oya. MamaRindwa ntabwo isuzuma indwara kandi ntabwo isimbura muganga wawe, umubyaza cyangwa umujyanama w'ubuzima. Ifasha kumenya ibimenyetso by'ingenzi hakiri kare no kugera ku muntu ukwiye vuba. Mu bihe by'ihutirwa, hamagara 912 cyangwa ujye ku kigo nderabuzima kiri hafi." },
         { q: "Ese bisaba amafaranga?", a: "Isuzuma ry'ibanze rikorwa binyuze muri SMS na WhatsApp ni ubuntu ku babyeyi kandi bizakomeza kuba ubuntu. Amafaranga y'amasaha n'internet asanzwe akoresha telefoni yawe ashobora gukurikizwa bitewe na network yawe." },
-        { q: "Ese nashobora kuyikoresha mu Kinyarwanda?", a: "Yego. Ushobora kwandika cyangwa kuvuga mu Kinyarwanda cyangwa Icyongereza, ukavamo igihe ushatse. Iyo MamaCare idasobanukiwe n'ikintu, izongera kubaza cyangwa ikuguhe umuntu aho kwiyumvamo." },
-        { q: "Bite se niba mfite telefoni idafite interineti (smartphone)?", a: "MamaCare ikora binyuze muri SMS kuri telefoni iyo ari yo yose. Wohereza ubutumwa, MamaCare igukurikiza ibibazo bigufi, ikakubwira icyo ukora ukurikira." },
+        { q: "Ese nashobora kuyikoresha mu Kinyarwanda?", a: "Yego. Ushobora kwandika cyangwa kuvuga mu Kinyarwanda cyangwa Icyongereza, ukavamo igihe ushatse. Iyo MamaRindwa idasobanukiwe n'ikintu, izongera kubaza cyangwa ikuguhe umuntu aho kwiyumvamo." },
+        { q: "Bite se niba mfite telefoni idafite interineti (smartphone)?", a: "MamaRindwa ikora binyuze muri SMS kuri telefoni iyo ari yo yose. Wohereza ubutumwa, MamaRindwa igukurikiza ibibazo bigufi, ikakubwira icyo ukora ukurikira." },
         { q: "Ese umuryango wanjye wanshyikiriza raporo?", a: "Yego, niba ubyemeye. Umufasha, umubyeyi cyangwa mushiki wawe bashobora kumenyesha ibyo babonye, kandi ni wowe uhitamo niba babona inama ubona. Ushobora kubavana ku rutonde igihe icyo ari cyo cyose." },
-        { q: "Ni iki gikurikiraho iyo ntanze raporo y'ikimenyetso cy'ingenzi?", a: "MamaCare ibaza ibibazo bike by'inyongera, hanyuma amabwiriza yasuzumwe n'abaganga agafata icyemezo cy'icyakurikiyeho: amakuru y'umutekano, inama yo guhamagara umujyanama w'ubuzima, cyangwa integuza igera ku mujyanama wawe n'ikigo nderabuzima. Habaho buri gihe umuntu witiriwe ushinzwe iyo nteguza." },
+        { q: "Ni iki gikurikiraho iyo ntanze raporo y'ikimenyetso cy'ingenzi?", a: "MamaRindwa ibaza ibibazo bike by'inyongera, hanyuma amabwiriza yasuzumwe n'abaganga agafata icyemezo cy'icyakurikiyeho: amakuru y'umutekano, inama yo guhamagara umujyanama w'ubuzima, cyangwa integuza igera ku mujyanama wawe n'ikigo nderabuzima. Habaho buri gihe umuntu witiriwe ushinzwe iyo nteguza." },
       ],
       mothersLinked: {
         q: "Ni bande babona ibyo nasangiye?",
@@ -899,16 +899,16 @@ export const dict = {
         aSuffix: ".",
       },
       workersItems: [
-        { q: "Ese ibi bisimbura e-Ubuzima cyangwa RapidSMS?", a: "Oya. Izo sisitemu zandika ibyabaye. MamaCare yumva umubyeyi, umuryango we ndetse na wowe hagati y'igihe cyo gusura, kandi itanga integuza mbere y'uko ikintu kibaho. Aho bishoboka, MamaCare izohereza amakuru yateguwe muri sisitemu usanzwe ukoresha aho kugusaba kwandika kabiri." },
+        { q: "Ese ibi bisimbura e-Ubuzima cyangwa RapidSMS?", a: "Oya. Izo sisitemu zandika ibyabaye. MamaRindwa yumva umubyeyi, umuryango we ndetse na wowe hagati y'igihe cyo gusura, kandi itanga integuza mbere y'uko ikintu kibaho. Aho bishoboka, MamaRindwa izohereza amakuru yateguwe muri sisitemu usanzwe ukoresha aho kugusaba kwandika kabiri." },
         { q: "Ese izakora nta interineti?", a: "Porogaramu y'umujyanama w'ubuzima yateguwe gukora nta interineti: ushobora kureba abarwayi bawe, kwandika gusura no gushyira ku rutonde kohereza umurwayi ahandi. Izahuza amakuru igihe usubiye kuri network. Integuza zigera kuri wowe binyuze muri SMS mu gihe network idahari." },
         { q: "Ni gute integuza igera kuri njye?", a: "Binyuze mu itangazo rya porogaramu na SMS, hamwe n'izina ry'umubyeyi, impamvu, n'icyo amabwiriza asaba. Wemera integuza, ugakora, ukanandika ibyabaye. Umuyobozi wawe abona ikintu cyose kitakoreweho ibikwiye." },
         { q: "Ese nzabona amakuru y'ibisubizo biva ku ivuriro?", a: "Yego. Gusoza uruziga ni ikintu cy'ingenzi: iyo umubyeyi wohereje asuwe ku kigo nderabuzima, ibisubizo bigaruka kuri wowe. Iki cyari icyuho kinini twabonye mu biganiro byacu byo mu murima." },
         { q: "Ninde ufata icyemezo ku mabwiriza y'ibyago?", a: "Umuyobozi mu by'ubuvuzi hamwe n'ababyaza n'abaganga b'inda babisuzuma. Amabwiriza afite verisiyo, asuzumwa kandi ashyirwaho n'abantu batandukanye, kandi buri nama yandikwa hamwe na verisiyo y'itegeko yayitanze." },
-        { q: "Ese ndabazwa niba sisitemu ikosheje?", a: "MamaCare ifasha gufata ibyemezo. Icyemezo cy'ubuvuzi gisigara ku mukozi w'ubuzima, akurikije amabwiriza asanzwe. Twandika icyo sisitemu yasabye n'impamvu, kugira ngo niba ikosheje ikosa ryanditswe rikanasuzumwa, ntiryihishe." },
+        { q: "Ese ndabazwa niba sisitemu ikosheje?", a: "MamaRindwa ifasha gufata ibyemezo. Icyemezo cy'ubuvuzi gisigara ku mukozi w'ubuzima, akurikije amabwiriza asanzwe. Twandika icyo sisitemu yasabye n'impamvu, kugira ngo niba ikosheje ikosa ryanditswe rikanasuzumwa, ntiryihishe." },
       ],
       generalItems: [
         { q: "Amakuru yanjye abikwa he?", a: "Bikurikije itegeko ry'u Rwanda rirengera amakuru (Itegeko No. 058/2021). Dukorana n'Ikigo gishinzwe kurengera amakuru (Data Protection Office) na RNEC ku byerekeye aho n'uko amakuru y'ubuzima abikwa n'igihe abikwamo. Ibisobanuro biri ku rupapuro rwacu rw'ibanga." },
-        { q: "Ese MamaCare yemejwe na Minisiteri y'Ubuzima?", a: "Ntabwo byaremejwe kugeza ubu. Turi mu ntambwe yo kubanza gukora igerageza, kandi turimo gutegura pilote mu turere tubiri hakurikijwe uburenganzira bw'ubushakashatsi, tubifashijwemo n'inzego z'ubuzima rusange. Tuzabimenyesha neza kuri iyi urubuga igihe ibyo bizahinduka." },
+        { q: "Ese MamaRindwa yemejwe na Minisiteri y'Ubuzima?", a: "Ntabwo byaremejwe kugeza ubu. Turi mu ntambwe yo kubanza gukora igerageza, kandi turimo gutegura pilote mu turere tubiri hakurikijwe uburenganzira bw'ubushakashatsi, tubifashijwemo n'inzego z'ubuzima rusange. Tuzabimenyesha neza kuri iyi urubuga igihe ibyo bizahinduka." },
         { q: "Ese ikoranabuhanga rya AI rikomejwe umutekano gute?", a: "Icyitegererezo cy'ururimi gisobanura kandi gishyira mu buryo bwiza gusa ibyo abantu bavuze. Ntabwo gifata icyemezo ubwacyo. Icyitegererezo cy'ibyago gisuzuma imiterere, kandi amabwiriza yasuzumwe n'abaganga ni yo ahitamo igikorwa. Buri ntambwe irerekana uwayikoze kandi ishobora gusuzumwa." },
       ],
       stillQuestion: "Ukiri gufite ikibazo?",
@@ -951,7 +951,7 @@ export const dict = {
         contact: { ask: "Twagusubiza gute?", hint: "Telefoni, WhatsApp cyangwa imeyili. Ntibisabwa niba utazwi.", placeholder: "078 … · you@example.com" },
       },
       doneApply: { title: "Tubifite. Umuntu azabisoma.", text: "Ntabwo ari akayunguruzo, ntabwo ari ugushakisha amagambo gusa — umwe muri twe asoma buri busabe. Tegereza igisubizo mu minsi 14. Nutabona igisubizo, twandikire ukoresheje iyo nomero maze tuzasaba imbabazi mu buryo bukwiye.", meetBtn: "Menya abasoma ibisabwa", backBtn: "Subira ku myanya" },
-      doneIdea: { title: "Murakoze. Uko ni ko MamaCare igenda irushaho kuba nziza.", text: "Buri gitekerezo gisubizwa mu minsi 14 — cyemejwe, cyategekwa gutegereza, cyangwa 'tubwire byinshi'. Niba twagikoze, izina ryawe rirajyaho, keretse utabishaka.", seeBtn: "Reba ibisanzwe biriho ubu" },
+      doneIdea: { title: "Murakoze. Uko ni ko MamaRindwa igenda irushaho kuba nziza.", text: "Buri gitekerezo gisubizwa mu minsi 14 — cyemejwe, cyategekwa gutegereza, cyangwa 'tubwire byinshi'. Niba twagikoze, izina ryawe rirajyaho, keretse utabishaka.", seeBtn: "Reba ibisanzwe biriho ubu" },
       applySubmitLabel: "Ohereza",
       ideaSubmitLabel: "Shyira mu gasanduku",
       howWeHire: {
@@ -967,7 +967,7 @@ export const dict = {
       ui: { back: "Subira inyuma", skip: "Simbuka", next: "Komeza", chooseFile: "Hitamo dosiye", pdfHint: "PDF, munsi ya MB 5 — cyangwa simbuka", received: "Byakiriwe" },
     },
     partners: {
-      hero: { eyebrow: "Abafatanyabikorwa", titlePre: "Dukoresha urusobe u Rwanda ", titleHighlight: "rwamaze kubaka", titleSuffix: ".", lead: "MamaCare yuzuza e-Ubuzima n'urusobe rw'abajyanama b'ubuzima barenga 45,000. Dore icyo buri bwoko bw'ufatanyabikorwa abona, n'icyo dusaba mu gusubiza." },
+      hero: { eyebrow: "Abafatanyabikorwa", titlePre: "Dukoresha urusobe u Rwanda ", titleHighlight: "rwamaze kubaka", titleSuffix: ".", lead: "MamaRindwa yuzuza e-Ubuzima n'urusobe rw'abajyanama b'ubuzima barenga 45,000. Dore icyo buri bwoko bw'ufatanyabikorwa abona, n'icyo dusaba mu gusubiza." },
       whoWeWorkWith: { eyebrow: "Abo dukorana", heading: "Amoko ane y'abafatanyabikorwa. Intego imwe rusange: kugabanya ibyihutirwa." },
       items: [
         { title: "Minisiteri y'Ubuzima na RBC", who: "Amatsinda y'ubuzima mu turere, RBC, ibigo nderabuzima", gets: ["Urwego rw'integuza rushyirwa hejuru y'e-Ubuzima n'urusobe rw'abajyanama — atari sisitemu indi itandukanye", "Amakuru y'integuza n'igihe cyo kubona ubuvuzi bitandukanijwe ku karere, umurenge n'ikigo", "Uruziga rusoza rwanditse hagati y'umujyanama n'ivuriro, icyuho 100% by'abajyanama twaganiriye na bo babonye"], gives: "Uturere tw'igerageza, uburenganzira bwo kwinjira mu bigo, abasuzumyi mu by'ubuvuzi, n'inzira igana ku rwego rw'igihugu." },
@@ -982,7 +982,7 @@ export const dict = {
       principles: [
         { title: "Uburenganzira mbere ya byose", text: "Umubyeyi ni we uhitamo ubufite uburenganzira ku bumenyi bwe. Uburenganzira bw'abafatanyabikorwa bwemejwe, bwanditswe kandi bushobora gukurwaho." },
         { title: "Ibipimo rusange ku bishyura", text: "Abishingizi n'abasesengura babona imibare idafite umuntu uyerekeranye, byibuze abantu 20 muri buri gace. Nta mazina, nta manota." },
-        { title: "Abantu bagumana ubuyobozi", text: "Buri gikorwa MamaCare isaba kinyura mu mategeko y'ubuvuzi yasuzumwe n'umukozi w'ubuzima witiriwe." },
+        { title: "Abantu bagumana ubuyobozi", text: "Buri gikorwa MamaRindwa isaba kinyura mu mategeko y'ubuvuzi yasuzumwe n'umukozi w'ubuzima witiriwe." },
       ],
       whereWeAre: { eyebrow: "Aho tugeze", heading: "Uyu munsi turi mu cyitegererezo cya mbere. Igerageza mu turere tubiri ni intambwe ikurikira." },
       timeline: [
@@ -994,7 +994,7 @@ export const dict = {
       researchValidation: "Ubushakashatsi n'isuzuma",
     },
     research: {
-      hero: { eyebrow: "Ubushakashatsi n'isuzuma", titlePre: "Yubatswe hakoreshejwe isuzuma rya siyansi n'ubuvuzi ", titleHighlight: "kuva mu ntangiriro", titleSuffix: ".", lead: "MamaCare ni umushinga w'ubushakashatsi n'ikoranabuhanga nk'uko ari igicuruzwa. Uru rupapuro rukurikirana ibyo twemeje, ibyo turimo gusuzuma, n'uko abashakashatsi bakorana natwe." },
+      hero: { eyebrow: "Ubushakashatsi n'isuzuma", titlePre: "Yubatswe hakoreshejwe isuzuma rya siyansi n'ubuvuzi ", titleHighlight: "kuva mu ntangiriro", titleSuffix: ".", lead: "MamaRindwa ni umushinga w'ubushakashatsi n'ikoranabuhanga nk'uko ari igicuruzwa. Uru rupapuro rukurikirana ibyo twemeje, ibyo turimo gusuzuma, n'uko abashakashatsi bakorana natwe." },
       stats: [
         { label: "ibiganiro byo mu murima byarangiye" },
         { label: "ibigo binyuze mu ntara ebyiri" },
@@ -1064,11 +1064,11 @@ export const dict = {
       },
     },
     consent: {
-      hero: { eyebrow: "Uburenganzira", titlePre: "Ninde ubona ", titleHighlight: "amakuru yawe", titleSuffix: "." , lead: "Mbere yo gukoresha MamaCare, iki ni cyo wemera. Byanditswe kugira ngo bisomwe, ntabwo ari ugusoma vuba vuba." },
+      hero: { eyebrow: "Uburenganzira", titlePre: "Ninde ubona ", titleHighlight: "amakuru yawe", titleSuffix: "." , lead: "Mbere yo gukoresha MamaRindwa, iki ni cyo wemera. Byanditswe kugira ngo bisomwe, ntabwo ari ugusoma vuba vuba." },
       careCircle: { eyebrow: "Umuryango wawe w'ubwitange", heading: "Amoko ane y'abantu. Uhitamo buri wese." },
       circle: [
         { who: "Wowe (umubyeyi)", sees: "Byose byerekeye inda yawe, n'abarebye amakuru yawe.", control: "Ni wowe uyobora. Wemeza cyangwa ugakuraho umuntu uwo ari we wese uri hasi." },
-        { who: "Umuntu wo mu muryango wemeye", sees: "Inama MamaCare igutanga. Ntabwo ari ikiganiro cyawe. Ntabwo ari amanota yawe y'ingaruka, keretse ubyemeje.", control: "Mubure igihe icyo ari cyo cyose." },
+        { who: "Umuntu wo mu muryango wemeye", sees: "Inama MamaRindwa igutanga. Ntabwo ari ikiganiro cyawe. Ntabwo ari amanota yawe y'ingaruka, keretse ubyemeje.", control: "Mubure igihe icyo ari cyo cyose." },
         { who: "Umujyanama wawe w'ubuzima", sees: "Urwego rwawe rw'ingaruka, ibimenyetso by'akaga, gusura no kohereza, kugira ngo bashobore gukora.", control: "Saba undi mujyanama binyuze ku kigo cyawe." },
         { who: "Ikigo nderabuzima cyawe", sees: "Amakuru yawe yose igihe woherejwe cyangwa wanditswe aho, kugira ngo bagushobore kuvura.", control: "Amakuru yawe agenda nawe iyo uhinduye ikigo." },
       ],
@@ -1077,14 +1077,14 @@ export const dict = {
       agreeing: { eyebrow: "Icyo wemera", heading: "Mu magambo yoroshye." },
       understand: "Nsobanukiwe ko:",
       points: [
-        "MamaCare si muganga kandi ntabwo isuzuma indwara. Ifasha njye n'umuryango wanjye w'ubwitange kumenya ibimenyetso by'akaga no gukora vuba. Mu bihe by'ihutirwa nahamagara 912 cyangwa nkajya ku kigo.",
+        "MamaRindwa si muganga kandi ntabwo isuzuma indwara. Ifasha njye n'umuryango wanjye w'ubwitange kumenya ibimenyetso by'akaga no gukora vuba. Mu bihe by'ihutirwa nahamagara 912 cyangwa nkajya ku kigo.",
         "Ibyo nsangiye bizabonwa n'umujyanama wanjye w'ubuzima n'ikigo nderabuzima cyanjye, kugira ngo bashobore kumfasha, ndetse n'undi muntu wo mu muryango wemeye.",
         "Sisitemu ya mudasobwa isoma ubutumwa bwanjye kugira ngo iyumve kandi isuzume ingaruka. Umuntu ni we buri gihe ufata icyemezo cy'icyakurikiyeho.",
         "Amakuru yanjye arengerwa n'itegeko ry'u Rwanda rirengera amakuru kandi ntabwo agurishwa cyangwa akoreshwa mu kwamamaza.",
         "Abafatanyabikorwa nka Minisiteri y'Ubuzima, abishingizi cyangwa abashakashatsi bahabwa gusa imibare y'abagore benshi bafatanyije, ntabwo bahabwa izina ryanjye cyangwa amakuru yanjye yihariye, keretse nihitiyemo kwinjira muri gahunda runaka.",
         "Nshobora kubona abarebye amakuru yanjye, gukuraho umuntu uwo ari we wese mu muryango wanjye w'ubwitange, gusohora amakuru yanjye, cyangwa gusaba ko ayasibwa, igihe icyo ari cyo cyose.",
       ],
-      closingPre: "Iyo ukomeje muri MamaCare ukanashyira akamenyetso ku 'Nemeye', uba wemeye izi ngingo esheshatu, ",
+      closingPre: "Iyo ukomeje muri MamaRindwa ukanashyira akamenyetso ku 'Nemeye', uba wemeye izi ngingo esheshatu, ",
       closingPrivacyLink: "politiki yacu y'ibanga",
       closingMid: " n'",
       closingTermsLink: "amabwiriza yo gukoresha",
@@ -1098,11 +1098,11 @@ export const dict = {
     privacy: {
       hero: { eyebrow: "Ibanga", titlePre: "Amakuru yawe, ", titleHighlight: "uburenganzira bwawe", titleSuffix: ".", lead: "Byavuguruwe bwa nyuma: Nzeli 2026. Iyi politiki ni umushinga w'igihe cy'igerageza kandi izasuzumwa n'Ikigo gishinzwe kurengera amakuru na RNEC mbere yo gutangira." },
       sections: [
-        { h: "1. Turi bande", body: ["MamaCare ni urubuga rutanga integuza z'ubuzima bw'umubyeyi hakiri kare, rwakozwe i Kigali, mu Rwanda. Turi umuyobozi w'amakuru ku byerekeye amakuru wasangiye na MamaCare. Umukozi wacu ushinzwe kurengera amakuru ashobora kugezwaho binyuze ku "], link: "rupapuro rwo kwandikira", after: "." },
+        { h: "1. Turi bande", body: ["MamaRindwa ni urubuga rutanga integuza z'ubuzima bw'umubyeyi hakiri kare, rwakozwe i Kigali, mu Rwanda. Turi umuyobozi w'amakuru ku byerekeye amakuru wasangiye na MamaRindwa. Umukozi wacu ushinzwe kurengera amakuru ashobora kugezwaho binyuze ku "], link: "rupapuro rwo kwandikira", after: "." },
         { h: "2. Icyo dukusanya", items: [
           { strong: "Amakuru y'konti:", text: " izina, numero ya telefoni, ururimi wifuza, uburyo (urubuga, porogaramu, WhatsApp, SMS), naho ku bakozi b'ubuzima, ikigo n'umwanya." },
           { strong: "Amakuru y'inda n'ubuzima wowe cyangwa umuryango wawe w'ubwitange musangiye:", text: " ibimenyetso, icyiciro n'amateka y'inda, ibipimo, ibyabonetse mu gusura, amakuru y'ubuvuzi yinjijwe n'utanga serivisi." },
-          { strong: "Ibiganiro:", text: " ubutumwa uhererekanya na MamaCare, n'incamake yubatswe sisitemu ikuramo." },
+          { strong: "Ibiganiro:", text: " ubutumwa uhererekanya na MamaRindwa, n'incamake yubatswe sisitemu ikuramo." },
           { strong: "Amakuru ya sisitemu:", text: " urwego rw'ingaruka, ibikorwa byasabwe, integuza, uwabonye amakuru yawe n'igihe." },
           { strong: "Amakuru ya tekiniki:", text: " amakuru y'igikoresho n'ihuza akenewe kugira ngo ubutumwa bugere." },
         ] },
@@ -1115,7 +1115,7 @@ export const dict = {
         ], extra: "Ntabwo dukoresha amakuru yawe mu kwamamaza, kandi ntabwo tuyagurisha." },
         { h: "4. Ishingiro ry'amategeko", body: ["Dukoresha amakuru y'umuntu n'ubuzima hakurikijwe Itegeko ry'u Rwanda No. 058/2021 rirengera amakuru bwite n'ibanga, hashingiwe ku ruhushya rwawe rusobanutse, naho ku bakozi b'ubuzima, ku kazi bakora. Amakuru y'ubuzima afatwa nk'amakuru yihariye afite ubwoba bw'inyongera."] },
         { h: "5. Ninde ubona amakuru yawe", bodyLink: "rupapuro rw'uburenganzira", pre: "Ni gusa abantu bo mu muryango wawe w'ubwitange wemeye: umujyanama wawe w'ubuzima, ikigo nderabuzima cyawe, n'undi muntu wo mu muryango wahuje. Uburenganzira ni ku muntu, bwanditswe, kandi bushobora gukurwaho na wowe igihe icyo ari cyo cyose. Ibisobanuro biri ku ", post: ".", extraStrong: "imibare gusa idafite uwo iyerekeranye, ikusanyirijwe hamwe", extraPre: "Abafatanyabikorwa nka Minisiteri y'Ubuzima, abishingizi n'ibigo by'ubushakashatsi bahabwa ", extraPost: " ifite umubare w'ibanze w'itsinda, keretse wihitiyemo kwinjira muri gahunda runaka yo kwita ku barwayi." },
-        { h: "6. Gufata ibyemezo mu buryo bwikora", strong: "Nta cyemezo ku byerekeye ubuvuzi bwawe gifatwa na sisitemu yonyine.", pre: "MamaCare ikoresha icyitegererezo cy'ururimi kugira ngo isobanukirwe icyo uvuga hamwe n'icyitegererezo cy'ingaruka kugira ngo isuzume uko umeze. ", post: " Ibikorwa byasabwe binyura mu mategeko y'ubuvuzi yasuzumwe kandi bikorwa n'umukozi w'ubuzima witiriwe. Ushobora gusaba ko inama iyo ari yo yose isuzumwa n'umuntu." },
+        { h: "6. Gufata ibyemezo mu buryo bwikora", strong: "Nta cyemezo ku byerekeye ubuvuzi bwawe gifatwa na sisitemu yonyine.", pre: "MamaRindwa ikoresha icyitegererezo cy'ururimi kugira ngo isobanukirwe icyo uvuga hamwe n'icyitegererezo cy'ingaruka kugira ngo isuzume uko umeze. ", post: " Ibikorwa byasabwe binyura mu mategeko y'ubuvuzi yasuzumwe kandi bikorwa n'umukozi w'ubuzima witiriwe. Ushobora gusaba ko inama iyo ari yo yose isuzumwa n'umuntu." },
         { h: "7. Umutekano", body: ["Amakuru arinzwe mu gihe agenda hamwe n'igihe abitswe. Abakozi nta burenganzira buhoraho bafite bwo kureba amakuru yerekana umuntu; kwinjira mu bihe by'ihutirwa bisaba impamvu yatanzwe, bikangura integuza, kandi bisuzumwa. Buri kureba amakuru byanditswe, kandi ushobora gusaba urutonde rw'abarebye ayawe."] },
         { h: "8. Igihe amakuru abikwa", body: ["Amakuru y'inda abikwa mu gihe cy'ubuvuzi n'igihe kigenwe nyuma yaho, bikurikije ibisabwa by'amakuru y'ubuzima byemejwe n'inzego z'ubuzima. Umwandiko w'ibiganiro ugabanywa nyuma yo kuwushyira mu buryo bunoze. Ushobora gusaba ko asibwa; aho inshingano y'amakuru y'ubuzima ibuza gusiba byose, tuzakubwira icyo tubitse n'impamvu."] },
         { h: "9. Uburenganzira bwawe", items2: [
@@ -1131,32 +1131,32 @@ export const dict = {
     },
     terms: {
       hero: { eyebrow: "Amabwiriza yo gukoresha", titlePre: "Amabwiriza asobanutse ku ", titleHighlight: "serivisi ifite agaciro", titleSuffix: ".", lead: "Byavuguruwe bwa nyuma: Nzeli 2026. Umushinga w'igihe cy'igerageza." },
-      s1: { h: "1. Icyo MamaCare ari cyo, n'icyo atari cyo", strong: "MamaCare si serivisi y'ubuvuzi, ntabwo isuzuma indwara, kandi ntabwo isimbura abaganga, ababyaza cyangwa abajyanama b'ubuzima.", pre: "MamaCare ni igikoresho gifasha gufata ibyemezo gifasha ababyeyi, imiryango n'abakozi b'ubuzima kumenya ingaruka z'inda zishoboka hakiri kare no gukora vuba. ", post: " Ntabwo ari serivisi y'ihutirwa. Mu bihe by'ihutirwa, hamagara 912 cyangwa ujye ku kigo nderabuzima kiri hafi." },
-      s2: { h: "2. Ababyemerewe kuyikoresha", body: "Abagore batwite n'abamaze kubyara, abagize umuryango bemeye, n'abakozi b'ubuzima bemerewe n'ikigo cyabo cyangwa gahunda. Konti z'abakozi b'ubuzima zitangwa kandi zikurwaho n'abayobozi ba MamaCare bisabwe n'ikigo." },
+      s1: { h: "1. Icyo MamaRindwa ari cyo, n'icyo atari cyo", strong: "MamaRindwa si serivisi y'ubuvuzi, ntabwo isuzuma indwara, kandi ntabwo isimbura abaganga, ababyaza cyangwa abajyanama b'ubuzima.", pre: "MamaRindwa ni igikoresho gifasha gufata ibyemezo gifasha ababyeyi, imiryango n'abakozi b'ubuzima kumenya ingaruka z'inda zishoboka hakiri kare no gukora vuba. ", post: " Ntabwo ari serivisi y'ihutirwa. Mu bihe by'ihutirwa, hamagara 912 cyangwa ujye ku kigo nderabuzima kiri hafi." },
+      s2: { h: "2. Ababyemerewe kuyikoresha", body: "Abagore batwite n'abamaze kubyara, abagize umuryango bemeye, n'abakozi b'ubuzima bemerewe n'ikigo cyabo cyangwa gahunda. Konti z'abakozi b'ubuzima zitangwa kandi zikurwaho n'abayobozi ba MamaRindwa bisabwe n'ikigo." },
       s3: { h: "3. Inshingano zawe", items: [
         "Tanga amakuru y'ukuri uko ubizi neza.",
         "Rinda konti yawe na telefoni yawe; tubwire niba wataye uburenganzira bwo kuyibona.",
         "Huza gusa abantu umubyeyi yemeye guhuza.",
-        "Abakozi b'ubuzima: kurikiza amabwiriza y'umwuga wanyu. Inama za MamaCare zishyigikira, ntabwo zisimbura, ubushishozi bwanyu.",
+        "Abakozi b'ubuzima: kurikiza amabwiriza y'umwuga wanyu. Inama za MamaRindwa zishyigikira, ntabwo zisimbura, ubushishozi bwanyu.",
       ] },
       s4: { h: "4. Inshingano zacu", items: [
         "Gukomeza kunoza no gushyira verisiyo mu mategeko y'ubuvuzi yasuzumwe.",
         "Kwerekana uwatanze buri nama ya sisitemu kugira ngo isuzumwe.",
       ], linkPre: "Kurengera amakuru yawe nk'uko bisobanuwe muri ", linkText: "politiki y'ibanga", linkPost: ".", last: "Kukumenyesha vuba iyo hari ikintu kitagenze neza kigufite ingaruka." },
-      s5: { h: "5. Kuboneka", body: "Dushaka ko serivisi iboneka igihe cyose, ariko ubutumwa bushobora gutinda bitewe na network tutayobora. Ntugashingire kuri MamaCare gusa mu bihe by'ihutirwa." },
-      s6: { h: "6. Aho inshingano igarukira", body: "Mu rwego rwemewe n'amategeko y'u Rwanda, MamaCare ntabwo ishinzwe ibisubizo biva ku byemezo by'ubuvuzi byafashwe n'abakozi b'ubuzima, ku makuru atari yo yatanzwe muri sisitemu, cyangwa ku bibazo bya network tutayobora. Nta na kimwe muri aya mabwiriza kigabanya inshingano idashobora kugabanywa n'amategeko." },
-      s7: { h: "7. Kureka gukoresha", body: "Ushobora guhagarika gukoresha MamaCare igihe icyo ari cyo cyose no gusaba ko amakuru yawe asibwa. Dushobora guhagarika konti zikoresha nabi serivisi cyangwa zishyira abandi mu kaga." },
+      s5: { h: "5. Kuboneka", body: "Dushaka ko serivisi iboneka igihe cyose, ariko ubutumwa bushobora gutinda bitewe na network tutayobora. Ntugashingire kuri MamaRindwa gusa mu bihe by'ihutirwa." },
+      s6: { h: "6. Aho inshingano igarukira", body: "Mu rwego rwemewe n'amategeko y'u Rwanda, MamaRindwa ntabwo ishinzwe ibisubizo biva ku byemezo by'ubuvuzi byafashwe n'abakozi b'ubuzima, ku makuru atari yo yatanzwe muri sisitemu, cyangwa ku bibazo bya network tutayobora. Nta na kimwe muri aya mabwiriza kigabanya inshingano idashobora kugabanywa n'amategeko." },
+      s7: { h: "7. Kureka gukoresha", body: "Ushobora guhagarika gukoresha MamaRindwa igihe icyo ari cyo cyose no gusaba ko amakuru yawe asibwa. Dushobora guhagarika konti zikoresha nabi serivisi cyangwa zishyira abandi mu kaga." },
       s8: { h: "8. Amategeko ayobora", body: "Aya mabwiriza ayoborwa n'amategeko y'u Rwanda." },
     },
     status: {
-      title: "Uko MamaCare imeze",
+      title: "Uko MamaRindwa imeze",
       overall: { operational: "Sisitemu zose zirakora neza", degraded: "Sisitemu zimwe ziragabanutse", outage: "Serivisi irahagaze" },
       statusLabel: { operational: "Irakora", degraded: "Yaragabanutse", outage: "Yahagaze" },
       updatedPrefix: "Byavuguruwe",
       kigaliSuffix: "(Kigali)",
       incidentsHeading: "Ibibazo byabaye",
       uptimeSuffix: "iminsi 90",
-      footer: { pre: "Niba MamaCare idahari, abajyanama bakomeza gukora: porogaramu ibika ku ifoni maze igahuza amakuru nyuma. Ababyeyi n'imiryango bashobora buri gihe guhamagara umujyanama wabo cyangwa ikigo kiba runaka. Mu bihe by'ihutirwa, ", link: "hamagara 912", post: "." },
+      footer: { pre: "Niba MamaRindwa idahari, abajyanama bakomeza gukora: porogaramu ibika ku ifoni maze igahuza amakuru nyuma. Ababyeyi n'imiryango bashobora buri gihe guhamagara umujyanama wabo cyangwa ikigo kiba runaka. Mu bihe by'ihutirwa, ", link: "hamagara 912", post: "." },
     },
   },
 } as const;

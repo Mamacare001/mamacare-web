@@ -6,13 +6,13 @@ set -euo pipefail
 #
 # Touches ONLY src/components/home/LanguageSplash.tsx.
 #
-# Run this from the ROOT of your mamacare-web repo checkout
+# Run this from the ROOT of your MamaRindwa-web repo checkout
 # (the folder that contains package.json, src/, etc).
 
 PATCH_FILE="redesign-language-buttons.patch"
 
 if [ ! -f "package.json" ]; then
-  echo "ERROR: run this script from the root of your mamacare-web checkout (no package.json found here)."
+  echo "ERROR: run this script from the root of your MamaRindwa-web checkout (no package.json found here)."
   exit 1
 fi
 
@@ -76,12 +76,12 @@ echo "Pushing to origin/main..."
 if ! git push; then
   echo ""
   echo "Push failed - likely a GitHub account/permission mismatch."
-  echo "Try: gh auth switch --user Mamacare001"
+  echo "Try: gh auth switch --user MamaRindwa001"
   echo "Then run: git push"
   exit 1
 fi
 
 echo ""
 echo "Done. Once Vercel redeploys (usually automatic on push to main - check"
-echo "your Vercel dashboard's Deployments tab), reload mamacare-web.vercel.app"
+echo "your Vercel dashboard's Deployments tab), reload MamaRindwa-web.vercel.app"
 echo "to see the new buttons."

@@ -13,7 +13,7 @@ type Msg = { id: string; from: "user" | "assistant" | "system"; text: string; at
 /**
  * Demo assistant. A tiny rule-based script that mimics the real flow:
  *   understand → ask follow-ups → assess → recommend an action.
- * Replace `reply()` with a call to the MamaCare API (streaming) — the UI stays the same.
+ * Replace `reply()` with a call to the MamaRindwa API (streaming) — the UI stays the same.
  */
 const SIGNS = {
   headache: /headache|umutwe|head/i,
@@ -141,7 +141,7 @@ export function Chat({ initial }: { initial?: string } = {}) {
       <header className="flex items-center gap-3 border-b border-emerald/10 px-4 py-3">
         <span className="grid size-10 place-items-center rounded-full bg-emerald text-sm font-bold text-ivory">M</span>
         <div className="flex-1">
-          <p className="font-semibold text-emerald">MamaCare</p>
+          <p className="font-semibold text-emerald">MamaRindwa</p>
           <p className="text-xs text-muted">{t("Understands Kinyarwanda and English · a person always decides", "Yumva Ikinyarwanda n’Icyongereza · umuntu ni we ufata umwanzuro")}</p>
         </div>
         {lastRisk && (
@@ -215,7 +215,7 @@ export function Chat({ initial }: { initial?: string } = {}) {
         </button>
       </form>
       <p className="flex items-center gap-1.5 border-t border-emerald/10 px-4 py-2 text-[11px] text-muted">
-        <Info className="size-3.5" /> {t("MamaCare does not diagnose. In an emergency call 912.", "MamaCare ntisuzuma indwara. Mu byihutirwa hamagara 912.")}
+        <Info className="size-3.5" /> {t("MamaRindwa does not diagnose. In an emergency call 912.", "MamaRindwa ntisuzuma indwara. Mu byihutirwa hamagara 912.")}
       </p>
     </div>
   );

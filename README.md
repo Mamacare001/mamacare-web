@@ -1,8 +1,8 @@
-# MamaCare — web frontend
+# MamaRindwa — web frontend
 
 > The warning can come before the emergency.
 
-Marketing site + authentication shell for MamaCare, the AI-supported maternal-health early-warning platform (Rwanda).
+Marketing site + authentication shell for MamaRindwa, the AI-supported maternal-health early-warning platform (Rwanda).
 
 **Stack:** Next.js 16 (App Router, Turbopack) · React 19 · TypeScript · Tailwind CSS 4 · Framer Motion · Auth.js v5 (Google OAuth + demo credentials) · lucide-react · self-hosted variable fonts (Fraunces + Manrope).
 
@@ -61,7 +61,7 @@ https://<your-project>.vercel.app/api/auth/callback/google
 https://<your-custom-domain>/api/auth/callback/google
 ```
 
-**Demo credentials (no backend yet):** `demo@mamacare.rw` / `mamacare`. Replace the `authorize()` function in `src/auth.ts` with a call to the MamaCare API when it exists.
+**Demo credentials (no backend yet):** `demo@MamaRindwa.rw` / `MamaRindwa`. Replace the `authorize()` function in `src/auth.ts` with a call to the MamaRindwa API when it exists.
 
 ## 4. Deploy to Vercel
 
@@ -121,4 +121,4 @@ Radii: 8 / 16 / 24 / 32 / 40 px. Motion: micro 100–180 ms, hover 150–250 ms,
 - **Kinyarwanda copy** (`src/lib/i18n.ts`, chat demo in `ChatPreview.tsx`) is a first draft — please have a native speaker review before launch.
 - Photos are ~500 px on the short side. For the hero on large screens, swap in higher-resolution originals in `public/images/`.
 - Stats on the landing page come from the 20-interview user research; the MMR figure used elsewhere is 105/100k (HSSP V, 2023).
-- MamaCare is decision support. The "does not diagnose" line appears in the hero, footer and how-it-works page on purpose — keep it.
+- MamaRindwa is decision support. The "does not diagnose" line appears in the hero, footer and how-it-works page on purpose — keep it.

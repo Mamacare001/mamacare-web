@@ -68,7 +68,7 @@ export default async function FamilyHome({ searchParams }: { searchParams: Promi
               <Clock className="size-5 text-[#8a6a10]" />
               <div>
                 <p className="font-semibold text-emerald">{m.name} · {m.relation}</p>
-                <p className="text-sm text-muted">Waiting for her to approve your request. She will see it in her MamaCare circle.</p>
+                <p className="text-sm text-muted">Waiting for her to approve your request. She will see it in her MamaRindwa circle.</p>
               </div>
             </div>
           </Card>
@@ -76,7 +76,7 @@ export default async function FamilyHome({ searchParams }: { searchParams: Promi
         <Card className="flex flex-col items-start justify-center gap-3 border-dashed">
           <HeartHandshake className="size-6 text-green" />
           <p className="font-semibold text-emerald">Support another woman</p>
-          <p className="text-sm text-muted">Ask her for her MamaCare code and request to join her circle.</p>
+          <p className="text-sm text-muted">Ask her for her MamaRindwa code and request to join her circle.</p>
           <Button href="/onboarding/family" variant="secondary" size="sm" arrow>Enter a code</Button>
         </Card>
       </div>

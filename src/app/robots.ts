@@ -32,6 +32,6 @@ export default function robots(): MetadataRoute.Robots {
         "/verify",
       ],
     },
-    sitemap: "https://mamacare.rw/sitemap.xml",
+    sitemap: "https://MamaRindwa.rw/sitemap.xml",
   };
 }

@@ -29,7 +29,7 @@ export default async function CareMemberPage({ params }: { params: Promise<{ mem
         )}
         <div className="mt-4 border-t border-emerald/10 pt-4"><ContactLogForm id={m.id} /></div>
       </Card>
-      <p className="flex items-center gap-2 text-xs text-muted"><Lock className="size-3.5" /> You do not see her conversation with MamaCare or her clinical notes. This view is logged and she can see it in her access log.</p>
+      <p className="flex items-center gap-2 text-xs text-muted"><Lock className="size-3.5" /> You do not see her conversation with MamaRindwa or her clinical notes. This view is logged and she can see it in her access log.</p>
     </div>
   );
 }

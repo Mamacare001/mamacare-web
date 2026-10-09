@@ -21,7 +21,7 @@ export default function StaffPage() {
       </div>
       <Card>
         <p className="font-display text-xl text-emerald">Request an account for a colleague</p>
-        <p className="mb-4 mt-1 text-sm text-muted">Provider accounts need two approvals: the in-charge and MamaCare’s admin. Access is scoped to this facility and logged.</p>
+        <p className="mb-4 mt-1 text-sm text-muted">Provider accounts need two approvals: the in-charge and MamaRindwa’s admin. Access is scoped to this facility and logged.</p>
         <StaffRequestForm />
       </Card>
     </div>

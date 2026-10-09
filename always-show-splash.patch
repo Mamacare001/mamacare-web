@@ -6,7 +6,7 @@ index d159fac..7cadaad 100644
  import { FlagGB, FlagRW } from "@/components/ui/Flags";
  import type { Lang } from "@/lib/i18n";
  
--const STORAGE_KEY = "mamacare.lang";
+-const STORAGE_KEY = "MamaRindwa.lang";
  const ease = [0.16, 1, 0.3, 1] as const;
  
  const SLIDES = [
@@ -14,12 +14,12 @@ index d159fac..7cadaad 100644
  
  /**
   * A full-screen welcome gate at "/" — the first thing any visitor lands
-- * on. A slow-panning slideshow of real MamaCare moments (a CHW home
+- * on. A slow-panning slideshow of real MamaRindwa moments (a CHW home
 - * visit, a telehealth call, a mother on her phone) plays behind a
 - * floating signature mark and two choices: English or Kinyarwanda.
 - * Picking one sends the visitor on to "/home". Anyone who already has a
 - * saved language is sent straight there without seeing this screen again.
-+ * on, every time. A slow-panning slideshow of real MamaCare moments (a
++ * on, every time. A slow-panning slideshow of real MamaRindwa moments (a
 + * CHW home visit, a telehealth call, a mother on her phone) plays behind
 + * a floating signature mark and two choices: English or Kinyarwanda.
 + * Picking one sends the visitor on to "/home". The choice is still saved

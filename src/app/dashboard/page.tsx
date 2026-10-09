@@ -39,9 +39,9 @@ export default async function DashboardPage({ searchParams }: { searchParams: Pr
     <div className="min-h-[100svh] bg-ivory">
       <header className="sticky top-0 z-30 border-b border-emerald/10 bg-ivory/85 backdrop-blur-xl">
         <div className="container-x flex h-16 items-center justify-between">
-          <Link href="/" className="inline-flex items-center gap-2.5" aria-label="MamaCare home">
+          <Link href="/" className="inline-flex items-center gap-2.5" aria-label="MamaRindwa home">
             <Image src="/brand/mark.png" alt="" width={36} height={42} className="h-9 w-auto" />
-            <Image src="/brand/wordmark.png" alt="MamaCare" width={120} height={18} className="hidden h-[18px] w-auto sm:block" />
+            <Image src="/brand/wordmark.png" alt="MamaRindwa" width={120} height={18} className="hidden h-[18px] w-auto sm:block" />
           </Link>
           <div className="flex items-center gap-2">
             <button className="relative grid size-10 place-items-center rounded-full text-emerald hover:bg-emerald/5" aria-label="Notifications">
@@ -80,7 +80,7 @@ export default async function DashboardPage({ searchParams }: { searchParams: Pr
           <div className="mb-8 flex items-start gap-3 rounded-lg border border-green/30 bg-green-100 p-5 text-emerald">
             <CheckCircle2 className="mt-0.5 size-5 shrink-0 text-green" />
             <div>
-              <p className="font-display text-2xl">Welcome to MamaCare, {user.name?.split(" ")[0]}.</p>
+              <p className="font-display text-2xl">Welcome to MamaRindwa, {user.name?.split(" ")[0]}.</p>
               <p className="mt-1 text-sm text-ink/80">
                 Your account is set up as <strong>{user.role}</strong>. This dashboard is a placeholder until the role-specific apps are built —
                 the mother, family and CHW experiences will replace it.
@@ -90,7 +90,7 @@ export default async function DashboardPage({ searchParams }: { searchParams: Pr
         )}
         <p className="text-eyebrow text-green">Kinyinya sector · CHW caseload</p>
         <h1 className="text-h2 mt-2 text-emerald">Muraho, {user.name?.split(" ")[0] ?? "there"}.</h1>
-        <p className="mt-2 text-muted">This is a placeholder dashboard — connect it to the MamaCare API to show live data.</p>
+        <p className="mt-2 text-muted">This is a placeholder dashboard — connect it to the MamaRindwa API to show live data.</p>
 
         <div className="mt-8 grid gap-4 sm:grid-cols-3">
           {[

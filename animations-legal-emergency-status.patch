@@ -57,7 +57,7 @@ index ae3e952..7742309 100644
 -        </ul>
 -
 -        <p className="mt-12 max-w-2xl text-sm leading-relaxed text-white/80">
--          MamaCare is not an emergency service and does not replace medical care. If you are unsure whether it is an
+-          MamaRindwa is not an emergency service and does not replace medical care. If you are unsure whether it is an
 -          emergency, treat it as one.
 -        </p>
 -      </div>
@@ -101,7 +101,7 @@ index 0000000..0f41121
 + * mount - no scroll gate, so it's never hidden behind a trigger someone in a hurry
 + * hasn't crossed yet. The signs grid and disclaimer, both already below the fold on
 + * a phone, use the site's normal scroll-reveal so the page still feels consistent
-+ * with the rest of MamaCare rather than abruptly static.
++ * with the rest of MamaRindwa rather than abruptly static.
 + */
 +export function EmergencyContent() {
 +  return (
@@ -149,7 +149,7 @@ index 0000000..0f41121
 +        </RevealGroup>
 +
 +        <Reveal className="mt-12 max-w-2xl text-sm leading-relaxed text-white/80" as="p">
-+          MamaCare is not an emergency service and does not replace medical care. If you are unsure whether it is an
++          MamaRindwa is not an emergency service and does not replace medical care. If you are unsure whether it is an
 +          emergency, treat it as one.
 +        </Reveal>
 +      </div>

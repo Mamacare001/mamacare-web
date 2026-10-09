@@ -9,7 +9,7 @@ import { CtaBand } from "@/components/home/CtaBand";
 
 export const metadata: Metadata = {
   title: "How it works",
-  description: "Speak, understand, assess, guide, act — how MamaCare turns a conversation into timely, medically reviewed action.",
+  description: "Speak, understand, assess, guide, act — how MamaRindwa turns a conversation into timely, medically reviewed action.",
 };
 
 export default function HowItWorksPage() {

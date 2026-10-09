@@ -12,7 +12,7 @@
 #     <ul>/<li> lists keep proper semantics (accessibility fix, not just cosmetic)
 #
 # Usage:
-#   cd /path/to/your/mamacare-web
+#   cd /path/to/your/MamaRindwa-web
 #   bash apply-animations-legal-emergency-status.sh
 #
 set -euo pipefail
@@ -26,7 +26,7 @@ if [ ! -f "$PATCH_FILE" ]; then
 fi
 
 if [ ! -d .git ]; then
-  echo "Error: run this from the root of your mamacare-web git checkout." >&2
+  echo "Error: run this from the root of your MamaRindwa-web git checkout." >&2
   exit 1
 fi
 
@@ -80,7 +80,7 @@ echo "==> Pushing to origin/main..."
 if ! git push; then
   echo ""
   echo "Push failed. If this is a permissions/auth issue, try:"
-  echo "  gh auth switch --user Mamacare001"
+  echo "  gh auth switch --user MamaRindwa001"
   echo "  git push"
   exit 1
 fi

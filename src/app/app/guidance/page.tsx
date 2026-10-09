@@ -36,7 +36,7 @@ export default function GuidancePage() {
             </li>
           ))}
         </ul>
-        <p className="mt-4 text-sm text-muted">Message MamaCare in the <Link href="/app/chat" className="font-semibold text-green underline underline-offset-4">chat</Link>, or if it is severe, <Link href="/emergency" className="font-semibold text-coral underline underline-offset-4">call 912</Link>.</p>
+        <p className="mt-4 text-sm text-muted">Message MamaRindwa in the <Link href="/app/chat" className="font-semibold text-green underline underline-offset-4">chat</Link>, or if it is severe, <Link href="/emergency" className="font-semibold text-coral underline underline-offset-4">call 912</Link>.</p>
       </Card>
 
       {([1, 2, 3] as const).map((tri) => (
@@ -57,7 +57,7 @@ export default function GuidancePage() {
           </div>
         </section>
       ))}
-      <p className="text-xs text-muted">Guidance is reviewed by MamaCare’s clinical lead and follows Rwanda ANC guidance. It is general information, not a diagnosis.</p>
+      <p className="text-xs text-muted">Guidance is reviewed by MamaRindwa’s clinical lead and follows Rwanda ANC guidance. It is general information, not a diagnosis.</p>
     </div>
   );
 }

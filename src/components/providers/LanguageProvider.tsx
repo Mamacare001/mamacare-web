@@ -6,7 +6,7 @@ import { dict, type Dict, type Lang } from "@/lib/i18n";
 type Ctx = { lang: Lang; t: Dict; setLang: (l: Lang) => void; toggle: () => void };
 
 const LanguageContext = createContext<Ctx | null>(null);
-const STORAGE_KEY = "mamacare.lang";
+const STORAGE_KEY = "MamaRindwa.lang";
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
   const [lang, setLangState] = useState<Lang>("en");

@@ -20,7 +20,7 @@ export function FamilySettingsForm({ language, channel, mothers }: { language: s
     <div className="space-y-8">
       <form action={action} className="space-y-6" noValidate>
         <fieldset><legend className="text-eyebrow mb-2 text-muted">Language · Ururimi</legend><div className="grid grid-cols-2 gap-2"><Radio name="language" v="rw" l="Ikinyarwanda" on={language === "rw"} /><Radio name="language" v="en" l="English" on={language === "en"} /></div></fieldset>
-        <fieldset><legend className="text-eyebrow mb-2 text-muted">How MamaCare reaches you</legend><div className="grid grid-cols-3 gap-2"><Radio name="channel" v="whatsapp" l="WhatsApp" on={channel === "whatsapp"} /><Radio name="channel" v="sms" l="SMS" on={channel === "sms"} /><Radio name="channel" v="app" l="This app" on={channel === "app"} /></div></fieldset>
+        <fieldset><legend className="text-eyebrow mb-2 text-muted">How MamaRindwa reaches you</legend><div className="grid grid-cols-3 gap-2"><Radio name="channel" v="whatsapp" l="WhatsApp" on={channel === "whatsapp"} /><Radio name="channel" v="sms" l="SMS" on={channel === "sms"} /><Radio name="channel" v="app" l="This app" on={channel === "app"} /></div></fieldset>
         <fieldset className="space-y-3">
           <legend className="text-eyebrow mb-2 text-muted">Notifications</legend>
           {[["n_guidance", "Guidance sent to her", "So you know what she has been advised to do."], ["n_escalation", "Escalations", "When her CHW or facility is alerted. Always on for high risk."], ["n_visits", "Visit reminders", "Two days before each ANC visit, so you can help her get there."]].map(([n, l, h]) => (

@@ -73,7 +73,7 @@ export default function SupervisorOverview() {
               <li key={c.id} className="flex items-start gap-2 rounded-md bg-gold-100/70 p-3"><Clock className="mt-0.5 size-4 shrink-0 text-[#8a6a10]" /><span><strong className="text-emerald">{c.name}</strong> has not synced since {new Date(c.lastSync).toLocaleDateString("en-GB", { day: "numeric", month: "short" })} — {c.caseload} mothers, {c.openAlerts} open alerts. Phone or network problem?</span></li>
             ))}
             {chws.filter((c) => c.status === "training").map((c) => (
-              <li key={c.id} className="flex items-start gap-2 rounded-md bg-ivory p-3"><Users className="mt-0.5 size-4 shrink-0 text-muted" /><span><strong className="text-emerald">{c.name}</strong> ({c.cell}) is still in training — {c.cell} cell has no active CHW on MamaCare.</span></li>
+              <li key={c.id} className="flex items-start gap-2 rounded-md bg-ivory p-3"><Users className="mt-0.5 size-4 shrink-0 text-muted" /><span><strong className="text-emerald">{c.name}</strong> ({c.cell}) is still in training — {c.cell} cell has no active CHW on MamaRindwa.</span></li>
             ))}
             {sectorMothers.filter((m) => m.ancDone === 0 && m.weeks > 12).map((m) => (
               <li key={m.id} className="flex items-start gap-2 rounded-md bg-ivory p-3"><AlertTriangle className="mt-0.5 size-4 shrink-0 text-muted" /><span><strong className="text-emerald">{m.name}</strong> is {m.weeks} weeks with no ANC visit yet ({m.chwName}).</span></li>

@@ -1,7 +1,7 @@
 /**
  * Demo mode gate.
  *
- * Demo accounts (demo@mamacare.rw …, password "mamacare"), the demo OTP (123456)
+ * Demo accounts (demo@MamaRindwa.rw …, password "MamaRindwa"), the demo OTP (123456)
  * and the demo admin MFA code (123456) are only accepted when:
  *   - running locally (NODE_ENV !== "production"), or
  *   - ALLOW_DEMO=true is set in the environment (e.g. on Vercel for a reviewer link).
@@ -10,4 +10,4 @@
  */
 export const demoEnabled = process.env.ALLOW_DEMO === "true" || process.env.NODE_ENV !== "production";
 export const DEMO_OTP = "123456";
-export const DEMO_PASSWORD = "mamacare";
+export const DEMO_PASSWORD = "MamaRindwa";

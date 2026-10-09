@@ -23,7 +23,7 @@ function ChannelPicker({ defaultValue = "whatsapp" }: { defaultValue?: string })
   ];
   return (
     <fieldset>
-      <legend className="text-sm font-semibold text-emerald">How should MamaCare reach you?</legend>
+      <legend className="text-sm font-semibold text-emerald">How should MamaRindwa reach you?</legend>
       <div className="mt-2 grid grid-cols-3 gap-2">
         {opts.map((o) => (
           <label key={o.v} className="cursor-pointer">
@@ -115,7 +115,7 @@ export function FamilyForm({ ob }: { ob: Onboarding }) {
   const f = ob.family ?? {};
   return (
     <form action={action} className="space-y-5" noValidate>
-      <Field label="The mother's MamaCare code" hint="She can find it under “My circle” and share it with you. Nothing is shared until she approves you.">
+      <Field label="The mother's MamaRindwa code" hint="She can find it under “My circle” and share it with you. Nothing is shared until she approves you.">
         <input name="motherCode" defaultValue={f.motherCode} className={`${fieldCls} font-mono uppercase tracking-[0.3em]`} placeholder="ABC123" maxLength={8} autoCapitalize="characters" required />
       </Field>
       <Field label="Your relationship to her">
@@ -158,7 +158,7 @@ export function WorkerForm({ ob }: { ob: Onboarding }) {
 }
 
 const points = [
-  "MamaCare is not a doctor and does not diagnose. In an emergency I call 912 or go to a facility.",
+  "MamaRindwa is not a doctor and does not diagnose. In an emergency I call 912 or go to a facility.",
   "What I share will be seen by my Community Health Worker and my health facility, and by any family member I approve.",
   "A computer system reads my messages to understand them and assess risk. A person always decides what happens next.",
   "My information is protected under Rwanda’s data-protection law and is never sold or used for advertising.",

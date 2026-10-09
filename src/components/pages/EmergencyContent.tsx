@@ -28,7 +28,7 @@ const signs = [
  * mount - no scroll gate, so it's never hidden behind a trigger someone in a hurry
  * hasn't crossed yet. The signs grid and disclaimer, both already below the fold on
  * a phone, use the site's normal scroll-reveal so the page still feels consistent
- * with the rest of MamaCare rather than abruptly static.
+ * with the rest of MamaRindwa rather than abruptly static.
  */
 export function EmergencyContent() {
   return (
@@ -76,7 +76,7 @@ export function EmergencyContent() {
         </RevealGroup>
 
         <Reveal className="mt-12 max-w-2xl text-sm leading-relaxed text-white/80" as="p">
-          MamaCare is not an emergency service and does not replace medical care. If you are unsure whether it is an
+          MamaRindwa is not an emergency service and does not replace medical care. If you are unsure whether it is an
           emergency, treat it as one.
         </Reveal>
       </div>

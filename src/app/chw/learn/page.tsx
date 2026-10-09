@@ -19,7 +19,7 @@ export default function LearnPage() {
           </Card>
         ))}
       </div>
-      <p className="mt-6 text-xs text-muted">Content follows Rwanda CHW maternal-health protocols and is reviewed by MamaCare’s clinical lead. Rule set v0.4.</p>
+      <p className="mt-6 text-xs text-muted">Content follows Rwanda CHW maternal-health protocols and is reviewed by MamaRindwa’s clinical lead. Rule set v0.4.</p>
     </div>
   );
 }

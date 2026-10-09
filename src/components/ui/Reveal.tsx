@@ -5,7 +5,7 @@ import { motion, useReducedMotion, type Variants, type TargetAndTransition } fro
 import { cn } from "@/lib/cn";
 
 /* ------------------------------------------------------------------
-   MamaCare motion language
+   MamaRindwa motion language
    One easing, one viewport rule, a handful of named moves. Every public
    page draws from this file so the whole site feels like one hand made it.
 ------------------------------------------------------------------- */

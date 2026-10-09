@@ -60,11 +60,11 @@ export function Nav() {
         )}
       >
         <nav className="container-x flex h-[72px] items-center justify-between md:h-20" aria-label="Main">
-          <Link href="/home" className="flex items-center gap-2.5" aria-label="MamaCare home">
+          <Link href="/home" className="flex items-center gap-2.5" aria-label="MamaRindwa home">
             <Image src="/brand/mark.png" alt="" width={40} height={46} priority className="h-10 w-auto" />
             <Image
               src={onDark ? "/brand/wordmark-white.png" : "/brand/wordmark.png"}
-              alt="MamaCare"
+              alt="MamaRindwa"
               width={135}
               height={20}
               priority
@@ -152,7 +152,7 @@ export function Nav() {
               transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
             >
               <div className="flex items-center justify-between">
-                <Image src="/brand/logo-horizontal.png" alt="MamaCare" width={140} height={32} className="h-8 w-auto" />
+                <Image src="/brand/logo-horizontal.png" alt="MamaRindwa" width={140} height={32} className="h-8 w-auto" />
                 <button
                   type="button"
                   onClick={() => setOpen(false)}

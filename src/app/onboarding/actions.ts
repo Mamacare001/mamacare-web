@@ -26,7 +26,7 @@ export async function verifyOtp(_prev: ActionState, fd: FormData): Promise<Actio
   const code = [1, 2, 3, 4, 5, 6].map((i) => str(fd, `d${i}`)).join("");
   if (code.length !== 6) return { error: "Enter the 6-digit code." };
   // TODO: verify against the API. Until then only the demo code is accepted, and only in demo mode.
-  if (!demoEnabled) return { error: "SMS verification is not connected yet. Ask the MamaCare team for access." };
+  if (!demoEnabled) return { error: "SMS verification is not connected yet. Ask the MamaRindwa team for access." };
   if (code !== DEMO_OTP) return { error: "That code is not right. Try again or resend." };
   const ob = await readOnboarding();
   await writeOnboarding({ verified: true });
@@ -98,7 +98,7 @@ export async function acceptConsent(_prev: ActionState, fd: FormData): Promise<A
 
   // TODO: create the account via the API, then sign in properly.
   // Demo: sign in through the credentials provider using the one-time onboarding token.
-  const email = `${(ob.phone ?? "user").replace(/\D/g, "")}@onboarding.mamacare.rw`;
+  const email = `${(ob.phone ?? "user").replace(/\D/g, "")}@onboarding.MamaRindwa.rw`;
   await signIn("credentials", { email, password: `onboarding:${token}`, redirectTo: ob.role === "mother" ? "/app?welcome=1" : ob.role === "family" ? "/family?welcome=1" : ob.role === "worker" && ob.worker?.kind === "chw" ? "/chw?welcome=1" : ob.role === "worker" ? "/clinic?welcome=1" : "/dashboard?welcome=1" });
   return null;
 }

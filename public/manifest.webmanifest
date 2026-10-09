@@ -1,6 +1,6 @@
 {
-  "name": "MamaCare",
-  "short_name": "MamaCare",
+  "name": "MamaRindwa",
+  "short_name": "MamaRindwa",
   "description": "The warning can come before the emergency.",
   "start_url": "/chw",
   "display": "standalone",

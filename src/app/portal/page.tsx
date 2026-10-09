@@ -12,7 +12,7 @@ export default function PortalPage() {
       <PageTitle eyebrow="Ethics-approved protocols only" title="Research data portal" />
       <Card className="flex items-start gap-3 border-l-4 border-violet">
         <Lock className="mt-0.5 size-5 shrink-0 text-violet" />
-        <p className="text-sm text-ink/85">Extracts are pseudonymised with a key held by MamaCare’s Data Protection Officer, never by the researcher. Analysis runs in the sandbox; exports enforce a minimum cell size of 20 and are logged. Access ends automatically on the protocol’s expiry date.</p>
+        <p className="text-sm text-ink/85">Extracts are pseudonymised with a key held by MamaRindwa’s Data Protection Officer, never by the researcher. Analysis runs in the sandbox; exports enforce a minimum cell size of 20 and are logged. Access ends automatically on the protocol’s expiry date.</p>
       </Card>
       <ul className="space-y-3">
         {protocols.map((p) => (

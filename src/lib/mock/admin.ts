@@ -15,9 +15,9 @@ export const system = {
 
 export type User = { id: string; name: string; email: string; org: string; roles: string[]; status: "active" | "pending" | "suspended" | "expired"; mfa: boolean; expires: string; last: string; approvals?: { by: string; at: string }[] };
 export const users: User[] = [
-  { id: "u1", name: "Patrice Iradukunda", email: "patrice@mamacare.rw", org: "MamaCare", roles: ["exec", "ds-lead"], status: "active", mfa: true, expires: "2026-12-19", last: "2026-09-21T11:20:00" },
-  { id: "u2", name: "Pascal Dukundane", email: "pascal@mamacare.rw", org: "MamaCare", roles: ["eng-lead", "release-manager"], status: "active", mfa: true, expires: "2026-12-19", last: "2026-09-21T10:05:00" },
-  { id: "u3", name: "Donatien Iranshubije", email: "donatien@mamacare.rw", org: "MamaCare", roles: ["exec", "partnerships-lead"], status: "active", mfa: true, expires: "2026-12-19", last: "2026-09-20T17:30:00" },
+  { id: "u1", name: "Patrice Iradukunda", email: "patrice@MamaRindwa.rw", org: "MamaRindwa", roles: ["exec", "ds-lead"], status: "active", mfa: true, expires: "2026-12-19", last: "2026-09-21T11:20:00" },
+  { id: "u2", name: "Pascal Dukundane", email: "pascal@MamaRindwa.rw", org: "MamaRindwa", roles: ["eng-lead", "release-manager"], status: "active", mfa: true, expires: "2026-12-19", last: "2026-09-21T10:05:00" },
+  { id: "u3", name: "Donatien Iranshubije", email: "donatien@MamaRindwa.rw", org: "MamaRindwa", roles: ["exec", "partnerships-lead"], status: "active", mfa: true, expires: "2026-12-19", last: "2026-09-20T17:30:00" },
   { id: "u4", name: "Dr. Uwera Immaculée", email: "i.uwera@kinyinya.hc", org: "Kinyinya HC", roles: ["provider-hc", "facility-in-charge"], status: "active", mfa: true, expires: "2026-12-01", last: "2026-09-21T09:00:00" },
   { id: "u5", name: "Nurse Aline Mukeshimana", email: "a.mukeshimana@kinyinya.hc", org: "Kinyinya HC", roles: ["provider-hc"], status: "active", mfa: true, expires: "2026-12-01", last: "2026-09-21T11:10:00" },
   { id: "u6", name: "Midwife Chantal Ingabire", email: "c.ingabire@kinyinya.hc", org: "Kinyinya HC", roles: ["provider-hc"], status: "pending", mfa: false, expires: "—", last: "", approvals: [{ by: "Dr. Uwera (in-charge)", at: "2026-09-20T10:00:00" }] },
@@ -26,7 +26,7 @@ export const users: User[] = [
   { id: "u9", name: "Dr. Kevine Mutesi", email: "k.mutesi@ur.ac.rw", org: "University of Rwanda", roles: ["researcher"], status: "active", mfa: true, expires: "2027-08-10", last: "2026-09-19T14:22:00" },
   { id: "u10", name: "Eric Habimana", email: "e.habimana@rbc.gov.rw", org: "RBC", roles: ["district-analyst"], status: "active", mfa: true, expires: "2026-12-31", last: "2026-09-18T16:00:00" },
   { id: "u11", name: "Dr. A. Niyonsenga", email: "a.niyonsenga@rbc.gov.rw", org: "RBC", roles: ["researcher"], status: "pending", mfa: false, expires: "—", last: "", approvals: [] },
-  { id: "u12", name: "Grace Mukamana", email: "grace@mamacare.rw", org: "MamaCare", roles: ["support-agent"], status: "expired", mfa: true, expires: "2026-09-15", last: "2026-09-14T12:00:00" },
+  { id: "u12", name: "Grace Mukamana", email: "grace@MamaRindwa.rw", org: "MamaRindwa", roles: ["support-agent"], status: "expired", mfa: true, expires: "2026-09-15", last: "2026-09-14T12:00:00" },
 ];
 
 export const orgs = [
@@ -87,15 +87,15 @@ export const auditLog = [
   { at: "2026-09-21T11:05:00", who: "svc:risk-engine", role: "system", action: "SCORE", target: "mother m_01", ctx: "rules v0.4 → high" },
   { at: "2026-09-21T10:45:00", who: "a.uwimana@kinyinya.hc", role: "chw-supervisor", action: "NUDGE", target: "chw chw_03 / esc_10", ctx: "SMS + push" },
   { at: "2026-09-21T10:33:00", who: "marie.m@chw", role: "chw", action: "READ record", target: "mother m_01", ctx: "caseload" },
-  { at: "2026-09-21T09:02:00", who: "pascal@mamacare.rw", role: "release-manager", action: "DEPLOY", target: "web 0.9.3", ctx: "vercel prod" },
-  { at: "2026-09-20T22:14:00", who: "pascal@mamacare.rw", role: "sre", action: "BREAK-GLASS", target: "db:mothers (read)", ctx: "INC-014 sync repair · approved 60 min", flag: true },
+  { at: "2026-09-21T09:02:00", who: "pascal@MamaRindwa.rw", role: "release-manager", action: "DEPLOY", target: "web 0.9.3", ctx: "vercel prod" },
+  { at: "2026-09-20T22:14:00", who: "pascal@MamaRindwa.rw", role: "sre", action: "BREAK-GLASS", target: "db:mothers (read)", ctx: "INC-014 sync repair · approved 60 min", flag: true },
   { at: "2026-09-20T10:00:00", who: "i.uwera@kinyinya.hc", role: "facility-in-charge", action: "APPROVE 1/2", target: "user u6", ctx: "provider-hc grant" },
-  { at: "2026-09-19T15:00:00", who: "nadine@mamacare.rw", role: "rules-editor", action: "EDIT", target: "rules v0.5-draft", ctx: "staging" },
+  { at: "2026-09-19T15:00:00", who: "nadine@MamaRindwa.rw", role: "rules-editor", action: "EDIT", target: "rules v0.5-draft", ctx: "staging" },
 ];
 
 export const breakGlass = [
-  { id: "BG-007", at: "2026-09-20T22:14:00", who: "pascal@mamacare.rw (sre)", reason: "INC-014: repair CHW sync records for Gacuriro after carrier outage", scope: "db:mothers · db:visits (read+write)", approvedBy: "security-lead (auto-page) · dpo notified", expired: "2026-09-20T23:14:00", reviewed: false },
-  { id: "BG-006", at: "2026-09-12T14:05:00", who: "dr.m.uwase@mamacare.rw (clinical-lead)", reason: "CR-028 case review: read full conversation for adverse-outcome review", scope: "conversation m_15 (read)", approvedBy: "dpo", expired: "2026-09-12T15:05:00", reviewed: true },
+  { id: "BG-007", at: "2026-09-20T22:14:00", who: "pascal@MamaRindwa.rw (sre)", reason: "INC-014: repair CHW sync records for Gacuriro after carrier outage", scope: "db:mothers · db:visits (read+write)", approvedBy: "security-lead (auto-page) · dpo notified", expired: "2026-09-20T23:14:00", reviewed: false },
+  { id: "BG-006", at: "2026-09-12T14:05:00", who: "dr.m.uwase@MamaRindwa.rw (clinical-lead)", reason: "CR-028 case review: read full conversation for adverse-outcome review", scope: "conversation m_15 (read)", approvedBy: "dpo", expired: "2026-09-12T15:05:00", reviewed: true },
 ];
 
 export const integrations = [

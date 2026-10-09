@@ -58,7 +58,7 @@ export async function requestStaffAccount(_prev: State, fd: FormData): Promise<S
   if (!str(fd, "name") || !str(fd, "email")) return { error: "Name and work email are required." };
   await delay(500); // TODO: POST /accounts/request → iam-admin two-person approval
   revalidatePath("/clinic/staff");
-  return { ok: true, message: "Request sent. MamaCare admin and your in-charge must both approve; usually within 1 working day." };
+  return { ok: true, message: "Request sent. MamaRindwa admin and your in-charge must both approve; usually within 1 working day." };
 }
 
 const phoneOk = (p: string) => /^(\+?250|0)?7[2389]\d{7}$/.test(p.replace(/\s+/g, ""));

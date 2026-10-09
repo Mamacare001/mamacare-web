@@ -5,7 +5,7 @@ import type { MetadataRoute } from "next";
  * (see robots.ts). Update this list whenever a new marketing page ships.
  */
 export default function sitemap(): MetadataRoute.Sitemap {
-  const base = "https://mamacare.rw";
+  const base = "https://MamaRindwa.rw";
   const now = new Date();
 
   const pages: { path: string; priority: number; changeFrequency: MetadataRoute.Sitemap[number]["changeFrequency"] }[] = [

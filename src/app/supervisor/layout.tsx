@@ -3,7 +3,7 @@ import { auth, signOut } from "@/auth";
 import { notificationsByRole } from "@/lib/mock/shared";
 import { AppShell, supervisorNav } from "@/components/app/AppShell";
 
-export const metadata = { title: { default: "MamaCare · Supervisor", template: "%s · MamaCare Supervisor" } };
+export const metadata = { title: { default: "MamaRindwa · Supervisor", template: "%s · MamaRindwa Supervisor" } };
 
 export default async function SupervisorLayout({ children }: { children: React.ReactNode }) {
   const session = await auth();

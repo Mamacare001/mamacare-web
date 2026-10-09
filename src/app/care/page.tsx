@@ -42,7 +42,7 @@ export default function CarePage() {
           ))}
         </ul>
       </section>
-      <p className="flex items-center gap-2 text-xs text-muted"><Phone className="size-3.5" /> Calls are made from the care team’s line; MamaCare logs the contact, not the call content.</p>
+      <p className="flex items-center gap-2 text-xs text-muted"><Phone className="size-3.5" /> Calls are made from the care team’s line; MamaRindwa logs the contact, not the call content.</p>
     </div>
   );
 }

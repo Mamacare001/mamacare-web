@@ -15,7 +15,7 @@ import { demoEnabled, DEMO_PASSWORD } from "@/lib/demo";
 const isProd = process.env.NODE_ENV === "production";
 
 export const authConfig = {
-  secret: process.env.AUTH_SECRET ?? (isProd ? undefined : "mamacare-dev-secret-change-me"),
+  secret: process.env.AUTH_SECRET ?? (isProd ? undefined : "MamaRindwa-dev-secret-change-me"),
   trustHost: true,
   session: { strategy: "jwt" },
   pages: { signIn: "/login", error: "/login" },
@@ -29,17 +29,17 @@ export const authConfig = {
       async authorize(creds) {
         const email = String(creds?.email ?? "").toLowerCase().trim();
         const password = String(creds?.password ?? "");
-        // TODO: replace with a real lookup against the MamaCare API.
+        // TODO: replace with a real lookup against the MamaRindwa API.
         const demo: Record<string, { name: string; role: string }> = {
-          "demo@mamacare.rw": { name: "Marie Mukamana", role: "chw" },
-          "mother@mamacare.rw": { name: "Uwase Claudine", role: "mother" },
-          "family@mamacare.rw": { name: "Jean Bosco", role: "family" },
-          "supervisor@mamacare.rw": { name: "Aline Uwimana", role: "supervisor" },
-          "provider@mamacare.rw": { name: "Nurse Aline Mukeshimana", role: "provider" },
-          "analyst@mamacare.rw": { name: "Eric Habimana", role: "analyst" },
-          "care@mamacare.rw": { name: "Diane Uwase", role: "care-manager" },
-          "researcher@mamacare.rw": { name: "Dr. Kevine Mutesi", role: "researcher" },
-          "admin@mamacare.rw": { name: "Pascal Dukundane", role: "admin" },
+          "demo@MamaRindwa.rw": { name: "Marie Mukamana", role: "chw" },
+          "mother@MamaRindwa.rw": { name: "Uwase Claudine", role: "mother" },
+          "family@MamaRindwa.rw": { name: "Jean Bosco", role: "family" },
+          "supervisor@MamaRindwa.rw": { name: "Aline Uwimana", role: "supervisor" },
+          "provider@MamaRindwa.rw": { name: "Nurse Aline Mukeshimana", role: "provider" },
+          "analyst@MamaRindwa.rw": { name: "Eric Habimana", role: "analyst" },
+          "care@MamaRindwa.rw": { name: "Diane Uwase", role: "care-manager" },
+          "researcher@MamaRindwa.rw": { name: "Dr. Kevine Mutesi", role: "researcher" },
+          "admin@MamaRindwa.rw": { name: "Pascal Dukundane", role: "admin" },
         };
         if (demoEnabled && demo[email] && password === DEMO_PASSWORD) {
           return { id: `demo-${demo[email].role}`, name: demo[email].name, email, role: demo[email].role };
@@ -49,7 +49,7 @@ export const authConfig = {
           const ob = await readOnboarding();
           if (ob.token && password === `onboarding:${ob.token}` && ob.consent?.agreed) {
             const role = ob.role === "worker" ? (ob.worker?.kind ?? "chw") : (ob.role ?? "mother");
-            return { id: `ob-${ob.token.slice(0, 8)}`, name: ob.name ?? "MamaCare user", email, role };
+            return { id: `ob-${ob.token.slice(0, 8)}`, name: ob.name ?? "MamaRindwa user", email, role };
           }
         }
         return null;

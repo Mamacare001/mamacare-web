@@ -23,7 +23,7 @@ export function AdminShell({ children, name, roles, signOutAction }: { children:
       <aside className="hidden border-r border-emerald/10 bg-midnight text-ivory lg:flex lg:flex-col">
         <div className="flex h-[72px] items-center gap-2.5 px-6">
           <Image src="/brand/mark.png" alt="" width={36} height={42} className="h-9 w-auto" />
-          <div><Image src="/brand/wordmark-white.png" alt="MamaCare" width={110} height={16} className="h-4 w-auto" /><p className="text-eyebrow mt-0.5 text-gold">Admin</p></div>
+          <div><Image src="/brand/wordmark-white.png" alt="MamaRindwa" width={110} height={16} className="h-4 w-auto" /><p className="text-eyebrow mt-0.5 text-gold">Admin</p></div>
         </div>
         <nav className="flex-1 space-y-5 overflow-y-auto px-3 py-3" aria-label="Admin">
           {groups.map((g) => (

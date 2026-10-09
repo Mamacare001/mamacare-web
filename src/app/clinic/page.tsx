@@ -44,7 +44,7 @@ export default async function ClinicToday({ searchParams }: { searchParams: Prom
           <Button href="/clinic/visit" variant="primary" size="sm"><ClipboardList className="size-4" /> Report visit</Button>
         </Card>
         <Card className="flex items-center justify-between gap-3">
-          <div><p className="font-semibold text-emerald">Booking ANC, not on MamaCare yet?</p><p className="text-sm text-muted">Enrol her and assign a CHW.</p></div>
+          <div><p className="font-semibold text-emerald">Booking ANC, not on MamaRindwa yet?</p><p className="text-sm text-muted">Enrol her and assign a CHW.</p></div>
           <Button href="/clinic/enrol" variant="secondary" size="sm"><UserPlus className="size-4" /> Enrol</Button>
         </Card>
       </div>

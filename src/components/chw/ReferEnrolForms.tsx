@@ -71,7 +71,7 @@ export function EnrolForm() {
           <p className="flex items-center gap-2 font-display text-2xl"><CheckCircle2 className="size-6 text-green" /> Enrolled.</p>
           <p className="mt-2 text-[15px]">She has been sent an SMS with the link. If she has no smartphone, she can reply to that SMS to check in. Her code:</p>
           <button type="button" onClick={async () => { try { await navigator.clipboard.writeText(code); setCopied(true); setTimeout(() => setCopied(false), 1500); } catch {} }} className="mt-3 inline-flex items-center gap-2 rounded-md bg-white px-4 py-2 font-mono text-2xl tracking-[0.3em]">{code} {copied ? <Check className="size-4 text-green" /> : <Copy className="size-4 text-muted" />}</button>
-          <p className="mt-2 text-xs text-emerald/80">Write it on her ANC card. Link: mamacare.rw/invite/{code}</p>
+          <p className="mt-2 text-xs text-emerald/80">Write it on her ANC card. Link: MamaRindwa.rw/invite/{code}</p>
         </div>
         <div className="flex gap-3"><Button href="/chw/enrol" variant="secondary">Enrol another</Button><Button href="/chw/caseload" variant="ghost">Caseload</Button></div>
       </div>
@@ -100,7 +100,7 @@ export function EnrolForm() {
           <Field label="Mobile number"><input name="supPhone" type="tel" inputMode="tel" className={fieldCls} placeholder="078 123 4567" /></Field>
         </div>
       </details>
-      <label className="flex items-start gap-3 rounded-md border border-emerald/15 bg-white p-3 text-sm text-ink/90 has-[:checked]:border-emerald has-[:checked]:bg-emerald/5"><input type="checkbox" name="consent" className="mt-0.5 size-4 accent-emerald" required /> I have explained MamaCare to her in Kinyarwanda, what it is not (a doctor), who will see her information, and she agrees to be enrolled. She will confirm on her own phone.</label>
+      <label className="flex items-start gap-3 rounded-md border border-emerald/15 bg-white p-3 text-sm text-ink/90 has-[:checked]:border-emerald has-[:checked]:bg-emerald/5"><input type="checkbox" name="consent" className="mt-0.5 size-4 accent-emerald" required /> I have explained MamaRindwa to her in Kinyarwanda, what it is not (a doctor), who will see her information, and she agrees to be enrolled. She will confirm on her own phone.</label>
       <FormError message={state?.error} />
       <Button type="submit" variant="coral" size="lg" disabled={pending} arrow={!pending}>{pending ? <Loader2 className="size-4 animate-spin" /> : online ? "Enrol and send SMS" : "Save on phone"}</Button>
     </form>

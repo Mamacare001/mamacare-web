@@ -42,7 +42,7 @@ export const mothers: LinkedMother[] = [
     lastGuidance: { at: "2026-09-21T10:31:00", text: "Rest, drink water, avoid salty food today. Marie will visit within 2 days. If her vision changes or the headache gets much worse, go to the health centre." },
     emergencyPlan: { transport: "Moto from Gasharu junction · Kalisa +250 788 333 444", goTo: "Kinyinya Health Centre (open 24 h) · 15 min", bring: "ANC card, mutuelle card, phone" },
     updates: [
-      { at: "2026-09-21T10:31:00", text: "Uwase reported a headache and swollen feet. Guidance sent; CHW notified.", by: "MamaCare" },
+      { at: "2026-09-21T10:31:00", text: "Uwase reported a headache and swollen feet. Guidance sent; CHW notified.", by: "MamaRindwa" },
       { at: "2026-09-18T15:02:00", text: "Marie visited: BP normal, baby moving well.", by: "Marie (CHW)" },
       { at: "2026-09-12T09:41:00", text: "You reported she was very tired. She confirmed. Guidance sent.", by: "You" },
     ],

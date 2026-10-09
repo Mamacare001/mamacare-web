@@ -18,7 +18,7 @@ export type Q =
   | { name: string; ask: string; hint?: string; kind: "yesno"; optional?: boolean };
 
 /**
- * One question at a time — the way MamaCare talks to mothers. State lives in one hidden form so the
+ * One question at a time — the way MamaRindwa talks to mothers. State lives in one hidden form so the
  * final submit posts everything to the server action.
  */
 export function Conversation({
@@ -77,7 +77,7 @@ export function Conversation({
       <div className="grid min-h-[260px]">
         <AnimatePresence mode="popLayout" initial={false}>
           <motion.div key={step} initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -14, transition: { duration: 0.25 } }} transition={{ duration: 0.5, ease }} className="[grid-area:1/1]">
-            {/* the question, as a chat bubble from MamaCare */}
+            {/* the question, as a chat bubble from MamaRindwa */}
             <div className="flex items-start gap-3">
               <span className="grid size-9 shrink-0 place-items-center rounded-full bg-emerald text-sm font-bold text-ivory">M</span>
               <div>

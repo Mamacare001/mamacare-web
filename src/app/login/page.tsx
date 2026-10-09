@@ -38,9 +38,9 @@ export default async function LoginPage({ searchParams }: { searchParams: Search
         <div className="absolute inset-0 bg-gradient-to-t from-midnight via-midnight/40 to-transparent" />
         <div className="grain absolute inset-0" aria-hidden />
         <div className="relative flex h-full flex-col justify-between p-10 lg:p-14">
-          <Link href="/" aria-label="MamaCare home" className="inline-flex items-center gap-2.5">
+          <Link href="/" aria-label="MamaRindwa home" className="inline-flex items-center gap-2.5">
             <Image src="/brand/mark.png" alt="" width={40} height={46} className="h-10 w-auto" />
-            <Image src="/brand/wordmark-white.png" alt="MamaCare" width={135} height={20} className="h-5 w-auto" />
+            <Image src="/brand/wordmark-white.png" alt="MamaRindwa" width={135} height={20} className="h-5 w-auto" />
           </Link>
           <div>
             <TextReveal as="p" trigger="mount" delay={0.5} className="text-h2 max-w-[16ch]">
@@ -56,9 +56,9 @@ export default async function LoginPage({ searchParams }: { searchParams: Search
       {/* Form panel */}
       <div className="flex min-h-[100svh] flex-col px-5 pb-10 pt-6 sm:px-10 md:col-span-7 md:min-h-0 lg:col-span-6">
         <div className="flex items-center justify-between md:hidden">
-          <Link href="/" aria-label="MamaCare home" className="inline-flex items-center gap-2">
+          <Link href="/" aria-label="MamaRindwa home" className="inline-flex items-center gap-2">
             <Image src="/brand/mark.png" alt="" width={36} height={42} className="h-9 w-auto" />
-            <Image src="/brand/wordmark.png" alt="MamaCare" width={120} height={18} className="h-[18px] w-auto" />
+            <Image src="/brand/wordmark.png" alt="MamaRindwa" width={120} height={18} className="h-[18px] w-auto" />
           </Link>
           <Link href="/" className="text-sm font-semibold text-emerald">
             ← Home
@@ -73,7 +73,7 @@ export default async function LoginPage({ searchParams }: { searchParams: Search
           <LoginForm mode={mode} googleEnabled={googleEnabled} demoEnabled={demoEnabled} callbackUrl={sp.callbackUrl ?? "/dashboard"} error={sp.error} />
         </div>
         <Reveal variant="fade" delay={1} as="p" className="text-center text-xs text-muted">
-          By continuing you agree to our terms and consent to MamaCare handling your data under Rwanda’s data-protection law.
+          By continuing you agree to our terms and consent to MamaRindwa handling your data under Rwanda’s data-protection law.
         </Reveal>
       </div>
     </section>

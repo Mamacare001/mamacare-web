@@ -1,4 +1,4 @@
-/* MamaCare service worker — app-shell caching for the CHW app.
+/* MamaRindwa service worker — app-shell caching for the CHW app.
    Strategy: network-first for pages (fresh when online, cached copy when offline),
    cache-first for static assets. Server actions (POST) are never cached. */
 const VERSION = "mc-v1";

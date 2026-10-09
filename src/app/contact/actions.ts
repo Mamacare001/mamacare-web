@@ -17,7 +17,7 @@ export async function sendContact(_prev: ContactState, formData: FormData): Prom
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return { ok: false, message: "That email address doesn't look right." };
 
   // TODO: replace with a real delivery. Example with Resend:
-  // await resend.emails.send({ from: "MamaCare <hello@mamacare.rw>", to: "team@mamacare.rw", subject: `[${topic}] ${name}`, text: message });
+  // await resend.emails.send({ from: "MamaRindwa <hello@MamaRindwa.rw>", to: "team@MamaRindwa.rw", subject: `[${topic}] ${name}`, text: message });
   console.info("[contact]", { name, email, org, topic, message });
   await new Promise((r) => setTimeout(r, 600));
 

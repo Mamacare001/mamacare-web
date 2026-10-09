@@ -14,18 +14,18 @@ const ease = [0.16, 1, 0.3, 1] as const;
 
 const SLIDES = [
   { src: "/images/chw-visit.jpg", alt: "A Community Health Worker visiting a mother at home" },
-  { src: "/images/mother-home-phone.jpg", alt: "A mother checking in with MamaCare from her phone" },
+  { src: "/images/mother-home-phone.jpg", alt: "A mother checking in with MamaRindwa from her phone" },
   { src: "/images/telehealth-call.jpg", alt: "A telehealth video call with a clinician" },
   { src: "/images/provider-tablet.jpg", alt: "A health provider reviewing a case on a tablet" },
   { src: "/images/family-together.jpg", alt: "A family together at home" },
-  { src: "/images/chat-on-phone.jpg", alt: "Chatting with MamaCare on a phone" },
+  { src: "/images/chat-on-phone.jpg", alt: "Chatting with MamaRindwa on a phone" },
 ];
 
 const SLIDE_SECONDS = 5.5;
 
 /**
  * A full-screen welcome gate at "/" — the first thing any visitor lands
- * on, every time. A slow-panning slideshow of real MamaCare moments (a
+ * on, every time. A slow-panning slideshow of real MamaRindwa moments (a
  * CHW home visit, a telehealth call, a mother on her phone) plays behind
  * a floating signature mark and two choices: English or Kinyarwanda.
  * Picking one sends the visitor on to "/home". The choice is still saved
@@ -158,7 +158,7 @@ export function LanguageSplash() {
               >
                 <Image
                   src="/brand/mark.png"
-                  alt="MamaCare"
+                  alt="MamaRindwa"
                   width={502}
                   height={580}
                   className="h-[72px] w-auto sm:h-20"
