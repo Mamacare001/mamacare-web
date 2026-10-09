@@ -53,13 +53,13 @@ export function Hero() {
       {/* photographic background */}
       <motion.div className="absolute inset-x-0 top-0 -z-10 h-[min(68svh,36rem)] origin-top lg:inset-0 lg:h-auto" style={{ scale: imgScale }} aria-hidden>
         <Image
-          src="/images/mother-hero-wide.jpg"
+          src="/images/mother-hero.jpg"
           alt=""
           fill
           priority
           quality={90}
           sizes="100vw"
-          className="object-cover object-center"
+          className="object-cover object-[50%_30%] sm:object-[48%_32%] md:object-[46%_35%] lg:object-[42%_38%] xl:object-[40%_40%] 2xl:object-[42%_40%]"
         />
       </motion.div>
       {/* readability overlays: bottom-up on phones, left-to-right from md */}
