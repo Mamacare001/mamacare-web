@@ -59,7 +59,7 @@ export function Hero() {
           priority
           quality={90}
           sizes="100vw"
-          className="object-cover object-[50%_30%] sm:object-[48%_32%] md:object-[46%_35%] lg:object-[50%_38%] xl:object-[50%_38%] 2xl:object-[50%_38%]"
+          className="object-cover object-[72%_18%] sm:object-[70%_25%] md:object-[68%_30%] lg:object-[62%_35%] xl:object-[55%_40%]"
         />
       </motion.div>
       {/* readability overlays: bottom-up on phones, left-to-right from md */}
@@ -69,8 +69,8 @@ export function Hero() {
       />
       <div className="absolute inset-x-0 top-0 -z-10 h-32 bg-gradient-to-b from-midnight/60 to-transparent" aria-hidden />
 
-      <div className="relative mx-auto flex w-full max-w-[1728px] flex-col justify-end px-5 pb-12 pt-[min(46svh,22rem)] sm:px-8 lg:min-h-[100svh] lg:justify-center lg:px-[7vw] lg:pb-24 lg:pt-36">
-        <div className="w-full max-w-[40rem] lg:max-w-[54%] 2xl:max-w-[48rem]">
+      <div className="container-x relative flex flex-col justify-end pb-12 pt-[min(46svh,22rem)] lg:min-h-[100svh] lg:justify-center lg:pb-24 lg:pt-36">
+        <div className="max-w-[40rem] 2xl:max-w-[46rem]">
           <motion.p {...seq(0.4)} className="text-eyebrow flex items-center gap-3 text-ivory/90">
             <Activity className="size-4 shrink-0 text-coral" aria-hidden />
             <span>
@@ -83,11 +83,11 @@ export function Hero() {
             as="h1"
             trigger="mount"
             delay={0.45}
-            className="mt-5 w-full font-sans text-[clamp(2.35rem,1.45rem+3.1vw,4.35rem)] font-bold leading-[1.04] tracking-[-0.035em] lg:text-[clamp(3rem,3.6vw,4.35rem)]"
+            className="mt-5 font-sans text-[clamp(2.4rem,1.5rem+3.4vw,4.6rem)] font-bold leading-[1.06] tracking-tight"
             lines={[t.hero.title1, { text: t.hero.title2, className: "text-coral" }]}
           />
 
-          <motion.p {...seq(0.8, true)} className="text-lead mt-6 max-w-[50ch] text-ivory/90">
+          <motion.p {...seq(0.8, true)} className="text-lead mt-6 max-w-[48ch] text-ivory/90">
             {t.hero.lead}
           </motion.p>
 
@@ -103,13 +103,13 @@ export function Hero() {
             </Button>
           </motion.div>
 
-          <motion.ul {...seq(1.1)} className="mt-8 grid grid-cols-2 gap-x-4 gap-y-6 sm:mt-9 lg:grid-cols-4 lg:gap-x-0">
+          <motion.ul {...seq(1.1)} className="mt-10 grid grid-cols-2 gap-x-4 gap-y-6 lg:grid-cols-4 lg:gap-x-0">
             {c.benefits.map((label, i) => {
               const Icon = BENEFIT_ICONS[i];
               return (
                 <li
                   key={label}
-                  className="flex min-w-0 flex-col gap-2.5 lg:border-l lg:border-white/15 lg:pl-4 lg:pr-3 lg:first:border-0 lg:first:pl-0"
+                  className="flex flex-col gap-2.5 lg:border-l lg:border-white/15 lg:pl-4 lg:pr-3 lg:first:border-0 lg:first:pl-0"
                 >
                   <Icon className="size-7 text-green" aria-hidden />
                   <span className="text-[13px] font-semibold leading-snug text-ivory sm:text-sm">{label}</span>

@@ -1,0 +1,545 @@
+diff --git a/src/app/emergency/page.tsx b/src/app/emergency/page.tsx
+index ae3e952..7742309 100644
+--- a/src/app/emergency/page.tsx
++++ b/src/app/emergency/page.tsx
+@@ -1,60 +1,11 @@
+ import type { Metadata } from "next";
+-import { Phone, MapPin, AlertTriangle, Baby, Droplets, Eye, Thermometer, Activity } from "lucide-react";
+-import { Button } from "@/components/ui/Button";
++import { EmergencyContent } from "@/components/pages/EmergencyContent";
+ 
+ export const metadata: Metadata = {
+   title: "Emergency",
+   description: "If you or someone near you is in danger: call 912 or go to the nearest health facility now.",
+ };
+ 
+-const signs = [
+-  { icon: Droplets, en: "Heavy bleeding", rw: "Kuva amaraso menshi" },
+-  { icon: Activity, en: "Fits or seizures", rw: "Kugagara / gufatwa n'igicuri" },
+-  { icon: Eye, en: "Severe headache with blurred vision", rw: "Umutwe ukabije n'amaso atabona neza" },
+-  { icon: Thermometer, en: "High fever", rw: "Umuriro mwinshi" },
+-  { icon: Baby, en: "Baby has stopped moving", rw: "Umwana yahagaritse kunyeganyega" },
+-  { icon: AlertTriangle, en: "Severe belly pain or water breaking early", rw: "Kubabara inda cyane cyangwa amazi asohotse hakiri kare" },
+-];
+-
+-/** Kept deliberately simple and static so it renders fast on any connection. */
+ export default function EmergencyPage() {
+-  return (
+-    <section className="min-h-[100svh] bg-coral pb-16 pt-28 text-white md:pt-40">
+-      <div className="container-x">
+-        <p className="text-eyebrow text-white/80">Emergency · Ibyihutirwa</p>
+-        <h1 className="text-display mt-4 max-w-[14ch]">Do not wait. Ntutegereze.</h1>
+-        <p className="mt-6 max-w-xl text-xl leading-relaxed text-white/90">
+-          If a pregnant woman has any of the signs below, get help now. Call 912 or go to the nearest health centre or hospital.
+-        </p>
+-
+-        <div className="mt-10 flex flex-wrap gap-3">
+-          <Button href="tel:912" variant="light" size="lg" className="!text-coral">
+-            <Phone className="size-5" /> Call 912
+-          </Button>
+-          <Button href="https://www.google.com/maps/search/health+centre+near+me" variant="ghost" size="lg" className="!text-white ring-1 ring-white/50 hover:!bg-white/10">
+-            <MapPin className="size-5" /> Nearest health facility
+-          </Button>
+-        </div>
+-
+-        <ul className="mt-14 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+-          {signs.map((s) => (
+-            <li key={s.en} className="flex items-center gap-4 rounded-lg bg-white/15 p-5 ring-1 ring-white/25">
+-              <span className="grid size-12 shrink-0 place-items-center rounded-full bg-white text-coral">
+-                <s.icon className="size-6" aria-hidden />
+-              </span>
+-              <div>
+-                <p className="text-lg font-bold leading-tight">{s.en}</p>
+-                <p className="text-sm text-white/85">{s.rw}</p>
+-              </div>
+-            </li>
+-          ))}
+-        </ul>
+-
+-        <p className="mt-12 max-w-2xl text-sm leading-relaxed text-white/80">
+-          MamaCare is not an emergency service and does not replace medical care. If you are unsure whether it is an
+-          emergency, treat it as one.
+-        </p>
+-      </div>
+-    </section>
+-  );
++  return <EmergencyContent />;
+ }
+diff --git a/src/components/pages/EmergencyContent.tsx b/src/components/pages/EmergencyContent.tsx
+new file mode 100644
+index 0000000..0f41121
+--- /dev/null
++++ b/src/components/pages/EmergencyContent.tsx
+@@ -0,0 +1,85 @@
++"use client";
++
++import { motion } from "framer-motion";
++import { Phone, MapPin, AlertTriangle, Baby, Droplets, Eye, Thermometer, Activity } from "lucide-react";
++import { Button } from "@/components/ui/Button";
++import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
++
++const ease = [0.16, 1, 0.3, 1] as const;
++/** Quick, non-blocking entrance for the critical top content - never gated on scroll,
++ *  never slow: someone here needs the call button now, not after an animation. */
++const seq = (delay: number) => ({
++  initial: { opacity: 0, y: 12 },
++  animate: { opacity: 1, y: 0 },
++  transition: { delay, duration: 0.4, ease },
++});
++
++const signs = [
++  { icon: Droplets, en: "Heavy bleeding", rw: "Kuva amaraso menshi" },
++  { icon: Activity, en: "Fits or seizures", rw: "Kugagara / gufatwa n'igicuri" },
++  { icon: Eye, en: "Severe headache with blurred vision", rw: "Umutwe ukabije n'amaso atabona neza" },
++  { icon: Thermometer, en: "High fever", rw: "Umuriro mwinshi" },
++  { icon: Baby, en: "Baby has stopped moving", rw: "Umwana yahagaritse kunyeganyega" },
++  { icon: AlertTriangle, en: "Severe belly pain or water breaking early", rw: "Kubabara inda cyane cyangwa amazi asohotse hakiri kare" },
++];
++
++/**
++ * The call-to-action above the fold (title, lead, call/map buttons) fades in fast on
++ * mount - no scroll gate, so it's never hidden behind a trigger someone in a hurry
++ * hasn't crossed yet. The signs grid and disclaimer, both already below the fold on
++ * a phone, use the site's normal scroll-reveal so the page still feels consistent
++ * with the rest of MamaCare rather than abruptly static.
++ */
++export function EmergencyContent() {
++  return (
++    <section className="min-h-[100svh] bg-coral pb-16 pt-28 text-white md:pt-40">
++      <div className="container-x">
++        <motion.p {...seq(0)} className="text-eyebrow text-white/80">
++          Emergency · Ibyihutirwa
++        </motion.p>
++        <motion.h1 {...seq(0.08)} className="text-display mt-4 max-w-[14ch]">
++          Do not wait. Ntutegereze.
++        </motion.h1>
++        <motion.p {...seq(0.16)} className="mt-6 max-w-xl text-xl leading-relaxed text-white/90">
++          If a pregnant woman has any of the signs below, get help now. Call 912 or go to the nearest health centre or
++          hospital.
++        </motion.p>
++
++        <motion.div {...seq(0.24)} className="mt-10 flex flex-wrap gap-3">
++          <Button href="tel:912" variant="light" size="lg" className="!text-coral">
++            <Phone className="size-5" /> Call 912
++          </Button>
++          <Button
++            href="https://www.google.com/maps/search/health+centre+near+me"
++            variant="ghost"
++            size="lg"
++            className="!text-white ring-1 ring-white/50 hover:!bg-white/10"
++          >
++            <MapPin className="size-5" /> Nearest health facility
++          </Button>
++        </motion.div>
++
++        <RevealGroup as="ul" className="mt-14 grid gap-3 sm:grid-cols-2 lg:grid-cols-3" stagger={0.06}>
++          {signs.map((s) => (
++            <RevealItem as="li" key={s.en}>
++              <div className="flex items-center gap-4 rounded-lg bg-white/15 p-5 ring-1 ring-white/25">
++                <span className="grid size-12 shrink-0 place-items-center rounded-full bg-white text-coral">
++                  <s.icon className="size-6" aria-hidden />
++                </span>
++                <div>
++                  <p className="text-lg font-bold leading-tight">{s.en}</p>
++                  <p className="text-sm text-white/85">{s.rw}</p>
++                </div>
++              </div>
++            </RevealItem>
++          ))}
++        </RevealGroup>
++
++        <Reveal className="mt-12 max-w-2xl text-sm leading-relaxed text-white/80" as="p">
++          MamaCare is not an emergency service and does not replace medical care. If you are unsure whether it is an
++          emergency, treat it as one.
++        </Reveal>
++      </div>
++    </section>
++  );
++}
+diff --git a/src/components/pages/PrivacyContent.tsx b/src/components/pages/PrivacyContent.tsx
+index 7af54a2..a8f626b 100644
+--- a/src/components/pages/PrivacyContent.tsx
++++ b/src/components/pages/PrivacyContent.tsx
+@@ -2,6 +2,7 @@
+ 
+ import { PageHero } from "@/components/site/PageHero";
+ import { Prose } from "@/components/pages/Prose";
++import { Reveal } from "@/components/ui/Reveal";
+ import { useLang } from "@/components/providers/LanguageProvider";
+ 
+ export function PrivacyContent() {
+@@ -23,45 +24,65 @@ export function PrivacyContent() {
+       <section className="bg-white py-20 md:py-28">
+         <div className="container-x">
+           <Prose>
+-            <h2>{s[0].h}</h2>
+-            <p>{s[0].body?.[0]}<a href="/contact">{s[0].link}</a>{s[0].after}</p>
++            <Reveal as="div">
++              <h2>{s[0].h}</h2>
++              <p>{s[0].body?.[0]}<a href="/contact">{s[0].link}</a>{s[0].after}</p>
++            </Reveal>
+ 
+-            <h2>{s[1].h}</h2>
+-            <ul>
+-              {s[1].items?.map((it) => (
+-                <li key={it.strong}><strong>{it.strong}</strong>{it.text}</li>
+-              ))}
+-            </ul>
++            <Reveal as="div">
++              <h2>{s[1].h}</h2>
++              <ul>
++                {s[1].items?.map((it) => (
++                  <li key={it.strong}><strong>{it.strong}</strong>{it.text}</li>
++                ))}
++              </ul>
++            </Reveal>
+ 
+-            <h2>{s[2].h}</h2>
+-            <ul>
+-              {s[2].items2?.map((it) => <li key={it}>{it}</li>)}
+-            </ul>
+-            <p>{s[2].extra}</p>
++            <Reveal as="div">
++              <h2>{s[2].h}</h2>
++              <ul>
++                {s[2].items2?.map((it) => <li key={it}>{it}</li>)}
++              </ul>
++              <p>{s[2].extra}</p>
++            </Reveal>
+ 
+-            <h2>{s[3].h}</h2>
+-            <p>{s[3].body?.[0]}</p>
++            <Reveal as="div">
++              <h2>{s[3].h}</h2>
++              <p>{s[3].body?.[0]}</p>
++            </Reveal>
+ 
+-            <h2>{s[4].h}</h2>
+-            <p>{s[4].pre}<a href="/consent">{s[4].bodyLink}</a>{s[4].post}</p>
+-            <p>{s[4].extraPre}<strong>{s[4].extraStrong}</strong>{s[4].extraPost}</p>
++            <Reveal as="div">
++              <h2>{s[4].h}</h2>
++              <p>{s[4].pre}<a href="/consent">{s[4].bodyLink}</a>{s[4].post}</p>
++              <p>{s[4].extraPre}<strong>{s[4].extraStrong}</strong>{s[4].extraPost}</p>
++            </Reveal>
+ 
+-            <h2>{s[5].h}</h2>
+-            <p>{s[5].pre}<strong>{s[5].strong}</strong>{s[5].post}</p>
++            <Reveal as="div">
++              <h2>{s[5].h}</h2>
++              <p>{s[5].pre}<strong>{s[5].strong}</strong>{s[5].post}</p>
++            </Reveal>
+ 
+-            <h2>{s[6].h}</h2>
+-            <p>{s[6].body?.[0]}</p>
++            <Reveal as="div">
++              <h2>{s[6].h}</h2>
++              <p>{s[6].body?.[0]}</p>
++            </Reveal>
+ 
+-            <h2>{s[7].h}</h2>
+-            <p>{s[7].body?.[0]}</p>
++            <Reveal as="div">
++              <h2>{s[7].h}</h2>
++              <p>{s[7].body?.[0]}</p>
++            </Reveal>
+ 
+-            <h2>{s[8].h}</h2>
+-            <ul>
+-              {s[8].items2?.map((it) => <li key={it}>{it}</li>)}
+-            </ul>
++            <Reveal as="div">
++              <h2>{s[8].h}</h2>
++              <ul>
++                {s[8].items2?.map((it) => <li key={it}>{it}</li>)}
++              </ul>
++            </Reveal>
+ 
+-            <h2>{s[9].h}</h2>
+-            <p>{s[9].body?.[0]}</p>
++            <Reveal as="div">
++              <h2>{s[9].h}</h2>
++              <p>{s[9].body?.[0]}</p>
++            </Reveal>
+           </Prose>
+         </div>
+       </section>
+diff --git a/src/components/pages/StatusContent.tsx b/src/components/pages/StatusContent.tsx
+index 8509652..dbe5d75 100644
+--- a/src/components/pages/StatusContent.tsx
++++ b/src/components/pages/StatusContent.tsx
+@@ -1,15 +1,24 @@
+ "use client";
+ 
++import { motion } from "framer-motion";
+ import { CheckCircle2, AlertTriangle, XCircle } from "lucide-react";
+ import { statusPage } from "@/lib/mock/shared";
+ import { cn } from "@/lib/cn";
++import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
+ import { useLang } from "@/components/providers/LanguageProvider";
+ 
+ const iconFor = { operational: CheckCircle2, degraded: AlertTriangle, outage: XCircle } as const;
+ const clsFor = { operational: "text-green", degraded: "text-[#8a6a10]", outage: "text-coral" } as const;
+ const bgFor = { operational: "bg-green-100", degraded: "bg-gold-100", outage: "bg-coral-100" } as const;
++const ease = [0.16, 1, 0.3, 1] as const;
+ 
+-/** Public, no sign-in, deliberately plain so it loads during an incident. */
++/**
++ * Public, no sign-in. The overall status banner - the one thing someone checking
++ * mid-incident actually needs - fades in fast on mount, never gated behind a scroll
++ * trigger. Everything below (component list, incident history, footer) uses the
++ * site's normal scroll-reveal, since by the time it's on screen the banner has
++ * already answered the only urgent question.
++ */
+ export function StatusContent() {
+   const { t } = useLang();
+   const st = t.status;
+@@ -20,50 +29,68 @@ export function StatusContent() {
+   return (
+     <section className="bg-ivory pb-24 pt-32 md:pt-40">
+       <div className="container-x max-w-3xl">
+-        <p className="text-eyebrow text-green">{st.title}</p>
+-        <div className={cn("mt-4 flex items-center gap-4 rounded-xl p-6", bgFor[overall])}>
++        <motion.p
++          initial={{ opacity: 0, y: 12 }}
++          animate={{ opacity: 1, y: 0 }}
++          transition={{ duration: 0.4, ease }}
++          className="text-eyebrow text-green"
++        >
++          {st.title}
++        </motion.p>
++        <motion.div
++          initial={{ opacity: 0, y: 12 }}
++          animate={{ opacity: 1, y: 0 }}
++          transition={{ delay: 0.08, duration: 0.4, ease }}
++          className={cn("mt-4 flex items-center gap-4 rounded-xl p-6", bgFor[overall])}
++        >
+           <OverallIcon className={cn("size-9", clsFor[overall])} />
+           <div>
+             <p className="font-display text-3xl text-emerald">{st.overall[overall]}</p>
+             <p className="text-sm text-muted">{st.updatedPrefix} {new Date(s.updated).toLocaleString("en-GB", { day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" })} {st.kigaliSuffix}</p>
+           </div>
+-        </div>
+-        <ul className="mt-6 divide-y divide-emerald/10 rounded-lg bg-white ring-1 ring-emerald/5">
++        </motion.div>
++        <RevealGroup as="ul" className="mt-6 divide-y divide-emerald/10 rounded-lg bg-white ring-1 ring-emerald/5" stagger={0.04}>
+           {s.components.map((c) => {
+             const status = c.status as keyof typeof iconFor;
+             const Icon = iconFor[status];
+             return (
+-              <li key={c.name} className="flex items-start justify-between gap-4 p-4">
+-                <div>
+-                  <p className="font-semibold text-emerald">{c.name}</p>
+-                  {c.note && <p className="mt-0.5 text-sm text-muted">{c.note}</p>}
++              <RevealItem as="li" key={c.name}>
++                <div className="flex items-start justify-between gap-4 p-4">
++                  <div>
++                    <p className="font-semibold text-emerald">{c.name}</p>
++                    {c.note && <p className="mt-0.5 text-sm text-muted">{c.note}</p>}
++                  </div>
++                  <div className="text-right">
++                    <p className={cn("inline-flex items-center gap-1.5 text-sm font-semibold", clsFor[status])}>
++                      <Icon className="size-4" /> {st.statusLabel[status]}
++                    </p>
++                    <p className="text-xs text-muted">{c.uptime90d}% · {st.uptimeSuffix}</p>
++                  </div>
+                 </div>
+-                <div className="text-right">
+-                  <p className={cn("inline-flex items-center gap-1.5 text-sm font-semibold", clsFor[status])}>
+-                    <Icon className="size-4" /> {st.statusLabel[status]}
+-                  </p>
+-                  <p className="text-xs text-muted">{c.uptime90d}% · {st.uptimeSuffix}</p>
+-                </div>
+-              </li>
++              </RevealItem>
+             );
+           })}
+-        </ul>
+-        <h2 className="text-h3 mt-10 text-emerald">{st.incidentsHeading}</h2>
+-        <ul className="mt-3 space-y-3">
++        </RevealGroup>
++        <Reveal as="h2" className="text-h3 mt-10 text-emerald">
++          {st.incidentsHeading}
++        </Reveal>
++        <RevealGroup as="ul" className="mt-3 space-y-3" stagger={0.06}>
+           {s.incidents.map((i) => (
+-            <li key={i.title} className="rounded-lg bg-white p-4 ring-1 ring-emerald/5">
+-              <div className="flex flex-wrap items-center justify-between gap-2">
+-                <p className="font-semibold text-emerald">{i.title}</p>
+-                <span className={cn("rounded-full px-2 py-0.5 text-[10px] font-bold uppercase", i.status === "resolved" ? "bg-green-100 text-green" : "bg-gold-100 text-[#8a6a10]")}>{i.status}</span>
++            <RevealItem as="li" key={i.title}>
++              <div className="rounded-lg bg-white p-4 ring-1 ring-emerald/5">
++                <div className="flex flex-wrap items-center justify-between gap-2">
++                  <p className="font-semibold text-emerald">{i.title}</p>
++                  <span className={cn("rounded-full px-2 py-0.5 text-[10px] font-bold uppercase", i.status === "resolved" ? "bg-green-100 text-green" : "bg-gold-100 text-[#8a6a10]")}>{i.status}</span>
++                </div>
++                <p className="text-xs text-muted">{new Date(i.at).toLocaleDateString("en-GB", { day: "numeric", month: "long" })}</p>
++                <ul className="mt-2 space-y-1 text-sm text-ink/85">{i.updates.map((u) => <li key={u}>{u}</li>)}</ul>
+               </div>
+-              <p className="text-xs text-muted">{new Date(i.at).toLocaleDateString("en-GB", { day: "numeric", month: "long" })}</p>
+-              <ul className="mt-2 space-y-1 text-sm text-ink/85">{i.updates.map((u) => <li key={u}>{u}</li>)}</ul>
+-            </li>
++            </RevealItem>
+           ))}
+-        </ul>
+-        <p className="mt-8 text-sm text-muted">
++        </RevealGroup>
++        <Reveal as="p" className="mt-8 text-sm text-muted">
+           {st.footer.pre}<a href="tel:912" className="font-semibold text-coral underline underline-offset-2">{st.footer.link}</a>{st.footer.post}
+-        </p>
++        </Reveal>
+       </div>
+     </section>
+   );
+diff --git a/src/components/pages/TermsContent.tsx b/src/components/pages/TermsContent.tsx
+index 07c9cba..bfe8b90 100644
+--- a/src/components/pages/TermsContent.tsx
++++ b/src/components/pages/TermsContent.tsx
+@@ -2,6 +2,7 @@
+ 
+ import { PageHero } from "@/components/site/PageHero";
+ import { Prose } from "@/components/pages/Prose";
++import { Reveal } from "@/components/ui/Reveal";
+ import { useLang } from "@/components/providers/LanguageProvider";
+ 
+ export function TermsContent() {
+@@ -22,35 +23,51 @@ export function TermsContent() {
+       <section className="bg-white py-20 md:py-28">
+         <div className="container-x">
+           <Prose>
+-            <h2>{p.s1.h}</h2>
+-            <p>{p.s1.pre}<strong>{p.s1.strong}</strong>{p.s1.post}</p>
++            <Reveal as="div">
++              <h2>{p.s1.h}</h2>
++              <p>{p.s1.pre}<strong>{p.s1.strong}</strong>{p.s1.post}</p>
++            </Reveal>
+ 
+-            <h2>{p.s2.h}</h2>
+-            <p>{p.s2.body}</p>
++            <Reveal as="div">
++              <h2>{p.s2.h}</h2>
++              <p>{p.s2.body}</p>
++            </Reveal>
+ 
+-            <h2>{p.s3.h}</h2>
+-            <ul>
+-              {p.s3.items.map((it) => <li key={it}>{it}</li>)}
+-            </ul>
++            <Reveal as="div">
++              <h2>{p.s3.h}</h2>
++              <ul>
++                {p.s3.items.map((it) => <li key={it}>{it}</li>)}
++              </ul>
++            </Reveal>
+ 
+-            <h2>{p.s4.h}</h2>
+-            <ul>
+-              {p.s4.items.map((it) => <li key={it}>{it}</li>)}
+-              <li>{p.s4.linkPre}<a href="/privacy">{p.s4.linkText}</a>{p.s4.linkPost}</li>
+-              <li>{p.s4.last}</li>
+-            </ul>
++            <Reveal as="div">
++              <h2>{p.s4.h}</h2>
++              <ul>
++                {p.s4.items.map((it) => <li key={it}>{it}</li>)}
++                <li>{p.s4.linkPre}<a href="/privacy">{p.s4.linkText}</a>{p.s4.linkPost}</li>
++                <li>{p.s4.last}</li>
++              </ul>
++            </Reveal>
+ 
+-            <h2>{p.s5.h}</h2>
+-            <p>{p.s5.body}</p>
++            <Reveal as="div">
++              <h2>{p.s5.h}</h2>
++              <p>{p.s5.body}</p>
++            </Reveal>
+ 
+-            <h2>{p.s6.h}</h2>
+-            <p>{p.s6.body}</p>
++            <Reveal as="div">
++              <h2>{p.s6.h}</h2>
++              <p>{p.s6.body}</p>
++            </Reveal>
+ 
+-            <h2>{p.s7.h}</h2>
+-            <p>{p.s7.body}</p>
++            <Reveal as="div">
++              <h2>{p.s7.h}</h2>
++              <p>{p.s7.body}</p>
++            </Reveal>
+ 
+-            <h2>{p.s8.h}</h2>
+-            <p>{p.s8.body}</p>
++            <Reveal as="div">
++              <h2>{p.s8.h}</h2>
++              <p>{p.s8.body}</p>
++            </Reveal>
+           </Prose>
+         </div>
+       </section>
+diff --git a/src/components/ui/Reveal.tsx b/src/components/ui/Reveal.tsx
+index 125a0ba..fead703 100644
+--- a/src/components/ui/Reveal.tsx
++++ b/src/components/ui/Reveal.tsx
+@@ -33,18 +33,23 @@ export function Reveal({ children, className, delay = 0, y = 30, once = true, as
+   );
+ }
+ 
+-/** Stagger container: wrap several <RevealItem /> children. */
++/** Stagger container: wrap several <RevealItem /> children. `as` defaults to "div"
++ *  but takes "ul" too, for when the group is semantically a list (pass as="li" on
++ *  the matching RevealItem) rather than losing that semantics to a generic div. */
+ export function RevealGroup({
+   children,
+   className,
+   stagger = 0.08,
++  as = "div",
+ }: {
+   children: React.ReactNode;
+   className?: string;
+   stagger?: number;
++  as?: "div" | "ul" | "ol";
+ }) {
++  const Tag = motion[as];
+   return (
+-    <motion.div
++    <Tag
+       className={className}
+       initial="hidden"
+       whileInView="show"
+@@ -52,14 +57,23 @@ export function RevealGroup({
+       variants={{ hidden: {}, show: { transition: { staggerChildren: stagger } } }}
+     >
+       {children}
+-    </motion.div>
++    </Tag>
+   );
+ }
+ 
+-export function RevealItem({ children, className }: { children: React.ReactNode; className?: string }) {
++export function RevealItem({
++  children,
++  className,
++  as = "div",
++}: {
++  children: React.ReactNode;
++  className?: string;
++  as?: "div" | "li";
++}) {
+   const reduce = useReducedMotion();
++  const Tag = motion[as];
+   return (
+-    <motion.div
++    <Tag
+       className={className}
+       variants={{
+         hidden: { opacity: 0, y: reduce ? 0 : 28 },
+@@ -67,7 +81,7 @@ export function RevealItem({ children, className }: { children: React.ReactNode;
+       }}
+     >
+       {children}
+-    </motion.div>
++    </Tag>
+   );
+ }
+ 

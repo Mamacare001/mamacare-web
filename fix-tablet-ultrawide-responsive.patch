@@ -1,0 +1,98 @@
+diff --git a/src/app/globals.css b/src/app/globals.css
+index fa7fa94..323e5be 100644
+--- a/src/app/globals.css
++++ b/src/app/globals.css
+@@ -149,6 +149,22 @@ body {
+   padding-inline: clamp(1rem, 4vw, 3rem);
+   max-width: 80rem;
+ }
++/* On large monitors a flat 80rem cap leaves the page looking like a small
++   site stranded in empty space. Let the content column grow with very wide
++   viewports instead of freezing at typical-laptop width - text elements
++   keep their own ch-based measure caps, so lines don't get harder to read,
++   the grids and imagery just get more room to breathe. */
++@media (min-width: 96rem) {
++  .container-x {
++    max-width: 92rem;
++    padding-inline: clamp(2rem, 3vw, 4rem);
++  }
++}
++@media (min-width: 120rem) {
++  .container-x {
++    max-width: 104rem;
++  }
++}
+ 
+ .grain::before {
+   content: "";
+diff --git a/src/components/home/Hero.tsx b/src/components/home/Hero.tsx
+index 6459c1e..386f807 100644
+--- a/src/components/home/Hero.tsx
++++ b/src/components/home/Hero.tsx
+@@ -49,7 +49,7 @@ export function Hero() {
+             <br />
+             <span className="text-coral">{t.hero.title2}</span>
+           </motion.h1>
+-          <motion.p {...seq(0.7)} className="text-lead mt-6 max-w-[52ch] text-ivory/75">
++          <motion.p {...seq(0.7)} className="text-lead mt-6 max-w-[52ch] text-ivory/75 2xl:max-w-[58ch]">
+             {t.hero.lead}
+           </motion.p>
+           <motion.div {...seq(0.9)} className="mt-9 flex flex-wrap items-center gap-3">
+@@ -71,7 +71,7 @@ export function Hero() {
+             initial={{ opacity: 0, y: 40, scale: 0.96 }}
+             animate={{ opacity: 1, y: 0, scale: 1 }}
+             transition={{ delay: 1.1, duration: 1, ease }}
+-            className="relative mx-auto aspect-[4/5] w-full max-w-[520px] sm:aspect-square md:aspect-[4/5] lg:aspect-[5/6]"
++            className="relative mx-auto aspect-[4/5] w-full max-w-[520px] sm:aspect-square md:aspect-[4/5] lg:aspect-[5/6] 2xl:max-w-[640px]"
+           >
+             <motion.div
+               style={{ y: imgY, scale: imgScale }}
+diff --git a/src/components/site/Nav.tsx b/src/components/site/Nav.tsx
+index c6659a6..d6dc61d 100644
+--- a/src/components/site/Nav.tsx
++++ b/src/components/site/Nav.tsx
+@@ -72,7 +72,7 @@ export function Nav() {
+             />
+           </Link>
+ 
+-          <ul className="hidden items-center gap-8 md:flex">
++          <ul className="hidden items-center gap-8 lg:flex">
+             {links.map((l) => (
+               <li key={l.href}>
+                 <Link
+@@ -89,7 +89,7 @@ export function Nav() {
+             ))}
+           </ul>
+ 
+-          <div className="hidden items-center gap-2 md:flex">
++          <div className="hidden items-center gap-2 lg:flex">
+             <button
+               type="button"
+               onClick={toggle}
+@@ -117,7 +117,7 @@ export function Nav() {
+             type="button"
+             onClick={() => setOpen(true)}
+             className={cn(
+-              "inline-flex size-11 items-center justify-center rounded-full md:hidden",
++              "inline-flex size-11 items-center justify-center rounded-full lg:hidden",
+               onDark ? "text-ivory hover:bg-white/10" : "text-emerald hover:bg-emerald/5",
+             )}
+             aria-label="Open menu"
+@@ -135,7 +135,7 @@ export function Nav() {
+             <motion.button
+               type="button"
+               aria-label="Close menu"
+-              className="fixed inset-0 z-[60] bg-midnight/40 backdrop-blur-sm md:hidden"
++              className="fixed inset-0 z-[60] bg-midnight/40 backdrop-blur-sm lg:hidden"
+               initial={{ opacity: 0 }}
+               animate={{ opacity: 1 }}
+               exit={{ opacity: 0 }}
+@@ -145,7 +145,7 @@ export function Nav() {
+             <motion.aside
+               role="dialog"
+               aria-modal="true"
+-              className="fixed inset-y-0 right-0 z-[70] flex w-[min(88vw,380px)] flex-col bg-ivory p-6 shadow-float md:hidden"
++              className="fixed inset-y-0 right-0 z-[70] flex w-[min(88vw,380px)] flex-col bg-ivory p-6 shadow-float lg:hidden"
+               initial={{ x: "100%" }}
+               animate={{ x: 0 }}
+               exit={{ x: "100%" }}

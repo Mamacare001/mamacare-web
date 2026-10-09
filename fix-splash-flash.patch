@@ -1,0 +1,39 @@
+diff --git a/src/components/home/LanguageSplash.tsx b/src/components/home/LanguageSplash.tsx
+index 7cadaad..d644e60 100644
+--- a/src/components/home/LanguageSplash.tsx
++++ b/src/components/home/LanguageSplash.tsx
+@@ -35,14 +35,10 @@ export function LanguageSplash() {
+   const { setLang } = useLang();
+   const router = useRouter();
+   const reduce = useReducedMotion();
+-  const [visible, setVisible] = useState(false);
++  const [visible] = useState(true);
+   const [chosen, setChosen] = useState<Lang | null>(null);
+   const [slide, setSlide] = useState(0);
+ 
+-  useEffect(() => {
+-    setVisible(true);
+-  }, []);
+-
+   useEffect(() => {
+     document.body.style.overflow = visible ? "hidden" : "";
+     return () => {
+diff --git a/src/components/site/Chrome.tsx b/src/components/site/Chrome.tsx
+index 4450ed0..cf37fb7 100644
+--- a/src/components/site/Chrome.tsx
++++ b/src/components/site/Chrome.tsx
+@@ -4,9 +4,13 @@ import { usePathname } from "next/navigation";
+ 
+ const BARE_ROUTES = ["/login", "/dashboard", "/app", "/family", "/chw", "/supervisor", "/clinic", "/insights", "/care", "/portal", "/admin", "/notifications", "/help", "/switch-role", "/offline", "/verify", "/forgot", "/reset", "/onboarding", "/invite"];
+ 
+-/** Hides marketing chrome (nav/footer) on app-style routes. */
++/** Hides marketing chrome (nav/footer) on app-style routes, and on "/" itself —
++ *  the language splash is a full-screen gate with its own layout, so the site
++ *  nav/footer must never render underneath it, not even for an instant while
++ *  the page is loading. */
+ export function MarketingOnly({ children }: { children: React.ReactNode }) {
+   const pathname = usePathname();
++  if (pathname === "/") return null;
+   if (BARE_ROUTES.some((r) => pathname.startsWith(r))) return null;
+   return <>{children}</>;
+ }

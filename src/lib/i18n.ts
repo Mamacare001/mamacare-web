@@ -16,7 +16,7 @@ export const dict = {
       getStarted: "Get started",
     },
     hero: {
-      eyebrow: "AI-supported maternal health · Rwanda",
+      eyebrow: "",
       title1: "The warning can come",
       title2: "before the emergency.",
       lead:
@@ -42,7 +42,7 @@ export const dict = {
     },
     common: {
       notDiagnosis:
-        "MamaCare does not diagnose. It helps mothers, families and health workers recognise risk earlier — and act sooner.",
+        "" ,
       emergency: "In an emergency call 912",
     },
     story: {
