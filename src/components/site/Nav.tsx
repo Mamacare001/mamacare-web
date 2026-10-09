@@ -80,7 +80,7 @@ export function Nav() {
                   aria-current={pathname === l.href ? "page" : undefined}
                   className={cn(
                     "link-underline text-[15px] font-medium transition-colors",
-                    onDark ? "text-ivory/85 hover:text-ivory" : "text-emerald/80 hover:text-emerald",
+                    onDark ? (pathname === l.href ? "text-coral" : "text-ivory/90 hover:text-ivory") : "text-emerald/80 hover:text-emerald",
                   )}
                 >
                   {l.label}

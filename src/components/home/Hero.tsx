@@ -3,173 +3,167 @@
 import Image from "next/image";
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
-import { ShieldCheck, Languages, ArrowDown, Activity } from "lucide-react";
+import { ShieldCheck, Languages, ArrowDown, Activity, Users, MessageSquareText, Globe, Play } from "lucide-react";
 import { Button } from "@/components/ui/Button";
-import { EyebrowArrow } from "@/components/ui/Eyebrow";
 import { TextReveal } from "@/components/ui/TextReveal";
-import { Parallax } from "@/components/ui/ImageReveal";
 import { useLang } from "@/components/providers/LanguageProvider";
 
 const ease = [0.16, 1, 0.3, 1] as const;
-const seq = (delay: number, blur = false) => ({
-  initial: { opacity: 0, y: 24, filter: blur ? "blur(10px)" : "blur(0px)" },
-  animate: { opacity: 1, y: 0, filter: "blur(0px)" },
-  transition: { delay, duration: 0.9, ease },
-});
+
+const COPY = {
+  en: {
+    benefits: ["Early risk detection", "Connects family, CHWs & clinics", "Works on web, mobile, WhatsApp & SMS", "In Kinyarwanda or English"],
+    example: "Illustrative example",
+    risk: "Low risk · follow-up in 3 days",
+  },
+  rw: {
+    benefits: [
+      "Kumenya ibyago hakiri kare",
+      "Ihuza umuryango, abajyanama n'amavuriro",
+      "Ikora kuri web, telefone, WhatsApp na SMS",
+      "Mu Kinyarwanda cyangwa Icyongereza",
+    ],
+    example: "Urugero rwerekana",
+    risk: "Ibyago bike · gukurikirana mu minsi 3",
+  },
+};
+const BENEFIT_ICONS = [ShieldCheck, Users, MessageSquareText, Globe];
 
 export function Hero() {
-  const { t } = useLang();
+  const { t, lang } = useLang();
+  const c = lang === "en" ? COPY.en : COPY.rw;
   const reduce = useReducedMotion();
-  const ref = useRef<HTMLDivElement>(null);
+  const ref = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
-  const imgY = useTransform(scrollYProgress, [0, 1], [0, reduce ? 0 : 60]);
   const imgScale = useTransform(scrollYProgress, [0, 1], [1, reduce ? 1 : 1.06]);
+
+  const seq = (delay: number, blur = false) =>
+    reduce
+      ? {}
+      : {
+          initial: { opacity: 0, y: 24, filter: blur ? "blur(10px)" : "blur(0px)" },
+          animate: { opacity: 1, y: 0, filter: "blur(0px)" },
+          transition: { delay, duration: 0.9, ease },
+        };
+
+  const [eyebrowMain, eyebrowPlace] = t.hero.eyebrow.split(" · ");
 
   return (
     <section ref={ref} className="relative isolate overflow-hidden bg-midnight text-ivory">
-      {/* background */}
-      <motion.div
-        className="absolute inset-0 -z-10"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1 }}
-        aria-hidden
-      >
-        <div className="absolute inset-0 bg-[radial-gradient(70%_60%_at_80%_20%,rgb(46_139_112/0.35),transparent_60%),radial-gradient(50%_40%_at_10%_90%,rgb(255_107_94/0.18),transparent_60%)]" />
-        <div className="grain absolute inset-0" />
+      {/* photographic background */}
+      <motion.div className="absolute inset-0 -z-10" style={{ scale: imgScale }} aria-hidden>
+        <Image
+          src="/images/mother-hero.jpg"
+          alt=""
+          fill
+          priority
+          quality={90}
+          sizes="100vw"
+          className="object-cover object-[72%_18%] sm:object-[70%_25%] md:object-[68%_30%] lg:object-[62%_35%] xl:object-[55%_40%]"
+        />
       </motion.div>
+      {/* readability overlays: bottom-up on phones, left-to-right from md */}
+      <div
+        className="absolute inset-0 -z-10 bg-gradient-to-t from-midnight from-40% via-midnight/70 via-62% to-midnight/0 md:bg-gradient-to-r md:from-midnight/90 md:from-20% md:via-midnight/55 md:via-50% md:to-midnight/0"
+        aria-hidden
+      />
+      <div className="absolute inset-x-0 top-0 -z-10 h-32 bg-gradient-to-b from-midnight/60 to-transparent" aria-hidden />
 
-      <div className="container-x grid min-h-[100svh] items-center gap-12 pb-20 pt-32 md:grid-cols-12 md:gap-8 md:pb-24 md:pt-36 lg:pt-40">
-        {/* copy */}
-        <div className="md:col-span-6 lg:col-span-6">
-          <motion.p {...seq(0.5)} className="text-eyebrow flex items-center gap-3 text-gold">
-            <EyebrowArrow />
-            {t.hero.eyebrow}
+      <div className="container-x relative flex min-h-[100svh] flex-col justify-end pb-14 pt-[22rem] sm:pt-[26rem] md:justify-center md:pb-24 md:pt-32 lg:pt-36">
+        <div className="max-w-[40rem] md:max-w-[34rem] lg:max-w-[40rem] 2xl:max-w-[46rem]">
+          <motion.p {...seq(0.4)} className="text-eyebrow flex items-center gap-3 text-ivory/90">
+            <Activity className="size-4 shrink-0 text-coral" aria-hidden />
+            <span>
+              {eyebrowMain}
+              {eyebrowPlace && <span className="text-coral"> · {eyebrowPlace}</span>}
+            </span>
           </motion.p>
+
           <TextReveal
             as="h1"
             trigger="mount"
-            delay={0.55}
-            className="text-display mt-6"
+            delay={0.45}
+            className="mt-5 font-sans text-[clamp(2.4rem,1.5rem+3.4vw,4.6rem)] font-bold leading-[1.06] tracking-tight"
             lines={[t.hero.title1, { text: t.hero.title2, className: "text-coral" }]}
           />
-          <motion.p {...seq(0.95, true)} className="text-lead mt-6 max-w-[52ch] text-ivory/75 2xl:max-w-[58ch]">
+
+          <motion.p {...seq(0.8, true)} className="text-lead mt-6 max-w-[48ch] text-ivory/90">
             {t.hero.lead}
           </motion.p>
-          <motion.div {...seq(1.1)} className="mt-9 flex flex-wrap items-center gap-3">
-            <Button href="/login?mode=signup" variant="coral" size="lg" arrow>
+
+          <motion.div {...seq(0.95)} className="mt-8 flex flex-wrap items-center gap-3">
+            <Button href="/login?mode=signup" variant="coral" size="lg" arrow className="focus-visible:outline-white">
               {t.hero.ctaPrimary}
             </Button>
-            <Button href="/how-it-works" variant="light" size="lg">
-              {t.hero.ctaSecondary}
+            <Button href="/how-it-works" variant="light" size="lg" className="focus-visible:outline-white">
+              <span className="inline-flex items-center gap-2">
+                <Play className="size-4" aria-hidden />
+                {t.hero.ctaSecondary}
+              </span>
             </Button>
           </motion.div>
-          <motion.p {...seq(1.25)} className="mt-6 text-sm text-ivory/55">
+
+          <motion.ul {...seq(1.1)} className="mt-10 grid grid-cols-2 gap-x-4 gap-y-6 lg:grid-cols-4 lg:gap-x-0">
+            {c.benefits.map((label, i) => {
+              const Icon = BENEFIT_ICONS[i];
+              return (
+                <li
+                  key={label}
+                  className="flex flex-col gap-2.5 lg:border-l lg:border-white/15 lg:pl-4 lg:pr-3 lg:first:border-0 lg:first:pl-0"
+                >
+                  <Icon className="size-7 text-green" aria-hidden />
+                  <span className="text-[13px] font-semibold leading-snug text-ivory sm:text-sm">{label}</span>
+                </li>
+              );
+            })}
+          </motion.ul>
+
+          <motion.p {...seq(1.2)} className="mt-6 text-sm text-ivory/65">
             {t.common.notDiagnosis}
           </motion.p>
         </div>
-
-        {/* image */}
-        <div className="relative md:col-span-6">
-          <motion.div
-            initial={{ y: 40 }}
-            animate={{ y: 0 }}
-            transition={{ delay: 1.05, duration: 1.2, ease }}
-            className="relative mx-auto aspect-[4/5] w-full max-w-[520px] sm:aspect-square md:aspect-[4/5] lg:aspect-[5/6] 2xl:max-w-[640px]"
-          >
-            <motion.div
-              style={{ y: imgY, scale: imgScale }}
-              className="relative size-full overflow-hidden rounded-hero shadow-float ring-1 ring-white/10"
-            >
-              {/* wiped in from the bottom behind a straight edge, settling out of a zoom */}
-              <motion.div
-                className="absolute inset-0"
-                initial={{ clipPath: reduce ? "inset(0 0 0 0)" : "inset(100% 0 0 0)" }}
-                animate={{ clipPath: "inset(0 0 0 0)" }}
-                transition={{ delay: 1.05, duration: 1.2, ease }}
-              >
-                <motion.div
-                  className="absolute inset-0"
-                  initial={{ scale: reduce ? 1 : 1.2 }}
-                  animate={{ scale: 1 }}
-                  transition={{ delay: 1.05, duration: 1.8, ease }}
-                >
-                  <Image
-                    src="/images/mother-home-phone.jpg"
-                    alt="A pregnant woman at home checking in on her phone"
-                    fill
-                    quality={90}
-                    priority
-                    sizes="(min-width: 768px) 45vw, 92vw"
-                    className="object-cover"
-                  />
-                </motion.div>
-                <div className="absolute inset-0 bg-gradient-to-t from-midnight/50 via-transparent to-transparent" />
-              </motion.div>
-            </motion.div>
-
-            {/* floating badges */}
-            <motion.div
-              initial={{ opacity: 0, y: 24, scale: 0.9 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{ delay: 1.7, duration: 0.8, ease }}
-              className="absolute -left-3 top-[18%] sm:-left-8"
-            >
-              <Parallax speed={-30}>
-              <div className="animate-float flex items-center gap-3 rounded-lg bg-ivory p-3 pr-4 text-midnight shadow-float">
-                <span className="relative grid size-9 place-items-center rounded-full bg-green-100 text-green">
-                  <span className="absolute inset-0 rounded-full bg-green/30 animate-pulse-ring" />
-                  <ShieldCheck className="relative size-5" />
-                </span>
-                <div>
-                  <p className="text-xs text-muted">{t.hero.badgeRisk}</p>
-                  <p className="text-sm font-bold">Low risk · follow-up in 3 days</p>
-                </div>
-              </div>
-              </Parallax>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 24, scale: 0.9 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{ delay: 1.85, duration: 0.8, ease }}
-              className="absolute -right-2 bottom-[16%] sm:-right-8"
-            >
-              <Parallax speed={-55}>
-              <div className="animate-float-slow flex items-center gap-3 rounded-lg bg-midnight/90 p-3 pr-4 text-ivory shadow-float ring-1 ring-white/10 backdrop-blur">
-                <span className="grid size-9 place-items-center rounded-full bg-violet/20 text-violet">
-                  <Languages className="size-5" />
-                </span>
-                <div>
-                  <p className="text-xs text-ivory/60">Web · App · WhatsApp · SMS</p>
-                  <p className="text-sm font-bold">{t.hero.badgeLang}</p>
-                </div>
-              </div>
-              </Parallax>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 2, duration: 0.6, ease }}
-              className="absolute -top-4 right-[12%] hidden sm:block"
-              aria-hidden
-            >
-              <div className="animate-float grid size-12 place-items-center rounded-full bg-gold text-midnight shadow-float">
-                <Activity className="size-5" />
-              </div>
-            </motion.div>
-          </motion.div>
-        </div>
       </div>
 
-      {/* scroll hint */}
+      {/* floating cards: decorative, illustrative only, shown where they cannot cover text or her face */}
+      <motion.div
+        {...(reduce ? {} : { initial: { opacity: 0, y: 24 }, animate: { opacity: 1, y: 0 }, transition: { delay: 1.5, duration: 0.8, ease } })}
+        className="absolute left-[50%] top-[19%] hidden xl:block"
+        aria-hidden
+      >
+        <div className="flex items-center gap-3 rounded-full bg-ivory/95 py-3 pl-3 pr-6 text-midnight shadow-float">
+          <span className="grid size-10 place-items-center rounded-full bg-green-100 text-green">
+            <ShieldCheck className="size-5" />
+          </span>
+          <div>
+            <p className="text-xs text-muted">{t.hero.badgeRisk}</p>
+            <p className="text-sm font-bold">{c.risk}</p>
+            <p className="text-[10px] font-semibold uppercase tracking-wider text-coral">{c.example}</p>
+          </div>
+        </div>
+      </motion.div>
+
+      <motion.div
+        {...(reduce ? {} : { initial: { opacity: 0, y: 24 }, animate: { opacity: 1, y: 0 }, transition: { delay: 1.7, duration: 0.8, ease } })}
+        className="absolute bottom-[9%] right-6 hidden xl:block"
+        aria-hidden
+      >
+        <div className="flex items-center gap-3 rounded-full bg-midnight/85 py-2.5 pl-3 pr-5 text-ivory ring-1 ring-white/10 backdrop-blur">
+          <span className="grid size-9 place-items-center rounded-full bg-violet/25 text-ivory">
+            <Languages className="size-5" />
+          </span>
+          <div>
+            <p className="text-xs text-ivory/70">Web · App · WhatsApp · SMS</p>
+            <p className="text-sm font-bold">{t.hero.badgeLang}</p>
+          </div>
+        </div>
+      </motion.div>
+
       <motion.a
         href="#story"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 2.2, duration: 0.8 }}
-        className="absolute bottom-6 left-1/2 hidden -translate-x-1/2 items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-ivory/50 hover:text-ivory md:flex"
+        className="absolute bottom-6 left-1/2 hidden -translate-x-1/2 items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-ivory/60 hover:text-ivory md:flex"
       >
         {t.hero.scroll}
         <ArrowDown className="size-3.5 animate-bounce" />
