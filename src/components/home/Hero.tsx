@@ -13,6 +13,7 @@ const COPY = {
   en: {
     benefits: ["Early risk detection", "Connects family, CHWs & clinics", "Works on web, mobile, WhatsApp & SMS", "In Kinyarwanda or English"],
     example: "Illustrative example",
+    eyebrow: "AI-supported maternal health · Rwanda",
     risk: "Low risk · follow-up in 3 days",
   },
   rw: {
@@ -23,6 +24,7 @@ const COPY = {
       "Mu Kinyarwanda cyangwa Icyongereza",
     ],
     example: "Urugero rwerekana",
+    eyebrow: "AI mu buzima bw'ababyeyi · u Rwanda",
     risk: "Ibyago bike · gukurikirana mu minsi 3",
   },
 };
@@ -43,7 +45,7 @@ export function Hero() {
           transition: { delay, duration: 0.9, ease },
         };
 
-  const [eyebrowMain, eyebrowPlace] = String(t.hero.eyebrow).split(" · ");
+  const [eyebrowMain, eyebrowPlace] = String(t.hero.eyebrow || c.eyebrow).split(" · ");
 
   return (
     <section className="relative isolate overflow-hidden bg-[#0c2420] text-ivory lg:min-h-[100svh]">
@@ -56,7 +58,7 @@ export function Hero() {
       {/* photograph: band on top for phones/tablets, right-hand block on desktop; never tinted */}
       <div
         aria-hidden
-        className="absolute inset-x-0 top-0 -z-10 h-[min(64svh,32rem)] lg:inset-y-0 lg:left-auto lg:right-0 lg:h-auto lg:w-[62%]"
+        className="absolute inset-x-0 top-0 -z-10 h-[min(64svh,32rem)] lg:inset-y-0 lg:left-auto lg:right-0 lg:h-auto lg:w-[min(64%,100svh)] [mask-image:linear-gradient(to_bottom,black_60%,transparent)] lg:[mask-image:linear-gradient(to_right,transparent_0%,black_38%)]"
       >
         <Image
           src="/images/mother-hero.jpg"
@@ -65,10 +67,10 @@ export function Hero() {
           priority
           quality={90}
           sizes="(min-width: 1024px) 62vw, 100vw"
-          className="object-cover object-[50%_30%] lg:object-[50%_40%]"
+          className="object-cover object-[50%_20%] lg:object-[50%_30%]"
         />
         <div
-          className="absolute inset-0 bg-gradient-to-t from-[#0c2420] via-[#0c2420]/30 via-40% to-transparent lg:bg-gradient-to-r lg:from-[#0c2420] lg:via-[#0c2420]/40 lg:via-25% lg:to-transparent lg:to-55%"
+          className="hidden"
           style={{ ["--tw-gradient-from" as string]: BG }}
         />
         <div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-[#0c2420]/55 to-transparent" />
@@ -116,7 +118,7 @@ export function Hero() {
                   key={label}
                   className="flex flex-col gap-2.5 lg:border-l lg:border-white/15 lg:pl-4 lg:pr-3 lg:first:border-0 lg:first:pl-0"
                 >
-                  <Icon className="size-7 text-green" aria-hidden />
+                  <Icon className="size-7 text-[#3ddc97]" aria-hidden />
                   <span className="text-[13px] font-semibold leading-snug text-ivory sm:text-sm">{label}</span>
                 </li>
               );
