@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
-import { ShieldCheck, Languages, ArrowDown, Activity, Users, MessageSquareText, Globe, Play } from "lucide-react";
+import { ShieldCheck, Languages, ArrowDown, Users, MessageSquareText, Globe, Play } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { TextReveal } from "@/components/ui/TextReveal";
 import { useLang } from "@/components/providers/LanguageProvider";
@@ -44,8 +44,6 @@ export function Hero() {
           transition: { delay, duration: 0.9, ease },
         };
 
-  const [eyebrowMain, eyebrowPlace] = String(t.hero.eyebrow || c.eyebrow).split(" · ");
-
   return (
     <section className="relative isolate overflow-hidden bg-[#0c2420] text-ivory lg:min-h-[100svh]">
       {/* photographic backdrop: top band on phones/tablets, full section on desktop */}
@@ -80,19 +78,11 @@ export function Hero() {
 
       <div className="container-x relative flex flex-col justify-end pb-12 pt-[min(48svh,24rem)] lg:min-h-[100svh] lg:justify-center lg:pb-24 lg:pt-32">
         <div className="max-w-[40rem] 2xl:max-w-[46rem]">
-          <motion.p {...seq(0.4)} className="flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.14em] text-ivory">
-            <Activity className="size-4 shrink-0 text-coral" aria-hidden />
-            <span>
-              {eyebrowMain}
-              {eyebrowPlace && <span className="text-coral"> · {eyebrowPlace}</span>}
-            </span>
-          </motion.p>
-
           <TextReveal
             as="h1"
             trigger="mount"
             delay={0.45}
-            className="mt-5 font-sans text-[clamp(2.4rem,1.2rem+3vw,4.25rem)] font-bold leading-[1.06] tracking-tight"
+            className="font-sans text-[clamp(2.4rem,1.2rem+3vw,4.25rem)] font-bold leading-[1.06] tracking-tight"
             lines={[t.hero.title1, { text: t.hero.title2, className: "text-coral" }]}
           />
 
