@@ -51,7 +51,7 @@ export function Hero() {
   return (
     <section ref={ref} className="relative isolate overflow-hidden bg-midnight text-ivory">
       {/* photographic background */}
-      <motion.div className="absolute inset-0 -z-10" style={{ scale: imgScale }} aria-hidden>
+      <motion.div className="absolute inset-x-0 top-0 -z-10 h-[min(68svh,36rem)] origin-top lg:inset-0 lg:h-auto" style={{ scale: imgScale }} aria-hidden>
         <Image
           src="/images/mother-hero.jpg"
           alt=""
@@ -64,13 +64,13 @@ export function Hero() {
       </motion.div>
       {/* readability overlays: bottom-up on phones, left-to-right from md */}
       <div
-        className="absolute inset-0 -z-10 bg-gradient-to-t from-midnight from-40% via-midnight/70 via-62% to-midnight/0 md:bg-gradient-to-r md:from-midnight/90 md:from-20% md:via-midnight/55 md:via-50% md:to-midnight/0"
+        className="absolute inset-x-0 top-0 -z-10 h-[min(68svh,36rem)] bg-gradient-to-t from-midnight from-5% via-midnight/60 via-45% to-midnight/0 lg:inset-0 lg:h-auto lg:bg-gradient-to-r lg:from-midnight/90 lg:from-20% lg:via-midnight/55 lg:via-50% lg:to-midnight/0"
         aria-hidden
       />
       <div className="absolute inset-x-0 top-0 -z-10 h-32 bg-gradient-to-b from-midnight/60 to-transparent" aria-hidden />
 
-      <div className="container-x relative flex min-h-[100svh] flex-col justify-end pb-14 pt-[22rem] sm:pt-[26rem] md:justify-center md:pb-24 md:pt-32 lg:pt-36">
-        <div className="max-w-[40rem] md:max-w-[34rem] lg:max-w-[40rem] 2xl:max-w-[46rem]">
+      <div className="container-x relative flex flex-col justify-end pb-12 pt-[min(46svh,22rem)] lg:min-h-[100svh] lg:justify-center lg:pb-24 lg:pt-36">
+        <div className="max-w-[40rem] 2xl:max-w-[46rem]">
           <motion.p {...seq(0.4)} className="text-eyebrow flex items-center gap-3 text-ivory/90">
             <Activity className="size-4 shrink-0 text-coral" aria-hidden />
             <span>
@@ -163,7 +163,7 @@ export function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 2.2, duration: 0.8 }}
-        className="absolute bottom-6 left-1/2 hidden -translate-x-1/2 items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-ivory/60 hover:text-ivory md:flex"
+        className="absolute bottom-6 left-1/2 hidden -translate-x-1/2 items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-ivory/60 hover:text-ivory lg:flex"
       >
         {t.hero.scroll}
         <ArrowDown className="size-3.5 animate-bounce" />
