@@ -51,7 +51,7 @@ export function Hero() {
   return (
     <section ref={ref} className="relative isolate overflow-hidden bg-midnight text-ivory">
       {/* photographic background */}
-      <motion.div className="absolute inset-x-0 top-0 -z-10 h-[min(68svh,36rem)] origin-top lg:inset-0 lg:h-auto" style={{ scale: imgScale }} aria-hidden>
+      <motion.div className="absolute inset-0 -z-10 origin-center" style={{ scale: imgScale }} aria-hidden>
         <Image
           src="/images/mother-hero.jpg"
           alt=""
@@ -59,12 +59,12 @@ export function Hero() {
           priority
           quality={90}
           sizes="100vw"
-          className="object-contain object-center"
+          className="object-cover object-[50%_32%]"
         />
       </motion.div>
       {/* readability overlays: bottom-up on phones, left-to-right from md */}
       <div
-        className="absolute inset-x-0 top-0 -z-10 h-[min(68svh,36rem)] bg-gradient-to-t from-midnight from-5% via-midnight/60 via-45% to-midnight/0 lg:inset-0 lg:h-auto lg:bg-gradient-to-r lg:from-midnight/90 lg:from-20% lg:via-midnight/55 lg:via-50% lg:to-midnight/0"
+        className="absolute inset-0 -z-10 bg-gradient-to-t from-midnight/90 via-midnight/45 to-midnight/15 lg:bg-gradient-to-r lg:from-midnight/95 lg:from-0% lg:via-midnight/65 lg:via-48% lg:to-midnight/10"
         aria-hidden
       />
       <div className="absolute inset-x-0 top-0 -z-10 h-32 bg-gradient-to-b from-midnight/60 to-transparent" aria-hidden />
