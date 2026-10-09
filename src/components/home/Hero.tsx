@@ -35,7 +35,7 @@ export function Hero() {
   const reduce = useReducedMotion();
   const ref = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
-  const imgScale = useTransform(scrollYProgress, [0, 1], [1, reduce ? 1 : 1.06]);
+  const imgScale = useTransform(scrollYProgress, [0, 1], [1, 1]);
 
   const seq = (delay: number, blur = false) =>
     reduce
@@ -59,7 +59,7 @@ export function Hero() {
           priority
           quality={90}
           sizes="100vw"
-          className="object-cover object-[50%_30%] sm:object-[48%_32%] md:object-[46%_35%] lg:object-[50%_38%] xl:object-[50%_38%] 2xl:object-[50%_38%]"
+          className="object-contain object-center"
         />
       </motion.div>
       {/* readability overlays: bottom-up on phones, left-to-right from md */}
