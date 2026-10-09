@@ -1,8 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { motion, useReducedMotion } from "framer-motion";
 import { ShieldCheck, Languages, ArrowDown, Activity, Users, MessageSquareText, Globe, Play } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { TextReveal } from "@/components/ui/TextReveal";
@@ -28,14 +27,12 @@ const COPY = {
   },
 };
 const BENEFIT_ICONS = [ShieldCheck, Users, MessageSquareText, Globe];
+const BG = "#0c2420";
 
 export function Hero() {
   const { t, lang } = useLang();
   const c = lang === "en" ? COPY.en : COPY.rw;
   const reduce = useReducedMotion();
-  const ref = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
-  const imgScale = useTransform(scrollYProgress, [0, 1], [1, 1]);
 
   const seq = (delay: number, blur = false) =>
     reduce
@@ -46,32 +43,40 @@ export function Hero() {
           transition: { delay, duration: 0.9, ease },
         };
 
-  const [eyebrowMain, eyebrowPlace] = t.hero.eyebrow.split(" · ");
+  const [eyebrowMain, eyebrowPlace] = String(t.hero.eyebrow).split(" · ");
 
   return (
-    <section ref={ref} className="relative isolate overflow-hidden bg-midnight text-ivory">
-      {/* photographic background */}
-      <motion.div className="absolute inset-0 -z-10 origin-center" style={{ scale: imgScale }} aria-hidden>
+    <section className="relative isolate overflow-hidden bg-[#0c2420] text-ivory lg:min-h-[100svh]">
+      {/* deep green atmosphere behind the copy */}
+      <div
+        aria-hidden
+        className="absolute inset-0 -z-20 bg-[radial-gradient(70%_90%_at_15%_55%,#1f5246_0%,#12322c_55%,#0b211d_100%)]"
+      />
+
+      {/* photograph: band on top for phones/tablets, right-hand block on desktop; never tinted */}
+      <div
+        aria-hidden
+        className="absolute inset-x-0 top-0 -z-10 h-[min(64svh,32rem)] lg:inset-y-0 lg:left-auto lg:right-0 lg:h-auto lg:w-[62%]"
+      >
         <Image
           src="/images/mother-hero.jpg"
           alt=""
           fill
           priority
           quality={90}
-          sizes="100vw"
-          className="object-cover object-[50%_32%]"
+          sizes="(min-width: 1024px) 62vw, 100vw"
+          className="object-cover object-[50%_30%] lg:object-[50%_40%]"
         />
-      </motion.div>
-      {/* readability overlays: bottom-up on phones, left-to-right from md */}
-      <div
-        className="absolute inset-0 -z-10 bg-gradient-to-t from-midnight/90 via-midnight/45 to-midnight/15 lg:bg-gradient-to-r lg:from-midnight/95 lg:from-0% lg:via-midnight/65 lg:via-48% lg:to-midnight/10"
-        aria-hidden
-      />
-      <div className="absolute inset-x-0 top-0 -z-10 h-32 bg-gradient-to-b from-midnight/60 to-transparent" aria-hidden />
+        <div
+          className="absolute inset-0 bg-gradient-to-t from-[#0c2420] via-[#0c2420]/30 via-40% to-transparent lg:bg-gradient-to-r lg:from-[#0c2420] lg:via-[#0c2420]/40 lg:via-25% lg:to-transparent lg:to-55%"
+          style={{ ["--tw-gradient-from" as string]: BG }}
+        />
+        <div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-[#0c2420]/55 to-transparent" />
+      </div>
 
-      <div className="relative mx-auto flex w-full max-w-[1728px] flex-col justify-end px-5 pb-12 pt-[min(46svh,22rem)] sm:px-8 lg:min-h-[100svh] lg:justify-center lg:px-[7vw] lg:pb-24 lg:pt-36">
-        <div className="w-full max-w-[40rem] lg:max-w-[54%] 2xl:max-w-[48rem]">
-          <motion.p {...seq(0.4)} className="text-eyebrow flex items-center gap-3 text-ivory/90">
+      <div className="container-x relative flex flex-col justify-end pb-12 pt-[min(48svh,24rem)] lg:min-h-[100svh] lg:justify-center lg:pb-24 lg:pt-32">
+        <div className="max-w-[40rem] 2xl:max-w-[46rem]">
+          <motion.p {...seq(0.4)} className="flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.14em] text-ivory">
             <Activity className="size-4 shrink-0 text-coral" aria-hidden />
             <span>
               {eyebrowMain}
@@ -83,19 +88,19 @@ export function Hero() {
             as="h1"
             trigger="mount"
             delay={0.45}
-            className="mt-5 w-full font-sans text-[clamp(2.35rem,1.45rem+3.1vw,4.35rem)] font-bold leading-[1.04] tracking-[-0.035em] lg:text-[clamp(3rem,3.6vw,4.35rem)]"
+            className="mt-5 font-sans text-[clamp(2.4rem,1.2rem+3vw,4.25rem)] font-bold leading-[1.06] tracking-tight"
             lines={[t.hero.title1, { text: t.hero.title2, className: "text-coral" }]}
           />
 
-          <motion.p {...seq(0.8, true)} className="text-lead mt-6 max-w-[50ch] text-ivory/90">
+          <motion.p {...seq(0.8, true)} className="text-lead mt-6 max-w-[46ch] text-ivory/90">
             {t.hero.lead}
           </motion.p>
 
           <motion.div {...seq(0.95)} className="mt-8 flex flex-wrap items-center gap-3">
-            <Button href="/login?mode=signup" variant="coral" size="lg" arrow className="focus-visible:outline-white">
+            <Button href="/login?mode=signup" variant="coral" size="lg" arrow>
               {t.hero.ctaPrimary}
             </Button>
-            <Button href="/how-it-works" variant="light" size="lg" className="focus-visible:outline-white">
+            <Button href="/how-it-works" variant="light" size="lg">
               <span className="inline-flex items-center gap-2">
                 <Play className="size-4" aria-hidden />
                 {t.hero.ctaSecondary}
@@ -103,13 +108,13 @@ export function Hero() {
             </Button>
           </motion.div>
 
-          <motion.ul {...seq(1.1)} className="mt-8 grid grid-cols-2 gap-x-4 gap-y-6 sm:mt-9 lg:grid-cols-4 lg:gap-x-0">
+          <motion.ul {...seq(1.1)} className="mt-10 grid grid-cols-2 gap-x-4 gap-y-6 lg:grid-cols-4 lg:gap-x-0">
             {c.benefits.map((label, i) => {
               const Icon = BENEFIT_ICONS[i];
               return (
                 <li
                   key={label}
-                  className="flex min-w-0 flex-col gap-2.5 lg:border-l lg:border-white/15 lg:pl-4 lg:pr-3 lg:first:border-0 lg:first:pl-0"
+                  className="flex flex-col gap-2.5 lg:border-l lg:border-white/15 lg:pl-4 lg:pr-3 lg:first:border-0 lg:first:pl-0"
                 >
                   <Icon className="size-7 text-green" aria-hidden />
                   <span className="text-[13px] font-semibold leading-snug text-ivory sm:text-sm">{label}</span>
@@ -124,10 +129,10 @@ export function Hero() {
         </div>
       </div>
 
-      {/* floating cards: decorative, illustrative only, shown where they cannot cover text or her face */}
+      {/* decorative cards (desktop only so they never cover her face or the text) */}
       <motion.div
         {...(reduce ? {} : { initial: { opacity: 0, y: 24 }, animate: { opacity: 1, y: 0 }, transition: { delay: 1.5, duration: 0.8, ease } })}
-        className="absolute left-[50%] top-[19%] hidden xl:block"
+        className="absolute left-[50%] top-[22%] hidden xl:block"
         aria-hidden
       >
         <div className="flex items-center gap-3 rounded-full bg-ivory/95 py-3 pl-3 pr-6 text-midnight shadow-float">
@@ -144,7 +149,7 @@ export function Hero() {
 
       <motion.div
         {...(reduce ? {} : { initial: { opacity: 0, y: 24 }, animate: { opacity: 1, y: 0 }, transition: { delay: 1.7, duration: 0.8, ease } })}
-        className="absolute bottom-[9%] right-6 hidden xl:block"
+        className="absolute bottom-[13%] right-[3%] hidden xl:block"
         aria-hidden
       >
         <div className="flex items-center gap-3 rounded-full bg-midnight/85 py-2.5 pl-3 pr-5 text-ivory ring-1 ring-white/10 backdrop-blur">
