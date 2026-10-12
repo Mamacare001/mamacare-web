@@ -3,7 +3,7 @@ import { auth, signOut } from "@/auth";
 import { notificationsByRole } from "@/lib/mock/shared";
 import { AppShell, portalNav } from "@/components/app/AppShell";
 
-export const metadata = { title: { default: "MamaRindwa · Research portal", template: "%s · MamaRindwa Research" } };
+export const metadata = { title: { default: "IjwiCare · Research portal", template: "%s · IjwiCare Research" } };
 
 export default async function PortalLayout({ children }: { children: React.ReactNode }) {
   const session = await auth();

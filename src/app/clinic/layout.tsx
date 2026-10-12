@@ -3,7 +3,7 @@ import { auth, signOut } from "@/auth";
 import { notificationsByRole } from "@/lib/mock/shared";
 import { AppShell, clinicNav } from "@/components/app/AppShell";
 
-export const metadata = { title: { default: "MamaRindwa · Clinic", template: "%s · MamaRindwa Clinic" } };
+export const metadata = { title: { default: "IjwiCare · Clinic", template: "%s · IjwiCare Clinic" } };
 
 export default async function ClinicLayout({ children }: { children: React.ReactNode }) {
   const session = await auth();

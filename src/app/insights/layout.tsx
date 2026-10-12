@@ -3,7 +3,7 @@ import { auth, signOut } from "@/auth";
 import { notificationsByRole } from "@/lib/mock/shared";
 import { AppShell, insightsNav, careNav } from "@/components/app/AppShell";
 
-export const metadata = { title: { default: "MamaRindwa · Insights", template: "%s · MamaRindwa Insights" } };
+export const metadata = { title: { default: "IjwiCare · Insights", template: "%s · IjwiCare Insights" } };
 
 export default async function InsightsLayout({ children }: { children: React.ReactNode }) {
   const session = await auth();

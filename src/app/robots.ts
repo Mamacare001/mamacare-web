@@ -32,6 +32,6 @@ export default function robots(): MetadataRoute.Robots {
         "/verify",
       ],
     },
-    sitemap: "https://MamaRindwa.rw/sitemap.xml",
+    sitemap: "https://IjwiCare.rw/sitemap.xml",
   };
 }

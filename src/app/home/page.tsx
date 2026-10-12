@@ -9,11 +9,11 @@ import { Safety } from "@/components/home/Safety";
 import { CtaBand } from "@/components/home/CtaBand";
 
 export const metadata: Metadata = {
-  title: "MamaRindwa — Maternal Health Early-Warning Platform for Rwanda",
+  title: "IjwiCare — Maternal Health Early-Warning Platform for Rwanda",
   description:
-    "MamaRindwa connects mothers, families, Community Health Workers and clinics into one continuous picture of every pregnancy — catching danger signs like preeclampsia early, in Kinyarwanda and English. No warning sign should go unheard.",
+    "IjwiCare connects mothers, families, Community Health Workers and clinics into one continuous picture of every pregnancy — catching danger signs like preeclampsia early, in Kinyarwanda and English. No warning sign should go unheard.",
   keywords: [
-    "MamaRindwa",
+    "IjwiCare",
     "maternal health Rwanda",
     "pregnancy warning signs",
     "preeclampsia Rwanda",
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: "/home" },
   openGraph: {
-    title: "MamaRindwa — The warning can come before the emergency",
+    title: "IjwiCare — The warning can come before the emergency",
     description:
       "An AI-supported maternal-health early-warning platform connecting mothers, families, CHWs and clinics across Rwanda.",
     url: "/home",
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "MamaRindwa — The warning can come before the emergency",
+    title: "IjwiCare — The warning can come before the emergency",
     description:
       "An AI-supported maternal-health early-warning platform connecting mothers, families, CHWs and clinics across Rwanda.",
     images: ["/images/mother-home-phone.jpg"],
@@ -43,11 +43,11 @@ export const metadata: Metadata = {
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  name: "MamaRindwa",
-  url: "https://MamaRindwa.rw",
-  logo: "https://MamaRindwa.rw/brand/mark.png",
+  name: "IjwiCare",
+  url: "https://IjwiCare.rw",
+  logo: "https://IjwiCare.rw/brand/mark.png",
   description:
-    "MamaRindwa connects mothers, families, Community Health Workers and clinics into one continuous picture of every pregnancy, catching danger signs early, in Kinyarwanda and English.",
+    "IjwiCare connects mothers, families, Community Health Workers and clinics into one continuous picture of every pregnancy, catching danger signs early, in Kinyarwanda and English.",
   areaServed: { "@type": "Country", name: "Rwanda" },
   sameAs: [] as string[],
 };

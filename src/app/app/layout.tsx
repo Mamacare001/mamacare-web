@@ -3,7 +3,7 @@ import { auth, signOut } from "@/auth";
 import { notificationsByRole } from "@/lib/mock/shared";
 import { AppShell } from "@/components/app/AppShell";
 
-export const metadata = { title: { default: "MamaRindwa", template: "%s · MamaRindwa" } };
+export const metadata = { title: { default: "IjwiCare", template: "%s · IjwiCare" } };
 
 export default async function MotherAppLayout({ children }: { children: React.ReactNode }) {
   const session = await auth();

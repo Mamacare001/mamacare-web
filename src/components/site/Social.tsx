@@ -2,11 +2,11 @@ import { Mail } from "lucide-react";
 import { siFacebook, siInstagram, siWhatsapp, siX, siYoutube } from "simple-icons";
 import { cn } from "@/lib/cn";
 
-/** Update these once the official MamaRindwa accounts exist. */
+/** Update these once the official IjwiCare accounts exist. */
 export const socials = [
   { label: "X (Twitter)", href: "https://x.com/MamaRindwa_rw", path: siX.path },
-  { label: "Instagram", href: "https://instagram.com/MamaRindwa.rw", path: siInstagram.path },
-  { label: "Facebook", href: "https://facebook.com/MamaRindwa.rw", path: siFacebook.path },
+  { label: "Instagram", href: "https://instagram.com/IjwiCare.rw", path: siInstagram.path },
+  { label: "Facebook", href: "https://facebook.com/IjwiCare.rw", path: siFacebook.path },
   { label: "YouTube", href: "https://youtube.com/@MamaRindwa_rw", path: siYoutube.path },
   { label: "WhatsApp", href: "https://wa.me/250780000000", path: siWhatsapp.path },
 ];
@@ -17,7 +17,7 @@ export function SocialLinks({ className, tone = "dark" }: { className?: string; 
       ? "border-ivory/15 text-ivory/70 hover:border-coral hover:bg-coral hover:text-white"
       : "border-emerald/15 text-emerald hover:border-coral hover:bg-coral hover:text-white";
   return (
-    <ul className={cn("flex flex-wrap items-center gap-2.5", className)} aria-label="MamaRindwa on social media">
+    <ul className={cn("flex flex-wrap items-center gap-2.5", className)} aria-label="IjwiCare on social media">
       {socials.map((s) => (
         <li key={s.label}>
           <a

@@ -8,7 +8,7 @@ import { CtaBand } from "@/components/home/CtaBand";
 
 export const metadata: Metadata = {
   title: "About",
-  description: "Why MamaRindwa exists, what we learned from mothers, families, CHWs and midwives, and where we are going.",
+  description: "Why IjwiCare exists, what we learned from mothers, families, CHWs and midwives, and where we are going.",
 };
 
 export default function AboutPage() {

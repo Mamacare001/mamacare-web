@@ -79,7 +79,7 @@ export function AccountMenu({
     {
       href: "/home",
       icon: Globe,
-      label: rw ? "Subira ku rubuga rwa MamaRindwa" : "Back to MamaRindwa site",
+      label: rw ? "Subira ku rubuga rwa IjwiCare" : "Back to IjwiCare site",
     },
   ];
 

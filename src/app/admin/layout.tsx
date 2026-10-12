@@ -2,7 +2,7 @@ import { redirect } from "next/navigation";
 import { auth, signOut } from "@/auth";
 import { AdminShell } from "@/components/admin/AdminShell";
 
-export const metadata = { title: { default: "MamaRindwa · Admin", template: "%s · MamaRindwa Admin" } };
+export const metadata = { title: { default: "IjwiCare · Admin", template: "%s · IjwiCare Admin" } };
 
 export default async function AdminLayout({ children }: { children: React.ReactNode }) {
   const session = await auth();
